@@ -36,6 +36,18 @@ use TencentCloud\Common\AbstractModel;
  * @method void setNativeAppCount(integer $NativeAppCount) 设置NativeApp数量
  * @method integer getWebAppCount() 获取WebApp数量
  * @method void setWebAppCount(integer $WebAppCount) 设置WebApp数量
+ * @method string getInstanceId() 获取实例ID
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setInstanceId(string $InstanceId) 设置实例ID
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getApplicationCount() 获取应用数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setApplicationCount(integer $ApplicationCount) 设置应用数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getDeviceCount() 获取设备注册总数
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setDeviceCount(integer $DeviceCount) 设置设备注册总数
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class ProjectEntryEx extends AbstractModel
 {
@@ -80,6 +92,24 @@ class ProjectEntryEx extends AbstractModel
     public $WebAppCount;
 
     /**
+     * @var string 实例ID
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $InstanceId;
+
+    /**
+     * @var integer 应用数量
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ApplicationCount;
+
+    /**
+     * @var integer 设备注册总数
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $DeviceCount;
+
+    /**
      * @param string $ProjectId 项目ID
      * @param string $ProjectName 项目名称
      * @param string $ProjectDesc 项目描述
@@ -88,6 +118,12 @@ class ProjectEntryEx extends AbstractModel
      * @param integer $ProductCount 产品数量
      * @param integer $NativeAppCount NativeApp数量
      * @param integer $WebAppCount WebApp数量
+     * @param string $InstanceId 实例ID
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $ApplicationCount 应用数量
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $DeviceCount 设备注册总数
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -132,6 +168,18 @@ class ProjectEntryEx extends AbstractModel
 
         if (array_key_exists("WebAppCount",$param) and $param["WebAppCount"] !== null) {
             $this->WebAppCount = $param["WebAppCount"];
+        }
+
+        if (array_key_exists("InstanceId",$param) and $param["InstanceId"] !== null) {
+            $this->InstanceId = $param["InstanceId"];
+        }
+
+        if (array_key_exists("ApplicationCount",$param) and $param["ApplicationCount"] !== null) {
+            $this->ApplicationCount = $param["ApplicationCount"];
+        }
+
+        if (array_key_exists("DeviceCount",$param) and $param["DeviceCount"] !== null) {
+            $this->DeviceCount = $param["DeviceCount"];
         }
     }
 }

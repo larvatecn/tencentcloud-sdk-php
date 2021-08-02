@@ -54,8 +54,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setReceiverGroups(array $ReceiverGroups) 设置接收组列表
  * @method array getNoticeWays() 获取告警渠道列表 SMS=短信 EMAIL=邮件 CALL=电话 WECHAT=微信
  * @method void setNoticeWays(array $NoticeWays) 设置告警渠道列表 SMS=短信 EMAIL=邮件 CALL=电话 WECHAT=微信
- * @method string getOriginId() 获取兼容告警1.0策略组 Id
- * @method void setOriginId(string $OriginId) 设置兼容告警1.0策略组 Id
+ * @method string getOriginId() 获取可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
+ * @method void setOriginId(string $OriginId) 设置可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
  * @method string getAlarmType() 获取告警类型
  * @method void setAlarmType(string $AlarmType) 设置告警类型
  * @method integer getEventId() 获取事件Id
@@ -64,6 +64,14 @@ use TencentCloud\Common\AbstractModel;
  * @method void setRegion(string $Region) 设置地域
  * @method integer getPolicyExists() 获取策略是否存在 0=不存在 1=存在
  * @method void setPolicyExists(integer $PolicyExists) 设置策略是否存在 0=不存在 1=存在
+ * @method array getMetricsInfo() 获取指标信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setMetricsInfo(array $MetricsInfo) 设置指标信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getDimensions() 获取告警实例的维度信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setDimensions(string $Dimensions) 设置告警实例的维度信息
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class AlarmHistory extends AbstractModel
 {
@@ -153,7 +161,7 @@ class AlarmHistory extends AbstractModel
     public $NoticeWays;
 
     /**
-     * @var string 兼容告警1.0策略组 Id
+     * @var string 可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
      */
     public $OriginId;
 
@@ -178,6 +186,18 @@ class AlarmHistory extends AbstractModel
     public $PolicyExists;
 
     /**
+     * @var array 指标信息
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $MetricsInfo;
+
+    /**
+     * @var string 告警实例的维度信息
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Dimensions;
+
+    /**
      * @param string $AlarmId 告警历史Id
      * @param string $MonitorType 监控类型
      * @param string $Namespace 策略类型
@@ -195,11 +215,15 @@ class AlarmHistory extends AbstractModel
      * @param array $ReceiverUids 接收人列表
      * @param array $ReceiverGroups 接收组列表
      * @param array $NoticeWays 告警渠道列表 SMS=短信 EMAIL=邮件 CALL=电话 WECHAT=微信
-     * @param string $OriginId 兼容告警1.0策略组 Id
+     * @param string $OriginId 可用于实例、实例组的绑定和解绑接口（[BindingPolicyObject](https://cloud.tencent.com/document/product/248/40421)、[UnBindingAllPolicyObject](https://cloud.tencent.com/document/product/248/40568)、[UnBindingPolicyObject](https://cloud.tencent.com/document/product/248/40567)）的策略 ID
      * @param string $AlarmType 告警类型
      * @param integer $EventId 事件Id
      * @param string $Region 地域
      * @param integer $PolicyExists 策略是否存在 0=不存在 1=存在
+     * @param array $MetricsInfo 指标信息
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Dimensions 告警实例的维度信息
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -305,6 +329,19 @@ class AlarmHistory extends AbstractModel
 
         if (array_key_exists("PolicyExists",$param) and $param["PolicyExists"] !== null) {
             $this->PolicyExists = $param["PolicyExists"];
+        }
+
+        if (array_key_exists("MetricsInfo",$param) and $param["MetricsInfo"] !== null) {
+            $this->MetricsInfo = [];
+            foreach ($param["MetricsInfo"] as $key => $value){
+                $obj = new AlarmHistoryMetric();
+                $obj->deserialize($value);
+                array_push($this->MetricsInfo, $obj);
+            }
+        }
+
+        if (array_key_exists("Dimensions",$param) and $param["Dimensions"] !== null) {
+            $this->Dimensions = $param["Dimensions"];
         }
     }
 }

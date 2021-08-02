@@ -82,8 +82,20 @@ use TencentCloud\Common\AbstractModel;
  * @method void setEnableUnion(boolean $EnableUnion) 设置是否使用统一域名
  * @method string getOperatorRemark() 获取操作备注
  * @method void setOperatorRemark(string $OperatorRemark) 设置操作备注
- * @method string getServerPath() 获取服务路劲
- * @method void setServerPath(string $ServerPath) 设置服务路劲
+ * @method string getServerPath() 获取服务路径
+ * @method void setServerPath(string $ServerPath) 设置服务路径
+ * @method string getImageReuseKey() 获取镜像复用的key
+ * @method void setImageReuseKey(string $ImageReuseKey) 设置镜像复用的key
+ * @method array getSidecarSpecs() 获取容器的描述文件
+ * @method void setSidecarSpecs(array $SidecarSpecs) 设置容器的描述文件
+ * @method CloudBaseSecurityContext getSecurity() 获取安全特性
+ * @method void setSecurity(CloudBaseSecurityContext $Security) 设置安全特性
+ * @method array getServiceVolumes() 获取服务磁盘挂载
+ * @method void setServiceVolumes(array $ServiceVolumes) 设置服务磁盘挂载
+ * @method integer getIsCreateJnsGw() 获取是否创建JnsGw 0未传默认创建 1创建 2不创建
+ * @method void setIsCreateJnsGw(integer $IsCreateJnsGw) 设置是否创建JnsGw 0未传默认创建 1创建 2不创建
+ * @method array getServiceVolumeMounts() 获取数据卷挂载参数
+ * @method void setServiceVolumeMounts(array $ServiceVolumeMounts) 设置数据卷挂载参数
  */
 class CreateCloudBaseRunServerVersionRequest extends AbstractModel
 {
@@ -243,9 +255,39 @@ class CreateCloudBaseRunServerVersionRequest extends AbstractModel
     public $OperatorRemark;
 
     /**
-     * @var string 服务路劲
+     * @var string 服务路径
      */
     public $ServerPath;
+
+    /**
+     * @var string 镜像复用的key
+     */
+    public $ImageReuseKey;
+
+    /**
+     * @var array 容器的描述文件
+     */
+    public $SidecarSpecs;
+
+    /**
+     * @var CloudBaseSecurityContext 安全特性
+     */
+    public $Security;
+
+    /**
+     * @var array 服务磁盘挂载
+     */
+    public $ServiceVolumes;
+
+    /**
+     * @var integer 是否创建JnsGw 0未传默认创建 1创建 2不创建
+     */
+    public $IsCreateJnsGw;
+
+    /**
+     * @var array 数据卷挂载参数
+     */
+    public $ServiceVolumeMounts;
 
     /**
      * @param string $EnvId 环境ID
@@ -279,7 +321,13 @@ class CreateCloudBaseRunServerVersionRequest extends AbstractModel
      * @param CloudBaseEsInfo $EsInfo es信息
      * @param boolean $EnableUnion 是否使用统一域名
      * @param string $OperatorRemark 操作备注
-     * @param string $ServerPath 服务路劲
+     * @param string $ServerPath 服务路径
+     * @param string $ImageReuseKey 镜像复用的key
+     * @param array $SidecarSpecs 容器的描述文件
+     * @param CloudBaseSecurityContext $Security 安全特性
+     * @param array $ServiceVolumes 服务磁盘挂载
+     * @param integer $IsCreateJnsGw 是否创建JnsGw 0未传默认创建 1创建 2不创建
+     * @param array $ServiceVolumeMounts 数据卷挂载参数
      */
     function __construct()
     {
@@ -429,6 +477,46 @@ class CreateCloudBaseRunServerVersionRequest extends AbstractModel
 
         if (array_key_exists("ServerPath",$param) and $param["ServerPath"] !== null) {
             $this->ServerPath = $param["ServerPath"];
+        }
+
+        if (array_key_exists("ImageReuseKey",$param) and $param["ImageReuseKey"] !== null) {
+            $this->ImageReuseKey = $param["ImageReuseKey"];
+        }
+
+        if (array_key_exists("SidecarSpecs",$param) and $param["SidecarSpecs"] !== null) {
+            $this->SidecarSpecs = [];
+            foreach ($param["SidecarSpecs"] as $key => $value){
+                $obj = new CloudBaseRunSideSpec();
+                $obj->deserialize($value);
+                array_push($this->SidecarSpecs, $obj);
+            }
+        }
+
+        if (array_key_exists("Security",$param) and $param["Security"] !== null) {
+            $this->Security = new CloudBaseSecurityContext();
+            $this->Security->deserialize($param["Security"]);
+        }
+
+        if (array_key_exists("ServiceVolumes",$param) and $param["ServiceVolumes"] !== null) {
+            $this->ServiceVolumes = [];
+            foreach ($param["ServiceVolumes"] as $key => $value){
+                $obj = new CloudRunServiceVolume();
+                $obj->deserialize($value);
+                array_push($this->ServiceVolumes, $obj);
+            }
+        }
+
+        if (array_key_exists("IsCreateJnsGw",$param) and $param["IsCreateJnsGw"] !== null) {
+            $this->IsCreateJnsGw = $param["IsCreateJnsGw"];
+        }
+
+        if (array_key_exists("ServiceVolumeMounts",$param) and $param["ServiceVolumeMounts"] !== null) {
+            $this->ServiceVolumeMounts = [];
+            foreach ($param["ServiceVolumeMounts"] as $key => $value){
+                $obj = new CloudBaseRunServiceVolumeMount();
+                $obj->deserialize($value);
+                array_push($this->ServiceVolumeMounts, $obj);
+            }
         }
     }
 }

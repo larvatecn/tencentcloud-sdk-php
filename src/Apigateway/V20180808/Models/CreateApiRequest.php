@@ -36,8 +36,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setApiDesc(string $ApiDesc) 设置用户自定义的 API 接口描述。
  * @method string getApiType() 获取API 类型，支持NORMAL（普通API）和TSF（微服务API），默认为NORMAL。
  * @method void setApiType(string $ApiType) 设置API 类型，支持NORMAL（普通API）和TSF（微服务API），默认为NORMAL。
- * @method string getAuthType() 获取API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH。默认为NONE。
- * @method void setAuthType(string $AuthType) 设置API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH。默认为NONE。
+ * @method string getAuthType() 获取API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、APP（应用认证）。默认为NONE。
+ * @method void setAuthType(string $AuthType) 设置API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、APP（应用认证）。默认为NONE。
  * @method boolean getEnableCORS() 获取是否开启跨域。
  * @method void setEnableCORS(boolean $EnableCORS) 设置是否开启跨域。
  * @method array getConstantParameters() 获取常量参数。
@@ -110,6 +110,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setTargetNamespaceId(string $TargetNamespaceId) 设置tsf serverless 命名空间ID。（内测中）
  * @method string getUserType() 获取用户类型。
  * @method void setUserType(string $UserType) 设置用户类型。
+ * @method boolean getIsBase64Encoded() 获取是否打开Base64编码，只有后端是scf时才会生效。
+ * @method void setIsBase64Encoded(boolean $IsBase64Encoded) 设置是否打开Base64编码，只有后端是scf时才会生效。
+ * @method string getServiceScfFunctionType() 获取scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
+ * @method void setServiceScfFunctionType(string $ServiceScfFunctionType) 设置scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
  */
 class CreateApiRequest extends AbstractModel
 {
@@ -154,7 +158,7 @@ class CreateApiRequest extends AbstractModel
     public $ApiType;
 
     /**
-     * @var string API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH。默认为NONE。
+     * @var string API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、APP（应用认证）。默认为NONE。
      */
     public $AuthType;
 
@@ -339,6 +343,16 @@ class CreateApiRequest extends AbstractModel
     public $UserType;
 
     /**
+     * @var boolean 是否打开Base64编码，只有后端是scf时才会生效。
+     */
+    public $IsBase64Encoded;
+
+    /**
+     * @var string scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
+     */
+    public $ServiceScfFunctionType;
+
+    /**
      * @param string $ServiceId API 所在的服务唯一 ID。
      * @param string $ServiceType API 的后端服务类型。支持HTTP、MOCK、TSF、SCF、WEBSOCKET、TARGET（内测）。
      * @param integer $ServiceTimeout API 的后端服务超时时间，单位是秒。
@@ -347,7 +361,7 @@ class CreateApiRequest extends AbstractModel
      * @param string $ApiName 用户自定义的 API 名称。
      * @param string $ApiDesc 用户自定义的 API 接口描述。
      * @param string $ApiType API 类型，支持NORMAL（普通API）和TSF（微服务API），默认为NORMAL。
-     * @param string $AuthType API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH。默认为NONE。
+     * @param string $AuthType API 鉴权类型。支持SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、APP（应用认证）。默认为NONE。
      * @param boolean $EnableCORS 是否开启跨域。
      * @param array $ConstantParameters 常量参数。
      * @param array $RequestParameters 前端请求参数。
@@ -384,6 +398,8 @@ class CreateApiRequest extends AbstractModel
      * @param array $ResponseErrorCodes 用户自定义错误码配置。
      * @param string $TargetNamespaceId tsf serverless 命名空间ID。（内测中）
      * @param string $UserType 用户类型。
+     * @param boolean $IsBase64Encoded 是否打开Base64编码，只有后端是scf时才会生效。
+     * @param string $ServiceScfFunctionType scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
      */
     function __construct()
     {
@@ -612,6 +628,14 @@ class CreateApiRequest extends AbstractModel
 
         if (array_key_exists("UserType",$param) and $param["UserType"] !== null) {
             $this->UserType = $param["UserType"];
+        }
+
+        if (array_key_exists("IsBase64Encoded",$param) and $param["IsBase64Encoded"] !== null) {
+            $this->IsBase64Encoded = $param["IsBase64Encoded"];
+        }
+
+        if (array_key_exists("ServiceScfFunctionType",$param) and $param["ServiceScfFunctionType"] !== null) {
+            $this->ServiceScfFunctionType = $param["ServiceScfFunctionType"];
         }
     }
 }

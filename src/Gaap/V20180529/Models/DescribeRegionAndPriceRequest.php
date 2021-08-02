@@ -20,14 +20,18 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DescribeRegionAndPrice请求参数结构体
  *
-
+ * @method string getIPAddressVersion() 获取IP版本，可取值：IPv4、IPv6，默认值IPv4
+ * @method void setIPAddressVersion(string $IPAddressVersion) 设置IP版本，可取值：IPv4、IPv6，默认值IPv4
  */
 class DescribeRegionAndPriceRequest extends AbstractModel
 {
-
+    /**
+     * @var string IP版本，可取值：IPv4、IPv6，默认值IPv4
+     */
+    public $IPAddressVersion;
 
     /**
-
+     * @param string $IPAddressVersion IP版本，可取值：IPv4、IPv6，默认值IPv4
      */
     function __construct()
     {
@@ -42,6 +46,8 @@ class DescribeRegionAndPriceRequest extends AbstractModel
         if ($param === null) {
             return;
         }
-
+        if (array_key_exists("IPAddressVersion",$param) and $param["IPAddressVersion"] !== null) {
+            $this->IPAddressVersion = $param["IPAddressVersion"];
+        }
     }
 }

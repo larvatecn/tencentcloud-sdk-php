@@ -26,8 +26,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setName(string $Name) 设置Name 资源池名称
  * @method string getClusterInstanceId() 获取ClusterInstanceId 集群实例id
  * @method void setClusterInstanceId(string $ClusterInstanceId) 设置ClusterInstanceId 集群实例id
- * @method string getLifeState() 获取LifeState 状态
- * @method void setLifeState(string $LifeState) 设置LifeState 状态
+ * @method string getLifeState() 获取LifeState 状态，当前节点池生命周期状态包括：creating，normal，updating，deleting，deleted
+ * @method void setLifeState(string $LifeState) 设置LifeState 状态，当前节点池生命周期状态包括：creating，normal，updating，deleting，deleted
  * @method string getLaunchConfigurationId() 获取LaunchConfigurationId 配置
  * @method void setLaunchConfigurationId(string $LaunchConfigurationId) 设置LaunchConfigurationId 配置
  * @method string getAutoscalingGroupId() 获取AutoscalingGroupId 分组id
@@ -66,6 +66,14 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setImageId(string $ImageId) 设置镜像id
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getDesiredPodNum() 获取集群属于节点podCIDR大小自定义模式时，节点池需要带上pod数量属性
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setDesiredPodNum(integer $DesiredPodNum) 设置集群属于节点podCIDR大小自定义模式时，节点池需要带上pod数量属性
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getUserScript() 获取用户自定义脚本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setUserScript(string $UserScript) 设置用户自定义脚本
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class NodePool extends AbstractModel
 {
@@ -85,7 +93,7 @@ class NodePool extends AbstractModel
     public $ClusterInstanceId;
 
     /**
-     * @var string LifeState 状态
+     * @var string LifeState 状态，当前节点池生命周期状态包括：creating，normal，updating，deleting，deleted
      */
     public $LifeState;
 
@@ -157,10 +165,22 @@ class NodePool extends AbstractModel
     public $ImageId;
 
     /**
+     * @var integer 集群属于节点podCIDR大小自定义模式时，节点池需要带上pod数量属性
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $DesiredPodNum;
+
+    /**
+     * @var string 用户自定义脚本
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $UserScript;
+
+    /**
      * @param string $NodePoolId NodePoolId 资源池id
      * @param string $Name Name 资源池名称
      * @param string $ClusterInstanceId ClusterInstanceId 集群实例id
-     * @param string $LifeState LifeState 状态
+     * @param string $LifeState LifeState 状态，当前节点池生命周期状态包括：creating，normal，updating，deleting，deleted
      * @param string $LaunchConfigurationId LaunchConfigurationId 配置
      * @param string $AutoscalingGroupId AutoscalingGroupId 分组id
      * @param array $Labels Labels 标签
@@ -179,6 +199,10 @@ class NodePool extends AbstractModel
      * @param string $OsCustomizeType 容器的镜像版本，"DOCKER_CUSTOMIZE"(容器定制版),"GENERAL"(普通版本，默认值)
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $ImageId 镜像id
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $DesiredPodNum 集群属于节点podCIDR大小自定义模式时，节点池需要带上pod数量属性
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $UserScript 用户自定义脚本
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -267,6 +291,14 @@ class NodePool extends AbstractModel
 
         if (array_key_exists("ImageId",$param) and $param["ImageId"] !== null) {
             $this->ImageId = $param["ImageId"];
+        }
+
+        if (array_key_exists("DesiredPodNum",$param) and $param["DesiredPodNum"] !== null) {
+            $this->DesiredPodNum = $param["DesiredPodNum"];
+        }
+
+        if (array_key_exists("UserScript",$param) and $param["UserScript"] !== null) {
+            $this->UserScript = $param["UserScript"];
         }
     }
 }

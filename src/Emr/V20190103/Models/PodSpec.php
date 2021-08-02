@@ -36,6 +36,20 @@ use TencentCloud\Common\AbstractModel;
  * @method void setCpuType(string $CpuType) 设置Eks集群-CPU类型，当前支持"intel"和"amd"
  * @method array getPodVolumes() 获取Pod节点数据目录挂载信息。
  * @method void setPodVolumes(array $PodVolumes) 设置Pod节点数据目录挂载信息。
+ * @method integer getIsDynamicSpec() 获取是否浮动规格，1是，0否
+ * @method void setIsDynamicSpec(integer $IsDynamicSpec) 设置是否浮动规格，1是，0否
+ * @method DynamicPodSpec getDynamicPodSpec() 获取浮动规格
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setDynamicPodSpec(DynamicPodSpec $DynamicPodSpec) 设置浮动规格
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getVpcId() 获取代表vpc网络唯一id
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setVpcId(string $VpcId) 设置代表vpc网络唯一id
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getSubnetId() 获取代表vpc子网唯一id
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setSubnetId(string $SubnetId) 设置代表vpc子网唯一id
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class PodSpec extends AbstractModel
 {
@@ -80,6 +94,29 @@ class PodSpec extends AbstractModel
     public $PodVolumes;
 
     /**
+     * @var integer 是否浮动规格，1是，0否
+     */
+    public $IsDynamicSpec;
+
+    /**
+     * @var DynamicPodSpec 浮动规格
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $DynamicPodSpec;
+
+    /**
+     * @var string 代表vpc网络唯一id
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $VpcId;
+
+    /**
+     * @var string 代表vpc子网唯一id
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $SubnetId;
+
+    /**
      * @param string $ResourceProviderIdentifier 外部资源提供者的标识符，例如"cls-a1cd23fa"。
      * @param string $ResourceProviderType 外部资源提供者类型，例如"tke",当前仅支持"tke"。
      * @param string $NodeType 资源的用途，即节点类型，当前仅支持"TASK"。
@@ -88,6 +125,13 @@ class PodSpec extends AbstractModel
      * @param array $DataVolumes 资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用。弃用
      * @param string $CpuType Eks集群-CPU类型，当前支持"intel"和"amd"
      * @param array $PodVolumes Pod节点数据目录挂载信息。
+     * @param integer $IsDynamicSpec 是否浮动规格，1是，0否
+     * @param DynamicPodSpec $DynamicPodSpec 浮动规格
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $VpcId 代表vpc网络唯一id
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $SubnetId 代表vpc子网唯一id
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -137,6 +181,23 @@ class PodSpec extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->PodVolumes, $obj);
             }
+        }
+
+        if (array_key_exists("IsDynamicSpec",$param) and $param["IsDynamicSpec"] !== null) {
+            $this->IsDynamicSpec = $param["IsDynamicSpec"];
+        }
+
+        if (array_key_exists("DynamicPodSpec",$param) and $param["DynamicPodSpec"] !== null) {
+            $this->DynamicPodSpec = new DynamicPodSpec();
+            $this->DynamicPodSpec->deserialize($param["DynamicPodSpec"]);
+        }
+
+        if (array_key_exists("VpcId",$param) and $param["VpcId"] !== null) {
+            $this->VpcId = $param["VpcId"];
+        }
+
+        if (array_key_exists("SubnetId",$param) and $param["SubnetId"] !== null) {
+            $this->SubnetId = $param["SubnetId"];
         }
     }
 }

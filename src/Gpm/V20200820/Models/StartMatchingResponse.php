@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method integer getErrCode() 获取错误码。
  * @method void setErrCode(integer $ErrCode) 设置错误码。
- * @method string getMatchTicketId() 获取请求 id 长度 128。
- * @method void setMatchTicketId(string $MatchTicketId) 设置请求 id 长度 128。
+ * @method string getMatchTicketId() 获取匹配票据 ID长度 128。
+ * @method void setMatchTicketId(string $MatchTicketId) 设置匹配票据 ID长度 128。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
@@ -35,7 +35,7 @@ class StartMatchingResponse extends AbstractModel
     public $ErrCode;
 
     /**
-     * @var string 请求 id 长度 128。
+     * @var string 匹配票据 ID长度 128。
      */
     public $MatchTicketId;
 
@@ -46,7 +46,7 @@ class StartMatchingResponse extends AbstractModel
 
     /**
      * @param integer $ErrCode 错误码。
-     * @param string $MatchTicketId 请求 id 长度 128。
+     * @param string $MatchTicketId 匹配票据 ID长度 128。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()

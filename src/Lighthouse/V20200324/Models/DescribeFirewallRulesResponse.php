@@ -24,6 +24,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setTotalCount(integer $TotalCount) 设置符合条件的防火墙规则数量。
  * @method array getFirewallRuleSet() 获取防火墙规则详细信息列表。
  * @method void setFirewallRuleSet(array $FirewallRuleSet) 设置防火墙规则详细信息列表。
+ * @method integer getFirewallVersion() 获取防火墙版本号。
+ * @method void setFirewallVersion(integer $FirewallVersion) 设置防火墙版本号。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
@@ -40,6 +42,11 @@ class DescribeFirewallRulesResponse extends AbstractModel
     public $FirewallRuleSet;
 
     /**
+     * @var integer 防火墙版本号。
+     */
+    public $FirewallVersion;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -47,6 +54,7 @@ class DescribeFirewallRulesResponse extends AbstractModel
     /**
      * @param integer $TotalCount 符合条件的防火墙规则数量。
      * @param array $FirewallRuleSet 防火墙规则详细信息列表。
+     * @param integer $FirewallVersion 防火墙版本号。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -73,6 +81,10 @@ class DescribeFirewallRulesResponse extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->FirewallRuleSet, $obj);
             }
+        }
+
+        if (array_key_exists("FirewallVersion",$param) and $param["FirewallVersion"] !== null) {
+            $this->FirewallVersion = $param["FirewallVersion"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

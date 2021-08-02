@@ -27,10 +27,6 @@ use TencentCloud\Common\Exception\TencentCloudSDKException;
 class Sign
 {
     /**
-     * @param string $secretKey
-     * @param string $signStr
-     * @param string $signMethod
-     * @return string
      * @throws TencentCloudSDKException
      */
     public static function sign($secretKey, $signStr, $signMethod)
@@ -43,13 +39,6 @@ class Sign
         return $signature;
     }
 
-    /**
-     * @param string $skey
-     * @param string $date
-     * @param string $service
-     * @param string $str2sign
-     * @return string
-     */
     public static function signTC3($skey, $date, $service, $str2sign)
     {
         $dateKey = hash_hmac("SHA256", $date, "TC3".$skey, true);

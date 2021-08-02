@@ -18,28 +18,28 @@ namespace TencentCloud\Ecm\V20190719\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * 过滤器Filter;由Name和ValueSet组成，是string的key和字符串数组的value
+ * 描述键值对过滤器，用于条件过滤查询。
  *
- * @method string getName() 获取过滤字段名称
- * @method void setName(string $Name) 设置过滤字段名称
- * @method array getValues() 获取过滤字段内容数组
- * @method void setValues(array $Values) 设置过滤字段内容数组
+ * @method array getValues() 获取一个或者多个过滤值。
+ * @method void setValues(array $Values) 设置一个或者多个过滤值。
+ * @method string getName() 获取过滤键的名称。
+ * @method void setName(string $Name) 设置过滤键的名称。
  */
 class Filter extends AbstractModel
 {
     /**
-     * @var string 过滤字段名称
-     */
-    public $Name;
-
-    /**
-     * @var array 过滤字段内容数组
+     * @var array 一个或者多个过滤值。
      */
     public $Values;
 
     /**
-     * @param string $Name 过滤字段名称
-     * @param array $Values 过滤字段内容数组
+     * @var string 过滤键的名称。
+     */
+    public $Name;
+
+    /**
+     * @param array $Values 一个或者多个过滤值。
+     * @param string $Name 过滤键的名称。
      */
     function __construct()
     {
@@ -54,12 +54,12 @@ class Filter extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("Name",$param) and $param["Name"] !== null) {
-            $this->Name = $param["Name"];
-        }
-
         if (array_key_exists("Values",$param) and $param["Values"] !== null) {
             $this->Values = $param["Values"];
+        }
+
+        if (array_key_exists("Name",$param) and $param["Name"] !== null) {
+            $this->Name = $param["Name"];
         }
     }
 }

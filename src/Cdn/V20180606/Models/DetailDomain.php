@@ -258,6 +258,30 @@ off：不支持
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setAdvanceSet(array $AdvanceSet) 设置高级配置集合。
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method OfflineCache getOfflineCache() 获取离线缓存
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setOfflineCache(OfflineCache $OfflineCache) 设置离线缓存
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method OriginCombine getOriginCombine() 获取合并回源
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setOriginCombine(OriginCombine $OriginCombine) 设置合并回源
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method PostSize getPostMaxSize() 获取POST上传配置项
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPostMaxSize(PostSize $PostMaxSize) 设置POST上传配置项
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method Quic getQuic() 获取Quic配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setQuic(Quic $Quic) 设置Quic配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method OssPrivateAccess getOssPrivateAccess() 获取回源OSS私有鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setOssPrivateAccess(OssPrivateAccess $OssPrivateAccess) 设置回源OSS私有鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method WebSocket getWebSocket() 获取WebSocket配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setWebSocket(WebSocket $WebSocket) 设置WebSocket配置
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class DetailDomain extends AbstractModel
 {
@@ -589,6 +613,42 @@ off：不支持
     public $AdvanceSet;
 
     /**
+     * @var OfflineCache 离线缓存
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $OfflineCache;
+
+    /**
+     * @var OriginCombine 合并回源
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $OriginCombine;
+
+    /**
+     * @var PostSize POST上传配置项
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PostMaxSize;
+
+    /**
+     * @var Quic Quic配置
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Quic;
+
+    /**
+     * @var OssPrivateAccess 回源OSS私有鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $OssPrivateAccess;
+
+    /**
+     * @var WebSocket WebSocket配置
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $WebSocket;
+
+    /**
      * @param string $ResourceId 域名 ID
      * @param integer $AppId 腾讯云账号ID
      * @param string $Domain 加速域名
@@ -707,6 +767,18 @@ off：不支持
      * @param Ipv6Access $Ipv6Access Ipv6访问配置
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $AdvanceSet 高级配置集合。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param OfflineCache $OfflineCache 离线缓存
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param OriginCombine $OriginCombine 合并回源
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param PostSize $PostMaxSize POST上传配置项
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param Quic $Quic Quic配置
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param OssPrivateAccess $OssPrivateAccess 回源OSS私有鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param WebSocket $WebSocket WebSocket配置
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -974,6 +1046,36 @@ off：不支持
                 $obj->deserialize($value);
                 array_push($this->AdvanceSet, $obj);
             }
+        }
+
+        if (array_key_exists("OfflineCache",$param) and $param["OfflineCache"] !== null) {
+            $this->OfflineCache = new OfflineCache();
+            $this->OfflineCache->deserialize($param["OfflineCache"]);
+        }
+
+        if (array_key_exists("OriginCombine",$param) and $param["OriginCombine"] !== null) {
+            $this->OriginCombine = new OriginCombine();
+            $this->OriginCombine->deserialize($param["OriginCombine"]);
+        }
+
+        if (array_key_exists("PostMaxSize",$param) and $param["PostMaxSize"] !== null) {
+            $this->PostMaxSize = new PostSize();
+            $this->PostMaxSize->deserialize($param["PostMaxSize"]);
+        }
+
+        if (array_key_exists("Quic",$param) and $param["Quic"] !== null) {
+            $this->Quic = new Quic();
+            $this->Quic->deserialize($param["Quic"]);
+        }
+
+        if (array_key_exists("OssPrivateAccess",$param) and $param["OssPrivateAccess"] !== null) {
+            $this->OssPrivateAccess = new OssPrivateAccess();
+            $this->OssPrivateAccess->deserialize($param["OssPrivateAccess"]);
+        }
+
+        if (array_key_exists("WebSocket",$param) and $param["WebSocket"] !== null) {
+            $this->WebSocket = new WebSocket();
+            $this->WebSocket->deserialize($param["WebSocket"]);
         }
     }
 }

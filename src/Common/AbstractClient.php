@@ -35,16 +35,13 @@ abstract class AbstractClient
     /**
      * @var string SDK版本
      */
-    public static $SDK_VERSION = "SDK_PHP_3.0.313";
+    public static $SDK_VERSION = "SDK_PHP_3.0.447";
 
     /**
      * @var integer http响应码200
      */
     public static $HTTP_RSP_OK = 200;
 
-    /**
-     * @var string
-     */
     private $PHP_VERSION_MINIMUM = "5.6.0";
 
     /**
@@ -89,9 +86,8 @@ abstract class AbstractClient
      * @param Credential $credential 认证信息实例
      * @param string $region 产品地域
      * @param ClientProfile $profile
-     * @throws TencentCloudSDKException
      */
-    public function __construct($endpoint, $version, $credential, $region, $profile = null)
+    function __construct($endpoint, $version, $credential, $region, $profile=null)
     {
         $this->path = "/";
         $this->credential = $credential;
@@ -108,7 +104,7 @@ abstract class AbstractClient
         $this->apiVersion = $version;
 
         if (version_compare(phpversion(), $this->PHP_VERSION_MINIMUM, '<') && $profile->getCheckPHPVersion()) {
-            throw new TencentCloudSDKException("ClientError", "PHP version must >= " . $this->PHP_VERSION_MINIMUM . ", your current is " . phpversion());
+            throw new TencentCloudSDKException("ClientError", "PHP version must >= ".$this->PHP_VERSION_MINIMUM.", your current is ".phpversion());
         }
 
         $this->httpConn = $this->createConnect();
@@ -154,7 +150,7 @@ abstract class AbstractClient
      * 设置配置实例
      * @param ClientProfile $profile 配置实例
      */
-    public function setClientProfile(ClientProfile $profile)
+    public function setClientProfile($profile)
     {
         $this->profile = $profile;
     }
@@ -169,25 +165,16 @@ abstract class AbstractClient
     }
 
     /**
-     * @param string $action
-     * @param array $request
+     * @param string $action  方法名
+     * @param array $request  参数列表
      * @return mixed
      * @throws TencentCloudSDKException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function __call($action, $request)
     {
         return $this->doRequestWithOptions($action, $request[0], array());
     }
 
-    /**
-     * @param string $action
-     * @param AbstractModel $request
-     * @param array $options
-     * @return AbstractModel
-     * @throws TencentCloudSDKException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     protected function doRequestWithOptions($action, $request, $options)
     {
         try {
@@ -205,6 +192,7 @@ abstract class AbstractClient
                     break;
                 default:
                     throw new TencentCloudSDKException("ClientError", "Invalid sign method");
+                    break;
             }
             if ($responseData->getStatusCode() !== AbstractClient::$HTTP_RSP_OK) {
                 throw new TencentCloudSDKException($responseData->getReasonPhrase(), $responseData->getBody());
@@ -213,6 +201,7 @@ abstract class AbstractClient
             if (array_key_exists("Error", $tmpResp)) {
                 throw new TencentCloudSDKException($tmpResp["Error"]["Code"], $tmpResp["Error"]["Message"], $tmpResp["RequestId"]);
             }
+
             return $this->returnResponse($action, $tmpResp);
         } catch (\Exception $e) {
             if (!($e instanceof TencentCloudSDKException)) {
@@ -223,36 +212,25 @@ abstract class AbstractClient
         }
     }
 
-    /**
-     * @param string $action
-     * @param array $request
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws TencentCloudSDKException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     private function doRequest($action, $request)
     {
         switch ($this->profile->getHttpProfile()->getReqMethod()) {
             case HttpProfile::$REQ_GET:
                 return $this->getRequest($action, $request);
+                break;
             case HttpProfile::$REQ_POST:
                 return $this->postRequest($action, $request);
+                break;
             default:
                 throw new TencentCloudSDKException("", "Method only support (GET, POST)");
+                break;
         }
     }
 
-    /**
-     * @param string $action
-     * @param AbstractModel $request
-     * @param array $options
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \ReflectionException
-     */
     private function doRequestWithTC3($action, $request, $options)
     {
         $headers = array();
+
         $endpoint = $this->getRefreshedEndpoint();
         $headers["Host"] = $endpoint;
         $headers["X-TC-Action"] = ucfirst($action);
@@ -285,7 +263,7 @@ abstract class AbstractClient
             $payload = "";
         } else if (isset($options["IsMultipart"]) && $options["IsMultipart"] === true) {
             $boundary = uniqid();
-            $headers["Content-Type"] = "multipart/form-data; boundary=" . $boundary;
+            $headers["Content-Type"] = "multipart/form-data; boundary=".$boundary;
             $canonicalQueryString = "";
             $payload = $this->getMultipartPayload($request, $boundary, $options);
         } else {
@@ -302,33 +280,33 @@ abstract class AbstractClient
         }
 
 
-        $canonicalHeaders = "content-type:" . $headers["Content-Type"] . "\n" .
-            "host:" . $headers["Host"] . "\n";
+        $canonicalHeaders = "content-type:".$headers["Content-Type"]."\n".
+                            "host:".$headers["Host"]."\n";
         $signedHeaders = "content-type;host";
-        $canonicalRequest = $reqmethod . "\n" .
-            $canonicalUri . "\n" .
-            $canonicalQueryString . "\n" .
-            $canonicalHeaders . "\n" .
-            $signedHeaders . "\n" .
-            $payloadHash;
+        $canonicalRequest = $reqmethod."\n".
+                            $canonicalUri."\n".
+                            $canonicalQueryString."\n".
+                            $canonicalHeaders."\n".
+                            $signedHeaders."\n".
+                            $payloadHash;
         $algo = "TC3-HMAC-SHA256";
         // date_default_timezone_set('UTC');
         // $date = date("Y-m-d", $headers["X-TC-Timestamp"]);
         $date = gmdate("Y-m-d", $headers["X-TC-Timestamp"]);
         $service = explode(".", $endpoint)[0];
-        $credentialScope = $date . "/" . $service . "/tc3_request";
+        $credentialScope = $date."/".$service."/tc3_request";
         $hashedCanonicalRequest = hash("SHA256", $canonicalRequest);
-        $str2sign = $algo . "\n" .
-            $headers["X-TC-Timestamp"] . "\n" .
-            $credentialScope . "\n" .
-            $hashedCanonicalRequest;
+        $str2sign = $algo."\n".
+                    $headers["X-TC-Timestamp"]."\n".
+                    $credentialScope."\n".
+                    $hashedCanonicalRequest;
         $skey = $this->credential->getSecretKey();
         $signature = Sign::signTC3($skey, $date, $service, $str2sign);
 
         $sid = $this->credential->getSecretId();
-        $auth = $algo .
-            " Credential=" . $sid . "/" . $credentialScope .
-            ", SignedHeaders=content-type;host, Signature=" . $signature;
+        $auth = $algo.
+                " Credential=".$sid."/".$credentialScope.
+                ", SignedHeaders=content-type;host, Signature=".$signature;
         $headers["Authorization"] = $auth;
 
         if (HttpProfile::$REQ_GET == $reqmethod) {
@@ -340,41 +318,31 @@ abstract class AbstractClient
         }
     }
 
-    /**
-     * @param AbstractModel $request
-     * @param string $boundary
-     * @param array $options
-     * @return string
-     */
     private function getMultipartPayload($request, $boundary, $options)
     {
         $body = "";
         $params = $request->serialize();
         foreach ($params as $key => $value) {
-            $body .= "--" . $boundary . "\r\n";
-            $body .= "Content-Disposition: form-data; name=\"" . $key;
+            $body .= "--".$boundary."\r\n";
+            $body .= "Content-Disposition: form-data; name=\"".$key;
             if (in_array($key, $options["BinaryParams"])) {
-                $body .= "\"; filename=\"" . $key;
+                $body .= "\"; filename=\"".$key;
             }
             $body .= "\"\r\n";
             if (is_array($value)) {
                 $value = json_encode($value);
                 $body .= "Content-Type: application/json\r\n";
             }
-            $body .= "\r\n" . $value . "\r\n";
+            $body .= "\r\n".$value."\r\n";
         }
         if ($body != "") {
-            $body .= "--" . $boundary . "--\r\n";
+            $body .= "--".$boundary."--\r\n";
         }
         return $body;
     }
 
     /**
-     * @param string $action
-     * @param array $request
-     * @return \Psr\Http\Message\ResponseInterface
      * @throws TencentCloudSDKException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function getRequest($action, $request)
     {
@@ -384,11 +352,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @param string $action
-     * @param array $request
-     * @return \Psr\Http\Message\ResponseInterface
      * @throws TencentCloudSDKException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function postRequest($action, $request)
     {
@@ -398,10 +362,6 @@ abstract class AbstractClient
     }
 
     /**
-     * @param string $action
-     * @param array $request
-     * @param string $reqMethod
-     * @return mixed
      * @throws TencentCloudSDKException
      */
     private function formatRequestData($action, $request, $reqMethod)
@@ -439,21 +399,13 @@ abstract class AbstractClient
         return $param;
     }
 
-    /**
-     * 创建Http 连接
-     * @return HttpConnection
-     */
     private function createConnect()
     {
-        $protocol = $this->profile->getHttpProfile()->getProtocol();
-        return new HttpConnection($protocol . $this->getRefreshedEndpoint(), $this->profile);
+        $prot = $this->profile->getHttpProfile()->getProtocol();
+        return new HttpConnection($prot.$this->getRefreshedEndpoint(), $this->profile);
     }
 
-    /**
-     * @return HttpConnection
-     */
-    private function getConnect()
-    {
+    private function getConnect() {
         $keepAlive = $this->profile->getHttpProfile()->getKeepAlive();
         if (true === $keepAlive) {
             return $this->httpConn;
@@ -462,14 +414,6 @@ abstract class AbstractClient
         }
     }
 
-    /**
-     * 格式化签名字符串
-     * @param string $host
-     * @param string $uri
-     * @param array $param
-     * @param string $requestMethod
-     * @return string
-     */
     private function formatSignString($host, $uri, $param, $requestMethod)
     {
         $tmpParam = [];
@@ -477,19 +421,12 @@ abstract class AbstractClient
         foreach ($param as $key => $value) {
             array_push($tmpParam, $key . "=" . $value);
         }
-        $strParam = join("&", $tmpParam);
-        $signStr = strtoupper($requestMethod) . $host . $uri . "?" . $strParam;
+        $strParam = join ("&", $tmpParam);
+        $signStr = strtoupper($requestMethod) . $host . $uri ."?".$strParam;
         return $signStr;
     }
 
-    /**
-     * @param object $obj
-     * @param string $methodName
-     * @return \ReflectionMethod
-     * @throws \ReflectionException
-     */
-    private function getPrivateMethod($obj, $methodName)
-    {
+    private function getPrivateMethod($obj, $methodName) {
         $objReflectClass = new ReflectionClass(get_class($obj));
         $method = $objReflectClass->getMethod($methodName);
         $method->setAccessible(true);
@@ -500,13 +437,11 @@ abstract class AbstractClient
      * User might call httpProfile.SetEndpoint after client is initialized,
      * so everytime we get the enpoint we need to check it.
      * Or we must find a way to disable such usage.
-     * @return string
      */
-    private function getRefreshedEndpoint()
-    {
+    private function getRefreshedEndpoint() {
         $this->endpoint = $this->profile->getHttpProfile()->getEndpoint();
         if ($this->endpoint === null) {
-            $this->endpoint = $this->service . "." . $this->profile->getHttpProfile()->getRootDomain();
+            $this->endpoint = $this->service.".".$this->profile->getHttpProfile()->getRootDomain();
         }
         return $this->endpoint;
     }

@@ -19,8 +19,6 @@
 namespace TencentCloud\Common\Http;
 
 use GuzzleHttp\Client;
-use TencentCloud\Common\Profile\ClientProfile;
-use TencentCloud\Common\Profile\HttpProfile;
 
 /**
  * http连接类
@@ -28,32 +26,14 @@ use TencentCloud\Common\Profile\HttpProfile;
  */
 class HttpConnection
 {
-
-    /**
-     * @var Client
-     */
     private $client;
-
-    /**
-     * @var ClientProfile
-     */
     private $profile;
-
-    /**
-     * HttpConnection constructor.
-     * @param string $url
-     * @param ClientProfile $profile
-     */
-    public function __construct($url, $profile)
+    function __construct($url, $profile)
     {
         $this->client = new Client(["base_uri" => $url]);
         $this->profile = $profile;
     }
 
-    /**
-     * 获取 Http 参数
-     * @return array
-     */
     private  function getOptions()
     {
         $options = ["allow_redirects" => false];
@@ -62,13 +42,6 @@ class HttpConnection
         return $options;
     }
 
-    /**
-     * @param string $uri
-     * @param array $query
-     * @param array $headers
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     public function getRequest($uri = '', $query = [], $headers = [])
     {
         $options = $this->getOptions();
@@ -83,13 +56,6 @@ class HttpConnection
         return $this->client->get($uri, $options);
     }
 
-    /**
-     * @param string $uri
-     * @param array $headers
-     * @param string $body
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     public function postRequest($uri = '', $headers = [], $body = '')
     {
         $options  = $this->getOptions();
@@ -103,13 +69,6 @@ class HttpConnection
         return $this->client->post($uri, $options);
     }
 
-    /**
-     * @param string $uri
-     * @param array $headers
-     * @param string $body
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     public function postRequestRaw($uri = '', $headers = [], $body = '')
     {
         $options  = $this->getOptions();

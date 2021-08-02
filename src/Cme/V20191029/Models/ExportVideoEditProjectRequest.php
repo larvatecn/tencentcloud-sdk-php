@@ -33,15 +33,19 @@ use TencentCloud\Common\AbstractModel;
 <li>11：分辨率为 720P，输出视频格式为 MP4；</li>
 <li>12：分辨率为 1080P，输出视频格式为 MP4。</li>
  * @method string getExportDestination() 获取导出目标。
-<li>CME：云剪，即导出为云剪素材；</li>
+<li>CME：云剪，即导出为云剪媒体；</li>
 <li>VOD：云点播，即导出为云点播媒资。</li>
  * @method void setExportDestination(string $ExportDestination) 设置导出目标。
-<li>CME：云剪，即导出为云剪素材；</li>
+<li>CME：云剪，即导出为云剪媒体；</li>
 <li>VOD：云点播，即导出为云点播媒资。</li>
- * @method CMEExportInfo getCMEExportInfo() 获取导出的云剪素材信息。指定 ExportDestination = CME 时有效。
- * @method void setCMEExportInfo(CMEExportInfo $CMEExportInfo) 设置导出的云剪素材信息。指定 ExportDestination = CME 时有效。
+ * @method string getCoverData() 获取视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+ * @method void setCoverData(string $CoverData) 设置视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+ * @method CMEExportInfo getCMEExportInfo() 获取导出的云剪媒体信息。指定 ExportDestination = CME 时有效。
+ * @method void setCMEExportInfo(CMEExportInfo $CMEExportInfo) 设置导出的云剪媒体信息。指定 ExportDestination = CME 时有效。
  * @method VODExportInfo getVODExportInfo() 获取导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
  * @method void setVODExportInfo(VODExportInfo $VODExportInfo) 设置导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
+ * @method string getOperator() 获取操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
+ * @method void setOperator(string $Operator) 设置操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
  */
 class ExportVideoEditProjectRequest extends AbstractModel
 {
@@ -65,13 +69,18 @@ class ExportVideoEditProjectRequest extends AbstractModel
 
     /**
      * @var string 导出目标。
-<li>CME：云剪，即导出为云剪素材；</li>
+<li>CME：云剪，即导出为云剪媒体；</li>
 <li>VOD：云点播，即导出为云点播媒资。</li>
      */
     public $ExportDestination;
 
     /**
-     * @var CMEExportInfo 导出的云剪素材信息。指定 ExportDestination = CME 时有效。
+     * @var string 视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+     */
+    public $CoverData;
+
+    /**
+     * @var CMEExportInfo 导出的云剪媒体信息。指定 ExportDestination = CME 时有效。
      */
     public $CMEExportInfo;
 
@@ -81,6 +90,11 @@ class ExportVideoEditProjectRequest extends AbstractModel
     public $VODExportInfo;
 
     /**
+     * @var string 操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
+     */
+    public $Operator;
+
+    /**
      * @param string $Platform 平台名称，指定访问的平台。
      * @param string $ProjectId 项目 Id。
      * @param integer $Definition 导出模板 Id，目前不支持自定义创建，只支持下面的预置模板 Id。
@@ -88,10 +102,12 @@ class ExportVideoEditProjectRequest extends AbstractModel
 <li>11：分辨率为 720P，输出视频格式为 MP4；</li>
 <li>12：分辨率为 1080P，输出视频格式为 MP4。</li>
      * @param string $ExportDestination 导出目标。
-<li>CME：云剪，即导出为云剪素材；</li>
+<li>CME：云剪，即导出为云剪媒体；</li>
 <li>VOD：云点播，即导出为云点播媒资。</li>
-     * @param CMEExportInfo $CMEExportInfo 导出的云剪素材信息。指定 ExportDestination = CME 时有效。
+     * @param string $CoverData 视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+     * @param CMEExportInfo $CMEExportInfo 导出的云剪媒体信息。指定 ExportDestination = CME 时有效。
      * @param VODExportInfo $VODExportInfo 导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
+     * @param string $Operator 操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
      */
     function __construct()
     {
@@ -122,6 +138,10 @@ class ExportVideoEditProjectRequest extends AbstractModel
             $this->ExportDestination = $param["ExportDestination"];
         }
 
+        if (array_key_exists("CoverData",$param) and $param["CoverData"] !== null) {
+            $this->CoverData = $param["CoverData"];
+        }
+
         if (array_key_exists("CMEExportInfo",$param) and $param["CMEExportInfo"] !== null) {
             $this->CMEExportInfo = new CMEExportInfo();
             $this->CMEExportInfo->deserialize($param["CMEExportInfo"]);
@@ -130,6 +150,10 @@ class ExportVideoEditProjectRequest extends AbstractModel
         if (array_key_exists("VODExportInfo",$param) and $param["VODExportInfo"] !== null) {
             $this->VODExportInfo = new VODExportInfo();
             $this->VODExportInfo->deserialize($param["VODExportInfo"]);
+        }
+
+        if (array_key_exists("Operator",$param) and $param["Operator"] !== null) {
+            $this->Operator = $param["Operator"];
         }
     }
 }

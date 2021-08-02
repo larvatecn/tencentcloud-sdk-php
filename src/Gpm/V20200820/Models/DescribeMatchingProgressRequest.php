@@ -20,18 +20,18 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DescribeMatchingProgress请求参数结构体
  *
- * @method array getMatchTicketIds() 获取请求 id 列表, 列表长度 128。
- * @method void setMatchTicketIds(array $MatchTicketIds) 设置请求 id 列表, 列表长度 128。
+ * @method array getMatchTicketIds() 获取匹配票据 ID列表, 列表长度 12。
+ * @method void setMatchTicketIds(array $MatchTicketIds) 设置匹配票据 ID列表, 列表长度 12。
  */
 class DescribeMatchingProgressRequest extends AbstractModel
 {
     /**
-     * @var array 请求 id 列表, 列表长度 128。
+     * @var array 匹配票据 ID列表, 列表长度 12。
      */
     public $MatchTicketIds;
 
     /**
-     * @param array $MatchTicketIds 请求 id 列表, 列表长度 128。
+     * @param array $MatchTicketIds 匹配票据 ID列表, 列表长度 12。
      */
     function __construct()
     {

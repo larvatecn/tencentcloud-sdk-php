@@ -20,29 +20,53 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 视频编辑项目输入参数
  *
- * @method string getVideoEditTemplateId() 获取视频编辑模板 ID ，通过模板导入项目时填写。
- * @method void setVideoEditTemplateId(string $VideoEditTemplateId) 设置视频编辑模板 ID ，通过模板导入项目时填写。
- * @method array getInitTracks() 获取输入的媒体轨道列表，包括视频、音频，等素材组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
+ * @method string getAspectRatio() 获取画布宽高比，取值有：
+<li>16:9；</li>
+<li>9:16；</li>
+<li>2:1。</li>
+默认值 16:9 。
+ * @method void setAspectRatio(string $AspectRatio) 设置画布宽高比，取值有：
+<li>16:9；</li>
+<li>9:16；</li>
+<li>2:1。</li>
+默认值 16:9 。
+ * @method string getVideoEditTemplateId() 获取视频编辑模板媒体 ID ，通过模板媒体导入项目轨道数据时填写。
+ * @method void setVideoEditTemplateId(string $VideoEditTemplateId) 设置视频编辑模板媒体 ID ，通过模板媒体导入项目轨道数据时填写。
+ * @method array getInitTracks() 获取输入的媒体轨道列表，包括视频、音频，等媒体组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
- * @method void setInitTracks(array $InitTracks) 设置输入的媒体轨道列表，包括视频、音频，等素材组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
+ * @method void setInitTracks(array $InitTracks) 设置输入的媒体轨道列表，包括视频、音频，等媒体组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
  */
 class VideoEditProjectInput extends AbstractModel
 {
     /**
-     * @var string 视频编辑模板 ID ，通过模板导入项目时填写。
+     * @var string 画布宽高比，取值有：
+<li>16:9；</li>
+<li>9:16；</li>
+<li>2:1。</li>
+默认值 16:9 。
+     */
+    public $AspectRatio;
+
+    /**
+     * @var string 视频编辑模板媒体 ID ，通过模板媒体导入项目轨道数据时填写。
      */
     public $VideoEditTemplateId;
 
     /**
-     * @var array 输入的媒体轨道列表，包括视频、音频，等素材组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
+     * @var array 输入的媒体轨道列表，包括视频、音频，等媒体组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
      */
     public $InitTracks;
 
     /**
-     * @param string $VideoEditTemplateId 视频编辑模板 ID ，通过模板导入项目时填写。
-     * @param array $InitTracks 输入的媒体轨道列表，包括视频、音频，等素材组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
+     * @param string $AspectRatio 画布宽高比，取值有：
+<li>16:9；</li>
+<li>9:16；</li>
+<li>2:1。</li>
+默认值 16:9 。
+     * @param string $VideoEditTemplateId 视频编辑模板媒体 ID ，通过模板媒体导入项目轨道数据时填写。
+     * @param array $InitTracks 输入的媒体轨道列表，包括视频、音频，等媒体组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
      */
     function __construct()
@@ -58,6 +82,10 @@ class VideoEditProjectInput extends AbstractModel
         if ($param === null) {
             return;
         }
+        if (array_key_exists("AspectRatio",$param) and $param["AspectRatio"] !== null) {
+            $this->AspectRatio = $param["AspectRatio"];
+        }
+
         if (array_key_exists("VideoEditTemplateId",$param) and $param["VideoEditTemplateId"] !== null) {
             $this->VideoEditTemplateId = $param["VideoEditTemplateId"];
         }

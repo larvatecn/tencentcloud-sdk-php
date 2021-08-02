@@ -52,6 +52,18 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setCreateTime(string $CreateTime) 设置创建时间
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getWeight() 获取实例权重
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setWeight(integer $Weight) 设置实例权重
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getReserveValue() 获取实例是否保留, 1-保留，0-不保留,默认
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setReserveValue(integer $ReserveValue) 设置实例是否保留, 1-保留，0-不保留,默认
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getPrivateIpAddress() 获取实例的私有IP地址
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPrivateIpAddress(string $PrivateIpAddress) 设置实例的私有IP地址
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class Instance extends AbstractModel
 {
@@ -104,6 +116,24 @@ class Instance extends AbstractModel
     public $CreateTime;
 
     /**
+     * @var integer 实例权重
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Weight;
+
+    /**
+     * @var integer 实例是否保留, 1-保留，0-不保留,默认
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ReserveValue;
+
+    /**
+     * @var string 实例的私有IP地址
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PrivateIpAddress;
+
+    /**
      * @param string $FleetId 服务部署ID
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $InstanceId 实例ID
@@ -119,6 +149,12 @@ class Instance extends AbstractModel
      * @param string $Type 类型
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $CreateTime 创建时间
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $Weight 实例权重
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $ReserveValue 实例是否保留, 1-保留，0-不保留,默认
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $PrivateIpAddress 实例的私有IP地址
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -164,6 +200,18 @@ class Instance extends AbstractModel
 
         if (array_key_exists("CreateTime",$param) and $param["CreateTime"] !== null) {
             $this->CreateTime = $param["CreateTime"];
+        }
+
+        if (array_key_exists("Weight",$param) and $param["Weight"] !== null) {
+            $this->Weight = $param["Weight"];
+        }
+
+        if (array_key_exists("ReserveValue",$param) and $param["ReserveValue"] !== null) {
+            $this->ReserveValue = $param["ReserveValue"];
+        }
+
+        if (array_key_exists("PrivateIpAddress",$param) and $param["PrivateIpAddress"] !== null) {
+            $this->PrivateIpAddress = $param["PrivateIpAddress"];
         }
     }
 }

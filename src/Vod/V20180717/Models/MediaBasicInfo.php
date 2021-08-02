@@ -46,8 +46,8 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setSourceInfo(MediaSourceData $SourceInfo) 设置该媒体文件的来源信息。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getStorageRegion() 获取媒体文件存储地区，如 ap-guangzhou，参见[地域列表](https://cloud.tencent.com/document/api/213/15692#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
- * @method void setStorageRegion(string $StorageRegion) 设置媒体文件存储地区，如 ap-guangzhou，参见[地域列表](https://cloud.tencent.com/document/api/213/15692#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
+ * @method string getStorageRegion() 获取媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
+ * @method void setStorageRegion(string $StorageRegion) 设置媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
  * @method array getTagSet() 获取媒体文件的标签信息。
  * @method void setTagSet(array $TagSet) 设置媒体文件的标签信息。
  * @method string getVid() 获取直播录制文件的唯一标识。
@@ -66,6 +66,12 @@ use TencentCloud\Common\AbstractModel;
  * @method void setStatus(string $Status) 设置文件状态：Normal：正常，Forbidden：封禁。
 
 *注意：此字段暂不支持。
+ * @method string getStorageClass() 获取媒体文件的存储类别：
+<li> STANDARD：标准存储。</li>
+<li> STANDARD_IA：低频存储。</li>
+ * @method void setStorageClass(string $StorageClass) 设置媒体文件的存储类别：
+<li> STANDARD：标准存储。</li>
+<li> STANDARD_IA：低频存储。</li>
  */
 class MediaBasicInfo extends AbstractModel
 {
@@ -131,7 +137,7 @@ class MediaBasicInfo extends AbstractModel
     public $SourceInfo;
 
     /**
-     * @var string 媒体文件存储地区，如 ap-guangzhou，参见[地域列表](https://cloud.tencent.com/document/api/213/15692#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
+     * @var string 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
      */
     public $StorageRegion;
 
@@ -161,6 +167,13 @@ class MediaBasicInfo extends AbstractModel
     public $Status;
 
     /**
+     * @var string 媒体文件的存储类别：
+<li> STANDARD：标准存储。</li>
+<li> STANDARD_IA：低频存储。</li>
+     */
+    public $StorageClass;
+
+    /**
      * @param string $Name 媒体文件名称。
      * @param string $Description 媒体文件描述。
      * @param string $CreateTime 媒体文件的创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -174,7 +187,7 @@ class MediaBasicInfo extends AbstractModel
      * @param string $MediaUrl 原始媒体文件的 URL 地址。
      * @param MediaSourceData $SourceInfo 该媒体文件的来源信息。
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $StorageRegion 媒体文件存储地区，如 ap-guangzhou，参见[地域列表](https://cloud.tencent.com/document/api/213/15692#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
+     * @param string $StorageRegion 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
      * @param array $TagSet 媒体文件的标签信息。
      * @param string $Vid 直播录制文件的唯一标识。
      * @param string $Category 文件类型：
@@ -184,6 +197,9 @@ class MediaBasicInfo extends AbstractModel
      * @param string $Status 文件状态：Normal：正常，Forbidden：封禁。
 
 *注意：此字段暂不支持。
+     * @param string $StorageClass 媒体文件的存储类别：
+<li> STANDARD：标准存储。</li>
+<li> STANDARD_IA：低频存储。</li>
      */
     function __construct()
     {
@@ -265,6 +281,10 @@ class MediaBasicInfo extends AbstractModel
 
         if (array_key_exists("Status",$param) and $param["Status"] !== null) {
             $this->Status = $param["Status"];
+        }
+
+        if (array_key_exists("StorageClass",$param) and $param["StorageClass"] !== null) {
+            $this->StorageClass = $param["StorageClass"];
         }
     }
 }

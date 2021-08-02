@@ -40,8 +40,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setSecurityGroup(array $SecurityGroup) 设置安全组参数，可使用 [查询项目安全组信息](https://cloud.tencent.com/document/api/236/15850) 接口查询某个项目的安全组详情。
  * @method array getResourceTags() 获取实例标签信息。
  * @method void setResourceTags(array $ResourceTags) 设置实例标签信息。
- * @method integer getCpu() 获取实例Cpu核数，需要不低于克隆源实例。
- * @method void setCpu(integer $Cpu) 设置实例Cpu核数，需要不低于克隆源实例。
+ * @method integer getCpu() 获取实例Cpu核数，需要不低于克隆源实例，默认和源实例相同。
+ * @method void setCpu(integer $Cpu) 设置实例Cpu核数，需要不低于克隆源实例，默认和源实例相同。
  * @method integer getProtectMode() 获取数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
  * @method void setProtectMode(integer $ProtectMode) 设置数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
  * @method integer getDeployMode() 获取多可用区域，默认为 0，支持值包括：0 - 表示单可用区，1 - 表示多可用区。
@@ -50,8 +50,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setSlaveZone(string $SlaveZone) 设置新产生的克隆实例备库 1 的可用区信息，默认同源实例 Zone 的值。
  * @method string getBackupZone() 获取备库 2 的可用区信息，默认为空，克隆强同步主实例时可指定该参数。
  * @method void setBackupZone(string $BackupZone) 设置备库 2 的可用区信息，默认为空，克隆强同步主实例时可指定该参数。
- * @method string getDeviceType() 获取克隆实例类型。支持值包括： "HA" - 高可用版实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为高可用版。
- * @method void setDeviceType(string $DeviceType) 设置克隆实例类型。支持值包括： "HA" - 高可用版实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为高可用版。
+ * @method string getDeviceType() 获取克隆实例类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为通用型。
+ * @method void setDeviceType(string $DeviceType) 设置克隆实例类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为通用型。
+ * @method integer getInstanceNodes() 获取新克隆实例节点数。如果需要克隆出三节点实例， 请将该值设置为3 或指定 BackupZone 参数。如果需要克隆出两节点实例，请将该值设置为2。默认克隆出两节点实例。
+ * @method void setInstanceNodes(integer $InstanceNodes) 设置新克隆实例节点数。如果需要克隆出三节点实例， 请将该值设置为3 或指定 BackupZone 参数。如果需要克隆出两节点实例，请将该值设置为2。默认克隆出两节点实例。
  */
 class CreateCloneInstanceRequest extends AbstractModel
 {
@@ -106,7 +108,7 @@ class CreateCloneInstanceRequest extends AbstractModel
     public $ResourceTags;
 
     /**
-     * @var integer 实例Cpu核数，需要不低于克隆源实例。
+     * @var integer 实例Cpu核数，需要不低于克隆源实例，默认和源实例相同。
      */
     public $Cpu;
 
@@ -131,9 +133,14 @@ class CreateCloneInstanceRequest extends AbstractModel
     public $BackupZone;
 
     /**
-     * @var string 克隆实例类型。支持值包括： "HA" - 高可用版实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为高可用版。
+     * @var string 克隆实例类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为通用型。
      */
     public $DeviceType;
+
+    /**
+     * @var integer 新克隆实例节点数。如果需要克隆出三节点实例， 请将该值设置为3 或指定 BackupZone 参数。如果需要克隆出两节点实例，请将该值设置为2。默认克隆出两节点实例。
+     */
+    public $InstanceNodes;
 
     /**
      * @param string $InstanceId 克隆源实例Id。
@@ -146,12 +153,13 @@ class CreateCloneInstanceRequest extends AbstractModel
      * @param string $InstanceName 新产生的克隆实例名称。
      * @param array $SecurityGroup 安全组参数，可使用 [查询项目安全组信息](https://cloud.tencent.com/document/api/236/15850) 接口查询某个项目的安全组详情。
      * @param array $ResourceTags 实例标签信息。
-     * @param integer $Cpu 实例Cpu核数，需要不低于克隆源实例。
+     * @param integer $Cpu 实例Cpu核数，需要不低于克隆源实例，默认和源实例相同。
      * @param integer $ProtectMode 数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
      * @param integer $DeployMode 多可用区域，默认为 0，支持值包括：0 - 表示单可用区，1 - 表示多可用区。
      * @param string $SlaveZone 新产生的克隆实例备库 1 的可用区信息，默认同源实例 Zone 的值。
      * @param string $BackupZone 备库 2 的可用区信息，默认为空，克隆强同步主实例时可指定该参数。
-     * @param string $DeviceType 克隆实例类型。支持值包括： "HA" - 高可用版实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为高可用版。
+     * @param string $DeviceType 克隆实例类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例。 不指定则默认为通用型。
+     * @param integer $InstanceNodes 新克隆实例节点数。如果需要克隆出三节点实例， 请将该值设置为3 或指定 BackupZone 参数。如果需要克隆出两节点实例，请将该值设置为2。默认克隆出两节点实例。
      */
     function __construct()
     {
@@ -233,6 +241,10 @@ class CreateCloneInstanceRequest extends AbstractModel
 
         if (array_key_exists("DeviceType",$param) and $param["DeviceType"] !== null) {
             $this->DeviceType = $param["DeviceType"];
+        }
+
+        if (array_key_exists("InstanceNodes",$param) and $param["InstanceNodes"] !== null) {
+            $this->InstanceNodes = $param["InstanceNodes"];
         }
     }
 }

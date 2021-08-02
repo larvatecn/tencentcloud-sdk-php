@@ -36,14 +36,16 @@ use TencentCloud\Common\AbstractModel;
  * @method void setExportDestination(string $ExportDestination) 设置导出目标。
 <li>CME：云剪，即导出为云剪素材；</li>
 <li>VOD：云点播，即导出为云点播媒资。</li>
- * @method string getTrackData() 获取在线编辑轨道数据。
- * @method void setTrackData(string $TrackData) 设置在线编辑轨道数据。
+ * @method string getTrackData() 获取在线编辑轨道数据。轨道数据相关介绍，请查看 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225)。
+ * @method void setTrackData(string $TrackData) 设置在线编辑轨道数据。轨道数据相关介绍，请查看 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225)。
+ * @method string getCoverData() 获取视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+ * @method void setCoverData(string $CoverData) 设置视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
  * @method CMEExportInfo getCMEExportInfo() 获取导出的云剪素材信息。指定 ExportDestination = CME 时有效。
  * @method void setCMEExportInfo(CMEExportInfo $CMEExportInfo) 设置导出的云剪素材信息。指定 ExportDestination = CME 时有效。
  * @method VODExportInfo getVODExportInfo() 获取导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
  * @method void setVODExportInfo(VODExportInfo $VODExportInfo) 设置导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
- * @method string getOperator() 获取操作者。填写用户的 Id，用于标识调用者及校验操作权限。
- * @method void setOperator(string $Operator) 设置操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+ * @method string getOperator() 获取操作者。填写用户的 Id，用于标识调用者及校验导出操作权限。
+ * @method void setOperator(string $Operator) 设置操作者。填写用户的 Id，用于标识调用者及校验导出操作权限。
  */
 class ExportVideoByEditorTrackDataRequest extends AbstractModel
 {
@@ -68,9 +70,14 @@ class ExportVideoByEditorTrackDataRequest extends AbstractModel
     public $ExportDestination;
 
     /**
-     * @var string 在线编辑轨道数据。
+     * @var string 在线编辑轨道数据。轨道数据相关介绍，请查看 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225)。
      */
     public $TrackData;
+
+    /**
+     * @var string 视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
+     */
+    public $CoverData;
 
     /**
      * @var CMEExportInfo 导出的云剪素材信息。指定 ExportDestination = CME 时有效。
@@ -83,7 +90,7 @@ class ExportVideoByEditorTrackDataRequest extends AbstractModel
     public $VODExportInfo;
 
     /**
-     * @var string 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+     * @var string 操作者。填写用户的 Id，用于标识调用者及校验导出操作权限。
      */
     public $Operator;
 
@@ -96,10 +103,11 @@ class ExportVideoByEditorTrackDataRequest extends AbstractModel
      * @param string $ExportDestination 导出目标。
 <li>CME：云剪，即导出为云剪素材；</li>
 <li>VOD：云点播，即导出为云点播媒资。</li>
-     * @param string $TrackData 在线编辑轨道数据。
+     * @param string $TrackData 在线编辑轨道数据。轨道数据相关介绍，请查看 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225)。
+     * @param string $CoverData 视频封面图片文件（如 jpeg, png 等）进行 Base64 编码后的字符串，仅支持 gif、jpeg、png 三种图片格式，原图片文件不能超过2 M大 小。
      * @param CMEExportInfo $CMEExportInfo 导出的云剪素材信息。指定 ExportDestination = CME 时有效。
      * @param VODExportInfo $VODExportInfo 导出的云点播媒资信息。指定 ExportDestination = VOD 时有效。
-     * @param string $Operator 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
+     * @param string $Operator 操作者。填写用户的 Id，用于标识调用者及校验导出操作权限。
      */
     function __construct()
     {
@@ -128,6 +136,10 @@ class ExportVideoByEditorTrackDataRequest extends AbstractModel
 
         if (array_key_exists("TrackData",$param) and $param["TrackData"] !== null) {
             $this->TrackData = $param["TrackData"];
+        }
+
+        if (array_key_exists("CoverData",$param) and $param["CoverData"] !== null) {
+            $this->CoverData = $param["CoverData"];
         }
 
         if (array_key_exists("CMEExportInfo",$param) and $param["CMEExportInfo"] !== null) {

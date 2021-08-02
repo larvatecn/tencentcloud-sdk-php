@@ -22,24 +22,24 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getEnvironmentId() 获取环境（命名空间）名称。
  * @method void setEnvironmentId(string $EnvironmentId) 设置环境（命名空间）名称。
- * @method string getTopicName() 获取主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过32个字符。
- * @method void setTopicName(string $TopicName) 设置主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过32个字符。
+ * @method string getTopicName() 获取主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
+ * @method void setTopicName(string $TopicName) 设置主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
  * @method integer getPartitions() 获取0：非分区topic，无分区；非0：具体分区topic的分区数，最大不允许超过128。
  * @method void setPartitions(integer $Partitions) 设置0：非分区topic，无分区；非0：具体分区topic的分区数，最大不允许超过128。
  * @method integer getTopicType() 获取0： 普通消息；
 1 ：全局顺序消息；
 2 ：局部顺序消息；
 3 ：重试队列；
-4 ：死信队列；
-5 ：事务消息。
+4 ：死信队列。
  * @method void setTopicType(integer $TopicType) 设置0： 普通消息；
 1 ：全局顺序消息；
 2 ：局部顺序消息；
 3 ：重试队列；
-4 ：死信队列；
-5 ：事务消息。
+4 ：死信队列。
  * @method string getRemark() 获取备注，128字符以内。
  * @method void setRemark(string $Remark) 设置备注，128字符以内。
+ * @method string getClusterId() 获取Pulsar 集群的ID
+ * @method void setClusterId(string $ClusterId) 设置Pulsar 集群的ID
  */
 class CreateTopicRequest extends AbstractModel
 {
@@ -49,7 +49,7 @@ class CreateTopicRequest extends AbstractModel
     public $EnvironmentId;
 
     /**
-     * @var string 主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过32个字符。
+     * @var string 主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
      */
     public $TopicName;
 
@@ -63,8 +63,7 @@ class CreateTopicRequest extends AbstractModel
 1 ：全局顺序消息；
 2 ：局部顺序消息；
 3 ：重试队列；
-4 ：死信队列；
-5 ：事务消息。
+4 ：死信队列。
      */
     public $TopicType;
 
@@ -74,16 +73,21 @@ class CreateTopicRequest extends AbstractModel
     public $Remark;
 
     /**
+     * @var string Pulsar 集群的ID
+     */
+    public $ClusterId;
+
+    /**
      * @param string $EnvironmentId 环境（命名空间）名称。
-     * @param string $TopicName 主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过32个字符。
+     * @param string $TopicName 主题名，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
      * @param integer $Partitions 0：非分区topic，无分区；非0：具体分区topic的分区数，最大不允许超过128。
      * @param integer $TopicType 0： 普通消息；
 1 ：全局顺序消息；
 2 ：局部顺序消息；
 3 ：重试队列；
-4 ：死信队列；
-5 ：事务消息。
+4 ：死信队列。
      * @param string $Remark 备注，128字符以内。
+     * @param string $ClusterId Pulsar 集群的ID
      */
     function __construct()
     {
@@ -116,6 +120,10 @@ class CreateTopicRequest extends AbstractModel
 
         if (array_key_exists("Remark",$param) and $param["Remark"] !== null) {
             $this->Remark = $param["Remark"];
+        }
+
+        if (array_key_exists("ClusterId",$param) and $param["ClusterId"] !== null) {
+            $this->ClusterId = $param["ClusterId"];
         }
     }
 }

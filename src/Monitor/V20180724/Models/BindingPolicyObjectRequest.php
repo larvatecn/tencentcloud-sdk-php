@@ -20,10 +20,12 @@ use TencentCloud\Common\AbstractModel;
 /**
  * BindingPolicyObject请求参数结构体
  *
- * @method integer getGroupId() 获取策略分组Id
- * @method void setGroupId(integer $GroupId) 设置策略分组Id
  * @method string getModule() 获取必填。固定值"monitor"
  * @method void setModule(string $Module) 设置必填。固定值"monitor"
+ * @method integer getGroupId() 获取策略组id，如传入 PolicyId 则该字段会被忽略可传入任意值如 0
+ * @method void setGroupId(integer $GroupId) 设置策略组id，如传入 PolicyId 则该字段会被忽略可传入任意值如 0
+ * @method string getPolicyId() 获取告警策略ID，使用此字段时 GroupId 会被忽略
+ * @method void setPolicyId(string $PolicyId) 设置告警策略ID，使用此字段时 GroupId 会被忽略
  * @method integer getInstanceGroupId() 获取实例分组ID
  * @method void setInstanceGroupId(integer $InstanceGroupId) 设置实例分组ID
  * @method array getDimensions() 获取需要绑定的对象维度信息
@@ -32,14 +34,19 @@ use TencentCloud\Common\AbstractModel;
 class BindingPolicyObjectRequest extends AbstractModel
 {
     /**
-     * @var integer 策略分组Id
+     * @var string 必填。固定值"monitor"
+     */
+    public $Module;
+
+    /**
+     * @var integer 策略组id，如传入 PolicyId 则该字段会被忽略可传入任意值如 0
      */
     public $GroupId;
 
     /**
-     * @var string 必填。固定值"monitor"
+     * @var string 告警策略ID，使用此字段时 GroupId 会被忽略
      */
-    public $Module;
+    public $PolicyId;
 
     /**
      * @var integer 实例分组ID
@@ -52,8 +59,9 @@ class BindingPolicyObjectRequest extends AbstractModel
     public $Dimensions;
 
     /**
-     * @param integer $GroupId 策略分组Id
      * @param string $Module 必填。固定值"monitor"
+     * @param integer $GroupId 策略组id，如传入 PolicyId 则该字段会被忽略可传入任意值如 0
+     * @param string $PolicyId 告警策略ID，使用此字段时 GroupId 会被忽略
      * @param integer $InstanceGroupId 实例分组ID
      * @param array $Dimensions 需要绑定的对象维度信息
      */
@@ -70,12 +78,16 @@ class BindingPolicyObjectRequest extends AbstractModel
         if ($param === null) {
             return;
         }
+        if (array_key_exists("Module",$param) and $param["Module"] !== null) {
+            $this->Module = $param["Module"];
+        }
+
         if (array_key_exists("GroupId",$param) and $param["GroupId"] !== null) {
             $this->GroupId = $param["GroupId"];
         }
 
-        if (array_key_exists("Module",$param) and $param["Module"] !== null) {
-            $this->Module = $param["Module"];
+        if (array_key_exists("PolicyId",$param) and $param["PolicyId"] !== null) {
+            $this->PolicyId = $param["PolicyId"];
         }
 
         if (array_key_exists("InstanceGroupId",$param) and $param["InstanceGroupId"] !== null) {

@@ -60,6 +60,12 @@ ipvs-bpf模式: 设置KubeProxyMode为kube-proxy-bpf
  * @method void setVpcCniType(string $VpcCniType) 设置区分单网卡多IP模式和独立网卡模式
  * @method string getRuntimeVersion() 获取运行时版本
  * @method void setRuntimeVersion(string $RuntimeVersion) 设置运行时版本
+ * @method boolean getEnableCustomizedPodCIDR() 获取是否开节点podCIDR大小的自定义模式
+ * @method void setEnableCustomizedPodCIDR(boolean $EnableCustomizedPodCIDR) 设置是否开节点podCIDR大小的自定义模式
+ * @method integer getBasePodNumber() 获取自定义模式下的基础pod数量
+ * @method void setBasePodNumber(integer $BasePodNumber) 设置自定义模式下的基础pod数量
+ * @method string getCiliumMode() 获取启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
+ * @method void setCiliumMode(string $CiliumMode) 设置启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
  */
 class ClusterAdvancedSettings extends AbstractModel
 {
@@ -140,6 +146,21 @@ ipvs-bpf模式: 设置KubeProxyMode为kube-proxy-bpf
     public $RuntimeVersion;
 
     /**
+     * @var boolean 是否开节点podCIDR大小的自定义模式
+     */
+    public $EnableCustomizedPodCIDR;
+
+    /**
+     * @var integer 自定义模式下的基础pod数量
+     */
+    public $BasePodNumber;
+
+    /**
+     * @var string 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
+     */
+    public $CiliumMode;
+
+    /**
      * @param boolean $IPVS 是否启用IPVS
      * @param boolean $AsEnabled 是否启用集群节点自动扩缩容(创建集群流程不支持开启此功能)
      * @param string $ContainerRuntime 集群使用的runtime类型，包括"docker"和"containerd"两种类型，默认为"docker"
@@ -160,6 +181,9 @@ ipvs-bpf模式: 设置KubeProxyMode为kube-proxy-bpf
      * @param string $AuditLogTopicId 审计日志上传到的topic
      * @param string $VpcCniType 区分单网卡多IP模式和独立网卡模式
      * @param string $RuntimeVersion 运行时版本
+     * @param boolean $EnableCustomizedPodCIDR 是否开节点podCIDR大小的自定义模式
+     * @param integer $BasePodNumber 自定义模式下的基础pod数量
+     * @param string $CiliumMode 启用 CiliumMode 的模式，空值表示不启用，“clusterIP” 表示启用 Cilium 支持 ClusterIP
      */
     function __construct()
     {
@@ -229,6 +253,18 @@ ipvs-bpf模式: 设置KubeProxyMode为kube-proxy-bpf
 
         if (array_key_exists("RuntimeVersion",$param) and $param["RuntimeVersion"] !== null) {
             $this->RuntimeVersion = $param["RuntimeVersion"];
+        }
+
+        if (array_key_exists("EnableCustomizedPodCIDR",$param) and $param["EnableCustomizedPodCIDR"] !== null) {
+            $this->EnableCustomizedPodCIDR = $param["EnableCustomizedPodCIDR"];
+        }
+
+        if (array_key_exists("BasePodNumber",$param) and $param["BasePodNumber"] !== null) {
+            $this->BasePodNumber = $param["BasePodNumber"];
+        }
+
+        if (array_key_exists("CiliumMode",$param) and $param["CiliumMode"] !== null) {
+            $this->CiliumMode = $param["CiliumMode"];
         }
     }
 }

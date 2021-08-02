@@ -27,6 +27,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setName(string $Name) 设置过滤键的名称。
  * @method array getValues() 获取一个或者多个过滤值。
  * @method void setValues(array $Values) 设置一个或者多个过滤值。
+ * @method boolean getExactMatch() 获取是否模糊匹配，前端框架会带上，可以不管
+ * @method void setExactMatch(boolean $ExactMatch) 设置是否模糊匹配，前端框架会带上，可以不管
  */
 class Filters extends AbstractModel
 {
@@ -41,8 +43,14 @@ class Filters extends AbstractModel
     public $Values;
 
     /**
+     * @var boolean 是否模糊匹配，前端框架会带上，可以不管
+     */
+    public $ExactMatch;
+
+    /**
      * @param string $Name 过滤键的名称。
      * @param array $Values 一个或者多个过滤值。
+     * @param boolean $ExactMatch 是否模糊匹配，前端框架会带上，可以不管
      */
     function __construct()
     {
@@ -63,6 +71,10 @@ class Filters extends AbstractModel
 
         if (array_key_exists("Values",$param) and $param["Values"] !== null) {
             $this->Values = $param["Values"];
+        }
+
+        if (array_key_exists("ExactMatch",$param) and $param["ExactMatch"] !== null) {
+            $this->ExactMatch = $param["ExactMatch"];
         }
     }
 }

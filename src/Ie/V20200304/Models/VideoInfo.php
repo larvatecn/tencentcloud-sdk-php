@@ -83,14 +83,12 @@ use TencentCloud\Common\AbstractModel;
  * @method string getVideoCodec() 获取编码器支持选项，可选值：
 h264,
 h265,
-av1
-。
+av1。
 不填默认h264。
  * @method void setVideoCodec(string $VideoCodec) 设置编码器支持选项，可选值：
 h264,
 h265,
-av1
-。
+av1。
 不填默认h264。
  * @method array getPicMarkInfo() 获取图片水印。
  * @method void setPicMarkInfo(array $PicMarkInfo) 设置图片水印。
@@ -106,6 +104,10 @@ hlg。
 此时，VideoCodec会强制设置为h265, 编码位深为10
  * @method VideoEnhance getVideoEnhance() 获取画质增强参数信息。
  * @method void setVideoEnhance(VideoEnhance $VideoEnhance) 设置画质增强参数信息。
+ * @method HiddenMarkInfo getHiddenMarkInfo() 获取数字水印参数信息。
+ * @method void setHiddenMarkInfo(HiddenMarkInfo $HiddenMarkInfo) 设置数字水印参数信息。
+ * @method array getTextMarkInfo() 获取文本水印参数信息。
+ * @method void setTextMarkInfo(array $TextMarkInfo) 设置文本水印参数信息。
  */
 class VideoInfo extends AbstractModel
 {
@@ -171,8 +173,7 @@ class VideoInfo extends AbstractModel
      * @var string 编码器支持选项，可选值：
 h264,
 h265,
-av1
-。
+av1。
 不填默认h264。
      */
     public $VideoCodec;
@@ -199,6 +200,16 @@ hlg。
      * @var VideoEnhance 画质增强参数信息。
      */
     public $VideoEnhance;
+
+    /**
+     * @var HiddenMarkInfo 数字水印参数信息。
+     */
+    public $HiddenMarkInfo;
+
+    /**
+     * @var array 文本水印参数信息。
+     */
+    public $TextMarkInfo;
 
     /**
      * @param integer $Fps 视频帧率，取值范围：[0, 60]，单位：Hz。
@@ -234,8 +245,7 @@ hlg。
      * @param string $VideoCodec 编码器支持选项，可选值：
 h264,
 h265,
-av1
-。
+av1。
 不填默认h264。
      * @param array $PicMarkInfo 图片水印。
      * @param DarInfo $DarInfo 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。
@@ -244,6 +254,8 @@ hdr10,
 hlg。
 此时，VideoCodec会强制设置为h265, 编码位深为10
      * @param VideoEnhance $VideoEnhance 画质增强参数信息。
+     * @param HiddenMarkInfo $HiddenMarkInfo 数字水印参数信息。
+     * @param array $TextMarkInfo 文本水印参数信息。
      */
     function __construct()
     {
@@ -311,6 +323,20 @@ hlg。
         if (array_key_exists("VideoEnhance",$param) and $param["VideoEnhance"] !== null) {
             $this->VideoEnhance = new VideoEnhance();
             $this->VideoEnhance->deserialize($param["VideoEnhance"]);
+        }
+
+        if (array_key_exists("HiddenMarkInfo",$param) and $param["HiddenMarkInfo"] !== null) {
+            $this->HiddenMarkInfo = new HiddenMarkInfo();
+            $this->HiddenMarkInfo->deserialize($param["HiddenMarkInfo"]);
+        }
+
+        if (array_key_exists("TextMarkInfo",$param) and $param["TextMarkInfo"] !== null) {
+            $this->TextMarkInfo = [];
+            foreach ($param["TextMarkInfo"] as $key => $value){
+                $obj = new TextMarkInfoItem();
+                $obj->deserialize($value);
+                array_push($this->TextMarkInfo, $obj);
+            }
         }
     }
 }

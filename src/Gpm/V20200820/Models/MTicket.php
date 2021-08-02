@@ -18,12 +18,12 @@ namespace TencentCloud\Gpm\V20200820\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * matchCode和TicketId组合结构
+ * matchCode和匹配票据 ID组合结构
  *
  * @method string getMatchCode() 获取匹配Code
  * @method void setMatchCode(string $MatchCode) 设置匹配Code
- * @method string getMatchTicketId() 获取请求TicketId
- * @method void setMatchTicketId(string $MatchTicketId) 设置请求TicketId
+ * @method string getMatchTicketId() 获取匹配票据 ID
+ * @method void setMatchTicketId(string $MatchTicketId) 设置匹配票据 ID
  */
 class MTicket extends AbstractModel
 {
@@ -33,13 +33,13 @@ class MTicket extends AbstractModel
     public $MatchCode;
 
     /**
-     * @var string 请求TicketId
+     * @var string 匹配票据 ID
      */
     public $MatchTicketId;
 
     /**
      * @param string $MatchCode 匹配Code
-     * @param string $MatchTicketId 请求TicketId
+     * @param string $MatchTicketId 匹配票据 ID
      */
     function __construct()
     {

@@ -24,10 +24,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setTaskName(string $TaskName) 设置任务名称，任务长度64字符
  * @method string getTaskContent() 获取任务内容，长度限制65536个字节
  * @method void setTaskContent(string $TaskContent) 设置任务内容，长度限制65536个字节
- * @method string getExecuteType() 获取执行类型，UNICAST/BROADCAST
- * @method void setExecuteType(string $ExecuteType) 设置执行类型，UNICAST/BROADCAST
- * @method string getTaskType() 获取任务类型
- * @method void setTaskType(string $TaskType) 设置任务类型
+ * @method string getExecuteType() 获取执行类型，unicast/broadcast
+ * @method void setExecuteType(string $ExecuteType) 设置执行类型，unicast/broadcast
+ * @method string getTaskType() 获取任务类型,java
+ * @method void setTaskType(string $TaskType) 设置任务类型,java
  * @method integer getTimeOut() 获取任务超时时间， 时间单位 ms
  * @method void setTimeOut(integer $TimeOut) 设置任务超时时间， 时间单位 ms
  * @method string getGroupId() 获取部署组ID
@@ -44,8 +44,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setShardArguments(array $ShardArguments) 设置分片参数
  * @method string getSuccessOperator() 获取判断任务成功的操作符
  * @method void setSuccessOperator(string $SuccessOperator) 设置判断任务成功的操作符
- * @method string getSuccessRatio() 获取判断任务成功率的阈值，如99.99
- * @method void setSuccessRatio(string $SuccessRatio) 设置判断任务成功率的阈值，如99.99
+ * @method string getSuccessRatio() 获取判断任务成功率的阈值，如100
+ * @method void setSuccessRatio(string $SuccessRatio) 设置判断任务成功率的阈值，如100
  * @method AdvanceSettings getAdvanceSettings() 获取高级设置
  * @method void setAdvanceSettings(AdvanceSettings $AdvanceSettings) 设置高级设置
  * @method string getTaskArgument() 获取任务参数，长度限制10000个字符
@@ -64,12 +64,12 @@ class CreateTaskRequest extends AbstractModel
     public $TaskContent;
 
     /**
-     * @var string 执行类型，UNICAST/BROADCAST
+     * @var string 执行类型，unicast/broadcast
      */
     public $ExecuteType;
 
     /**
-     * @var string 任务类型
+     * @var string 任务类型,java
      */
     public $TaskType;
 
@@ -114,7 +114,7 @@ class CreateTaskRequest extends AbstractModel
     public $SuccessOperator;
 
     /**
-     * @var string 判断任务成功率的阈值，如99.99
+     * @var string 判断任务成功率的阈值，如100
      */
     public $SuccessRatio;
 
@@ -131,8 +131,8 @@ class CreateTaskRequest extends AbstractModel
     /**
      * @param string $TaskName 任务名称，任务长度64字符
      * @param string $TaskContent 任务内容，长度限制65536个字节
-     * @param string $ExecuteType 执行类型，UNICAST/BROADCAST
-     * @param string $TaskType 任务类型
+     * @param string $ExecuteType 执行类型，unicast/broadcast
+     * @param string $TaskType 任务类型,java
      * @param integer $TimeOut 任务超时时间， 时间单位 ms
      * @param string $GroupId 部署组ID
      * @param TaskRule $TaskRule 触发规则
@@ -141,7 +141,7 @@ class CreateTaskRequest extends AbstractModel
      * @param integer $ShardCount 分片数量
      * @param array $ShardArguments 分片参数
      * @param string $SuccessOperator 判断任务成功的操作符
-     * @param string $SuccessRatio 判断任务成功率的阈值，如99.99
+     * @param string $SuccessRatio 判断任务成功率的阈值，如100
      * @param AdvanceSettings $AdvanceSettings 高级设置
      * @param string $TaskArgument 任务参数，长度限制10000个字符
      */

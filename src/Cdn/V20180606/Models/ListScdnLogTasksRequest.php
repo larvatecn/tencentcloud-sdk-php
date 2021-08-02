@@ -20,14 +20,26 @@ use TencentCloud\Common\AbstractModel;
 /**
  * ListScdnLogTasks请求参数结构体
  *
-
+ * @method string getSource() 获取产品来源 cdn/ecdn
+ * @method void setSource(string $Source) 设置产品来源 cdn/ecdn
+ * @method string getArea() 获取地域：mainland 或 overseas 为空表示查询所有地域
+ * @method void setArea(string $Area) 设置地域：mainland 或 overseas 为空表示查询所有地域
  */
 class ListScdnLogTasksRequest extends AbstractModel
 {
-
+    /**
+     * @var string 产品来源 cdn/ecdn
+     */
+    public $Source;
 
     /**
+     * @var string 地域：mainland 或 overseas 为空表示查询所有地域
+     */
+    public $Area;
 
+    /**
+     * @param string $Source 产品来源 cdn/ecdn
+     * @param string $Area 地域：mainland 或 overseas 为空表示查询所有地域
      */
     function __construct()
     {
@@ -42,6 +54,12 @@ class ListScdnLogTasksRequest extends AbstractModel
         if ($param === null) {
             return;
         }
+        if (array_key_exists("Source",$param) and $param["Source"] !== null) {
+            $this->Source = $param["Source"];
+        }
 
+        if (array_key_exists("Area",$param) and $param["Area"] !== null) {
+            $this->Area = $param["Area"];
+        }
     }
 }

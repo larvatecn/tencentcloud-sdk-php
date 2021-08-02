@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method integer getSdkAppId() 获取客户的SdkAppId
  * @method void setSdkAppId(integer $SdkAppId) 设置客户的SdkAppId
- * @method string getUrl() 获取需要进行转码文件地址
- * @method void setUrl(string $Url) 设置需要进行转码文件地址
+ * @method string getUrl() 获取经过URL编码后的转码文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pdf，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pdf。为了提高URL解析的成功率，请对URL进行编码。
+ * @method void setUrl(string $Url) 设置经过URL编码后的转码文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pdf，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pdf。为了提高URL解析的成功率，请对URL进行编码。
  * @method boolean getIsStaticPPT() 获取是否为静态PPT，默认为False；
 如果IsStaticPPT为False，后缀名为.ppt或.pptx的文档会动态转码成HTML5页面，其他格式的文档会静态转码成图片；如果IsStaticPPT为True，所有格式的文档会静态转码成图片；
  * @method void setIsStaticPPT(boolean $IsStaticPPT) 设置是否为静态PPT，默认为False；
@@ -44,6 +44,18 @@ tar.gz： 生成`.tar.gz`压缩包
 
 zip： 生成`.zip`压缩包
 tar.gz： 生成`.tar.gz`压缩包
+ * @method string getExtraData() 获取内部参数
+ * @method void setExtraData(string $ExtraData) 设置内部参数
+ * @method string getPriority() 获取文档转码优先级， 只有对于PPT动态转码生效，支持填入以下值：<br/>
+- low: 低优先级转码，对于动态转码，能支持500MB（下载超时时间10分钟）以及2000页文档，但资源有限可能会有比较长时间的排队，请酌情使用该功能。<br/>
+- 不填表示正常优先级转码，支持200MB文件（下载超时时间2分钟），500页以内的文档进行转码
+<br/>
+注意：对于PDF等静态文件转码，无论是正常优先级或者低优先级，最大只能支持200MB
+ * @method void setPriority(string $Priority) 设置文档转码优先级， 只有对于PPT动态转码生效，支持填入以下值：<br/>
+- low: 低优先级转码，对于动态转码，能支持500MB（下载超时时间10分钟）以及2000页文档，但资源有限可能会有比较长时间的排队，请酌情使用该功能。<br/>
+- 不填表示正常优先级转码，支持200MB文件（下载超时时间2分钟），500页以内的文档进行转码
+<br/>
+注意：对于PDF等静态文件转码，无论是正常优先级或者低优先级，最大只能支持200MB
  */
 class CreateTranscodeRequest extends AbstractModel
 {
@@ -53,7 +65,7 @@ class CreateTranscodeRequest extends AbstractModel
     public $SdkAppId;
 
     /**
-     * @var string 需要进行转码文件地址
+     * @var string 经过URL编码后的转码文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pdf，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pdf。为了提高URL解析的成功率，请对URL进行编码。
      */
     public $Url;
 
@@ -84,8 +96,22 @@ tar.gz： 生成`.tar.gz`压缩包
     public $CompressFileType;
 
     /**
+     * @var string 内部参数
+     */
+    public $ExtraData;
+
+    /**
+     * @var string 文档转码优先级， 只有对于PPT动态转码生效，支持填入以下值：<br/>
+- low: 低优先级转码，对于动态转码，能支持500MB（下载超时时间10分钟）以及2000页文档，但资源有限可能会有比较长时间的排队，请酌情使用该功能。<br/>
+- 不填表示正常优先级转码，支持200MB文件（下载超时时间2分钟），500页以内的文档进行转码
+<br/>
+注意：对于PDF等静态文件转码，无论是正常优先级或者低优先级，最大只能支持200MB
+     */
+    public $Priority;
+
+    /**
      * @param integer $SdkAppId 客户的SdkAppId
-     * @param string $Url 需要进行转码文件地址
+     * @param string $Url 经过URL编码后的转码文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pdf，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pdf。为了提高URL解析的成功率，请对URL进行编码。
      * @param boolean $IsStaticPPT 是否为静态PPT，默认为False；
 如果IsStaticPPT为False，后缀名为.ppt或.pptx的文档会动态转码成HTML5页面，其他格式的文档会静态转码成图片；如果IsStaticPPT为True，所有格式的文档会静态转码成图片；
      * @param string $MinResolution 转码后文档的最小分辨率，不传、传空字符串或分辨率格式错误则使用文档原分辨率
@@ -96,6 +122,12 @@ tar.gz： 生成`.tar.gz`压缩包
 
 zip： 生成`.zip`压缩包
 tar.gz： 生成`.tar.gz`压缩包
+     * @param string $ExtraData 内部参数
+     * @param string $Priority 文档转码优先级， 只有对于PPT动态转码生效，支持填入以下值：<br/>
+- low: 低优先级转码，对于动态转码，能支持500MB（下载超时时间10分钟）以及2000页文档，但资源有限可能会有比较长时间的排队，请酌情使用该功能。<br/>
+- 不填表示正常优先级转码，支持200MB文件（下载超时时间2分钟），500页以内的文档进行转码
+<br/>
+注意：对于PDF等静态文件转码，无论是正常优先级或者低优先级，最大只能支持200MB
      */
     function __construct()
     {
@@ -132,6 +164,14 @@ tar.gz： 生成`.tar.gz`压缩包
 
         if (array_key_exists("CompressFileType",$param) and $param["CompressFileType"] !== null) {
             $this->CompressFileType = $param["CompressFileType"];
+        }
+
+        if (array_key_exists("ExtraData",$param) and $param["ExtraData"] !== null) {
+            $this->ExtraData = $param["ExtraData"];
+        }
+
+        if (array_key_exists("Priority",$param) and $param["Priority"] !== null) {
+            $this->Priority = $param["Priority"];
         }
     }
 }

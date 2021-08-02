@@ -22,8 +22,12 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getName() 获取环境变量名称
  * @method void setName(string $Name) 设置环境变量名称
- * @method string getValue() 获取服务端口
- * @method void setValue(string $Value) 设置服务端口
+ * @method string getValue() 获取环境变量值
+ * @method void setValue(string $Value) 设置环境变量值
+ * @method ValueFrom getValueFrom() 获取k8s ValueFrom
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setValueFrom(ValueFrom $ValueFrom) 设置k8s ValueFrom
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class Env extends AbstractModel
 {
@@ -33,13 +37,21 @@ class Env extends AbstractModel
     public $Name;
 
     /**
-     * @var string 服务端口
+     * @var string 环境变量值
      */
     public $Value;
 
     /**
+     * @var ValueFrom k8s ValueFrom
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ValueFrom;
+
+    /**
      * @param string $Name 环境变量名称
-     * @param string $Value 服务端口
+     * @param string $Value 环境变量值
+     * @param ValueFrom $ValueFrom k8s ValueFrom
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -60,6 +72,11 @@ class Env extends AbstractModel
 
         if (array_key_exists("Value",$param) and $param["Value"] !== null) {
             $this->Value = $param["Value"];
+        }
+
+        if (array_key_exists("ValueFrom",$param) and $param["ValueFrom"] !== null) {
+            $this->ValueFrom = new ValueFrom();
+            $this->ValueFrom->deserialize($param["ValueFrom"]);
         }
     }
 }

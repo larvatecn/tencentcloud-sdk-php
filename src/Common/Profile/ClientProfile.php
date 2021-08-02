@@ -79,16 +79,16 @@ class ClientProfile
 
     /**
      * ClientProfile constructor.
-     * @param string|null $signMethod 签名算法，目前支持SHA256，SHA1
-     * @param HttpProfile|null $httpProfile http参数类
+     * @param string $signMethod  签名算法，目前支持SHA256，SHA1
+     * @param HttpProfile $httpProfile http参数类
      */
     public function __construct($signMethod = null, $httpProfile = null)
     {
         $this->signMethod = $signMethod ? $signMethod : ClientProfile::$SIGN_TC3_SHA256;
         $this->httpProfile = $httpProfile ? $httpProfile : new HttpProfile();
         $this->unsignedPayload = false;
-        $this->checkPHPVersion = true;
-        //$this->language = ClientProfile::$ZH_CN;
+	$this->checkPHPVersion = true;
+	//$this->language = ClientProfile::$ZH_CN;
     }
 
     /**
@@ -141,20 +141,14 @@ class ClientProfile
         return $this->checkPHPVersion;
     }
 
-    /**
-     * @param $flag
-     */
     public function setCheckPHPVersion($flag)
     {
         $this->checkPHPVersion = $flag;
     }
 
-    /**
-     * @return string
-     */
     public function getLanguage()
     {
-        return $this->language;
+	return $this->language;
     }
 
     /**
@@ -162,7 +156,7 @@ class ClientProfile
      */
     public function setLanguage($language)
     {
-        $this->language = $language;
+	$this->language = $language;
     }
 
     /**

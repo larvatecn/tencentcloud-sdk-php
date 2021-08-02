@@ -37,15 +37,13 @@ EndTime 需要大于等于 StartTime
 返回小于等于结束日期当天 23:59:59 产生的数据
 EndTime 需要大于等于 StartTime
  * @method string getMetric() 获取排序对象，支持以下几种形式：
-url：访问 URL 排序，带参数统计，支持的 Filter 为 flux、request
-path：访问 URL 排序，不带参数统计，支持的 Filter 为 flux、request（白名单功能）
+url：访问 URL 排序（无参数的URL），支持的 Filter 为 flux、request
 district：省份、国家/地区排序，支持的 Filter 为 flux、request
 isp：运营商排序，支持的 Filter 为 flux、request
 host：域名访问数据排序，支持的 Filter 为：flux、request、bandwidth、fluxHitRate、2XX、3XX、4XX、5XX、statusCode
 originHost：域名回源数据排序，支持的 Filter 为 flux、request、bandwidth、origin_2XX、origin_3XX、origin_4XX、origin_5XX、OriginStatusCode
  * @method void setMetric(string $Metric) 设置排序对象，支持以下几种形式：
-url：访问 URL 排序，带参数统计，支持的 Filter 为 flux、request
-path：访问 URL 排序，不带参数统计，支持的 Filter 为 flux、request（白名单功能）
+url：访问 URL 排序（无参数的URL），支持的 Filter 为 flux、request
 district：省份、国家/地区排序，支持的 Filter 为 flux、request
 isp：运营商排序，支持的 Filter 为 flux、request
 host：域名访问数据排序，支持的 Filter 为：flux、request、bandwidth、fluxHitRate、2XX、3XX、4XX、5XX、statusCode
@@ -104,6 +102,8 @@ client：指定查询客户端地区（用户请求终端所在地区）数据�
  * @method void setAreaType(string $AreaType) 设置查询中国境外CDN数据，且仅当 Metric 为 district 或 host 时，可指定地区类型查询，不填充表示查询服务地区数据（仅在 Area 为 overseas，且 Metric 是 district 或 host 时可用）
 server：指定查询服务地区（腾讯云 CDN 节点服务器所在地区）数据
 client：指定查询客户端地区（用户请求终端所在地区）数据，当 Metric 为 host 时仅支持 flux、request、bandwidth Filter
+ * @method string getProduct() 获取指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
+ * @method void setProduct(string $Product) 设置指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
  */
 class ListTopDataRequest extends AbstractModel
 {
@@ -125,8 +125,7 @@ EndTime 需要大于等于 StartTime
 
     /**
      * @var string 排序对象，支持以下几种形式：
-url：访问 URL 排序，带参数统计，支持的 Filter 为 flux、request
-path：访问 URL 排序，不带参数统计，支持的 Filter 为 flux、request（白名单功能）
+url：访问 URL 排序（无参数的URL），支持的 Filter 为 flux、request
 district：省份、国家/地区排序，支持的 Filter 为 flux、request
 isp：运营商排序，支持的 Filter 为 flux、request
 host：域名访问数据排序，支持的 Filter 为：flux、request、bandwidth、fluxHitRate、2XX、3XX、4XX、5XX、statusCode
@@ -190,6 +189,11 @@ client：指定查询客户端地区（用户请求终端所在地区）数据�
     public $AreaType;
 
     /**
+     * @var string 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
+     */
+    public $Product;
+
+    /**
      * @param string $StartTime 查询起始日期：yyyy-MM-dd HH:mm:ss
 仅支持按天粒度的数据查询，取入参中的天信息作为起始日期
 返回大于等于起始日期当天 00:00:00 点产生的数据
@@ -199,8 +203,7 @@ client：指定查询客户端地区（用户请求终端所在地区）数据�
 返回小于等于结束日期当天 23:59:59 产生的数据
 EndTime 需要大于等于 StartTime
      * @param string $Metric 排序对象，支持以下几种形式：
-url：访问 URL 排序，带参数统计，支持的 Filter 为 flux、request
-path：访问 URL 排序，不带参数统计，支持的 Filter 为 flux、request（白名单功能）
+url：访问 URL 排序（无参数的URL），支持的 Filter 为 flux、request
 district：省份、国家/地区排序，支持的 Filter 为 flux、request
 isp：运营商排序，支持的 Filter 为 flux、request
 host：域名访问数据排序，支持的 Filter 为：flux、request、bandwidth、fluxHitRate、2XX、3XX、4XX、5XX、statusCode
@@ -232,6 +235,7 @@ overseas：指定查询中国境外 CDN 数据，支持的 Metric 为 url、dist
      * @param string $AreaType 查询中国境外CDN数据，且仅当 Metric 为 district 或 host 时，可指定地区类型查询，不填充表示查询服务地区数据（仅在 Area 为 overseas，且 Metric 是 district 或 host 时可用）
 server：指定查询服务地区（腾讯云 CDN 节点服务器所在地区）数据
 client：指定查询客户端地区（用户请求终端所在地区）数据，当 Metric 为 host 时仅支持 flux、request、bandwidth Filter
+     * @param string $Product 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
      */
     function __construct()
     {
@@ -284,6 +288,10 @@ client：指定查询客户端地区（用户请求终端所在地区）数据�
 
         if (array_key_exists("AreaType",$param) and $param["AreaType"] !== null) {
             $this->AreaType = $param["AreaType"];
+        }
+
+        if (array_key_exists("Product",$param) and $param["Product"] !== null) {
+            $this->Product = $param["Product"];
         }
     }
 }

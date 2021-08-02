@@ -20,8 +20,8 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 描述了镜像信息。
  *
- * @method string getBlueprintId() 获取镜像 ID  ，是 blueprint 的唯一标识。
- * @method void setBlueprintId(string $BlueprintId) 设置镜像 ID  ，是 blueprint 的唯一标识。
+ * @method string getBlueprintId() 获取镜像 ID  ，是 Blueprint 的唯一标识。
+ * @method void setBlueprintId(string $BlueprintId) 设置镜像 ID  ，是 Blueprint 的唯一标识。
  * @method string getDisplayTitle() 获取镜像对外展示标题。
  * @method void setDisplayTitle(string $DisplayTitle) 设置镜像对外展示标题。
  * @method string getDisplayVersion() 获取镜像对外展示版本。
@@ -34,19 +34,35 @@ use TencentCloud\Common\AbstractModel;
  * @method void setPlatform(string $Platform) 设置操作系统平台。
  * @method string getPlatformType() 获取操作系统平台类型，如 LINUX_UNIX、WINDOWS。
  * @method void setPlatformType(string $PlatformType) 设置操作系统平台类型，如 LINUX_UNIX、WINDOWS。
- * @method string getBlueprintType() 获取镜像类型，如 APP_OS、PURE_OS。
- * @method void setBlueprintType(string $BlueprintType) 设置镜像类型，如 APP_OS、PURE_OS。
+ * @method string getBlueprintType() 获取镜像类型，如 APP_OS、PURE_OS、PRIVATE。
+ * @method void setBlueprintType(string $BlueprintType) 设置镜像类型，如 APP_OS、PURE_OS、PRIVATE。
  * @method string getImageUrl() 获取镜像图片 URL。
  * @method void setImageUrl(string $ImageUrl) 设置镜像图片 URL。
- * @method integer getRequiredSystemDiskSize() 获取镜像所需系统盘大小
- * @method void setRequiredSystemDiskSize(integer $RequiredSystemDiskSize) 设置镜像所需系统盘大小
- * @method string getBlueprintState() 获取镜像状态，取值：ONLINE、OFFLINE
- * @method void setBlueprintState(string $BlueprintState) 设置镜像状态，取值：ONLINE、OFFLINE
+ * @method integer getRequiredSystemDiskSize() 获取镜像所需系统盘大小，单位 GB。
+ * @method void setRequiredSystemDiskSize(integer $RequiredSystemDiskSize) 设置镜像所需系统盘大小，单位 GB。
+ * @method string getBlueprintState() 获取镜像状态。
+ * @method void setBlueprintState(string $BlueprintState) 设置镜像状态。
+ * @method string getCreatedTime() 获取创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+格式为： YYYY-MM-DDThh:mm:ssZ。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setCreatedTime(string $CreatedTime) 设置创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+格式为： YYYY-MM-DDThh:mm:ssZ。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getBlueprintName() 获取镜像名称。
+ * @method void setBlueprintName(string $BlueprintName) 设置镜像名称。
+ * @method boolean getSupportAutomationTools() 获取镜像是否支持自动化助手。
+ * @method void setSupportAutomationTools(boolean $SupportAutomationTools) 设置镜像是否支持自动化助手。
+ * @method integer getRequiredMemorySize() 获取镜像所需内存大小, 单位: GB
+ * @method void setRequiredMemorySize(integer $RequiredMemorySize) 设置镜像所需内存大小, 单位: GB
+ * @method string getImageId() 获取CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setImageId(string $ImageId) 设置CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class Blueprint extends AbstractModel
 {
     /**
-     * @var string 镜像 ID  ，是 blueprint 的唯一标识。
+     * @var string 镜像 ID  ，是 Blueprint 的唯一标识。
      */
     public $BlueprintId;
 
@@ -81,7 +97,7 @@ class Blueprint extends AbstractModel
     public $PlatformType;
 
     /**
-     * @var string 镜像类型，如 APP_OS、PURE_OS。
+     * @var string 镜像类型，如 APP_OS、PURE_OS、PRIVATE。
      */
     public $BlueprintType;
 
@@ -91,27 +107,63 @@ class Blueprint extends AbstractModel
     public $ImageUrl;
 
     /**
-     * @var integer 镜像所需系统盘大小
+     * @var integer 镜像所需系统盘大小，单位 GB。
      */
     public $RequiredSystemDiskSize;
 
     /**
-     * @var string 镜像状态，取值：ONLINE、OFFLINE
+     * @var string 镜像状态。
      */
     public $BlueprintState;
 
     /**
-     * @param string $BlueprintId 镜像 ID  ，是 blueprint 的唯一标识。
+     * @var string 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+格式为： YYYY-MM-DDThh:mm:ssZ。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $CreatedTime;
+
+    /**
+     * @var string 镜像名称。
+     */
+    public $BlueprintName;
+
+    /**
+     * @var boolean 镜像是否支持自动化助手。
+     */
+    public $SupportAutomationTools;
+
+    /**
+     * @var integer 镜像所需内存大小, 单位: GB
+     */
+    public $RequiredMemorySize;
+
+    /**
+     * @var string CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ImageId;
+
+    /**
+     * @param string $BlueprintId 镜像 ID  ，是 Blueprint 的唯一标识。
      * @param string $DisplayTitle 镜像对外展示标题。
      * @param string $DisplayVersion 镜像对外展示版本。
      * @param string $Description 镜像描述信息。
      * @param string $OsName 操作系统名称。
      * @param string $Platform 操作系统平台。
      * @param string $PlatformType 操作系统平台类型，如 LINUX_UNIX、WINDOWS。
-     * @param string $BlueprintType 镜像类型，如 APP_OS、PURE_OS。
+     * @param string $BlueprintType 镜像类型，如 APP_OS、PURE_OS、PRIVATE。
      * @param string $ImageUrl 镜像图片 URL。
-     * @param integer $RequiredSystemDiskSize 镜像所需系统盘大小
-     * @param string $BlueprintState 镜像状态，取值：ONLINE、OFFLINE
+     * @param integer $RequiredSystemDiskSize 镜像所需系统盘大小，单位 GB。
+     * @param string $BlueprintState 镜像状态。
+     * @param string $CreatedTime 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。 
+格式为： YYYY-MM-DDThh:mm:ssZ。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $BlueprintName 镜像名称。
+     * @param boolean $SupportAutomationTools 镜像是否支持自动化助手。
+     * @param integer $RequiredMemorySize 镜像所需内存大小, 单位: GB
+     * @param string $ImageId CVM镜像共享到轻量应用服务器轻量应用服务器后的CVM镜像ID。
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -168,6 +220,26 @@ class Blueprint extends AbstractModel
 
         if (array_key_exists("BlueprintState",$param) and $param["BlueprintState"] !== null) {
             $this->BlueprintState = $param["BlueprintState"];
+        }
+
+        if (array_key_exists("CreatedTime",$param) and $param["CreatedTime"] !== null) {
+            $this->CreatedTime = $param["CreatedTime"];
+        }
+
+        if (array_key_exists("BlueprintName",$param) and $param["BlueprintName"] !== null) {
+            $this->BlueprintName = $param["BlueprintName"];
+        }
+
+        if (array_key_exists("SupportAutomationTools",$param) and $param["SupportAutomationTools"] !== null) {
+            $this->SupportAutomationTools = $param["SupportAutomationTools"];
+        }
+
+        if (array_key_exists("RequiredMemorySize",$param) and $param["RequiredMemorySize"] !== null) {
+            $this->RequiredMemorySize = $param["RequiredMemorySize"];
+        }
+
+        if (array_key_exists("ImageId",$param) and $param["ImageId"] !== null) {
+            $this->ImageId = $param["ImageId"];
         }
     }
 }

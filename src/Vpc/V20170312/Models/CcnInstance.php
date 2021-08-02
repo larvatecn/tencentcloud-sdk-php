@@ -34,6 +34,12 @@ use TencentCloud\Common\AbstractModel;
 <li>`DIRECTCONNECT`：专线网关</li>
 <li>`BMVPC`：黑石私有网络</li>
 <li>`VPNGW`：VPNGW类型</li>
+ * @method string getDescription() 获取备注
+ * @method void setDescription(string $Description) 设置备注
+ * @method string getRouteTableId() 获取实例关联的路由表ID。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRouteTableId(string $RouteTableId) 设置实例关联的路由表ID。
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class CcnInstance extends AbstractModel
 {
@@ -57,6 +63,17 @@ class CcnInstance extends AbstractModel
     public $InstanceType;
 
     /**
+     * @var string 备注
+     */
+    public $Description;
+
+    /**
+     * @var string 实例关联的路由表ID。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RouteTableId;
+
+    /**
      * @param string $InstanceId 关联实例ID。
      * @param string $InstanceRegion 关联实例ID所属大区，例如：ap-guangzhou。
      * @param string $InstanceType 关联实例类型，可选值：
@@ -64,6 +81,9 @@ class CcnInstance extends AbstractModel
 <li>`DIRECTCONNECT`：专线网关</li>
 <li>`BMVPC`：黑石私有网络</li>
 <li>`VPNGW`：VPNGW类型</li>
+     * @param string $Description 备注
+     * @param string $RouteTableId 实例关联的路由表ID。
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -88,6 +108,14 @@ class CcnInstance extends AbstractModel
 
         if (array_key_exists("InstanceType",$param) and $param["InstanceType"] !== null) {
             $this->InstanceType = $param["InstanceType"];
+        }
+
+        if (array_key_exists("Description",$param) and $param["Description"] !== null) {
+            $this->Description = $param["Description"];
+        }
+
+        if (array_key_exists("RouteTableId",$param) and $param["RouteTableId"] !== null) {
+            $this->RouteTableId = $param["RouteTableId"];
         }
     }
 }

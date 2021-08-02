@@ -20,9 +20,9 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DescribeMatchingProgress返回参数结构体
  *
- * @method array getMatchTickets() 获取请求结果列表
+ * @method array getMatchTickets() 获取匹配票据列表
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setMatchTickets(array $MatchTickets) 设置请求结果列表
+ * @method void setMatchTickets(array $MatchTickets) 设置匹配票据列表
 注意：此字段可能返回 null，表示取不到有效值。
  * @method integer getErrCode() 获取错误码
 注意：此字段可能返回 null，表示取不到有效值。
@@ -34,7 +34,7 @@ use TencentCloud\Common\AbstractModel;
 class DescribeMatchingProgressResponse extends AbstractModel
 {
     /**
-     * @var array 请求结果列表
+     * @var array 匹配票据列表
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $MatchTickets;
@@ -51,7 +51,7 @@ class DescribeMatchingProgressResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param array $MatchTickets 请求结果列表
+     * @param array $MatchTickets 匹配票据列表
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $ErrCode 错误码
 注意：此字段可能返回 null，表示取不到有效值。

@@ -118,6 +118,12 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setZoneId(integer $ZoneId) 设置可用区 ID
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getInstanceNodes() 获取节点数
+ * @method void setInstanceNodes(integer $InstanceNodes) 设置节点数
+ * @method array getTagList() 获取标签列表
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setTagList(array $TagList) 设置标签列表
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class InstanceInfo extends AbstractModel
 {
@@ -335,6 +341,17 @@ class InstanceInfo extends AbstractModel
     public $ZoneId;
 
     /**
+     * @var integer 节点数
+     */
+    public $InstanceNodes;
+
+    /**
+     * @var array 标签列表
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $TagList;
+
+    /**
      * @param integer $WanStatus 外网状态，可能的返回值为：0-未开通外网；1-已开通外网；2-已关闭外网
      * @param string $Zone 可用区信息
      * @param integer $InitFlag 初始化标志，可能的返回值为：0-未初始化；1-已初始化
@@ -383,6 +400,9 @@ class InstanceInfo extends AbstractModel
      * @param string $DeployGroupId 置放群组 ID
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $ZoneId 可用区 ID
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $InstanceNodes 节点数
+     * @param array $TagList 标签列表
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -573,6 +593,19 @@ class InstanceInfo extends AbstractModel
 
         if (array_key_exists("ZoneId",$param) and $param["ZoneId"] !== null) {
             $this->ZoneId = $param["ZoneId"];
+        }
+
+        if (array_key_exists("InstanceNodes",$param) and $param["InstanceNodes"] !== null) {
+            $this->InstanceNodes = $param["InstanceNodes"];
+        }
+
+        if (array_key_exists("TagList",$param) and $param["TagList"] !== null) {
+            $this->TagList = [];
+            foreach ($param["TagList"] as $key => $value){
+                $obj = new TagInfoItem();
+                $obj->deserialize($value);
+                array_push($this->TagList, $obj);
+            }
         }
     }
 }

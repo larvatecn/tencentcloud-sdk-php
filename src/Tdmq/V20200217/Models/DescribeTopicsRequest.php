@@ -42,6 +42,16 @@ use TencentCloud\Common\AbstractModel;
 3：重试队列；
 4：死信队列；
 5：事务消息。
+ * @method string getClusterId() 获取Pulsar 集群的ID
+ * @method void setClusterId(string $ClusterId) 设置Pulsar 集群的ID
+ * @method array getFilters() 获取* TopicName
+按照主题名字查询，精确查询。
+类型：String
+必选：否
+ * @method void setFilters(array $Filters) 设置* TopicName
+按照主题名字查询，精确查询。
+类型：String
+必选：否
  */
 class DescribeTopicsRequest extends AbstractModel
 {
@@ -77,6 +87,19 @@ class DescribeTopicsRequest extends AbstractModel
     public $TopicType;
 
     /**
+     * @var string Pulsar 集群的ID
+     */
+    public $ClusterId;
+
+    /**
+     * @var array * TopicName
+按照主题名字查询，精确查询。
+类型：String
+必选：否
+     */
+    public $Filters;
+
+    /**
      * @param string $EnvironmentId 环境（命名空间）名称。
      * @param string $TopicName 主题名模糊匹配。
      * @param integer $Offset 起始下标，不填默认为0。
@@ -88,6 +111,11 @@ class DescribeTopicsRequest extends AbstractModel
 3：重试队列；
 4：死信队列；
 5：事务消息。
+     * @param string $ClusterId Pulsar 集群的ID
+     * @param array $Filters * TopicName
+按照主题名字查询，精确查询。
+类型：String
+必选：否
      */
     function __construct()
     {
@@ -120,6 +148,19 @@ class DescribeTopicsRequest extends AbstractModel
 
         if (array_key_exists("TopicType",$param) and $param["TopicType"] !== null) {
             $this->TopicType = $param["TopicType"];
+        }
+
+        if (array_key_exists("ClusterId",$param) and $param["ClusterId"] !== null) {
+            $this->ClusterId = $param["ClusterId"];
+        }
+
+        if (array_key_exists("Filters",$param) and $param["Filters"] !== null) {
+            $this->Filters = [];
+            foreach ($param["Filters"] as $key => $value){
+                $obj = new Filter();
+                $obj->deserialize($value);
+                array_push($this->Filters, $obj);
+            }
         }
     }
 }

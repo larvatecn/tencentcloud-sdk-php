@@ -26,12 +26,26 @@ use TencentCloud\Common\AbstractModel;
  * @method void setName(string $Name) 设置项目名称。
  * @method string getAspectRatio() 获取画布宽高比。
  * @method void setAspectRatio(string $AspectRatio) 设置画布宽高比。
- * @method string getCategory() 获取项目类别。
- * @method void setCategory(string $Category) 设置项目类别。
+ * @method string getCategory() 获取项目类别，取值有：
+<li>VIDEO_EDIT：视频编辑。</li>
+<li>SWITCHER：导播台。</li>
+<li>VIDEO_SEGMENTATION：视频拆条。</li>
+<li>STREAM_CONNECT：云转推。</li>
+<li>RECORD_REPLAY：录制回放。</li>
+ * @method void setCategory(string $Category) 设置项目类别，取值有：
+<li>VIDEO_EDIT：视频编辑。</li>
+<li>SWITCHER：导播台。</li>
+<li>VIDEO_SEGMENTATION：视频拆条。</li>
+<li>STREAM_CONNECT：云转推。</li>
+<li>RECORD_REPLAY：录制回放。</li>
  * @method Entity getOwner() 获取归属者。
  * @method void setOwner(Entity $Owner) 设置归属者。
  * @method string getCoverUrl() 获取项目封面图片地址。
  * @method void setCoverUrl(string $CoverUrl) 设置项目封面图片地址。
+ * @method StreamConnectProjectInfo getStreamConnectProjectInfo() 获取云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setStreamConnectProjectInfo(StreamConnectProjectInfo $StreamConnectProjectInfo) 设置云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
+注意：此字段可能返回 null，表示取不到有效值。
  * @method string getCreateTime() 获取项目创建时间，格式按照 ISO 8601 标准表示。
  * @method void setCreateTime(string $CreateTime) 设置项目创建时间，格式按照 ISO 8601 标准表示。
  * @method string getUpdateTime() 获取项目更新时间，格式按照 ISO 8601 标准表示。
@@ -55,7 +69,12 @@ class ProjectInfo extends AbstractModel
     public $AspectRatio;
 
     /**
-     * @var string 项目类别。
+     * @var string 项目类别，取值有：
+<li>VIDEO_EDIT：视频编辑。</li>
+<li>SWITCHER：导播台。</li>
+<li>VIDEO_SEGMENTATION：视频拆条。</li>
+<li>STREAM_CONNECT：云转推。</li>
+<li>RECORD_REPLAY：录制回放。</li>
      */
     public $Category;
 
@@ -68,6 +87,12 @@ class ProjectInfo extends AbstractModel
      * @var string 项目封面图片地址。
      */
     public $CoverUrl;
+
+    /**
+     * @var StreamConnectProjectInfo 云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $StreamConnectProjectInfo;
 
     /**
      * @var string 项目创建时间，格式按照 ISO 8601 标准表示。
@@ -83,9 +108,16 @@ class ProjectInfo extends AbstractModel
      * @param string $ProjectId 项目 Id。
      * @param string $Name 项目名称。
      * @param string $AspectRatio 画布宽高比。
-     * @param string $Category 项目类别。
+     * @param string $Category 项目类别，取值有：
+<li>VIDEO_EDIT：视频编辑。</li>
+<li>SWITCHER：导播台。</li>
+<li>VIDEO_SEGMENTATION：视频拆条。</li>
+<li>STREAM_CONNECT：云转推。</li>
+<li>RECORD_REPLAY：录制回放。</li>
      * @param Entity $Owner 归属者。
      * @param string $CoverUrl 项目封面图片地址。
+     * @param StreamConnectProjectInfo $StreamConnectProjectInfo 云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
+注意：此字段可能返回 null，表示取不到有效值。
      * @param string $CreateTime 项目创建时间，格式按照 ISO 8601 标准表示。
      * @param string $UpdateTime 项目更新时间，格式按照 ISO 8601 标准表示。
      */
@@ -125,6 +157,11 @@ class ProjectInfo extends AbstractModel
 
         if (array_key_exists("CoverUrl",$param) and $param["CoverUrl"] !== null) {
             $this->CoverUrl = $param["CoverUrl"];
+        }
+
+        if (array_key_exists("StreamConnectProjectInfo",$param) and $param["StreamConnectProjectInfo"] !== null) {
+            $this->StreamConnectProjectInfo = new StreamConnectProjectInfo();
+            $this->StreamConnectProjectInfo->deserialize($param["StreamConnectProjectInfo"]);
         }
 
         if (array_key_exists("CreateTime",$param) and $param["CreateTime"] !== null) {

@@ -37,37 +37,61 @@ use TencentCloud\Common\AbstractModel;
  * @method string getLanguageType() 获取识别语言类型。
 支持自动识别语言类型，同时支持自选语言种类，默认中英文混合(zh)，各种语言均支持与英文混合的文字识别。
 可选值：
-zh\auto\jap\kor\
-spa\fre\ger\por\
-vie\may\rus\ita\
-hol\swe\fin\dan\
-nor\hun\tha\lat\ara
-可选值分别表示：
-中英文混合、自动识别、日语、韩语、
-西班牙语、法语、德语、葡萄牙语、
-越南语、马来语、俄语、意大利语、
-荷兰语、瑞典语、芬兰语、丹麦语、
-挪威语、匈牙利语、泰语、拉丁语系、
-阿拉伯语。
+zh：中英混合
+zh_rare：支持英文、数字、中文生僻字、繁体字，特殊符号等
+auto：自动
+mix：混合语种
+jap：日语
+kor：韩语
+spa：西班牙语
+fre：法语
+ger：德语
+por：葡萄牙语
+vie：越语
+may：马来语
+rus：俄语
+ita：意大利语
+hol：荷兰语
+swe：瑞典语
+fin：芬兰语
+dan：丹麦语
+nor：挪威语
+hun：匈牙利语
+tha：泰语
+hi：印地语
+ara：阿拉伯语
  * @method void setLanguageType(string $LanguageType) 设置识别语言类型。
 支持自动识别语言类型，同时支持自选语言种类，默认中英文混合(zh)，各种语言均支持与英文混合的文字识别。
 可选值：
-zh\auto\jap\kor\
-spa\fre\ger\por\
-vie\may\rus\ita\
-hol\swe\fin\dan\
-nor\hun\tha\lat\ara
-可选值分别表示：
-中英文混合、自动识别、日语、韩语、
-西班牙语、法语、德语、葡萄牙语、
-越南语、马来语、俄语、意大利语、
-荷兰语、瑞典语、芬兰语、丹麦语、
-挪威语、匈牙利语、泰语、拉丁语系、
-阿拉伯语。
+zh：中英混合
+zh_rare：支持英文、数字、中文生僻字、繁体字，特殊符号等
+auto：自动
+mix：混合语种
+jap：日语
+kor：韩语
+spa：西班牙语
+fre：法语
+ger：德语
+por：葡萄牙语
+vie：越语
+may：马来语
+rus：俄语
+ita：意大利语
+hol：荷兰语
+swe：瑞典语
+fin：芬兰语
+dan：丹麦语
+nor：挪威语
+hun：匈牙利语
+tha：泰语
+hi：印地语
+ara：阿拉伯语
  * @method boolean getIsPdf() 获取是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
  * @method void setIsPdf(boolean $IsPdf) 设置是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
  * @method integer getPdfPageNumber() 获取需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
  * @method void setPdfPageNumber(integer $PdfPageNumber) 设置需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+ * @method boolean getIsWords() 获取是否返回单字信息，默认关
+ * @method void setIsWords(boolean $IsWords) 设置是否返回单字信息，默认关
  */
 class GeneralBasicOCRRequest extends AbstractModel
 {
@@ -94,18 +118,29 @@ class GeneralBasicOCRRequest extends AbstractModel
      * @var string 识别语言类型。
 支持自动识别语言类型，同时支持自选语言种类，默认中英文混合(zh)，各种语言均支持与英文混合的文字识别。
 可选值：
-zh\auto\jap\kor\
-spa\fre\ger\por\
-vie\may\rus\ita\
-hol\swe\fin\dan\
-nor\hun\tha\lat\ara
-可选值分别表示：
-中英文混合、自动识别、日语、韩语、
-西班牙语、法语、德语、葡萄牙语、
-越南语、马来语、俄语、意大利语、
-荷兰语、瑞典语、芬兰语、丹麦语、
-挪威语、匈牙利语、泰语、拉丁语系、
-阿拉伯语。
+zh：中英混合
+zh_rare：支持英文、数字、中文生僻字、繁体字，特殊符号等
+auto：自动
+mix：混合语种
+jap：日语
+kor：韩语
+spa：西班牙语
+fre：法语
+ger：德语
+por：葡萄牙语
+vie：越语
+may：马来语
+rus：俄语
+ita：意大利语
+hol：荷兰语
+swe：瑞典语
+fin：芬兰语
+dan：丹麦语
+nor：挪威语
+hun：匈牙利语
+tha：泰语
+hi：印地语
+ara：阿拉伯语
      */
     public $LanguageType;
 
@@ -120,6 +155,11 @@ nor\hun\tha\lat\ara
     public $PdfPageNumber;
 
     /**
+     * @var boolean 是否返回单字信息，默认关
+     */
+    public $IsWords;
+
+    /**
      * @param string $ImageBase64 图片/PDF的 Base64 值。
 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
@@ -130,20 +170,32 @@ nor\hun\tha\lat\ara
      * @param string $LanguageType 识别语言类型。
 支持自动识别语言类型，同时支持自选语言种类，默认中英文混合(zh)，各种语言均支持与英文混合的文字识别。
 可选值：
-zh\auto\jap\kor\
-spa\fre\ger\por\
-vie\may\rus\ita\
-hol\swe\fin\dan\
-nor\hun\tha\lat\ara
-可选值分别表示：
-中英文混合、自动识别、日语、韩语、
-西班牙语、法语、德语、葡萄牙语、
-越南语、马来语、俄语、意大利语、
-荷兰语、瑞典语、芬兰语、丹麦语、
-挪威语、匈牙利语、泰语、拉丁语系、
-阿拉伯语。
+zh：中英混合
+zh_rare：支持英文、数字、中文生僻字、繁体字，特殊符号等
+auto：自动
+mix：混合语种
+jap：日语
+kor：韩语
+spa：西班牙语
+fre：法语
+ger：德语
+por：葡萄牙语
+vie：越语
+may：马来语
+rus：俄语
+ita：意大利语
+hol：荷兰语
+swe：瑞典语
+fin：芬兰语
+dan：丹麦语
+nor：挪威语
+hun：匈牙利语
+tha：泰语
+hi：印地语
+ara：阿拉伯语
      * @param boolean $IsPdf 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
      * @param integer $PdfPageNumber 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+     * @param boolean $IsWords 是否返回单字信息，默认关
      */
     function __construct()
     {
@@ -180,6 +232,10 @@ nor\hun\tha\lat\ara
 
         if (array_key_exists("PdfPageNumber",$param) and $param["PdfPageNumber"] !== null) {
             $this->PdfPageNumber = $param["PdfPageNumber"];
+        }
+
+        if (array_key_exists("IsWords",$param) and $param["IsWords"] !== null) {
+            $this->IsWords = $param["IsWords"];
         }
     }
 }

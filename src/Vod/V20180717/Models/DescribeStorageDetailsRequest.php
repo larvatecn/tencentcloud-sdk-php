@@ -33,14 +33,32 @@ use TencentCloud\Common\AbstractModel;
 <li>Day：以天为粒度。</li>
 默认按时间跨度决定，小于等于1天以5分钟为粒度，大于1天则以天为粒度。
  * @method string getStorageType() 获取查询的存储类型，有效值：
-<li>TotalStorage：存储总量。</li>
+<li>TotalStorage：存储总量，标准、低频、归档和深度归档存储量之和，不含提前删除量。</li>
 <li>StandardStorage：标准存储。</li>
 <li>InfrequentStorage：低频存储。</li>
+<li>ArchiveStorage：归档存储。</li>
+<li>DeepArchiveStorage：深度归档存储。</li>
+<li>DeletedArchiveStorage：归档提前删除量。</li>
+<li>DeletedDeepArchiveStorage：深度归档提前删除量。
+<li>ArchiveStandardRetrieval：归档标准取回量。</li>
+<li>ArchiveExpeditedRetrieval：归档快速取回量。</li>
+<li>ArchiveBulkRetrieval：归档批量取回量。</li>
+<li>DeepArchiveStandardRetrieval：深度归档标准取回量。</li>
+<li>DeepArchiveBulkRetrieval：深度归档批量取回量。</li>
 默认值为 TotalStorage。
  * @method void setStorageType(string $StorageType) 设置查询的存储类型，有效值：
-<li>TotalStorage：存储总量。</li>
+<li>TotalStorage：存储总量，标准、低频、归档和深度归档存储量之和，不含提前删除量。</li>
 <li>StandardStorage：标准存储。</li>
 <li>InfrequentStorage：低频存储。</li>
+<li>ArchiveStorage：归档存储。</li>
+<li>DeepArchiveStorage：深度归档存储。</li>
+<li>DeletedArchiveStorage：归档提前删除量。</li>
+<li>DeletedDeepArchiveStorage：深度归档提前删除量。
+<li>ArchiveStandardRetrieval：归档标准取回量。</li>
+<li>ArchiveExpeditedRetrieval：归档快速取回量。</li>
+<li>ArchiveBulkRetrieval：归档批量取回量。</li>
+<li>DeepArchiveStandardRetrieval：深度归档标准取回量。</li>
+<li>DeepArchiveBulkRetrieval：深度归档批量取回量。</li>
 默认值为 TotalStorage。
  * @method integer getSubAppId() 获取点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。
@@ -48,11 +66,11 @@ use TencentCloud\Common\AbstractModel;
 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。
  * @method string getArea() 获取查询的存储区域，有效值：
 <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-<li>outside Chinese Mainland：中国境外。</li>
+<li>Outside Chinese Mainland：中国境外。</li>
 默认值为 Chinese Mainland。
  * @method void setArea(string $Area) 设置查询的存储区域，有效值：
 <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-<li>outside Chinese Mainland：中国境外。</li>
+<li>Outside Chinese Mainland：中国境外。</li>
 默认值为 Chinese Mainland。
  */
 class DescribeStorageDetailsRequest extends AbstractModel
@@ -77,9 +95,18 @@ class DescribeStorageDetailsRequest extends AbstractModel
 
     /**
      * @var string 查询的存储类型，有效值：
-<li>TotalStorage：存储总量。</li>
+<li>TotalStorage：存储总量，标准、低频、归档和深度归档存储量之和，不含提前删除量。</li>
 <li>StandardStorage：标准存储。</li>
 <li>InfrequentStorage：低频存储。</li>
+<li>ArchiveStorage：归档存储。</li>
+<li>DeepArchiveStorage：深度归档存储。</li>
+<li>DeletedArchiveStorage：归档提前删除量。</li>
+<li>DeletedDeepArchiveStorage：深度归档提前删除量。
+<li>ArchiveStandardRetrieval：归档标准取回量。</li>
+<li>ArchiveExpeditedRetrieval：归档快速取回量。</li>
+<li>ArchiveBulkRetrieval：归档批量取回量。</li>
+<li>DeepArchiveStandardRetrieval：深度归档标准取回量。</li>
+<li>DeepArchiveBulkRetrieval：深度归档批量取回量。</li>
 默认值为 TotalStorage。
      */
     public $StorageType;
@@ -93,7 +120,7 @@ class DescribeStorageDetailsRequest extends AbstractModel
     /**
      * @var string 查询的存储区域，有效值：
 <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-<li>outside Chinese Mainland：中国境外。</li>
+<li>Outside Chinese Mainland：中国境外。</li>
 默认值为 Chinese Mainland。
      */
     public $Area;
@@ -106,15 +133,24 @@ class DescribeStorageDetailsRequest extends AbstractModel
 <li>Day：以天为粒度。</li>
 默认按时间跨度决定，小于等于1天以5分钟为粒度，大于1天则以天为粒度。
      * @param string $StorageType 查询的存储类型，有效值：
-<li>TotalStorage：存储总量。</li>
+<li>TotalStorage：存储总量，标准、低频、归档和深度归档存储量之和，不含提前删除量。</li>
 <li>StandardStorage：标准存储。</li>
 <li>InfrequentStorage：低频存储。</li>
+<li>ArchiveStorage：归档存储。</li>
+<li>DeepArchiveStorage：深度归档存储。</li>
+<li>DeletedArchiveStorage：归档提前删除量。</li>
+<li>DeletedDeepArchiveStorage：深度归档提前删除量。
+<li>ArchiveStandardRetrieval：归档标准取回量。</li>
+<li>ArchiveExpeditedRetrieval：归档快速取回量。</li>
+<li>ArchiveBulkRetrieval：归档批量取回量。</li>
+<li>DeepArchiveStandardRetrieval：深度归档标准取回量。</li>
+<li>DeepArchiveBulkRetrieval：深度归档批量取回量。</li>
 默认值为 TotalStorage。
      * @param integer $SubAppId 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。
      * @param string $Area 查询的存储区域，有效值：
 <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-<li>outside Chinese Mainland：中国境外。</li>
+<li>Outside Chinese Mainland：中国境外。</li>
 默认值为 Chinese Mainland。
      */
     function __construct()

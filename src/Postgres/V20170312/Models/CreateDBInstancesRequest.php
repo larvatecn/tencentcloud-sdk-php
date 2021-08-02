@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getSpecCode() 获取售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
  * @method void setSpecCode(string $SpecCode) 设置售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
- * @method string getDBVersion() 获取PostgreSQL内核版本，目前支持：9.3.5、9.5.4、10.4三种版本。
- * @method void setDBVersion(string $DBVersion) 设置PostgreSQL内核版本，目前支持：9.3.5、9.5.4、10.4三种版本。
+ * @method string getDBVersion() 获取PostgreSQL内核版本，目前支持以下版本：9.3.5、9.5.4、10.4、11.8、12.4 。
+ * @method void setDBVersion(string $DBVersion) 设置PostgreSQL内核版本，目前支持以下版本：9.3.5、9.5.4、10.4、11.8、12.4 。
  * @method integer getStorage() 获取实例容量大小，单位：GB。
  * @method void setStorage(integer $Storage) 设置实例容量大小，单位：GB。
  * @method integer getInstanceCount() 获取一次性购买的实例数量。取值1-100
@@ -54,6 +54,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setNeedSupportIpv6(integer $NeedSupportIpv6) 设置是否需要支持Ipv6，1：是，0：否
  * @method array getTagList() 获取实例需要绑定的Tag信息，默认为空
  * @method void setTagList(array $TagList) 设置实例需要绑定的Tag信息，默认为空
+ * @method array getSecurityGroupIds() 获取安全组id
+ * @method void setSecurityGroupIds(array $SecurityGroupIds) 设置安全组id
  */
 class CreateDBInstancesRequest extends AbstractModel
 {
@@ -63,7 +65,7 @@ class CreateDBInstancesRequest extends AbstractModel
     public $SpecCode;
 
     /**
-     * @var string PostgreSQL内核版本，目前支持：9.3.5、9.5.4、10.4三种版本。
+     * @var string PostgreSQL内核版本，目前支持以下版本：9.3.5、9.5.4、10.4、11.8、12.4 。
      */
     public $DBVersion;
 
@@ -143,8 +145,13 @@ class CreateDBInstancesRequest extends AbstractModel
     public $TagList;
 
     /**
+     * @var array 安全组id
+     */
+    public $SecurityGroupIds;
+
+    /**
      * @param string $SpecCode 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
-     * @param string $DBVersion PostgreSQL内核版本，目前支持：9.3.5、9.5.4、10.4三种版本。
+     * @param string $DBVersion PostgreSQL内核版本，目前支持以下版本：9.3.5、9.5.4、10.4、11.8、12.4 。
      * @param integer $Storage 实例容量大小，单位：GB。
      * @param integer $InstanceCount 一次性购买的实例数量。取值1-100
      * @param integer $Period 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
@@ -160,6 +167,7 @@ class CreateDBInstancesRequest extends AbstractModel
      * @param string $Name 实例名(后续支持)
      * @param integer $NeedSupportIpv6 是否需要支持Ipv6，1：是，0：否
      * @param array $TagList 实例需要绑定的Tag信息，默认为空
+     * @param array $SecurityGroupIds 安全组id
      */
     function __construct()
     {
@@ -245,6 +253,10 @@ class CreateDBInstancesRequest extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->TagList, $obj);
             }
+        }
+
+        if (array_key_exists("SecurityGroupIds",$param) and $param["SecurityGroupIds"] !== null) {
+            $this->SecurityGroupIds = $param["SecurityGroupIds"];
         }
     }
 }

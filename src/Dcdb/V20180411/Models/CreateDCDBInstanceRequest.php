@@ -48,16 +48,16 @@ use TencentCloud\Common\AbstractModel;
  * @method void setVpcId(string $VpcId) 设置虚拟私有网络 ID，不传或传空表示创建为基础网络
  * @method string getSubnetId() 获取虚拟私有网络子网 ID，VpcId不为空时必填
  * @method void setSubnetId(string $SubnetId) 设置虚拟私有网络子网 ID，VpcId不为空时必填
- * @method string getDbVersionId() 获取数据库引擎版本，当前可选：10.0.10，10.1.9，5.7.17。
-10.0.10 - Mariadb 10.0.10；
+ * @method string getDbVersionId() 获取数据库引擎版本，当前可选：8.0.18，10.1.9，5.7.17。
+8.0.18 - MySQL 8.0.18；
 10.1.9 - Mariadb 10.1.9；
 5.7.17 - Percona 5.7.17。
-如果不填的话，默认为10.1.9，表示Mariadb 10.1.9。
- * @method void setDbVersionId(string $DbVersionId) 设置数据库引擎版本，当前可选：10.0.10，10.1.9，5.7.17。
-10.0.10 - Mariadb 10.0.10；
+如果不填的话，默认为5.7.17，表示Percona 5.7.17。
+ * @method void setDbVersionId(string $DbVersionId) 设置数据库引擎版本，当前可选：8.0.18，10.1.9，5.7.17。
+8.0.18 - MySQL 8.0.18；
 10.1.9 - Mariadb 10.1.9；
 5.7.17 - Percona 5.7.17。
-如果不填的话，默认为10.1.9，表示Mariadb 10.1.9。
+如果不填的话，默认为5.7.17，表示Percona 5.7.17。
  * @method boolean getAutoVoucher() 获取是否自动使用代金券进行支付，默认不使用。
  * @method void setAutoVoucher(boolean $AutoVoucher) 设置是否自动使用代金券进行支付，默认不使用。
  * @method array getVoucherIds() 获取代金券ID列表，目前仅支持指定一张代金券。
@@ -70,6 +70,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setIpv6Flag(integer $Ipv6Flag) 设置是否支持IPv6
  * @method array getResourceTags() 获取标签键值对数组
  * @method void setResourceTags(array $ResourceTags) 设置标签键值对数组
+ * @method array getInitParams() 获取参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+ * @method void setInitParams(array $InitParams) 设置参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
  */
 class CreateDCDBInstanceRequest extends AbstractModel
 {
@@ -128,11 +130,11 @@ class CreateDCDBInstanceRequest extends AbstractModel
     public $SubnetId;
 
     /**
-     * @var string 数据库引擎版本，当前可选：10.0.10，10.1.9，5.7.17。
-10.0.10 - Mariadb 10.0.10；
+     * @var string 数据库引擎版本，当前可选：8.0.18，10.1.9，5.7.17。
+8.0.18 - MySQL 8.0.18；
 10.1.9 - Mariadb 10.1.9；
 5.7.17 - Percona 5.7.17。
-如果不填的话，默认为10.1.9，表示Mariadb 10.1.9。
+如果不填的话，默认为5.7.17，表示Percona 5.7.17。
      */
     public $DbVersionId;
 
@@ -167,6 +169,11 @@ class CreateDCDBInstanceRequest extends AbstractModel
     public $ResourceTags;
 
     /**
+     * @var array 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
+     */
+    public $InitParams;
+
+    /**
      * @param array $Zones 分片节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
 注意当前可售卖的可用区需要通过DescribeDCDBSaleInfo接口拉取。
      * @param integer $Period 欲购买的时长，单位：月。
@@ -181,17 +188,18 @@ class CreateDCDBInstanceRequest extends AbstractModel
      * @param integer $ProjectId 项目 ID，可以通过查看项目列表获取，不传则关联到默认项目
      * @param string $VpcId 虚拟私有网络 ID，不传或传空表示创建为基础网络
      * @param string $SubnetId 虚拟私有网络子网 ID，VpcId不为空时必填
-     * @param string $DbVersionId 数据库引擎版本，当前可选：10.0.10，10.1.9，5.7.17。
-10.0.10 - Mariadb 10.0.10；
+     * @param string $DbVersionId 数据库引擎版本，当前可选：8.0.18，10.1.9，5.7.17。
+8.0.18 - MySQL 8.0.18；
 10.1.9 - Mariadb 10.1.9；
 5.7.17 - Percona 5.7.17。
-如果不填的话，默认为10.1.9，表示Mariadb 10.1.9。
+如果不填的话，默认为5.7.17，表示Percona 5.7.17。
      * @param boolean $AutoVoucher 是否自动使用代金券进行支付，默认不使用。
      * @param array $VoucherIds 代金券ID列表，目前仅支持指定一张代金券。
      * @param string $SecurityGroupId 安全组id
      * @param string $InstanceName 实例名称， 可以通过该字段自主的设置实例的名字
      * @param integer $Ipv6Flag 是否支持IPv6
      * @param array $ResourceTags 标签键值对数组
+     * @param array $InitParams 参数列表。本接口的可选值为：character_set_server（字符集，必传），lower_case_table_names（表名大小写敏感，必传，0 - 敏感；1-不敏感），innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化。默认为强同步可退化）。
      */
     function __construct()
     {
@@ -276,6 +284,15 @@ class CreateDCDBInstanceRequest extends AbstractModel
                 $obj = new ResourceTag();
                 $obj->deserialize($value);
                 array_push($this->ResourceTags, $obj);
+            }
+        }
+
+        if (array_key_exists("InitParams",$param) and $param["InitParams"] !== null) {
+            $this->InitParams = [];
+            foreach ($param["InitParams"] as $key => $value){
+                $obj = new DBParamValue();
+                $obj->deserialize($value);
+                array_push($this->InitParams, $obj);
             }
         }
     }

@@ -24,6 +24,16 @@ use TencentCloud\Common\AbstractModel;
  * @method void setOffset(integer $Offset) 设置偏移量
  * @method integer getLimit() 获取个数限制
  * @method void setLimit(integer $Limit) 设置个数限制
+ * @method string getInstanceId() 获取实例ID
+ * @method void setInstanceId(string $InstanceId) 设置实例ID
+ * @method string getProjectId() 获取按项目D搜索
+ * @method void setProjectId(string $ProjectId) 设置按项目D搜索
+ * @method string getProductId() 获取按产品ID搜索
+ * @method void setProductId(string $ProductId) 设置按产品ID搜索
+ * @method array getIncludes() 获取加载 ProductCount、DeviceCount、ApplicationCount，可选值：ProductCount、DeviceCount、ApplicationCount，可多选
+ * @method void setIncludes(array $Includes) 设置加载 ProductCount、DeviceCount、ApplicationCount，可选值：ProductCount、DeviceCount、ApplicationCount，可多选
+ * @method string getProjectName() 获取按项目名称搜索
+ * @method void setProjectName(string $ProjectName) 设置按项目名称搜索
  */
 class GetProjectListRequest extends AbstractModel
 {
@@ -38,8 +48,38 @@ class GetProjectListRequest extends AbstractModel
     public $Limit;
 
     /**
+     * @var string 实例ID
+     */
+    public $InstanceId;
+
+    /**
+     * @var string 按项目D搜索
+     */
+    public $ProjectId;
+
+    /**
+     * @var string 按产品ID搜索
+     */
+    public $ProductId;
+
+    /**
+     * @var array 加载 ProductCount、DeviceCount、ApplicationCount，可选值：ProductCount、DeviceCount、ApplicationCount，可多选
+     */
+    public $Includes;
+
+    /**
+     * @var string 按项目名称搜索
+     */
+    public $ProjectName;
+
+    /**
      * @param integer $Offset 偏移量
      * @param integer $Limit 个数限制
+     * @param string $InstanceId 实例ID
+     * @param string $ProjectId 按项目D搜索
+     * @param string $ProductId 按产品ID搜索
+     * @param array $Includes 加载 ProductCount、DeviceCount、ApplicationCount，可选值：ProductCount、DeviceCount、ApplicationCount，可多选
+     * @param string $ProjectName 按项目名称搜索
      */
     function __construct()
     {
@@ -60,6 +100,26 @@ class GetProjectListRequest extends AbstractModel
 
         if (array_key_exists("Limit",$param) and $param["Limit"] !== null) {
             $this->Limit = $param["Limit"];
+        }
+
+        if (array_key_exists("InstanceId",$param) and $param["InstanceId"] !== null) {
+            $this->InstanceId = $param["InstanceId"];
+        }
+
+        if (array_key_exists("ProjectId",$param) and $param["ProjectId"] !== null) {
+            $this->ProjectId = $param["ProjectId"];
+        }
+
+        if (array_key_exists("ProductId",$param) and $param["ProductId"] !== null) {
+            $this->ProductId = $param["ProductId"];
+        }
+
+        if (array_key_exists("Includes",$param) and $param["Includes"] !== null) {
+            $this->Includes = $param["Includes"];
+        }
+
+        if (array_key_exists("ProjectName",$param) and $param["ProjectName"] !== null) {
+            $this->ProjectName = $param["ProjectName"];
         }
     }
 }

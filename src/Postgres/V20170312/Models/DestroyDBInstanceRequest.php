@@ -20,18 +20,18 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DestroyDBInstance请求参数结构体
  *
- * @method string getDBInstanceId() 获取待删除实例标识符
- * @method void setDBInstanceId(string $DBInstanceId) 设置待删除实例标识符
+ * @method string getDBInstanceId() 获取待下线实例ID
+ * @method void setDBInstanceId(string $DBInstanceId) 设置待下线实例ID
  */
 class DestroyDBInstanceRequest extends AbstractModel
 {
     /**
-     * @var string 待删除实例标识符
+     * @var string 待下线实例ID
      */
     public $DBInstanceId;
 
     /**
-     * @param string $DBInstanceId 待删除实例标识符
+     * @param string $DBInstanceId 待下线实例ID
      */
     function __construct()
     {

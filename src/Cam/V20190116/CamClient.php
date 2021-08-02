@@ -47,15 +47,19 @@ use TencentCloud\Cam\V20190116\Models as Models;
  * @method Models\DescribeRoleListResponse DescribeRoleList(Models\DescribeRoleListRequest $req) 本接口（DescribeRoleList）用于获取账号下的角色列表。
  * @method Models\DescribeSafeAuthFlagResponse DescribeSafeAuthFlag(Models\DescribeSafeAuthFlagRequest $req) 查询安全设置
  * @method Models\DescribeSafeAuthFlagCollResponse DescribeSafeAuthFlagColl(Models\DescribeSafeAuthFlagCollRequest $req) 查询安全设置
+ * @method Models\DescribeSafeAuthFlagIntlResponse DescribeSafeAuthFlagIntl(Models\DescribeSafeAuthFlagIntlRequest $req) 查询安全设置(国际站)
+ * @method Models\DescribeSubAccountsResponse DescribeSubAccounts(Models\DescribeSubAccountsRequest $req) 通过子用户UIN列表查询子用户
  * @method Models\DetachGroupPolicyResponse DetachGroupPolicy(Models\DetachGroupPolicyRequest $req) 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
  * @method Models\DetachRolePolicyResponse DetachRolePolicy(Models\DetachRolePolicyRequest $req) 本接口（DetachRolePolicy）用于解除绑定角色的策略。
  * @method Models\DetachUserPolicyResponse DetachUserPolicy(Models\DetachUserPolicyRequest $req) 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
+ * @method Models\GetAccountSummaryResponse GetAccountSummary(Models\GetAccountSummaryRequest $req) 查询账户摘要 
  * @method Models\GetCustomMFATokenInfoResponse GetCustomMFATokenInfo(Models\GetCustomMFATokenInfoRequest $req) 获取自定义多因子Token关联信息
  * @method Models\GetGroupResponse GetGroup(Models\GetGroupRequest $req) 查询用户组详情
  * @method Models\GetPolicyResponse GetPolicy(Models\GetPolicyRequest $req) 本接口（GetPolicy）可用于查询查看策略详情。
  * @method Models\GetPolicyVersionResponse GetPolicyVersion(Models\GetPolicyVersionRequest $req) 该接口（GetPolicyVersion）用于查询策略版本详情
  * @method Models\GetRoleResponse GetRole(Models\GetRoleRequest $req) 本接口（GetRole）用于获取指定角色的详细信息。
  * @method Models\GetSAMLProviderResponse GetSAMLProvider(Models\GetSAMLProviderRequest $req) 查询SAML身份提供商详情
+ * @method Models\GetSecurityLastUsedResponse GetSecurityLastUsed(Models\GetSecurityLastUsedRequest $req) 获取密钥最近使用情况
  * @method Models\GetServiceLinkedRoleDeletionStatusResponse GetServiceLinkedRoleDeletionStatus(Models\GetServiceLinkedRoleDeletionStatusRequest $req) 根据删除TaskId获取服务相关角色删除状态
  * @method Models\GetUserResponse GetUser(Models\GetUserRequest $req) 查询子用户
  * @method Models\ListAccessKeysResponse ListAccessKeys(Models\ListAccessKeysRequest $req) 列出指定CAM用户的访问密钥
@@ -67,10 +71,12 @@ use TencentCloud\Cam\V20190116\Models as Models;
  * @method Models\ListGroupsResponse ListGroups(Models\ListGroupsRequest $req) 查询用户组列表
  * @method Models\ListGroupsForUserResponse ListGroupsForUser(Models\ListGroupsForUserRequest $req) 列出用户关联的用户组
  * @method Models\ListPoliciesResponse ListPolicies(Models\ListPoliciesRequest $req) 本接口（ListPolicies）可用于查询策略列表。
+ * @method Models\ListPoliciesGrantingServiceAccessResponse ListPoliciesGrantingServiceAccess(Models\ListPoliciesGrantingServiceAccessRequest $req) 获取所有已授权服务
  * @method Models\ListPolicyVersionsResponse ListPolicyVersions(Models\ListPolicyVersionsRequest $req) 该接口（ListPolicyVersions）用于获取策略版本列表
  * @method Models\ListSAMLProvidersResponse ListSAMLProviders(Models\ListSAMLProvidersRequest $req) 查询SAML身份提供商列表
  * @method Models\ListUsersResponse ListUsers(Models\ListUsersRequest $req) 拉取子用户
  * @method Models\ListUsersForGroupResponse ListUsersForGroup(Models\ListUsersForGroupRequest $req) 查询用户组关联的用户列表
+ * @method Models\ListWeChatWorkSubAccountsResponse ListWeChatWorkSubAccounts(Models\ListWeChatWorkSubAccountsRequest $req) 获取企业微信子用户列表
  * @method Models\PutRolePermissionsBoundaryResponse PutRolePermissionsBoundary(Models\PutRolePermissionsBoundaryRequest $req) 设置角色权限边界
  * @method Models\PutUserPermissionsBoundaryResponse PutUserPermissionsBoundary(Models\PutUserPermissionsBoundaryRequest $req) 设置用户权限边界
  * @method Models\RemoveUserFromGroupResponse RemoveUserFromGroup(Models\RemoveUserFromGroupRequest $req) 从用户组删除用户
