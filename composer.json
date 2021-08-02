@@ -18,6 +18,9 @@
         "guzzlehttp/guzzle": "^6.5 || ^7.2",
         "guzzlehttp/psr7": "^1.4 || ^1.7"
     },
+    "replace": {
+        "tencentcloud/tencentcloud-sdk-php": "^3.0"
+    },
     "autoload": {
         "psr-4": {
             "TencentCloud\\": "src"
