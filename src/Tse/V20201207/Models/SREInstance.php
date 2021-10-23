@@ -76,6 +76,14 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setEnableInternet(boolean $EnableInternet) 设置注册引擎是否开启公网
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getVpcInfos() 获取私有网络列表信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setVpcInfos(array $VpcInfos) 设置私有网络列表信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getServiceGovernanceInfos() 获取服务治理相关信息列表
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setServiceGovernanceInfos(array $ServiceGovernanceInfos) 设置服务治理相关信息列表
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class SREInstance extends AbstractModel
 {
@@ -180,6 +188,18 @@ class SREInstance extends AbstractModel
     public $EnableInternet;
 
     /**
+     * @var array 私有网络列表信息
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $VpcInfos;
+
+    /**
+     * @var array 服务治理相关信息列表
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ServiceGovernanceInfos;
+
+    /**
      * @param string $InstanceId 实例ID
      * @param string $Name 名称
      * @param string $Edition 版本号
@@ -207,6 +227,10 @@ class SREInstance extends AbstractModel
      * @param string $EngineRegion 引擎所在的区域
 注意：此字段可能返回 null，表示取不到有效值。
      * @param boolean $EnableInternet 注册引擎是否开启公网
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $VpcInfos 私有网络列表信息
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $ServiceGovernanceInfos 服务治理相关信息列表
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -297,6 +321,24 @@ class SREInstance extends AbstractModel
 
         if (array_key_exists("EnableInternet",$param) and $param["EnableInternet"] !== null) {
             $this->EnableInternet = $param["EnableInternet"];
+        }
+
+        if (array_key_exists("VpcInfos",$param) and $param["VpcInfos"] !== null) {
+            $this->VpcInfos = [];
+            foreach ($param["VpcInfos"] as $key => $value){
+                $obj = new VpcInfo();
+                $obj->deserialize($value);
+                array_push($this->VpcInfos, $obj);
+            }
+        }
+
+        if (array_key_exists("ServiceGovernanceInfos",$param) and $param["ServiceGovernanceInfos"] !== null) {
+            $this->ServiceGovernanceInfos = [];
+            foreach ($param["ServiceGovernanceInfos"] as $key => $value){
+                $obj = new ServiceGovernanceInfo();
+                $obj->deserialize($value);
+                array_push($this->ServiceGovernanceInfos, $obj);
+            }
         }
     }
 }

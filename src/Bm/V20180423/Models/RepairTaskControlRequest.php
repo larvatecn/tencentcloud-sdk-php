@@ -24,6 +24,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setTaskId(string $TaskId) 设置维修任务ID
  * @method string getOperate() 获取操作
  * @method void setOperate(string $Operate) 设置操作
+ * @method string getOperateRemark() 获取需要重新维修操作的备注信息，可提供返场维修原因，以便驻场快速针对问题定位解决。
+ * @method void setOperateRemark(string $OperateRemark) 设置需要重新维修操作的备注信息，可提供返场维修原因，以便驻场快速针对问题定位解决。
  */
 class RepairTaskControlRequest extends AbstractModel
 {
@@ -38,8 +40,14 @@ class RepairTaskControlRequest extends AbstractModel
     public $Operate;
 
     /**
+     * @var string 需要重新维修操作的备注信息，可提供返场维修原因，以便驻场快速针对问题定位解决。
+     */
+    public $OperateRemark;
+
+    /**
      * @param string $TaskId 维修任务ID
      * @param string $Operate 操作
+     * @param string $OperateRemark 需要重新维修操作的备注信息，可提供返场维修原因，以便驻场快速针对问题定位解决。
      */
     function __construct()
     {
@@ -60,6 +68,10 @@ class RepairTaskControlRequest extends AbstractModel
 
         if (array_key_exists("Operate",$param) and $param["Operate"] !== null) {
             $this->Operate = $param["Operate"];
+        }
+
+        if (array_key_exists("OperateRemark",$param) and $param["OperateRemark"] !== null) {
+            $this->OperateRemark = $param["OperateRemark"];
         }
     }
 }

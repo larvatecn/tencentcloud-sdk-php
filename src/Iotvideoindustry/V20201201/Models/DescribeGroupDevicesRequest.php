@@ -30,6 +30,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setNickName(string $NickName) 设置设备名称，根据设备名称模糊匹配时必填
  * @method integer getRecordable() 获取过滤不可录制设备
  * @method void setRecordable(integer $Recordable) 设置过滤不可录制设备
+ * @method array getDeviceTypes() 获取当Group是普通组的时候，支持根据deviceTypes筛选类型
+ 0: 普通摄像头1:  国标VMS设备 2: 国标IPC设备 3: 国标NVR设备  4: 国标NVR通道 5: 国标VMS通道 6: 国标IPC通道 9: 智能告警设备 10: 带有RTSP固定地址的设备
+ * @method void setDeviceTypes(array $DeviceTypes) 设置当Group是普通组的时候，支持根据deviceTypes筛选类型
+ 0: 普通摄像头1:  国标VMS设备 2: 国标IPC设备 3: 国标NVR设备  4: 国标NVR通道 5: 国标VMS通道 6: 国标IPC通道 9: 智能告警设备 10: 带有RTSP固定地址的设备
  */
 class DescribeGroupDevicesRequest extends AbstractModel
 {
@@ -59,11 +63,19 @@ class DescribeGroupDevicesRequest extends AbstractModel
     public $Recordable;
 
     /**
+     * @var array 当Group是普通组的时候，支持根据deviceTypes筛选类型
+ 0: 普通摄像头1:  国标VMS设备 2: 国标IPC设备 3: 国标NVR设备  4: 国标NVR通道 5: 国标VMS通道 6: 国标IPC通道 9: 智能告警设备 10: 带有RTSP固定地址的设备
+     */
+    public $DeviceTypes;
+
+    /**
      * @param string $GroupId 分组ID
      * @param integer $Offset 偏移量，默认0
      * @param integer $Limit 限制值，默认200
      * @param string $NickName 设备名称，根据设备名称模糊匹配时必填
      * @param integer $Recordable 过滤不可录制设备
+     * @param array $DeviceTypes 当Group是普通组的时候，支持根据deviceTypes筛选类型
+ 0: 普通摄像头1:  国标VMS设备 2: 国标IPC设备 3: 国标NVR设备  4: 国标NVR通道 5: 国标VMS通道 6: 国标IPC通道 9: 智能告警设备 10: 带有RTSP固定地址的设备
      */
     function __construct()
     {
@@ -96,6 +108,10 @@ class DescribeGroupDevicesRequest extends AbstractModel
 
         if (array_key_exists("Recordable",$param) and $param["Recordable"] !== null) {
             $this->Recordable = $param["Recordable"];
+        }
+
+        if (array_key_exists("DeviceTypes",$param) and $param["DeviceTypes"] !== null) {
+            $this->DeviceTypes = $param["DeviceTypes"];
         }
     }
 }

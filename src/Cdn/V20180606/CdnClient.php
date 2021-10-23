@@ -35,6 +35,7 @@ use TencentCloud\Cdn\V20180606\Models as Models;
  * @method Models\DeleteClsLogTopicResponse DeleteClsLogTopic(Models\DeleteClsLogTopicRequest $req) DeleteClsLogTopic 用于删除日志主题。注意：删除后，所有该日志主题下绑定域名的日志将不再继续投递至该主题，已经投递的日志将会被全部清空。生效时间约为 5~15 分钟。
  * @method Models\DeleteScdnDomainResponse DeleteScdnDomain(Models\DeleteScdnDomainRequest $req) 删除SCDN域名
  * @method Models\DescribeBillingDataResponse DescribeBillingData(Models\DescribeBillingDataRequest $req) DescribeBillingData 用于查询实际计费数据明细。
+ * @method Models\DescribeCcDataResponse DescribeCcData(Models\DescribeCcDataRequest $req) CC统计数据查询
  * @method Models\DescribeCdnDataResponse DescribeCdnData(Models\DescribeCdnDataRequest $req) DescribeCdnData 用于查询 CDN 实时访问监控数据，支持以下指标查询：
 
 + 流量（单位为 byte）
@@ -53,11 +54,13 @@ use TencentCloud\Cdn\V20180606\Models as Models;
 （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）  
  * @method Models\DescribeCdnOriginIpResponse DescribeCdnOriginIp(Models\DescribeCdnOriginIpRequest $req) 本接口（DescribeCdnOriginIp）用于查询 CDN 回源节点的IP信息。（注：此接口即将下线，不再进行维护，请通过DescribeIpStatus 接口进行查询）
  * @method Models\DescribeCertDomainsResponse DescribeCertDomains(Models\DescribeCertDomainsRequest $req) DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
+ * @method Models\DescribeDDoSDataResponse DescribeDDoSData(Models\DescribeDDoSDataRequest $req) DDoS统计数据查询
  * @method Models\DescribeDiagnoseReportResponse DescribeDiagnoseReport(Models\DescribeDiagnoseReportRequest $req) DescribeDiagnoseReport 用于获取指定报告id的内容
  * @method Models\DescribeDistrictIspDataResponse DescribeDistrictIspData(Models\DescribeDistrictIspDataRequest $req) 查询指定域名的区域、运营商明细数据
 注意事项：接口尚未全量开放，未在内测名单中的账号不支持调用
  * @method Models\DescribeDomainsResponse DescribeDomains(Models\DescribeDomainsRequest $req) DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
  * @method Models\DescribeDomainsConfigResponse DescribeDomainsConfig(Models\DescribeDomainsConfigRequest $req) DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。
+ * @method Models\DescribeEventLogDataResponse DescribeEventLogData(Models\DescribeEventLogDataRequest $req) DescribeEventLogData 用于查询事件日志统计曲线
  * @method Models\DescribeImageConfigResponse DescribeImageConfig(Models\DescribeImageConfigRequest $req) DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG 和 Guetzli。 
  * @method Models\DescribeIpStatusResponse DescribeIpStatus(Models\DescribeIpStatusRequest $req) DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：边缘节点（edge）尚未全量开放，未在内测名单中的账号不支持调用
  * @method Models\DescribeIpVisitResponse DescribeIpVisit(Models\DescribeIpVisitRequest $req) DescribeIpVisit 用于查询 5 分钟活跃用户数，及日活跃用户数明细
@@ -84,11 +87,13 @@ use TencentCloud\Cdn\V20180606\Models as Models;
 接口灰度中，暂未全量开放，敬请期待。
  * @method Models\DescribeReportDataResponse DescribeReportData(Models\DescribeReportDataRequest $req) DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
  * @method Models\DescribeScdnConfigResponse DescribeScdnConfig(Models\DescribeScdnConfigRequest $req) DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
+ * @method Models\DescribeScdnIpStrategyResponse DescribeScdnIpStrategy(Models\DescribeScdnIpStrategyRequest $req) 查询在SCDN IP安全策略
  * @method Models\DescribeScdnTopDataResponse DescribeScdnTopData(Models\DescribeScdnTopDataRequest $req) 获取SCDN的Top数据
  * @method Models\DescribeTrafficPackagesResponse DescribeTrafficPackages(Models\DescribeTrafficPackagesRequest $req) DescribeTrafficPackages 用于查询中国境内 CDN 流量包详情。
  * @method Models\DescribeUrlViolationsResponse DescribeUrlViolations(Models\DescribeUrlViolationsRequest $req) DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
 对应内容分发网络控制台【图片鉴黄】页面。
- * @method Models\DisableCachesResponse DisableCaches(Models\DisableCachesRequest $req) DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（接口尚在内测中，暂未全量开放使用）
+ * @method Models\DescribeWafDataResponse DescribeWafData(Models\DescribeWafDataRequest $req) Waf统计数据查询
+ * @method Models\DisableCachesResponse DisableCaches(Models\DisableCachesRequest $req) DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
  * @method Models\DisableClsLogTopicResponse DisableClsLogTopic(Models\DisableClsLogTopicRequest $req) DisableClsLogTopic 用于停止日志主题投递。注意：停止后，所有绑定该日志主题域名的日志将不再继续投递至该主题，已经投递的日志将会继续保留。生效时间约为 5~15 分钟。
 
  * @method Models\DuplicateDomainConfigResponse DuplicateDomainConfig(Models\DuplicateDomainConfigRequest $req) 拷贝参考域名的配置至新域名。暂不支持自有证书以及定制化配置
@@ -100,6 +105,10 @@ use TencentCloud\Cdn\V20180606\Models as Models;
  * @method Models\ListDiagnoseReportResponse ListDiagnoseReport(Models\ListDiagnoseReportRequest $req) ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
  * @method Models\ListScdnDomainsResponse ListScdnDomains(Models\ListScdnDomainsRequest $req) ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
  * @method Models\ListScdnLogTasksResponse ListScdnLogTasks(Models\ListScdnLogTasksRequest $req) ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
+ * @method Models\ListTopBotDataResponse ListTopBotData(Models\ListTopBotDataRequest $req) 获取Bot攻击的Top信息
+ * @method Models\ListTopCcDataResponse ListTopCcData(Models\ListTopCcDataRequest $req) 获取CC攻击Top数据
+ * @method Models\ListTopClsLogDataResponse ListTopClsLogData(Models\ListTopClsLogDataRequest $req) 通过CLS日志计算Top信息。支持近7天的日志数据。
+ * @method Models\ListTopDDoSDataResponse ListTopDDoSData(Models\ListTopDDoSDataRequest $req) 获取DDoS攻击Top数据
  * @method Models\ListTopDataResponse ListTopData(Models\ListTopDataRequest $req) ListTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
 
 + 依据总流量、总请求数对访问 URL 排序，从大至小返回 TOP 1000 URL
@@ -109,6 +118,7 @@ use TencentCloud\Cdn\V20180606\Models as Models;
 + 依据总回源流量、回源峰值带宽、总回源请求数、平均回源失败率、2XX/3XX/4XX/5XX 回源状态码对域名排序，从大至小返回域名列表
 
 注意：仅支持 90 天内数据查询
+ * @method Models\ListTopWafDataResponse ListTopWafData(Models\ListTopWafDataRequest $req) 获取Waf攻击Top数据
  * @method Models\ManageClsTopicDomainsResponse ManageClsTopicDomains(Models\ManageClsTopicDomainsRequest $req) ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
  * @method Models\ModifyPurgeFetchTaskStatusResponse ModifyPurgeFetchTaskStatus(Models\ModifyPurgeFetchTaskStatusRequest $req) ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
  * @method Models\PurgePathCacheResponse PurgePathCache(Models\PurgePathCacheRequest $req) PurgePathCache 用于批量提交目录刷新，根据域名的加速区域进行对应区域的刷新。
@@ -116,7 +126,7 @@ use TencentCloud\Cdn\V20180606\Models as Models;
  * @method Models\PurgeUrlsCacheResponse PurgeUrlsCache(Models\PurgeUrlsCacheRequest $req) PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
  * @method Models\PushUrlsCacheResponse PushUrlsCache(Models\PushUrlsCacheRequest $req) PushUrlsCache 用于将指定 URL 资源列表加载至 CDN 节点，支持指定加速区域预热。
-默认情况下境内、境外每日预热 URL 限额为各 1000 条，每次最多可提交 20 条。
+默认情况下境内、境外每日预热 URL 限额为各 1000 条，每次最多可提交 20 条。注意：中国境外区域预热，资源默认加载至中国境外边缘节点，所产生的边缘层流量会计入计费流量。
  * @method Models\SearchClsLogResponse SearchClsLog(Models\SearchClsLogRequest $req) SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
  * @method Models\StartCdnDomainResponse StartCdnDomain(Models\StartCdnDomainRequest $req) StartCdnDomain 用于启用已停用域名的加速服务
  * @method Models\StartScdnDomainResponse StartScdnDomain(Models\StartScdnDomainRequest $req) StartScdnDomain 用于开启域名的安全防护配置

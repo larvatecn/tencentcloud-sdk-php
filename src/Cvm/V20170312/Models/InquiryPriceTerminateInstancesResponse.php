@@ -20,17 +20,25 @@ use TencentCloud\Common\AbstractModel;
 /**
  * InquiryPriceTerminateInstances返回参数结构体
  *
+ * @method array getInstanceRefundsSet() 获取退款详情。
+ * @method void setInstanceRefundsSet(array $InstanceRefundsSet) 设置退款详情。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
 class InquiryPriceTerminateInstancesResponse extends AbstractModel
 {
     /**
+     * @var array 退款详情。
+     */
+    public $InstanceRefundsSet;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
 
     /**
+     * @param array $InstanceRefundsSet 退款详情。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -46,6 +54,15 @@ class InquiryPriceTerminateInstancesResponse extends AbstractModel
         if ($param === null) {
             return;
         }
+        if (array_key_exists("InstanceRefundsSet",$param) and $param["InstanceRefundsSet"] !== null) {
+            $this->InstanceRefundsSet = [];
+            foreach ($param["InstanceRefundsSet"] as $key => $value){
+                $obj = new InstanceRefund();
+                $obj->deserialize($value);
+                array_push($this->InstanceRefundsSet, $obj);
+            }
+        }
+
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {
             $this->RequestId = $param["RequestId"];
         }

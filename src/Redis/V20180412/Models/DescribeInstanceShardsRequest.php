@@ -20,15 +20,15 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DescribeInstanceShards请求参数结构体
  *
- * @method string getInstanceId() 获取实例id
- * @method void setInstanceId(string $InstanceId) 设置实例id
+ * @method string getInstanceId() 获取实例ID
+ * @method void setInstanceId(string $InstanceId) 设置实例ID
  * @method boolean getFilterSlave() 获取是否过滤掉从节信息
  * @method void setFilterSlave(boolean $FilterSlave) 设置是否过滤掉从节信息
  */
 class DescribeInstanceShardsRequest extends AbstractModel
 {
     /**
-     * @var string 实例id
+     * @var string 实例ID
      */
     public $InstanceId;
 
@@ -38,7 +38,7 @@ class DescribeInstanceShardsRequest extends AbstractModel
     public $FilterSlave;
 
     /**
-     * @param string $InstanceId 实例id
+     * @param string $InstanceId 实例ID
      * @param boolean $FilterSlave 是否过滤掉从节信息
      */
     function __construct()

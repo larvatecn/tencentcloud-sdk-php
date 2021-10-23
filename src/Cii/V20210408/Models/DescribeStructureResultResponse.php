@@ -30,6 +30,8 @@ use TencentCloud\Common\AbstractModel;
 2：结果生成失败
  * @method array getResults() 获取结构化结果
  * @method void setResults(array $Results) 设置结构化结果
+ * @method string getMainTaskId() 获取主任务ID
+ * @method void setMainTaskId(string $MainTaskId) 设置主任务ID
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
@@ -49,6 +51,11 @@ class DescribeStructureResultResponse extends AbstractModel
     public $Results;
 
     /**
+     * @var string 主任务ID
+     */
+    public $MainTaskId;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -59,6 +66,7 @@ class DescribeStructureResultResponse extends AbstractModel
 1：结果未生成
 2：结果生成失败
      * @param array $Results 结构化结果
+     * @param string $MainTaskId 主任务ID
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -85,6 +93,10 @@ class DescribeStructureResultResponse extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->Results, $obj);
             }
+        }
+
+        if (array_key_exists("MainTaskId",$param) and $param["MainTaskId"] !== null) {
+            $this->MainTaskId = $param["MainTaskId"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

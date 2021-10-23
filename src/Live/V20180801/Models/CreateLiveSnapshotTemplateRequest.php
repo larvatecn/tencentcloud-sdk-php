@@ -41,13 +41,17 @@ use TencentCloud\Common\AbstractModel;
 长度上限：1024字节。
 仅支持中文、英文、数字、_、-。
  * @method integer getSnapshotInterval() 获取截图间隔，单位s，默认10s。
-范围： 5s ~ 300s。
+范围： 2s ~ 300s。
  * @method void setSnapshotInterval(integer $SnapshotInterval) 设置截图间隔，单位s，默认10s。
-范围： 5s ~ 300s。
+范围： 2s ~ 300s。
  * @method integer getWidth() 获取截图宽度。默认：0（原始宽）。
+范围：0-3000 。
  * @method void setWidth(integer $Width) 设置截图宽度。默认：0（原始宽）。
+范围：0-3000 。
  * @method integer getHeight() 获取截图高度。默认：0（原始高）。
+范围：0-2000 。
  * @method void setHeight(integer $Height) 设置截图高度。默认：0（原始高）。
+范围：0-2000 。
  * @method integer getPornFlag() 获取是否开启鉴黄，0：不开启，1：开启。默认：0。
  * @method void setPornFlag(integer $PornFlag) 设置是否开启鉴黄，0：不开启，1：开启。默认：0。
  * @method string getCosPrefix() 获取Cos Bucket文件夹前缀。
@@ -101,17 +105,19 @@ class CreateLiveSnapshotTemplateRequest extends AbstractModel
 
     /**
      * @var integer 截图间隔，单位s，默认10s。
-范围： 5s ~ 300s。
+范围： 2s ~ 300s。
      */
     public $SnapshotInterval;
 
     /**
      * @var integer 截图宽度。默认：0（原始宽）。
+范围：0-3000 。
      */
     public $Width;
 
     /**
      * @var integer 截图高度。默认：0（原始高）。
+范围：0-2000 。
      */
     public $Height;
 
@@ -148,9 +154,11 @@ class CreateLiveSnapshotTemplateRequest extends AbstractModel
 长度上限：1024字节。
 仅支持中文、英文、数字、_、-。
      * @param integer $SnapshotInterval 截图间隔，单位s，默认10s。
-范围： 5s ~ 300s。
+范围： 2s ~ 300s。
      * @param integer $Width 截图宽度。默认：0（原始宽）。
+范围：0-3000 。
      * @param integer $Height 截图高度。默认：0（原始高）。
+范围：0-2000 。
      * @param integer $PornFlag 是否开启鉴黄，0：不开启，1：开启。默认：0。
      * @param string $CosPrefix Cos Bucket文件夹前缀。
 如不传，实际按默认值

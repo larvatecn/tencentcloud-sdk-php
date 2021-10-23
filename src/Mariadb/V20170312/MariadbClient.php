@@ -31,6 +31,7 @@ use TencentCloud\Mariadb\V20170312\Models as Models;
 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
  * @method Models\CreateAccountResponse CreateAccount(Models\CreateAccountRequest $req) 本接口（CreateAccount）用于创建云数据库账号。一个实例可以创建多个不同的账号，相同的用户名+不同的host是不同的账号。
  * @method Models\CreateDBInstanceResponse CreateDBInstance(Models\CreateDBInstanceRequest $req) 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
+ * @method Models\CreateDedicatedClusterDBInstanceResponse CreateDedicatedClusterDBInstance(Models\CreateDedicatedClusterDBInstanceRequest $req) 创建独享集群Mariadb实例
  * @method Models\CreateTmpInstancesResponse CreateTmpInstances(Models\CreateTmpInstancesRequest $req) 本接口（CreateTmpInstances）用于创建临时实例。
  * @method Models\DeleteAccountResponse DeleteAccount(Models\DeleteAccountRequest $req) 本接口（DeleteAccount）用于删除云数据库账号。用户名+host唯一确定一个账号。
  * @method Models\DescribeAccountPrivilegesResponse DescribeAccountPrivileges(Models\DescribeAccountPrivilegesRequest $req) 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
@@ -81,6 +82,12 @@ use TencentCloud\Mariadb\V20170312\Models as Models;
  * @method Models\ModifyDBInstancesProjectResponse ModifyDBInstancesProject(Models\ModifyDBInstancesProjectRequest $req) 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
  * @method Models\ModifyDBParametersResponse ModifyDBParameters(Models\ModifyDBParametersRequest $req) 本接口(ModifyDBParameters)用于修改数据库参数。
  * @method Models\ModifyLogFileRetentionPeriodResponse ModifyLogFileRetentionPeriod(Models\ModifyLogFileRetentionPeriodRequest $req) 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
+ * @method Models\ModifyRealServerAccessStrategyResponse ModifyRealServerAccessStrategy(Models\ModifyRealServerAccessStrategyRequest $req) 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。
+
+**注意**
+- 修改策略后只对新建立的连接生效，老连接不受影响
+- 就近访问只针对实例是跨可用区部署有用，单可用区部署实例就近与否并无作用
+- DB每个Node对应一个proxy，如果开启就近访问，将会把连接集中到对应可用区的proxy上，可能造成热点问题，这种情况下如果是线上业务，请务必根据自己的业务请求量测试符合预期后再进行就近策略变更
  * @method Models\OpenDBExtranetAccessResponse OpenDBExtranetAccess(Models\OpenDBExtranetAccessRequest $req) 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
  * @method Models\RenewDBInstanceResponse RenewDBInstance(Models\RenewDBInstanceRequest $req) 本接口（RenewDBInstance）用于续费云数据库实例。
  * @method Models\ResetAccountPasswordResponse ResetAccountPassword(Models\ResetAccountPasswordRequest $req) 本接口（ResetAccountPassword）用于重置云数据库账号的密码。

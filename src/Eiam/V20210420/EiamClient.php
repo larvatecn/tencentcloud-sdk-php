@@ -32,9 +32,12 @@ use TencentCloud\Eiam\V20210420\Models as Models;
  * @method Models\DeleteUserGroupResponse DeleteUserGroup(Models\DeleteUserGroupRequest $req) 删除一个用户组
  * @method Models\DescribeApplicationResponse DescribeApplication(Models\DescribeApplicationRequest $req) 获取一个应用的信息。
  * @method Models\DescribeOrgNodeResponse DescribeOrgNode(Models\DescribeOrgNodeRequest $req) 根据机构节点ID读取机构节点信息
+ * @method Models\DescribeOrgResourcesAuthorizationResponse DescribeOrgResourcesAuthorization(Models\DescribeOrgResourcesAuthorizationRequest $req) 查询指定机构下的资源授权列表
  * @method Models\DescribePublicKeyResponse DescribePublicKey(Models\DescribePublicKeyRequest $req) 获取JWT公钥信息。
  * @method Models\DescribeUserGroupResponse DescribeUserGroup(Models\DescribeUserGroupRequest $req) 获取用户组信息
+ * @method Models\DescribeUserGroupResourcesAuthorizationResponse DescribeUserGroupResourcesAuthorization(Models\DescribeUserGroupResourcesAuthorizationRequest $req) 查询指定用户组下的资源授权列表
  * @method Models\DescribeUserInfoResponse DescribeUserInfo(Models\DescribeUserInfoRequest $req) 通过用户名或用户 id 搜索用户
+ * @method Models\DescribeUserResourcesAuthorizationResponse DescribeUserResourcesAuthorization(Models\DescribeUserResourcesAuthorizationRequest $req) 查询指定用户下的资源授权列表
  * @method Models\ListApplicationAuthorizationsResponse ListApplicationAuthorizations(Models\ListApplicationAuthorizationsRequest $req) 应用授权关系列表（含搜索条件匹配）。
  * @method Models\ListApplicationsResponse ListApplications(Models\ListApplicationsRequest $req) 获取应用列表信息。
  * @method Models\ListAuthorizedApplicationsToOrgNodeResponse ListAuthorizedApplicationsToOrgNode(Models\ListAuthorizedApplicationsToOrgNodeRequest $req) 通过机构节点ID获得被授权访问的应用列表。
@@ -45,6 +48,7 @@ use TencentCloud\Eiam\V20210420\Models as Models;
  * @method Models\ListUsersResponse ListUsers(Models\ListUsersRequest $req) 获取用户列表信息。
  * @method Models\ListUsersInOrgNodeResponse ListUsersInOrgNode(Models\ListUsersInOrgNodeRequest $req) 根据机构节点ID读取节点下用户
  * @method Models\ListUsersInUserGroupResponse ListUsersInUserGroup(Models\ListUsersInUserGroupRequest $req) 获取用户组中的用户列表
+ * @method Models\ModifyApplicationResponse ModifyApplication(Models\ModifyApplicationRequest $req) 更新一个应用的信息
  * @method Models\ModifyUserInfoResponse ModifyUserInfo(Models\ModifyUserInfoRequest $req) 通过用户名或用户 id 冻结用户
  * @method Models\RemoveUserFromUserGroupResponse RemoveUserFromUserGroup(Models\RemoveUserFromUserGroupRequest $req) 从用户组中移除用户
  * @method Models\UpdateOrgNodeResponse UpdateOrgNode(Models\UpdateOrgNodeRequest $req) 新建一个机构节点，

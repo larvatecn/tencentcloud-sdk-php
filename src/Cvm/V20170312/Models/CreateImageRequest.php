@@ -22,16 +22,22 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getImageName() 获取镜像名称
  * @method void setImageName(string $ImageName) 设置镜像名称
- * @method string getInstanceId() 获取需要制作镜像的实例ID。
- * @method void setInstanceId(string $InstanceId) 设置需要制作镜像的实例ID。
+ * @method string getInstanceId() 获取需要制作镜像的实例ID。基于实例创建镜像时，为必填参数。
+ * @method void setInstanceId(string $InstanceId) 设置需要制作镜像的实例ID。基于实例创建镜像时，为必填参数。
  * @method string getImageDescription() 获取镜像描述
  * @method void setImageDescription(string $ImageDescription) 设置镜像描述
  * @method string getForcePoweroff() 获取是否执行强制关机以制作镜像。
 取值范围：<br><li>TRUE：表示关机之后制作镜像<br><li>FALSE：表示开机状态制作镜像<br><br>默认取值：FALSE。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
  * @method void setForcePoweroff(string $ForcePoweroff) 设置是否执行强制关机以制作镜像。
 取值范围：<br><li>TRUE：表示关机之后制作镜像<br><li>FALSE：表示开机状态制作镜像<br><br>默认取值：FALSE。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
- * @method string getSysprep() 获取创建Windows镜像时是否启用Sysprep，关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)
- * @method void setSysprep(string $Sysprep) 设置创建Windows镜像时是否启用Sysprep，关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)
+ * @method string getSysprep() 获取创建Windows镜像时是否启用Sysprep。
+取值范围：TRUE或FALSE，默认取值为FALSE。
+
+关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
+ * @method void setSysprep(string $Sysprep) 设置创建Windows镜像时是否启用Sysprep。
+取值范围：TRUE或FALSE，默认取值为FALSE。
+
+关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
  * @method array getDataDiskIds() 获取基于实例创建整机镜像时，指定包含在镜像里的数据盘Id
  * @method void setDataDiskIds(array $DataDiskIds) 设置基于实例创建整机镜像时，指定包含在镜像里的数据盘Id
  * @method array getSnapshotIds() 获取基于快照创建镜像，指定快照ID，必须包含一个系统盘快照。不可与InstanceId同时传入。
@@ -47,7 +53,7 @@ class CreateImageRequest extends AbstractModel
     public $ImageName;
 
     /**
-     * @var string 需要制作镜像的实例ID。
+     * @var string 需要制作镜像的实例ID。基于实例创建镜像时，为必填参数。
      */
     public $InstanceId;
 
@@ -63,7 +69,10 @@ class CreateImageRequest extends AbstractModel
     public $ForcePoweroff;
 
     /**
-     * @var string 创建Windows镜像时是否启用Sysprep，关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)
+     * @var string 创建Windows镜像时是否启用Sysprep。
+取值范围：TRUE或FALSE，默认取值为FALSE。
+
+关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
      */
     public $Sysprep;
 
@@ -84,11 +93,14 @@ class CreateImageRequest extends AbstractModel
 
     /**
      * @param string $ImageName 镜像名称
-     * @param string $InstanceId 需要制作镜像的实例ID。
+     * @param string $InstanceId 需要制作镜像的实例ID。基于实例创建镜像时，为必填参数。
      * @param string $ImageDescription 镜像描述
      * @param string $ForcePoweroff 是否执行强制关机以制作镜像。
 取值范围：<br><li>TRUE：表示关机之后制作镜像<br><li>FALSE：表示开机状态制作镜像<br><br>默认取值：FALSE。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
-     * @param string $Sysprep 创建Windows镜像时是否启用Sysprep，关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)
+     * @param string $Sysprep 创建Windows镜像时是否启用Sysprep。
+取值范围：TRUE或FALSE，默认取值为FALSE。
+
+关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
      * @param array $DataDiskIds 基于实例创建整机镜像时，指定包含在镜像里的数据盘Id
      * @param array $SnapshotIds 基于快照创建镜像，指定快照ID，必须包含一个系统盘快照。不可与InstanceId同时传入。
      * @param boolean $DryRun 检测本次请求的是否成功，但不会对操作的资源产生任何影响

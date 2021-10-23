@@ -90,6 +90,24 @@ Windows 实例：名字符长度为[2, 15]，允许字母（不限制大小写�
 1，按小时后付费，单价：xx元/实例/小时，仅适用于GNR机型，如需开通该计费方式请提工单申请；
 2，按月后付费，单价：xx元/实例/月，仅适用于GNR机型；
 该字段不填时，非GNR机型会默认选择0；GNR机型默认选择2。
+ * @method array getKeyIds() 获取密钥对。
+ * @method void setKeyIds(array $KeyIds) 设置密钥对。
+ * @method string getKeepImageLogin() 获取保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+TRUE：表示保持镜像的登录设置
+FALSE：表示不保持镜像的登录设置
+
+默认取值：FALSE。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setKeepImageLogin(string $KeepImageLogin) 设置保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+TRUE：表示保持镜像的登录设置
+FALSE：表示不保持镜像的登录设置
+
+默认取值：FALSE。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method SystemDisk getSystemDisk() 获取系统盘信息。
+ * @method void setSystemDisk(SystemDisk $SystemDisk) 设置系统盘信息。
+ * @method array getDataDisks() 获取数据盘信息。
+ * @method void setDataDisks(array $DataDisks) 设置数据盘信息。
  */
 class RunInstancesRequest extends AbstractModel
 {
@@ -197,6 +215,31 @@ Windows 实例：名字符长度为[2, 15]，允许字母（不限制大小写�
     public $InstanceChargeType;
 
     /**
+     * @var array 密钥对。
+     */
+    public $KeyIds;
+
+    /**
+     * @var string 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+TRUE：表示保持镜像的登录设置
+FALSE：表示不保持镜像的登录设置
+
+默认取值：FALSE。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $KeepImageLogin;
+
+    /**
+     * @var SystemDisk 系统盘信息。
+     */
+    public $SystemDisk;
+
+    /**
+     * @var array 数据盘信息。
+     */
+    public $DataDisks;
+
+    /**
      * @param array $ZoneInstanceCountISPSet 需要创建实例的可用区及创建数目及运营商的列表。在单次请求的过程中，单个region下的请求创建实例数上限为100
      * @param string $Password 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
 Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & - + = | { } [ ] : ; ' , . ? / ]中的特殊符。Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & - + = | { } [ ] : ; ' , . ? /]中的特殊符号。
@@ -232,6 +275,15 @@ Windows 实例：名字符长度为[2, 15]，允许字母（不限制大小写�
 1，按小时后付费，单价：xx元/实例/小时，仅适用于GNR机型，如需开通该计费方式请提工单申请；
 2，按月后付费，单价：xx元/实例/月，仅适用于GNR机型；
 该字段不填时，非GNR机型会默认选择0；GNR机型默认选择2。
+     * @param array $KeyIds 密钥对。
+     * @param string $KeepImageLogin 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+TRUE：表示保持镜像的登录设置
+FALSE：表示不保持镜像的登录设置
+
+默认取值：FALSE。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param SystemDisk $SystemDisk 系统盘信息。
+     * @param array $DataDisks 数据盘信息。
      */
     function __construct()
     {
@@ -323,6 +375,28 @@ Windows 实例：名字符长度为[2, 15]，允许字母（不限制大小写�
 
         if (array_key_exists("InstanceChargeType",$param) and $param["InstanceChargeType"] !== null) {
             $this->InstanceChargeType = $param["InstanceChargeType"];
+        }
+
+        if (array_key_exists("KeyIds",$param) and $param["KeyIds"] !== null) {
+            $this->KeyIds = $param["KeyIds"];
+        }
+
+        if (array_key_exists("KeepImageLogin",$param) and $param["KeepImageLogin"] !== null) {
+            $this->KeepImageLogin = $param["KeepImageLogin"];
+        }
+
+        if (array_key_exists("SystemDisk",$param) and $param["SystemDisk"] !== null) {
+            $this->SystemDisk = new SystemDisk();
+            $this->SystemDisk->deserialize($param["SystemDisk"]);
+        }
+
+        if (array_key_exists("DataDisks",$param) and $param["DataDisks"] !== null) {
+            $this->DataDisks = [];
+            foreach ($param["DataDisks"] as $key => $value){
+                $obj = new DataDisk();
+                $obj->deserialize($value);
+                array_push($this->DataDisks, $obj);
+            }
         }
     }
 }

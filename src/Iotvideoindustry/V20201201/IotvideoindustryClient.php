@@ -25,6 +25,7 @@ use TencentCloud\Iotvideoindustry\V20201201\Models as Models;
 /**
  * @method Models\BindGroupDevicesResponse BindGroupDevices(Models\BindGroupDevicesRequest $req) 本接口(BindGroupDevices) 用于绑定设备到分组。
  * @method Models\ControlDevicePTZResponse ControlDevicePTZ(Models\ControlDevicePTZRequest $req) 本接口(ControlDevicePTZ) 用于对支持GB28181 PTZ信令的设备进行远程控制。
+ * @method Models\ControlRecordStreamResponse ControlRecordStream(Models\ControlRecordStreamRequest $req) 对回放流进行控制，包括暂停、播放、拉动、结束等
  * @method Models\CreateDeviceResponse CreateDevice(Models\CreateDeviceRequest $req) 本接口(CreateDevice) 用于创建设备。
  * @method Models\CreateDeviceGroupResponse CreateDeviceGroup(Models\CreateDeviceGroupRequest $req) 本接口(CreateDeviceGroup) 用于创建设备管理分组。
  * @method Models\CreateRecordPlanResponse CreateRecordPlan(Models\CreateRecordPlanRequest $req) 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
@@ -42,6 +43,7 @@ use TencentCloud\Iotvideoindustry\V20201201\Models as Models;
  * @method Models\DescribeGroupByPathResponse DescribeGroupByPath(Models\DescribeGroupByPathRequest $req) 根据分组路径查询分组
  * @method Models\DescribeGroupDevicesResponse DescribeGroupDevices(Models\DescribeGroupDevicesRequest $req) 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
  * @method Models\DescribeGroupsResponse DescribeGroups(Models\DescribeGroupsRequest $req) 本接口(DescribeGroups)用于批量查询分组信息。
+ * @method Models\DescribeIPCChannelsResponse DescribeIPCChannels(Models\DescribeIPCChannelsRequest $req) 获取IPC设备下属通道
  * @method Models\DescribeRecordStreamResponse DescribeRecordStream(Models\DescribeRecordStreamRequest $req) 获取回放视频流(NVR录制用)
 RecordId和StartTime/EndTime互斥
 当存在RecordId时，StartTime和EndTime无效

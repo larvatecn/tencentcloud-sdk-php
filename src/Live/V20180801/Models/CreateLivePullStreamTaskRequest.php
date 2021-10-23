@@ -34,6 +34,10 @@ SourceType 为点播（PullVodPushLive）可以填多个，上限30个。
 注意：
 1. 建议优先使用 flv 文件，对于 mp4 未交织好的文件轮播推流易产生卡顿，可通过点播转码进行重新交织后再轮播。
 2. 拒绝内网域名等攻击性拉流地址，如有使用，则做账号封禁处理。
+3. 源文件请保持时间戳正常交织递增，避免因源文件异常影响推流及播放。
+4. 视频编码格式仅支持: H264, H265。
+5. 音频编码格式仅支持: AAC。
+6. 点播源请使用小文件，尽量时长保持在1小时内，较大文件打开和续播耗时较久，耗时超过15秒会有无法正常转推风险。
  * @method void setSourceUrls(array $SourceUrls) 设置拉流源 url 列表。
 SourceType 为直播（PullLivePushLive）只可以填1个，
 SourceType 为点播（PullVodPushLive）可以填多个，上限30个。
@@ -42,6 +46,10 @@ SourceType 为点播（PullVodPushLive）可以填多个，上限30个。
 注意：
 1. 建议优先使用 flv 文件，对于 mp4 未交织好的文件轮播推流易产生卡顿，可通过点播转码进行重新交织后再轮播。
 2. 拒绝内网域名等攻击性拉流地址，如有使用，则做账号封禁处理。
+3. 源文件请保持时间戳正常交织递增，避免因源文件异常影响推流及播放。
+4. 视频编码格式仅支持: H264, H265。
+5. 音频编码格式仅支持: AAC。
+6. 点播源请使用小文件，尽量时长保持在1小时内，较大文件打开和续播耗时较久，耗时超过15秒会有无法正常转推风险。
  * @method string getDomainName() 获取推流域名。
 将拉取过来的流推到该域名。
 注意：请使用已在云直播配置的推流域名。
@@ -94,12 +102,26 @@ TaskExit：任务停止回调，
 VodSourceFileStart：从点播源文件开始拉流回调，
 VodSourceFileFinish：从点播源文件拉流结束回调，
 ResetTaskConfig：任务更新回调。
+
+TaskAlarm: 用于告警事件通知，AlarmType 示例:
+PullFileUnstable - 文件拉取不稳定，
+PushStreamUnstable - 推流不稳定，
+PullFileFailed - 文件拉取出错，
+PushStreamFailed - 推流出现失败，
+FileEndEarly - 文件提前结束。
  * @method void setCallbackEvents(array $CallbackEvents) 设置选择需要回调的事件（不填则回调全部）：
 TaskStart：任务启动回调，
 TaskExit：任务停止回调，
 VodSourceFileStart：从点播源文件开始拉流回调，
 VodSourceFileFinish：从点播源文件拉流结束回调，
 ResetTaskConfig：任务更新回调。
+
+TaskAlarm: 用于告警事件通知，AlarmType 示例:
+PullFileUnstable - 文件拉取不稳定，
+PushStreamUnstable - 推流不稳定，
+PullFileFailed - 文件拉取出错，
+PushStreamFailed - 推流出现失败，
+FileEndEarly - 文件提前结束。
  * @method string getVodLoopTimes() 获取点播拉流转推循环次数。默认：-1。
 -1：无限循环，直到任务结束。
 0：不循环。
@@ -149,6 +171,10 @@ SourceType 为点播（PullVodPushLive）可以填多个，上限30个。
 注意：
 1. 建议优先使用 flv 文件，对于 mp4 未交织好的文件轮播推流易产生卡顿，可通过点播转码进行重新交织后再轮播。
 2. 拒绝内网域名等攻击性拉流地址，如有使用，则做账号封禁处理。
+3. 源文件请保持时间戳正常交织递增，避免因源文件异常影响推流及播放。
+4. 视频编码格式仅支持: H264, H265。
+5. 音频编码格式仅支持: AAC。
+6. 点播源请使用小文件，尽量时长保持在1小时内，较大文件打开和续播耗时较久，耗时超过15秒会有无法正常转推风险。
      */
     public $SourceUrls;
 
@@ -210,6 +236,13 @@ TaskExit：任务停止回调，
 VodSourceFileStart：从点播源文件开始拉流回调，
 VodSourceFileFinish：从点播源文件拉流结束回调，
 ResetTaskConfig：任务更新回调。
+
+TaskAlarm: 用于告警事件通知，AlarmType 示例:
+PullFileUnstable - 文件拉取不稳定，
+PushStreamUnstable - 推流不稳定，
+PullFileFailed - 文件拉取出错，
+PushStreamFailed - 推流出现失败，
+FileEndEarly - 文件提前结束。
      */
     public $CallbackEvents;
 
@@ -260,6 +293,10 @@ SourceType 为点播（PullVodPushLive）可以填多个，上限30个。
 注意：
 1. 建议优先使用 flv 文件，对于 mp4 未交织好的文件轮播推流易产生卡顿，可通过点播转码进行重新交织后再轮播。
 2. 拒绝内网域名等攻击性拉流地址，如有使用，则做账号封禁处理。
+3. 源文件请保持时间戳正常交织递增，避免因源文件异常影响推流及播放。
+4. 视频编码格式仅支持: H264, H265。
+5. 音频编码格式仅支持: AAC。
+6. 点播源请使用小文件，尽量时长保持在1小时内，较大文件打开和续播耗时较久，耗时超过15秒会有无法正常转推风险。
      * @param string $DomainName 推流域名。
 将拉取过来的流推到该域名。
 注意：请使用已在云直播配置的推流域名。
@@ -289,6 +326,13 @@ TaskExit：任务停止回调，
 VodSourceFileStart：从点播源文件开始拉流回调，
 VodSourceFileFinish：从点播源文件拉流结束回调，
 ResetTaskConfig：任务更新回调。
+
+TaskAlarm: 用于告警事件通知，AlarmType 示例:
+PullFileUnstable - 文件拉取不稳定，
+PushStreamUnstable - 推流不稳定，
+PullFileFailed - 文件拉取出错，
+PushStreamFailed - 推流出现失败，
+FileEndEarly - 文件提前结束。
      * @param string $VodLoopTimes 点播拉流转推循环次数。默认：-1。
 -1：无限循环，直到任务结束。
 0：不循环。

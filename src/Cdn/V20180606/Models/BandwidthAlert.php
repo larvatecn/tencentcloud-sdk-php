@@ -20,15 +20,15 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 带宽封顶配置，默认为关闭状态
  *
- * @method string getSwitch() 获取带宽封顶配置开关
+ * @method string getSwitch() 获取用量封顶配置开关
 on：开启
 off：关闭
- * @method void setSwitch(string $Switch) 设置带宽封顶配置开关
+ * @method void setSwitch(string $Switch) 设置用量封顶配置开关
 on：开启
 off：关闭
- * @method integer getBpsThreshold() 获取带宽封顶阈值，单位为bps
+ * @method integer getBpsThreshold() 获取用量封顶阈值，带宽单位为bps，流量单位byte
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setBpsThreshold(integer $BpsThreshold) 设置带宽封顶阈值，单位为bps
+ * @method void setBpsThreshold(integer $BpsThreshold) 设置用量封顶阈值，带宽单位为bps，流量单位byte
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getCounterMeasure() 获取达到阈值后的操作
 RESOLVE_DNS_TO_ORIGIN：直接回源，仅自有源站域名支持
@@ -38,22 +38,46 @@ RETURN_404：全部请求返回 404
 RESOLVE_DNS_TO_ORIGIN：直接回源，仅自有源站域名支持
 RETURN_404：全部请求返回 404
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getLastTriggerTime() 获取上次触发带宽封顶阈值的时间
+ * @method string getLastTriggerTime() 获取境内区域上次触发用量封顶阈值的时间
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setLastTriggerTime(string $LastTriggerTime) 设置上次触发带宽封顶阈值的时间
+ * @method void setLastTriggerTime(string $LastTriggerTime) 设置境内区域上次触发用量封顶阈值的时间
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getAlertSwitch() 获取用量封顶提醒开关
+on：开启
+off：关闭
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAlertSwitch(string $AlertSwitch) 设置用量封顶提醒开关
+on：开启
+off：关闭
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getAlertPercentage() 获取用量封顶阈值提醒百分比
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAlertPercentage(integer $AlertPercentage) 设置用量封顶阈值提醒百分比
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getLastTriggerTimeOverseas() 获取海外区域上次触发用量封顶阈值的时间
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setLastTriggerTimeOverseas(string $LastTriggerTimeOverseas) 设置海外区域上次触发用量封顶阈值的时间
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getMetric() 获取用量阈值触发的维度
+带宽：bandwidth
+流量：flux
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setMetric(string $Metric) 设置用量阈值触发的维度
+带宽：bandwidth
+流量：flux
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class BandwidthAlert extends AbstractModel
 {
     /**
-     * @var string 带宽封顶配置开关
+     * @var string 用量封顶配置开关
 on：开启
 off：关闭
      */
     public $Switch;
 
     /**
-     * @var integer 带宽封顶阈值，单位为bps
+     * @var integer 用量封顶阈值，带宽单位为bps，流量单位byte
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $BpsThreshold;
@@ -67,22 +91,62 @@ RETURN_404：全部请求返回 404
     public $CounterMeasure;
 
     /**
-     * @var string 上次触发带宽封顶阈值的时间
+     * @var string 境内区域上次触发用量封顶阈值的时间
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $LastTriggerTime;
 
     /**
-     * @param string $Switch 带宽封顶配置开关
+     * @var string 用量封顶提醒开关
 on：开启
 off：关闭
-     * @param integer $BpsThreshold 带宽封顶阈值，单位为bps
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AlertSwitch;
+
+    /**
+     * @var integer 用量封顶阈值提醒百分比
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AlertPercentage;
+
+    /**
+     * @var string 海外区域上次触发用量封顶阈值的时间
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $LastTriggerTimeOverseas;
+
+    /**
+     * @var string 用量阈值触发的维度
+带宽：bandwidth
+流量：flux
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Metric;
+
+    /**
+     * @param string $Switch 用量封顶配置开关
+on：开启
+off：关闭
+     * @param integer $BpsThreshold 用量封顶阈值，带宽单位为bps，流量单位byte
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $CounterMeasure 达到阈值后的操作
 RESOLVE_DNS_TO_ORIGIN：直接回源，仅自有源站域名支持
 RETURN_404：全部请求返回 404
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $LastTriggerTime 上次触发带宽封顶阈值的时间
+     * @param string $LastTriggerTime 境内区域上次触发用量封顶阈值的时间
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $AlertSwitch 用量封顶提醒开关
+on：开启
+off：关闭
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $AlertPercentage 用量封顶阈值提醒百分比
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $LastTriggerTimeOverseas 海外区域上次触发用量封顶阈值的时间
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Metric 用量阈值触发的维度
+带宽：bandwidth
+流量：flux
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -112,6 +176,22 @@ RETURN_404：全部请求返回 404
 
         if (array_key_exists("LastTriggerTime",$param) and $param["LastTriggerTime"] !== null) {
             $this->LastTriggerTime = $param["LastTriggerTime"];
+        }
+
+        if (array_key_exists("AlertSwitch",$param) and $param["AlertSwitch"] !== null) {
+            $this->AlertSwitch = $param["AlertSwitch"];
+        }
+
+        if (array_key_exists("AlertPercentage",$param) and $param["AlertPercentage"] !== null) {
+            $this->AlertPercentage = $param["AlertPercentage"];
+        }
+
+        if (array_key_exists("LastTriggerTimeOverseas",$param) and $param["LastTriggerTimeOverseas"] !== null) {
+            $this->LastTriggerTimeOverseas = $param["LastTriggerTimeOverseas"];
+        }
+
+        if (array_key_exists("Metric",$param) and $param["Metric"] !== null) {
+            $this->Metric = $param["Metric"];
         }
     }
 }

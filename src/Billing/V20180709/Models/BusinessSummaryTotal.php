@@ -28,6 +28,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setIncentivePayAmount(string $IncentivePayAmount) 设置赠送金金额
  * @method string getCashPayAmount() 获取现金金额
  * @method void setCashPayAmount(string $CashPayAmount) 设置现金金额
+ * @method string getTotalCost() 获取原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+ * @method void setTotalCost(string $TotalCost) 设置原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
  */
 class BusinessSummaryTotal extends AbstractModel
 {
@@ -52,10 +54,16 @@ class BusinessSummaryTotal extends AbstractModel
     public $CashPayAmount;
 
     /**
+     * @var string 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+     */
+    public $TotalCost;
+
+    /**
      * @param string $RealTotalCost 总花费
      * @param string $VoucherPayAmount 代金券金额
      * @param string $IncentivePayAmount 赠送金金额
      * @param string $CashPayAmount 现金金额
+     * @param string $TotalCost 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
      */
     function __construct()
     {
@@ -84,6 +92,10 @@ class BusinessSummaryTotal extends AbstractModel
 
         if (array_key_exists("CashPayAmount",$param) and $param["CashPayAmount"] !== null) {
             $this->CashPayAmount = $param["CashPayAmount"];
+        }
+
+        if (array_key_exists("TotalCost",$param) and $param["TotalCost"] !== null) {
+            $this->TotalCost = $param["TotalCost"];
         }
     }
 }

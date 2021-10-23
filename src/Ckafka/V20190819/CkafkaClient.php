@@ -23,6 +23,7 @@ use TencentCloud\Common\Credential;
 use TencentCloud\Ckafka\V20190819\Models as Models;
 
 /**
+ * @method Models\BatchCreateAclResponse BatchCreateAcl(Models\BatchCreateAclRequest $req) 批量添加ACL策略
  * @method Models\CreateAclResponse CreateAcl(Models\CreateAclRequest $req) 添加 ACL 策略
  * @method Models\CreateInstancePreResponse CreateInstancePre(Models\CreateInstancePreRequest $req) 创建实例(预付费包年包月)
  * @method Models\CreatePartitionResponse CreatePartition(Models\CreatePartitionRequest $req) 本接口用于增加主题中的分区
@@ -31,6 +32,7 @@ use TencentCloud\Ckafka\V20190819\Models as Models;
  * @method Models\CreateUserResponse CreateUser(Models\CreateUserRequest $req) 添加用户
  * @method Models\DeleteAclResponse DeleteAcl(Models\DeleteAclRequest $req) 删除ACL
  * @method Models\DeleteAclRuleResponse DeleteAclRule(Models\DeleteAclRuleRequest $req) 删除ACL规则
+ * @method Models\DeleteRouteTriggerTimeResponse DeleteRouteTriggerTime(Models\DeleteRouteTriggerTimeRequest $req) 修改删除路由延迟触发时间
  * @method Models\DeleteTopicResponse DeleteTopic(Models\DeleteTopicRequest $req) 删除ckafka主题
  * @method Models\DeleteTopicIpWhiteListResponse DeleteTopicIpWhiteList(Models\DeleteTopicIpWhiteListRequest $req) 删除主题IP白名单
  * @method Models\DeleteUserResponse DeleteUser(Models\DeleteUserRequest $req) 删除用户
@@ -51,7 +53,10 @@ use TencentCloud\Ckafka\V20190819\Models as Models;
  * @method Models\DescribeTopicAttributesResponse DescribeTopicAttributes(Models\DescribeTopicAttributesRequest $req) 获取主题属性
 
  * @method Models\DescribeTopicDetailResponse DescribeTopicDetail(Models\DescribeTopicDetailRequest $req) 获取主题列表详情（仅控制台调用）
+ * @method Models\DescribeTopicSubscribeGroupResponse DescribeTopicSubscribeGroup(Models\DescribeTopicSubscribeGroupRequest $req) 查询订阅某主题消息分组信息
+ * @method Models\DescribeTopicSyncReplicaResponse DescribeTopicSyncReplica(Models\DescribeTopicSyncReplicaRequest $req) 获取Topic 副本详情信息
  * @method Models\DescribeUserResponse DescribeUser(Models\DescribeUserRequest $req) 查询用户信息
+ * @method Models\FetchMessageByOffsetResponse FetchMessageByOffset(Models\FetchMessageByOffsetRequest $req) 根据指定offset位置的消息
  * @method Models\ModifyGroupOffsetsResponse ModifyGroupOffsets(Models\ModifyGroupOffsetsRequest $req) 设置Groups 消费分组offset
  * @method Models\ModifyInstanceAttributesResponse ModifyInstanceAttributes(Models\ModifyInstanceAttributesRequest $req) 设置实例属性
  * @method Models\ModifyPasswordResponse ModifyPassword(Models\ModifyPasswordRequest $req) 修改密码

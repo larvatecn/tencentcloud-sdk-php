@@ -57,6 +57,7 @@ use TencentCloud\Tsf\V20180326\Models as Models;
  * @method Models\DeleteGroupResponse DeleteGroup(Models\DeleteGroupRequest $req) 删除容器部署组
  * @method Models\DeleteImageTagsResponse DeleteImageTags(Models\DeleteImageTagsRequest $req) 批量删除镜像版本
  * @method Models\DeleteLaneResponse DeleteLane(Models\DeleteLaneRequest $req) 删除泳道
+ * @method Models\DeleteLaneRuleResponse DeleteLaneRule(Models\DeleteLaneRuleRequest $req) 删除泳道规则
  * @method Models\DeleteMicroserviceResponse DeleteMicroservice(Models\DeleteMicroserviceRequest $req) 删除微服务
  * @method Models\DeleteNamespaceResponse DeleteNamespace(Models\DeleteNamespaceRequest $req) 删除命名空间
  * @method Models\DeletePathRewritesResponse DeletePathRewrites(Models\DeletePathRewritesRequest $req) 删除路径重写
@@ -88,7 +89,7 @@ use TencentCloud\Tsf\V20180326\Models as Models;
  * @method Models\DescribeConfigSummaryResponse DescribeConfigSummary(Models\DescribeConfigSummaryRequest $req) 查询配置汇总列表
  * @method Models\DescribeConfigsResponse DescribeConfigs(Models\DescribeConfigsRequest $req) 查询配置项列表
  * @method Models\DescribeContainerEventsResponse DescribeContainerEvents(Models\DescribeContainerEventsRequest $req) 获取容器事件列表
- * @method Models\DescribeContainerGroupDetailResponse DescribeContainerGroupDetail(Models\DescribeContainerGroupDetailRequest $req)  容器部署组详情
+ * @method Models\DescribeContainerGroupDetailResponse DescribeContainerGroupDetail(Models\DescribeContainerGroupDetailRequest $req)  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
  * @method Models\DescribeContainerGroupsResponse DescribeContainerGroups(Models\DescribeContainerGroupsRequest $req) 容器部署组列表
  * @method Models\DescribeCreateGatewayApiStatusResponse DescribeCreateGatewayApiStatus(Models\DescribeCreateGatewayApiStatusRequest $req) 查询一键导入API分组任务的状态
  * @method Models\DescribeDownloadInfoResponse DescribeDownloadInfo(Models\DescribeDownloadInfoRequest $req) TSF上传的程序包存放在腾讯云对象存储（COS）中，通过该API可以获取从COS下载程序包需要的信息，包括包所在的桶、存储路径、鉴权信息等，之后使用COS API（或SDK）进行下载。
@@ -97,11 +98,13 @@ COS相关文档请查阅：https://cloud.tencent.com/document/product/436
  * @method Models\DescribeFileConfigsResponse DescribeFileConfigs(Models\DescribeFileConfigsRequest $req) 查询文件配置项列表
  * @method Models\DescribeFlowLastBatchStateResponse DescribeFlowLastBatchState(Models\DescribeFlowLastBatchStateRequest $req) 查询工作流最新一个批次的状态信息
  * @method Models\DescribeGatewayAllGroupApisResponse DescribeGatewayAllGroupApis(Models\DescribeGatewayAllGroupApisRequest $req) 查询网关所有分组下Api列表
+ * @method Models\DescribeGatewayApisResponse DescribeGatewayApis(Models\DescribeGatewayApisRequest $req) 查询API分组下的Api列表信息
  * @method Models\DescribeGatewayMonitorOverviewResponse DescribeGatewayMonitorOverview(Models\DescribeGatewayMonitorOverviewRequest $req) 查询网关监控概览
  * @method Models\DescribeGroupResponse DescribeGroup(Models\DescribeGroupRequest $req) 查询虚拟机部署组详情
  * @method Models\DescribeGroupBindedGatewaysResponse DescribeGroupBindedGateways(Models\DescribeGroupBindedGatewaysRequest $req) 查询某个API分组已绑定的网关部署组信息列表
  * @method Models\DescribeGroupGatewaysResponse DescribeGroupGateways(Models\DescribeGroupGatewaysRequest $req) 查询某个网关绑定的API 分组信息列表
  * @method Models\DescribeGroupInstancesResponse DescribeGroupInstances(Models\DescribeGroupInstancesRequest $req) 查询虚拟机部署组云主机列表
+ * @method Models\DescribeGroupReleaseResponse DescribeGroupRelease(Models\DescribeGroupReleaseRequest $req) 查询部署组相关的发布信息
  * @method Models\DescribeGroupUseDetailResponse DescribeGroupUseDetail(Models\DescribeGroupUseDetailRequest $req) 查询网关分组监控明细数据
  * @method Models\DescribeGroupsResponse DescribeGroups(Models\DescribeGroupsRequest $req) 获取虚拟机部署组列表
  * @method Models\DescribeGroupsWithPluginResponse DescribeGroupsWithPlugin(Models\DescribeGroupsWithPluginRequest $req) 查询某个插件下绑定或未绑定的API分组
@@ -162,6 +165,7 @@ COS相关文档请查阅：https://cloud.tencent.com/document/product/436
  * @method Models\ModifyTaskResponse ModifyTask(Models\ModifyTaskRequest $req) 修改任务
  * @method Models\ModifyUploadInfoResponse ModifyUploadInfo(Models\ModifyUploadInfoRequest $req) 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
 调用此接口完成后，才标志上传包流程结束。
+ * @method Models\OperateApplicationTcrBindingResponse OperateApplicationTcrBinding(Models\OperateApplicationTcrBindingRequest $req) 绑定解绑tcr仓库
  * @method Models\RedoTaskResponse RedoTask(Models\RedoTaskRequest $req) 重新执行任务
  * @method Models\RedoTaskBatchResponse RedoTaskBatch(Models\RedoTaskBatchRequest $req) 重新执行任务批次
  * @method Models\RedoTaskExecuteResponse RedoTaskExecute(Models\RedoTaskExecuteRequest $req) 重新执行在某个节点上执行任务。

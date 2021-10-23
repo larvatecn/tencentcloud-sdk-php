@@ -64,6 +64,8 @@ OPEN：公网属性， INTERNAL：内网属性。
  * @method void setBandwidthPackageId(string $BandwidthPackageId) 设置带宽包ID，指定此参数时，网络计费方式（InternetAccessible.InternetChargeType）只支持按带宽包计费（BANDWIDTH_PACKAGE）。
  * @method ExclusiveCluster getExclusiveCluster() 获取独占集群信息。若创建独占集群负载均衡实例，则此参数必填。
  * @method void setExclusiveCluster(ExclusiveCluster $ExclusiveCluster) 设置独占集群信息。若创建独占集群负载均衡实例，则此参数必填。
+ * @method string getSlaType() 获取创建性能独享型CLB，传SLA。
+ * @method void setSlaType(string $SlaType) 设置创建性能独享型CLB，传SLA。
  * @method string getClientToken() 获取用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
  * @method void setClientToken(string $ClientToken) 设置用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
  * @method boolean getSnatPro() 获取是否支持绑定跨地域/跨Vpc绑定IP的功能。
@@ -78,6 +80,8 @@ OPEN：公网属性， INTERNAL：内网属性。
 注：备可用区是主可用区故障后，需要承载流量的可用区。可通过 DescribeMasterZones 接口查询一个地域的主/备可用区的列表。
  * @method string getEipAddressId() 获取EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
  * @method void setEipAddressId(string $EipAddressId) 设置EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
+ * @method boolean getLoadBalancerPassToTarget() 获取Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
+ * @method void setLoadBalancerPassToTarget(boolean $LoadBalancerPassToTarget) 设置Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
  */
 class CreateLoadBalancerRequest extends AbstractModel
 {
@@ -168,6 +172,11 @@ OPEN：公网属性， INTERNAL：内网属性。
     public $ExclusiveCluster;
 
     /**
+     * @var string 创建性能独享型CLB，传SLA。
+     */
+    public $SlaType;
+
+    /**
      * @var string 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
      */
     public $ClientToken;
@@ -199,6 +208,11 @@ OPEN：公网属性， INTERNAL：内网属性。
     public $EipAddressId;
 
     /**
+     * @var boolean Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
+     */
+    public $LoadBalancerPassToTarget;
+
+    /**
      * @param string $LoadBalancerType 负载均衡实例的网络类型：
 OPEN：公网属性， INTERNAL：内网属性。
      * @param integer $Forward 负载均衡实例的类型。1：通用的负载均衡实例，目前只支持传入1。
@@ -221,6 +235,7 @@ OPEN：公网属性， INTERNAL：内网属性。
 </li></ul>
      * @param string $BandwidthPackageId 带宽包ID，指定此参数时，网络计费方式（InternetAccessible.InternetChargeType）只支持按带宽包计费（BANDWIDTH_PACKAGE）。
      * @param ExclusiveCluster $ExclusiveCluster 独占集群信息。若创建独占集群负载均衡实例，则此参数必填。
+     * @param string $SlaType 创建性能独享型CLB，传SLA。
      * @param string $ClientToken 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
      * @param boolean $SnatPro 是否支持绑定跨地域/跨Vpc绑定IP的功能。
      * @param array $SnatIps 开启绑定跨地域/跨Vpc绑定IP的功能后，创建SnatIp。
@@ -228,6 +243,7 @@ OPEN：公网属性， INTERNAL：内网属性。
      * @param string $SlaveZoneId 仅适用于公网负载均衡。设置跨可用区容灾时的备可用区ID，例如 100001 或 ap-guangzhou-1
 注：备可用区是主可用区故障后，需要承载流量的可用区。可通过 DescribeMasterZones 接口查询一个地域的主/备可用区的列表。
      * @param string $EipAddressId EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
+     * @param boolean $LoadBalancerPassToTarget Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
      */
     function __construct()
     {
@@ -313,6 +329,10 @@ OPEN：公网属性， INTERNAL：内网属性。
             $this->ExclusiveCluster->deserialize($param["ExclusiveCluster"]);
         }
 
+        if (array_key_exists("SlaType",$param) and $param["SlaType"] !== null) {
+            $this->SlaType = $param["SlaType"];
+        }
+
         if (array_key_exists("ClientToken",$param) and $param["ClientToken"] !== null) {
             $this->ClientToken = $param["ClientToken"];
         }
@@ -340,6 +360,10 @@ OPEN：公网属性， INTERNAL：内网属性。
 
         if (array_key_exists("EipAddressId",$param) and $param["EipAddressId"] !== null) {
             $this->EipAddressId = $param["EipAddressId"];
+        }
+
+        if (array_key_exists("LoadBalancerPassToTarget",$param) and $param["LoadBalancerPassToTarget"] !== null) {
+            $this->LoadBalancerPassToTarget = $param["LoadBalancerPassToTarget"];
         }
     }
 }

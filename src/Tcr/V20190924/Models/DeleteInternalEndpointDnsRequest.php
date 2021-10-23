@@ -26,10 +26,12 @@ use TencentCloud\Common\AbstractModel;
  * @method void setVpcId(string $VpcId) 设置私有网络id
  * @method string getEniLBIp() 获取tcr内网访问链路ip
  * @method void setEniLBIp(string $EniLBIp) 设置tcr内网访问链路ip
- * @method boolean getUsePublicDomain() 获取true：use instance name as subdomain
-false: use instancename+"-vpc" as subdomain
- * @method void setUsePublicDomain(boolean $UsePublicDomain) 设置true：use instance name as subdomain
-false: use instancename+"-vpc" as subdomain
+ * @method boolean getUsePublicDomain() 获取true：使用默认域名
+false:  使用带有vpc的域名
+ * @method void setUsePublicDomain(boolean $UsePublicDomain) 设置true：使用默认域名
+false:  使用带有vpc的域名
+ * @method string getRegionName() 获取解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
+ * @method void setRegionName(string $RegionName) 设置解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
  */
 class DeleteInternalEndpointDnsRequest extends AbstractModel
 {
@@ -49,17 +51,23 @@ class DeleteInternalEndpointDnsRequest extends AbstractModel
     public $EniLBIp;
 
     /**
-     * @var boolean true：use instance name as subdomain
-false: use instancename+"-vpc" as subdomain
+     * @var boolean true：使用默认域名
+false:  使用带有vpc的域名
      */
     public $UsePublicDomain;
+
+    /**
+     * @var string 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
+     */
+    public $RegionName;
 
     /**
      * @param string $InstanceId tcr实例id
      * @param string $VpcId 私有网络id
      * @param string $EniLBIp tcr内网访问链路ip
-     * @param boolean $UsePublicDomain true：use instance name as subdomain
-false: use instancename+"-vpc" as subdomain
+     * @param boolean $UsePublicDomain true：使用默认域名
+false:  使用带有vpc的域名
+     * @param string $RegionName 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
      */
     function __construct()
     {
@@ -88,6 +96,10 @@ false: use instancename+"-vpc" as subdomain
 
         if (array_key_exists("UsePublicDomain",$param) and $param["UsePublicDomain"] !== null) {
             $this->UsePublicDomain = $param["UsePublicDomain"];
+        }
+
+        if (array_key_exists("RegionName",$param) and $param["RegionName"] !== null) {
+            $this->RegionName = $param["RegionName"];
         }
     }
 }

@@ -20,10 +20,10 @@ use TencentCloud\Common\AbstractModel;
 /**
  * SearchLog返回参数结构体
  *
- * @method string getContext() 获取加载后续内容的Context
- * @method void setContext(string $Context) 设置加载后续内容的Context
- * @method boolean getListOver() 获取日志查询结果是否全部返回
- * @method void setListOver(boolean $ListOver) 设置日志查询结果是否全部返回
+ * @method string getContext() 获取加载后续内容的Context，过期时间1小时
+ * @method void setContext(string $Context) 设置加载后续内容的Context，过期时间1小时
+ * @method boolean getListOver() 获取原始日志查询结果是否全部返回。查询语句(Query)包含SQL时该参数无意义
+ * @method void setListOver(boolean $ListOver) 设置原始日志查询结果是否全部返回。查询语句(Query)包含SQL时该参数无意义
  * @method boolean getAnalysis() 获取返回的是否为分析结果
  * @method void setAnalysis(boolean $Analysis) 设置返回的是否为分析结果
  * @method array getColNames() 获取如果Analysis为True，则返回分析结果的列名，否则为空
@@ -38,18 +38,26 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setAnalysisResults(array $AnalysisResults) 设置日志分析结果；当Analysis为False时，可能返回为null
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getAnalysisRecords() 获取新的日志分析结果; UseNewAnalysis为true有效
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAnalysisRecords(array $AnalysisRecords) 设置新的日志分析结果; UseNewAnalysis为true有效
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getColumns() 获取日志分析的列属性; UseNewAnalysis为true有效
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setColumns(array $Columns) 设置日志分析的列属性; UseNewAnalysis为true有效
+注意：此字段可能返回 null，表示取不到有效值。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
 class SearchLogResponse extends AbstractModel
 {
     /**
-     * @var string 加载后续内容的Context
+     * @var string 加载后续内容的Context，过期时间1小时
      */
     public $Context;
 
     /**
-     * @var boolean 日志查询结果是否全部返回
+     * @var boolean 原始日志查询结果是否全部返回。查询语句(Query)包含SQL时该参数无意义
      */
     public $ListOver;
 
@@ -77,19 +85,35 @@ class SearchLogResponse extends AbstractModel
     public $AnalysisResults;
 
     /**
+     * @var array 新的日志分析结果; UseNewAnalysis为true有效
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AnalysisRecords;
+
+    /**
+     * @var array 日志分析的列属性; UseNewAnalysis为true有效
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Columns;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
 
     /**
-     * @param string $Context 加载后续内容的Context
-     * @param boolean $ListOver 日志查询结果是否全部返回
+     * @param string $Context 加载后续内容的Context，过期时间1小时
+     * @param boolean $ListOver 原始日志查询结果是否全部返回。查询语句(Query)包含SQL时该参数无意义
      * @param boolean $Analysis 返回的是否为分析结果
      * @param array $ColNames 如果Analysis为True，则返回分析结果的列名，否则为空
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $Results 日志查询结果；当Analysis为True时，可能返回为null
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $AnalysisResults 日志分析结果；当Analysis为False时，可能返回为null
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $AnalysisRecords 新的日志分析结果; UseNewAnalysis为true有效
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $Columns 日志分析的列属性; UseNewAnalysis为true有效
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
@@ -137,6 +161,19 @@ class SearchLogResponse extends AbstractModel
                 $obj = new LogItems();
                 $obj->deserialize($value);
                 array_push($this->AnalysisResults, $obj);
+            }
+        }
+
+        if (array_key_exists("AnalysisRecords",$param) and $param["AnalysisRecords"] !== null) {
+            $this->AnalysisRecords = $param["AnalysisRecords"];
+        }
+
+        if (array_key_exists("Columns",$param) and $param["Columns"] !== null) {
+            $this->Columns = [];
+            foreach ($param["Columns"] as $key => $value){
+                $obj = new Column();
+                $obj->deserialize($value);
+                array_push($this->Columns, $obj);
             }
         }
 

@@ -24,10 +24,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setRuleName(string $RuleName) 设置规则名称
  * @method array getConfigure() 获取具体配置
  * @method void setConfigure(array $Configure) 设置具体配置
- * @method string getResult() 获取规则行为，一般为refuse，重定向redirect
- * @method void setResult(string $Result) 设置规则行为，一般为refuse，重定向redirect
- * @method string getStatus() 获取规则是否生效中active|inactive
- * @method void setStatus(string $Status) 设置规则是否生效中active|inactive
+ * @method string getResult() 获取执行动作，intercept|redirect
+ * @method void setResult(string $Result) 设置执行动作，intercept|redirect
+ * @method string getStatus() 获取规则是否生效，active|inactive
+ * @method void setStatus(string $Status) 设置规则是否生效，active|inactive
  * @method ScdnErrorPage getErrorPage() 获取错误页面配置
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setErrorPage(ScdnErrorPage $ErrorPage) 设置错误页面配置
@@ -46,12 +46,12 @@ class ScdnAclGroup extends AbstractModel
     public $Configure;
 
     /**
-     * @var string 规则行为，一般为refuse，重定向redirect
+     * @var string 执行动作，intercept|redirect
      */
     public $Result;
 
     /**
-     * @var string 规则是否生效中active|inactive
+     * @var string 规则是否生效，active|inactive
      */
     public $Status;
 
@@ -64,8 +64,8 @@ class ScdnAclGroup extends AbstractModel
     /**
      * @param string $RuleName 规则名称
      * @param array $Configure 具体配置
-     * @param string $Result 规则行为，一般为refuse，重定向redirect
-     * @param string $Status 规则是否生效中active|inactive
+     * @param string $Result 执行动作，intercept|redirect
+     * @param string $Status 规则是否生效，active|inactive
      * @param ScdnErrorPage $ErrorPage 错误页面配置
 注意：此字段可能返回 null，表示取不到有效值。
      */
