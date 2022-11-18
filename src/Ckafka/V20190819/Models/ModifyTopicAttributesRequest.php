@@ -36,8 +36,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setRetentionMs(integer $RetentionMs) 设置消息保留时间，单位：ms，当前最小值为60000ms。
  * @method integer getSegmentMs() 获取Segment 分片滚动的时长，单位：ms，当前最小为86400000ms。
  * @method void setSegmentMs(integer $SegmentMs) 设置Segment 分片滚动的时长，单位：ms，当前最小为86400000ms。
- * @method integer getMaxMessageBytes() 获取主题消息最大值，单位为 Byte，最大值为8388608Byte（即8MB）。
- * @method void setMaxMessageBytes(integer $MaxMessageBytes) 设置主题消息最大值，单位为 Byte，最大值为8388608Byte（即8MB）。
+ * @method integer getMaxMessageBytes() 获取主题消息最大值，单位为 Byte，最大值为12582912Byte（即12MB）。
+ * @method void setMaxMessageBytes(integer $MaxMessageBytes) 设置主题消息最大值，单位为 Byte，最大值为12582912Byte（即12MB）。
  * @method string getCleanUpPolicy() 获取消息删除策略，可以选择delete 或者compact
  * @method void setCleanUpPolicy(string $CleanUpPolicy) 设置消息删除策略，可以选择delete 或者compact
  * @method array getIpWhiteList() 获取Ip白名单列表，配额限制，enableWhileList=1时必选
@@ -46,6 +46,16 @@ use TencentCloud\Common\AbstractModel;
  * @method void setEnableAclRule(integer $EnableAclRule) 设置预设ACL规则, 1:打开  0:关闭，默认不打开
  * @method string getAclRuleName() 获取预设ACL规则的名称
  * @method void setAclRuleName(string $AclRuleName) 设置预设ACL规则的名称
+ * @method integer getRetentionBytes() 获取可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
+ * @method void setRetentionBytes(integer $RetentionBytes) 设置可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
+ * @method array getTags() 获取标签列表
+ * @method void setTags(array $Tags) 设置标签列表
+ * @method integer getQuotaProducerByteRate() 获取生产限流，单位 MB/s
+ * @method void setQuotaProducerByteRate(integer $QuotaProducerByteRate) 设置生产限流，单位 MB/s
+ * @method integer getQuotaConsumerByteRate() 获取消费限流，单位 MB/s
+ * @method void setQuotaConsumerByteRate(integer $QuotaConsumerByteRate) 设置消费限流，单位 MB/s
+ * @method integer getReplicaNum() 获取调整topic副本数
+ * @method void setReplicaNum(integer $ReplicaNum) 设置调整topic副本数
  */
 class ModifyTopicAttributesRequest extends AbstractModel
 {
@@ -90,7 +100,7 @@ class ModifyTopicAttributesRequest extends AbstractModel
     public $SegmentMs;
 
     /**
-     * @var integer 主题消息最大值，单位为 Byte，最大值为8388608Byte（即8MB）。
+     * @var integer 主题消息最大值，单位为 Byte，最大值为12582912Byte（即12MB）。
      */
     public $MaxMessageBytes;
 
@@ -115,6 +125,31 @@ class ModifyTopicAttributesRequest extends AbstractModel
     public $AclRuleName;
 
     /**
+     * @var integer 可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
+     */
+    public $RetentionBytes;
+
+    /**
+     * @var array 标签列表
+     */
+    public $Tags;
+
+    /**
+     * @var integer 生产限流，单位 MB/s
+     */
+    public $QuotaProducerByteRate;
+
+    /**
+     * @var integer 消费限流，单位 MB/s
+     */
+    public $QuotaConsumerByteRate;
+
+    /**
+     * @var integer 调整topic副本数
+     */
+    public $ReplicaNum;
+
+    /**
      * @param string $InstanceId 实例 ID。
      * @param string $TopicName 主题名称。
      * @param string $Note 主题备注，是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线-。
@@ -123,11 +158,16 @@ class ModifyTopicAttributesRequest extends AbstractModel
      * @param integer $UncleanLeaderElectionEnable 默认为 0，0：false；1：true。
      * @param integer $RetentionMs 消息保留时间，单位：ms，当前最小值为60000ms。
      * @param integer $SegmentMs Segment 分片滚动的时长，单位：ms，当前最小为86400000ms。
-     * @param integer $MaxMessageBytes 主题消息最大值，单位为 Byte，最大值为8388608Byte（即8MB）。
+     * @param integer $MaxMessageBytes 主题消息最大值，单位为 Byte，最大值为12582912Byte（即12MB）。
      * @param string $CleanUpPolicy 消息删除策略，可以选择delete 或者compact
      * @param array $IpWhiteList Ip白名单列表，配额限制，enableWhileList=1时必选
      * @param integer $EnableAclRule 预设ACL规则, 1:打开  0:关闭，默认不打开
      * @param string $AclRuleName 预设ACL规则的名称
+     * @param integer $RetentionBytes 可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
+     * @param array $Tags 标签列表
+     * @param integer $QuotaProducerByteRate 生产限流，单位 MB/s
+     * @param integer $QuotaConsumerByteRate 消费限流，单位 MB/s
+     * @param integer $ReplicaNum 调整topic副本数
      */
     function __construct()
     {
@@ -192,6 +232,31 @@ class ModifyTopicAttributesRequest extends AbstractModel
 
         if (array_key_exists("AclRuleName",$param) and $param["AclRuleName"] !== null) {
             $this->AclRuleName = $param["AclRuleName"];
+        }
+
+        if (array_key_exists("RetentionBytes",$param) and $param["RetentionBytes"] !== null) {
+            $this->RetentionBytes = $param["RetentionBytes"];
+        }
+
+        if (array_key_exists("Tags",$param) and $param["Tags"] !== null) {
+            $this->Tags = [];
+            foreach ($param["Tags"] as $key => $value){
+                $obj = new Tag();
+                $obj->deserialize($value);
+                array_push($this->Tags, $obj);
+            }
+        }
+
+        if (array_key_exists("QuotaProducerByteRate",$param) and $param["QuotaProducerByteRate"] !== null) {
+            $this->QuotaProducerByteRate = $param["QuotaProducerByteRate"];
+        }
+
+        if (array_key_exists("QuotaConsumerByteRate",$param) and $param["QuotaConsumerByteRate"] !== null) {
+            $this->QuotaConsumerByteRate = $param["QuotaConsumerByteRate"];
+        }
+
+        if (array_key_exists("ReplicaNum",$param) and $param["ReplicaNum"] !== null) {
+            $this->ReplicaNum = $param["ReplicaNum"];
         }
     }
 }

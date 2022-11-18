@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getSpecCode() 获取规格ID
  * @method void setSpecCode(string $SpecCode) 设置规格ID
- * @method string getVersion() 获取PostgreSQL的内核版本编号
- * @method void setVersion(string $Version) 设置PostgreSQL的内核版本编号
+ * @method string getVersion() 获取PostgreSQL的版本编号
+ * @method void setVersion(string $Version) 设置PostgreSQL的版本编号
  * @method string getVersionName() 获取内核编号对应的完整版本名称
  * @method void setVersionName(string $VersionName) 设置内核编号对应的完整版本名称
  * @method integer getCpu() 获取CPU核数
@@ -36,10 +36,22 @@ use TencentCloud\Common\AbstractModel;
  * @method void setMinStorage(integer $MinStorage) 设置该规格所支持最小存储容量，单位：GB
  * @method integer getQps() 获取该规格的预估QPS
  * @method void setQps(integer $Qps) 设置该规格的预估QPS
- * @method integer getPid() 获取该规格对应的计费ID
- * @method void setPid(integer $Pid) 设置该规格对应的计费ID
+ * @method integer getPid() 获取【该字段废弃】
+ * @method void setPid(integer $Pid) 设置【该字段废弃】
  * @method string getType() 获取机器类型
  * @method void setType(string $Type) 设置机器类型
+ * @method string getMajorVersion() 获取PostgreSQL的主要版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setMajorVersion(string $MajorVersion) 设置PostgreSQL的主要版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getKernelVersion() 获取PostgreSQL的内核版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setKernelVersion(string $KernelVersion) 设置PostgreSQL的内核版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getIsSupportTDE() 获取是否支持TDE数据加密功能，0-不支持，1-支持
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setIsSupportTDE(integer $IsSupportTDE) 设置是否支持TDE数据加密功能，0-不支持，1-支持
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class SpecItemInfo extends AbstractModel
 {
@@ -49,7 +61,7 @@ class SpecItemInfo extends AbstractModel
     public $SpecCode;
 
     /**
-     * @var string PostgreSQL的内核版本编号
+     * @var string PostgreSQL的版本编号
      */
     public $Version;
 
@@ -84,7 +96,7 @@ class SpecItemInfo extends AbstractModel
     public $Qps;
 
     /**
-     * @var integer 该规格对应的计费ID
+     * @var integer 【该字段废弃】
      */
     public $Pid;
 
@@ -94,16 +106,40 @@ class SpecItemInfo extends AbstractModel
     public $Type;
 
     /**
+     * @var string PostgreSQL的主要版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $MajorVersion;
+
+    /**
+     * @var string PostgreSQL的内核版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $KernelVersion;
+
+    /**
+     * @var integer 是否支持TDE数据加密功能，0-不支持，1-支持
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $IsSupportTDE;
+
+    /**
      * @param string $SpecCode 规格ID
-     * @param string $Version PostgreSQL的内核版本编号
+     * @param string $Version PostgreSQL的版本编号
      * @param string $VersionName 内核编号对应的完整版本名称
      * @param integer $Cpu CPU核数
      * @param integer $Memory 内存大小，单位：MB
      * @param integer $MaxStorage 该规格所支持最大存储容量，单位：GB
      * @param integer $MinStorage 该规格所支持最小存储容量，单位：GB
      * @param integer $Qps 该规格的预估QPS
-     * @param integer $Pid 该规格对应的计费ID
+     * @param integer $Pid 【该字段废弃】
      * @param string $Type 机器类型
+     * @param string $MajorVersion PostgreSQL的主要版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $KernelVersion PostgreSQL的内核版本编号
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $IsSupportTDE 是否支持TDE数据加密功能，0-不支持，1-支持
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -156,6 +192,18 @@ class SpecItemInfo extends AbstractModel
 
         if (array_key_exists("Type",$param) and $param["Type"] !== null) {
             $this->Type = $param["Type"];
+        }
+
+        if (array_key_exists("MajorVersion",$param) and $param["MajorVersion"] !== null) {
+            $this->MajorVersion = $param["MajorVersion"];
+        }
+
+        if (array_key_exists("KernelVersion",$param) and $param["KernelVersion"] !== null) {
+            $this->KernelVersion = $param["KernelVersion"];
+        }
+
+        if (array_key_exists("IsSupportTDE",$param) and $param["IsSupportTDE"] !== null) {
+            $this->IsSupportTDE = $param["IsSupportTDE"];
         }
     }
 }

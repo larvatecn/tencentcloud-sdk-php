@@ -20,50 +20,62 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 数据盘价格
  *
- * @method string getDiskId() 获取磁盘ID
- * @method void setDiskId(string $DiskId) 设置磁盘ID
- * @method float getOriginalDiskPrice() 获取磁盘单价
- * @method void setOriginalDiskPrice(float $OriginalDiskPrice) 设置磁盘单价
- * @method float getOriginalPrice() 获取磁盘总价
- * @method void setOriginalPrice(float $OriginalPrice) 设置磁盘总价
- * @method float getDiscount() 获取折扣
- * @method void setDiscount(float $Discount) 设置折扣
- * @method float getDiscountPrice() 获取折后总价
- * @method void setDiscountPrice(float $DiscountPrice) 设置折后总价
+ * @method string getDiskId() 获取云硬盘ID。
+ * @method void setDiskId(string $DiskId) 设置云硬盘ID。
+ * @method float getOriginalDiskPrice() 获取云硬盘单价。
+ * @method void setOriginalDiskPrice(float $OriginalDiskPrice) 设置云硬盘单价。
+ * @method float getOriginalPrice() 获取云硬盘总价。
+ * @method void setOriginalPrice(float $OriginalPrice) 设置云硬盘总价。
+ * @method float getDiscount() 获取折扣。
+ * @method void setDiscount(float $Discount) 设置折扣。
+ * @method float getDiscountPrice() 获取折后总价。
+ * @method void setDiscountPrice(float $DiscountPrice) 设置折后总价。
+ * @method string getInstanceId() 获取数据盘挂载的实例ID。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setInstanceId(string $InstanceId) 设置数据盘挂载的实例ID。
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class DataDiskPrice extends AbstractModel
 {
     /**
-     * @var string 磁盘ID
+     * @var string 云硬盘ID。
      */
     public $DiskId;
 
     /**
-     * @var float 磁盘单价
+     * @var float 云硬盘单价。
      */
     public $OriginalDiskPrice;
 
     /**
-     * @var float 磁盘总价
+     * @var float 云硬盘总价。
      */
     public $OriginalPrice;
 
     /**
-     * @var float 折扣
+     * @var float 折扣。
      */
     public $Discount;
 
     /**
-     * @var float 折后总价
+     * @var float 折后总价。
      */
     public $DiscountPrice;
 
     /**
-     * @param string $DiskId 磁盘ID
-     * @param float $OriginalDiskPrice 磁盘单价
-     * @param float $OriginalPrice 磁盘总价
-     * @param float $Discount 折扣
-     * @param float $DiscountPrice 折后总价
+     * @var string 数据盘挂载的实例ID。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $InstanceId;
+
+    /**
+     * @param string $DiskId 云硬盘ID。
+     * @param float $OriginalDiskPrice 云硬盘单价。
+     * @param float $OriginalPrice 云硬盘总价。
+     * @param float $Discount 折扣。
+     * @param float $DiscountPrice 折后总价。
+     * @param string $InstanceId 数据盘挂载的实例ID。
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -96,6 +108,10 @@ class DataDiskPrice extends AbstractModel
 
         if (array_key_exists("DiscountPrice",$param) and $param["DiscountPrice"] !== null) {
             $this->DiscountPrice = $param["DiscountPrice"];
+        }
+
+        if (array_key_exists("InstanceId",$param) and $param["InstanceId"] !== null) {
+            $this->InstanceId = $param["InstanceId"];
         }
     }
 }

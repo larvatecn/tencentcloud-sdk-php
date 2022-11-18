@@ -61,11 +61,15 @@ use TencentCloud\Common\AbstractModel;
  * @method string getPkgName() 获取包名。使用 JAR 包或者 WAR 包部署的时候必填。
  * @method void setPkgName(string $PkgName) 设置包名。使用 JAR 包或者 WAR 包部署的时候必填。
  * @method string getJdkVersion() 获取JDK 版本。
-- KONA：使用 kona jdk。
-- OPEN：使用 open jdk。
+- KONA:8：使用 kona jdk 8。
+- OPEN:8：使用 open jdk 8。
+- KONA:11：使用 kona jdk 11。
+- OPEN:11：使用 open jdk 11。
  * @method void setJdkVersion(string $JdkVersion) 设置JDK 版本。
-- KONA：使用 kona jdk。
-- OPEN：使用 open jdk。
+- KONA:8：使用 kona jdk 8。
+- OPEN:8：使用 open jdk 8。
+- KONA:11：使用 kona jdk 11。
+- OPEN:11：使用 open jdk 11。
  * @method array getSecurityGroupIds() 获取安全组ID s
  * @method void setSecurityGroupIds(array $SecurityGroupIds) 设置安全组ID s
  * @method LogOutputConf getLogOutputConf() 获取日志输出配置
@@ -96,12 +100,48 @@ use TencentCloud\Common\AbstractModel;
  * @method void setReadiness(HealthCheckConfig $Readiness) 设置就绪探针配置
  * @method DeployStrategyConf getDeployStrategyConf() 获取分批发布策略配置
  * @method void setDeployStrategyConf(DeployStrategyConf $DeployStrategyConf) 设置分批发布策略配置
- * @method array getHorizontalAutoscaler() 获取弹性策略
- * @method void setHorizontalAutoscaler(array $HorizontalAutoscaler) 设置弹性策略
- * @method array getCronHorizontalAutoscaler() 获取定时弹性策略
- * @method void setCronHorizontalAutoscaler(array $CronHorizontalAutoscaler) 设置定时弹性策略
+ * @method array getHorizontalAutoscaler() 获取弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
+ * @method void setHorizontalAutoscaler(array $HorizontalAutoscaler) 设置弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
+ * @method array getCronHorizontalAutoscaler() 获取定时弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
+ * @method void setCronHorizontalAutoscaler(array $CronHorizontalAutoscaler) 设置定时弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
  * @method integer getLogEnable() 获取是否启用log，1为启用，0为不启用
  * @method void setLogEnable(integer $LogEnable) 设置是否启用log，1为启用，0为不启用
+ * @method boolean getConfEdited() 获取（除开镜像配置）配置是否修改
+ * @method void setConfEdited(boolean $ConfEdited) 设置（除开镜像配置）配置是否修改
+ * @method boolean getSpeedUp() 获取是否开启应用加速
+ * @method void setSpeedUp(boolean $SpeedUp) 设置是否开启应用加速
+ * @method HealthCheckConfig getStartupProbe() 获取启动探针配置
+ * @method void setStartupProbe(HealthCheckConfig $StartupProbe) 设置启动探针配置
+ * @method string getOsFlavour() 获取操作系统版本；
+当选择openjdk时，可选参数：
+- ALPINE
+- CENTOS
+当选择konajdk时，可选参数：
+- ALPINE
+- TENCENTOS
+ * @method void setOsFlavour(string $OsFlavour) 设置操作系统版本；
+当选择openjdk时，可选参数：
+- ALPINE
+- CENTOS
+当选择konajdk时，可选参数：
+- ALPINE
+- TENCENTOS
+ * @method EnablePrometheusConf getEnablePrometheusConf() 获取metrics业务指标监控配置
+ * @method void setEnablePrometheusConf(EnablePrometheusConf $EnablePrometheusConf) 设置metrics业务指标监控配置
+ * @method integer getEnableTracing() 获取1：开始自动apm采集（skywalking）；
+0：关闭apm采集；
+ * @method void setEnableTracing(integer $EnableTracing) 设置1：开始自动apm采集（skywalking）；
+0：关闭apm采集；
+ * @method integer getEnableMetrics() 获取1：开始自动metrics采集（open-telemetry）；
+0：关闭metrics采集；
+ * @method void setEnableMetrics(integer $EnableMetrics) 设置1：开始自动metrics采集（open-telemetry）；
+0：关闭metrics采集；
+ * @method string getTcrInstanceId() 获取镜像部署时，选择的tcr实例id
+ * @method void setTcrInstanceId(string $TcrInstanceId) 设置镜像部署时，选择的tcr实例id
+ * @method string getRepoServer() 获取镜像部署时，选择的镜像服务器地址
+ * @method void setRepoServer(string $RepoServer) 设置镜像部署时，选择的镜像服务器地址
+ * @method integer getRepoType() 获取镜像部署时，仓库类型：0：个人仓库；1：企业版；2：公共仓库；3：tem托管仓库；4：demo仓库
+ * @method void setRepoType(integer $RepoType) 设置镜像部署时，仓库类型：0：个人仓库；1：企业版；2：公共仓库；3：tem托管仓库；4：demo仓库
  */
 class DeployApplicationRequest extends AbstractModel
 {
@@ -191,8 +231,10 @@ class DeployApplicationRequest extends AbstractModel
 
     /**
      * @var string JDK 版本。
-- KONA：使用 kona jdk。
-- OPEN：使用 open jdk。
+- KONA:8：使用 kona jdk 8。
+- OPEN:8：使用 open jdk 8。
+- KONA:11：使用 kona jdk 11。
+- OPEN:11：使用 open jdk 11。
      */
     public $JdkVersion;
 
@@ -272,12 +314,12 @@ class DeployApplicationRequest extends AbstractModel
     public $DeployStrategyConf;
 
     /**
-     * @var array 弹性策略
+     * @var array 弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
      */
     public $HorizontalAutoscaler;
 
     /**
-     * @var array 定时弹性策略
+     * @var array 定时弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
      */
     public $CronHorizontalAutoscaler;
 
@@ -285,6 +327,64 @@ class DeployApplicationRequest extends AbstractModel
      * @var integer 是否启用log，1为启用，0为不启用
      */
     public $LogEnable;
+
+    /**
+     * @var boolean （除开镜像配置）配置是否修改
+     */
+    public $ConfEdited;
+
+    /**
+     * @var boolean 是否开启应用加速
+     */
+    public $SpeedUp;
+
+    /**
+     * @var HealthCheckConfig 启动探针配置
+     */
+    public $StartupProbe;
+
+    /**
+     * @var string 操作系统版本；
+当选择openjdk时，可选参数：
+- ALPINE
+- CENTOS
+当选择konajdk时，可选参数：
+- ALPINE
+- TENCENTOS
+     */
+    public $OsFlavour;
+
+    /**
+     * @var EnablePrometheusConf metrics业务指标监控配置
+     */
+    public $EnablePrometheusConf;
+
+    /**
+     * @var integer 1：开始自动apm采集（skywalking）；
+0：关闭apm采集；
+     */
+    public $EnableTracing;
+
+    /**
+     * @var integer 1：开始自动metrics采集（open-telemetry）；
+0：关闭metrics采集；
+     */
+    public $EnableMetrics;
+
+    /**
+     * @var string 镜像部署时，选择的tcr实例id
+     */
+    public $TcrInstanceId;
+
+    /**
+     * @var string 镜像部署时，选择的镜像服务器地址
+     */
+    public $RepoServer;
+
+    /**
+     * @var integer 镜像部署时，仓库类型：0：个人仓库；1：企业版；2：公共仓库；3：tem托管仓库；4：demo仓库
+     */
+    public $RepoType;
 
     /**
      * @param string $ApplicationId 应用ID
@@ -308,8 +408,10 @@ class DeployApplicationRequest extends AbstractModel
 部署类型为 JAR/WAR 时，该参数表示包版本号。
      * @param string $PkgName 包名。使用 JAR 包或者 WAR 包部署的时候必填。
      * @param string $JdkVersion JDK 版本。
-- KONA：使用 kona jdk。
-- OPEN：使用 open jdk。
+- KONA:8：使用 kona jdk 8。
+- OPEN:8：使用 open jdk 8。
+- KONA:11：使用 kona jdk 11。
+- OPEN:11：使用 open jdk 11。
      * @param array $SecurityGroupIds 安全组ID s
      * @param LogOutputConf $LogOutputConf 日志输出配置
      * @param integer $SourceChannel 来源渠道
@@ -325,9 +427,27 @@ class DeployApplicationRequest extends AbstractModel
      * @param HealthCheckConfig $Liveness 存活探针配置
      * @param HealthCheckConfig $Readiness 就绪探针配置
      * @param DeployStrategyConf $DeployStrategyConf 分批发布策略配置
-     * @param array $HorizontalAutoscaler 弹性策略
-     * @param array $CronHorizontalAutoscaler 定时弹性策略
+     * @param array $HorizontalAutoscaler 弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
+     * @param array $CronHorizontalAutoscaler 定时弹性策略（已弃用，请使用弹性伸缩策略组合相关接口）
      * @param integer $LogEnable 是否启用log，1为启用，0为不启用
+     * @param boolean $ConfEdited （除开镜像配置）配置是否修改
+     * @param boolean $SpeedUp 是否开启应用加速
+     * @param HealthCheckConfig $StartupProbe 启动探针配置
+     * @param string $OsFlavour 操作系统版本；
+当选择openjdk时，可选参数：
+- ALPINE
+- CENTOS
+当选择konajdk时，可选参数：
+- ALPINE
+- TENCENTOS
+     * @param EnablePrometheusConf $EnablePrometheusConf metrics业务指标监控配置
+     * @param integer $EnableTracing 1：开始自动apm采集（skywalking）；
+0：关闭apm采集；
+     * @param integer $EnableMetrics 1：开始自动metrics采集（open-telemetry）；
+0：关闭metrics采集；
+     * @param string $TcrInstanceId 镜像部署时，选择的tcr实例id
+     * @param string $RepoServer 镜像部署时，选择的镜像服务器地址
+     * @param integer $RepoType 镜像部署时，仓库类型：0：个人仓库；1：企业版；2：公共仓库；3：tem托管仓库；4：demo仓库
      */
     function __construct()
     {
@@ -516,6 +636,48 @@ class DeployApplicationRequest extends AbstractModel
 
         if (array_key_exists("LogEnable",$param) and $param["LogEnable"] !== null) {
             $this->LogEnable = $param["LogEnable"];
+        }
+
+        if (array_key_exists("ConfEdited",$param) and $param["ConfEdited"] !== null) {
+            $this->ConfEdited = $param["ConfEdited"];
+        }
+
+        if (array_key_exists("SpeedUp",$param) and $param["SpeedUp"] !== null) {
+            $this->SpeedUp = $param["SpeedUp"];
+        }
+
+        if (array_key_exists("StartupProbe",$param) and $param["StartupProbe"] !== null) {
+            $this->StartupProbe = new HealthCheckConfig();
+            $this->StartupProbe->deserialize($param["StartupProbe"]);
+        }
+
+        if (array_key_exists("OsFlavour",$param) and $param["OsFlavour"] !== null) {
+            $this->OsFlavour = $param["OsFlavour"];
+        }
+
+        if (array_key_exists("EnablePrometheusConf",$param) and $param["EnablePrometheusConf"] !== null) {
+            $this->EnablePrometheusConf = new EnablePrometheusConf();
+            $this->EnablePrometheusConf->deserialize($param["EnablePrometheusConf"]);
+        }
+
+        if (array_key_exists("EnableTracing",$param) and $param["EnableTracing"] !== null) {
+            $this->EnableTracing = $param["EnableTracing"];
+        }
+
+        if (array_key_exists("EnableMetrics",$param) and $param["EnableMetrics"] !== null) {
+            $this->EnableMetrics = $param["EnableMetrics"];
+        }
+
+        if (array_key_exists("TcrInstanceId",$param) and $param["TcrInstanceId"] !== null) {
+            $this->TcrInstanceId = $param["TcrInstanceId"];
+        }
+
+        if (array_key_exists("RepoServer",$param) and $param["RepoServer"] !== null) {
+            $this->RepoServer = $param["RepoServer"];
+        }
+
+        if (array_key_exists("RepoType",$param) and $param["RepoType"] !== null) {
+            $this->RepoType = $param["RepoType"];
         }
     }
 }

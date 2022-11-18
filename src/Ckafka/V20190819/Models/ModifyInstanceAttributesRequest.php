@@ -34,6 +34,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setRebalanceTime(integer $RebalanceTime) 设置修改升配置rebalance时间
  * @method integer getPublicNetwork() 获取时间戳
  * @method void setPublicNetwork(integer $PublicNetwork) 设置时间戳
+ * @method DynamicDiskConfig getDynamicDiskConfig() 获取动态硬盘扩容策略配置
+ * @method void setDynamicDiskConfig(DynamicDiskConfig $DynamicDiskConfig) 设置动态硬盘扩容策略配置
+ * @method integer getMaxMessageByte() 获取实例级别单条消息大小（单位byte)
+ * @method void setMaxMessageByte(integer $MaxMessageByte) 设置实例级别单条消息大小（单位byte)
  */
 class ModifyInstanceAttributesRequest extends AbstractModel
 {
@@ -73,6 +77,16 @@ class ModifyInstanceAttributesRequest extends AbstractModel
     public $PublicNetwork;
 
     /**
+     * @var DynamicDiskConfig 动态硬盘扩容策略配置
+     */
+    public $DynamicDiskConfig;
+
+    /**
+     * @var integer 实例级别单条消息大小（单位byte)
+     */
+    public $MaxMessageByte;
+
+    /**
      * @param string $InstanceId 实例id
      * @param integer $MsgRetentionTime 实例日志的最长保留时间，单位分钟，最大30天，0代表不开启日志保留时间回收策略
      * @param string $InstanceName 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
@@ -80,6 +94,8 @@ class ModifyInstanceAttributesRequest extends AbstractModel
      * @param DynamicRetentionTime $DynamicRetentionConfig 动态消息保留策略配置
      * @param integer $RebalanceTime 修改升配置rebalance时间
      * @param integer $PublicNetwork 时间戳
+     * @param DynamicDiskConfig $DynamicDiskConfig 动态硬盘扩容策略配置
+     * @param integer $MaxMessageByte 实例级别单条消息大小（单位byte)
      */
     function __construct()
     {
@@ -122,6 +138,15 @@ class ModifyInstanceAttributesRequest extends AbstractModel
 
         if (array_key_exists("PublicNetwork",$param) and $param["PublicNetwork"] !== null) {
             $this->PublicNetwork = $param["PublicNetwork"];
+        }
+
+        if (array_key_exists("DynamicDiskConfig",$param) and $param["DynamicDiskConfig"] !== null) {
+            $this->DynamicDiskConfig = new DynamicDiskConfig();
+            $this->DynamicDiskConfig->deserialize($param["DynamicDiskConfig"]);
+        }
+
+        if (array_key_exists("MaxMessageByte",$param) and $param["MaxMessageByte"] !== null) {
+            $this->MaxMessageByte = $param["MaxMessageByte"];
         }
     }
 }

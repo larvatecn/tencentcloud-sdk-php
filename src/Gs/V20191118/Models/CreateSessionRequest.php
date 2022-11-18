@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getClientSession() 获取客户端session信息，从JSSDK请求中获得
  * @method void setClientSession(string $ClientSession) 设置客户端session信息，从JSSDK请求中获得
- * @method string getUserId() 获取游戏用户ID
- * @method void setUserId(string $UserId) 设置游戏用户ID
+ * @method string getUserId() 获取唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
+ * @method void setUserId(string $UserId) 设置唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
  * @method string getGameId() 获取游戏ID
  * @method void setGameId(string $GameId) 设置游戏ID
  * @method string getGameRegion() 获取【已废弃】只在TrylockWorker时生效
@@ -44,8 +44,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setMinBitrate(integer $MinBitrate) 设置单位Mbps，动态调整最小码率建议值，会按实际情况调整
  * @method integer getFps() 获取帧率，可设置为30、45、60、90、120、144
  * @method void setFps(integer $Fps) 设置帧率，可设置为30、45、60、90、120、144
- * @method string getUserIp() 获取【已废弃】只在TrylockWorker时生效
- * @method void setUserIp(string $UserIp) 设置【已废弃】只在TrylockWorker时生效
+ * @method string getUserIp() 获取【必选】用户IP，用户客户端的公网IP，用于就近调度，不填将严重影响用户体验
+ * @method void setUserIp(string $UserIp) 设置【必选】用户IP，用户客户端的公网IP，用于就近调度，不填将严重影响用户体验
  * @method integer getOptimization() 获取【已废弃】优化项，便于客户灰度开启新的优化项，默认为0
  * @method void setOptimization(integer $Optimization) 设置【已废弃】优化项，便于客户灰度开启新的优化项，默认为0
  * @method string getHostUserId() 获取【互动云游】游戏主机用户ID
@@ -54,6 +54,12 @@ use TencentCloud\Common\AbstractModel;
  * @method void setRole(string $Role) 设置【互动云游】角色；Player表示玩家；Viewer表示观察者
  * @method string getGameContext() 获取游戏相关参数
  * @method void setGameContext(string $GameContext) 设置游戏相关参数
+ * @method string getRunMode() 获取云端运行模式。
+RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
+默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
+ * @method void setRunMode(string $RunMode) 设置云端运行模式。
+RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
+默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
  */
 class CreateSessionRequest extends AbstractModel
 {
@@ -63,7 +69,7 @@ class CreateSessionRequest extends AbstractModel
     public $ClientSession;
 
     /**
-     * @var string 游戏用户ID
+     * @var string 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
      */
     public $UserId;
 
@@ -118,7 +124,7 @@ class CreateSessionRequest extends AbstractModel
     public $Fps;
 
     /**
-     * @var string 【已废弃】只在TrylockWorker时生效
+     * @var string 【必选】用户IP，用户客户端的公网IP，用于就近调度，不填将严重影响用户体验
      */
     public $UserIp;
 
@@ -143,8 +149,15 @@ class CreateSessionRequest extends AbstractModel
     public $GameContext;
 
     /**
+     * @var string 云端运行模式。
+RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
+默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
+     */
+    public $RunMode;
+
+    /**
      * @param string $ClientSession 客户端session信息，从JSSDK请求中获得
-     * @param string $UserId 游戏用户ID
+     * @param string $UserId 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
      * @param string $GameId 游戏ID
      * @param string $GameRegion 【已废弃】只在TrylockWorker时生效
      * @param string $GameParas 游戏参数
@@ -155,11 +168,14 @@ class CreateSessionRequest extends AbstractModel
      * @param integer $MaxBitrate 单位Mbps，动态调整最大码率建议值，会按实际情况调整
      * @param integer $MinBitrate 单位Mbps，动态调整最小码率建议值，会按实际情况调整
      * @param integer $Fps 帧率，可设置为30、45、60、90、120、144
-     * @param string $UserIp 【已废弃】只在TrylockWorker时生效
+     * @param string $UserIp 【必选】用户IP，用户客户端的公网IP，用于就近调度，不填将严重影响用户体验
      * @param integer $Optimization 【已废弃】优化项，便于客户灰度开启新的优化项，默认为0
      * @param string $HostUserId 【互动云游】游戏主机用户ID
      * @param string $Role 【互动云游】角色；Player表示玩家；Viewer表示观察者
      * @param string $GameContext 游戏相关参数
+     * @param string $RunMode 云端运行模式。
+RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
+默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
      */
     function __construct()
     {
@@ -240,6 +256,10 @@ class CreateSessionRequest extends AbstractModel
 
         if (array_key_exists("GameContext",$param) and $param["GameContext"] !== null) {
             $this->GameContext = $param["GameContext"];
+        }
+
+        if (array_key_exists("RunMode",$param) and $param["RunMode"] !== null) {
+            $this->RunMode = $param["RunMode"];
         }
     }
 }

@@ -24,7 +24,10 @@ use TencentCloud\Autoscaling\V20180419\Models as Models;
 
 /**
  * @method Models\AttachInstancesResponse AttachInstances(Models\AttachInstancesRequest $req) 本接口（AttachInstances）用于将 CVM 实例添加到伸缩组。
+* 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
+* 添加的 CVM 实例需要和伸缩组 VPC 网络一致
 
+ * @method Models\AttachLoadBalancersResponse AttachLoadBalancers(Models\AttachLoadBalancersRequest $req) 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
  * @method Models\ClearLaunchConfigurationAttributesResponse ClearLaunchConfigurationAttributes(Models\ClearLaunchConfigurationAttributesRequest $req) 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
  * @method Models\CompleteLifecycleActionResponse CompleteLifecycleAction(Models\CompleteLifecycleActionRequest $req) 本接口（CompleteLifecycleAction）用于完成生命周期动作。
 
@@ -42,7 +45,9 @@ use TencentCloud\Autoscaling\V20180419\Models as Models;
 
  * @method Models\CreateLifecycleHookResponse CreateLifecycleHook(Models\CreateLifecycleHookRequest $req) 本接口（CreateLifecycleHook）用于创建生命周期挂钩。
 
-* 您可以为生命周期挂钩配置消息通知，弹性伸缩会通知您的CMQ消息队列，通知内容形如：
+* 您可以为生命周期挂钩配置消息通知或执行自动化助手命令。
+
+如果您配置了通知消息，弹性伸缩会通知您的TDMQ消息队列，通知内容形如：
 
 ```
 {
@@ -87,7 +92,6 @@ use TencentCloud\Autoscaling\V20180419\Models as Models;
     ]
 }
 ```
- * @method Models\CreatePaiInstanceResponse CreatePaiInstance(Models\CreatePaiInstanceRequest $req) 本接口 (CreatePaiInstance) 用于创建一个指定配置的PAI实例。
  * @method Models\CreateScalingPolicyResponse CreateScalingPolicy(Models\CreateScalingPolicyRequest $req) 本接口（CreateScalingPolicy）用于创建告警触发策略。
  * @method Models\CreateScheduledActionResponse CreateScheduledAction(Models\CreateScheduledActionRequest $req) 本接口（CreateScheduledAction）用于创建定时任务。
  * @method Models\DeleteAutoScalingGroupResponse DeleteAutoScalingGroup(Models\DeleteAutoScalingGroupRequest $req) 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
@@ -101,6 +105,7 @@ use TencentCloud\Autoscaling\V20180419\Models as Models;
  * @method Models\DeleteScheduledActionResponse DeleteScheduledAction(Models\DeleteScheduledActionRequest $req) 本接口（DeleteScheduledAction）用于删除特定的定时任务。
  * @method Models\DescribeAccountLimitsResponse DescribeAccountLimits(Models\DescribeAccountLimitsRequest $req) 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
  * @method Models\DescribeAutoScalingActivitiesResponse DescribeAutoScalingActivities(Models\DescribeAutoScalingActivitiesRequest $req) 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
+ * @method Models\DescribeAutoScalingAdvicesResponse DescribeAutoScalingAdvices(Models\DescribeAutoScalingAdvicesRequest $req) 此接口用于查询伸缩组配置建议。
  * @method Models\DescribeAutoScalingGroupLastActivitiesResponse DescribeAutoScalingGroupLastActivities(Models\DescribeAutoScalingGroupLastActivitiesRequest $req) 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
  * @method Models\DescribeAutoScalingGroupsResponse DescribeAutoScalingGroups(Models\DescribeAutoScalingGroupsRequest $req) 本接口（DescribeAutoScalingGroups）用于查询伸缩组信息。
 
@@ -122,10 +127,6 @@ use TencentCloud\Autoscaling\V20180419\Models as Models;
 
 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
- * @method Models\DescribePaiInstancesResponse DescribePaiInstances(Models\DescribePaiInstancesRequest $req) 本接口（DescribePaiInstances）用于查询PAI实例信息。
-
-* 可以根据实例ID、实例域名等信息来查询PAI实例的详细信息。过滤信息详细请见过滤器`Filter`。
-* 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的PAI实例。
  * @method Models\DescribeScalingPoliciesResponse DescribeScalingPolicies(Models\DescribeScalingPoliciesRequest $req) 本接口（DescribeScalingPolicies）用于查询告警触发策略。
  * @method Models\DescribeScheduledActionsResponse DescribeScheduledActions(Models\DescribeScheduledActionsRequest $req) 本接口 (DescribeScheduledActions) 用于查询一个或多个定时任务的详细信息。
 
@@ -135,7 +136,21 @@ use TencentCloud\Autoscaling\V20180419\Models as Models;
 * 如果移出指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
 * 如果伸缩组处于`DISABLED`状态，移出操作不校验`IN_SERVICE`实例数量和最小值的关系
 * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
+ * @method Models\DetachLoadBalancersResponse DetachLoadBalancers(Models\DetachLoadBalancersRequest $req) 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
  * @method Models\DisableAutoScalingGroupResponse DisableAutoScalingGroup(Models\DisableAutoScalingGroupRequest $req) 本接口（DisableAutoScalingGroup）用于停用指定伸缩组。
+* 停用伸缩组后，自动触发的伸缩活动不再进行，包括：
+    - 告警策略触发的伸缩活动
+    - 匹配期望实例数的伸缩活动
+    - 不健康实例替换活动
+    - 定时任务
+* 停用伸缩组后，手动触发的伸缩活动允许进行，包括：
+    - 指定数量扩容实例（ScaleOutInstances）
+    - 指定数量缩容实例（ScaleInInstances）
+    - 从伸缩组中移出 CVM 实例（DetachInstances）
+    - 从伸缩组中删除 CVM 实例（RemoveInstances）
+    - 添加 CVM 实例到伸缩组（AttachInstances）
+    - 关闭伸缩组内 CVM 实例（StopAutoScalingInstances）
+    - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
  * @method Models\EnableAutoScalingGroupResponse EnableAutoScalingGroup(Models\EnableAutoScalingGroupRequest $req) 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
  * @method Models\ExecuteScalingPolicyResponse ExecuteScalingPolicy(Models\ExecuteScalingPolicyRequest $req) 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
 
@@ -147,29 +162,31 @@ use TencentCloud\Autoscaling\V20180419\Models as Models;
 
 * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
 * 本接口支持修改部分简单类型。
+ * @method Models\ModifyLifecycleHookResponse ModifyLifecycleHook(Models\ModifyLifecycleHookRequest $req) 此接口用于修改生命周期挂钩。
+ * @method Models\ModifyLoadBalancerTargetAttributesResponse ModifyLoadBalancerTargetAttributes(Models\ModifyLoadBalancerTargetAttributesRequest $req) 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
  * @method Models\ModifyLoadBalancersResponse ModifyLoadBalancers(Models\ModifyLoadBalancersRequest $req) 本接口（ModifyLoadBalancers）用于修改伸缩组的负载均衡器。
 
-* 本接口用于为伸缩组指定新的负载均衡器配置，采用“完全覆盖”风格，无论之前配置如何，统一按照接口参数配置为新的负载均衡器。
+* 本接口用于为伸缩组指定新的负载均衡器配置，采用`完全覆盖`风格，无论之前配置如何，`统一按照接口参数配置为新的负载均衡器`。
 * 如果要为伸缩组清空负载均衡器，则在调用本接口时仅指定伸缩组ID，不指定具体负载均衡器。
 * 本接口会立即修改伸缩组的负载均衡器，并生成一个伸缩活动，异步修改存量实例的负载均衡器。
  * @method Models\ModifyNotificationConfigurationResponse ModifyNotificationConfiguration(Models\ModifyNotificationConfigurationRequest $req) 本接口（ModifyNotificationConfiguration）用于修改通知。
 * 通知的接收端类型不支持修改。
  * @method Models\ModifyScalingPolicyResponse ModifyScalingPolicy(Models\ModifyScalingPolicyRequest $req) 本接口（ModifyScalingPolicy）用于修改告警触发策略。
  * @method Models\ModifyScheduledActionResponse ModifyScheduledAction(Models\ModifyScheduledActionRequest $req) 本接口（ModifyScheduledAction）用于修改定时任务。
- * @method Models\PreviewPaiDomainNameResponse PreviewPaiDomainName(Models\PreviewPaiDomainNameRequest $req) 本接口（PreviewPaiDomainName）用于预览PAI实例域名。
-
  * @method Models\RemoveInstancesResponse RemoveInstances(Models\RemoveInstancesRequest $req) 本接口（RemoveInstances）用于从伸缩组删除 CVM 实例。根据当前的产品逻辑，如果实例由弹性伸缩自动创建，则实例会被销毁；如果实例系创建后加入伸缩组的，则会从伸缩组中移除，保留实例。
 * 如果删除指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
 * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
 * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
  * @method Models\ScaleInInstancesResponse ScaleInInstances(Models\ScaleInInstancesRequest $req) 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
 * 伸缩组需要未处于活动中
+* 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
 * 根据伸缩组的`TerminationPolicies`策略，选择被缩容的实例，可参考[缩容处理](https://cloud.tencent.com/document/product/377/8563)
 * 接口只会选择`IN_SERVICE`实例缩容，如果需要缩容其他状态实例，可以使用 [DetachInstances](https://cloud.tencent.com/document/api/377/20436) 或 [RemoveInstances](https://cloud.tencent.com/document/api/377/20431) 接口
 * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
 * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
  * @method Models\ScaleOutInstancesResponse ScaleOutInstances(Models\ScaleOutInstancesRequest $req) 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
 * 伸缩组需要未处于活动中
+* 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
 * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
 * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
  * @method Models\SetInstancesProtectionResponse SetInstancesProtection(Models\SetInstancesProtectionRequest $req) 本接口（SetInstancesProtection）用于设置实例保护。

@@ -20,18 +20,18 @@ use TencentCloud\Common\AbstractModel;
 /**
  * GetSecurityLastUsed请求参数结构体
  *
- * @method array getSecretIdList() 获取查询密钥ID列表
- * @method void setSecretIdList(array $SecretIdList) 设置查询密钥ID列表
+ * @method array getSecretIdList() 获取查询密钥ID列表。最多支持10个。
+ * @method void setSecretIdList(array $SecretIdList) 设置查询密钥ID列表。最多支持10个。
  */
 class GetSecurityLastUsedRequest extends AbstractModel
 {
     /**
-     * @var array 查询密钥ID列表
+     * @var array 查询密钥ID列表。最多支持10个。
      */
     public $SecretIdList;
 
     /**
-     * @param array $SecretIdList 查询密钥ID列表
+     * @param array $SecretIdList 查询密钥ID列表。最多支持10个。
      */
     function __construct()
     {

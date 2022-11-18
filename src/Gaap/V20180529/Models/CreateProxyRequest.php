@@ -48,8 +48,12 @@ use TencentCloud\Common\AbstractModel;
  * @method void setBillingType(integer $BillingType) 设置计费方式 (0:按带宽计费，1:按流量计费 默认按带宽计费）
  * @method string getIPAddressVersion() 获取IP版本，可取值：IPv4、IPv6，默认值IPv4
  * @method void setIPAddressVersion(string $IPAddressVersion) 设置IP版本，可取值：IPv4、IPv6，默认值IPv4
- * @method string getNetworkType() 获取网络类型，可取值：normal、cn2，默认值normal
- * @method void setNetworkType(string $NetworkType) 设置网络类型，可取值：normal、cn2，默认值normal
+ * @method string getNetworkType() 获取网络类型，normal表示常规BGP，cn2表示精品BGP，triple表示三网
+ * @method void setNetworkType(string $NetworkType) 设置网络类型，normal表示常规BGP，cn2表示精品BGP，triple表示三网
+ * @method string getPackageType() 获取通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
+ * @method void setPackageType(string $PackageType) 设置通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
+ * @method integer getHttp3Supported() 获取该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
+ * @method void setHttp3Supported(integer $Http3Supported) 设置该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
  */
 class CreateProxyRequest extends AbstractModel
 {
@@ -116,9 +120,19 @@ class CreateProxyRequest extends AbstractModel
     public $IPAddressVersion;
 
     /**
-     * @var string 网络类型，可取值：normal、cn2，默认值normal
+     * @var string 网络类型，normal表示常规BGP，cn2表示精品BGP，triple表示三网
      */
     public $NetworkType;
+
+    /**
+     * @var string 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
+     */
+    public $PackageType;
+
+    /**
+     * @var integer 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
+     */
+    public $Http3Supported;
 
     /**
      * @param integer $ProjectId 通道的项目ID。
@@ -135,7 +149,9 @@ class CreateProxyRequest extends AbstractModel
 当设置该参数时，表示复制该通道。
      * @param integer $BillingType 计费方式 (0:按带宽计费，1:按流量计费 默认按带宽计费）
      * @param string $IPAddressVersion IP版本，可取值：IPv4、IPv6，默认值IPv4
-     * @param string $NetworkType 网络类型，可取值：normal、cn2，默认值normal
+     * @param string $NetworkType 网络类型，normal表示常规BGP，cn2表示精品BGP，triple表示三网
+     * @param string $PackageType 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
+     * @param integer $Http3Supported 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
      */
     function __construct()
     {
@@ -205,6 +221,14 @@ class CreateProxyRequest extends AbstractModel
 
         if (array_key_exists("NetworkType",$param) and $param["NetworkType"] !== null) {
             $this->NetworkType = $param["NetworkType"];
+        }
+
+        if (array_key_exists("PackageType",$param) and $param["PackageType"] !== null) {
+            $this->PackageType = $param["PackageType"];
+        }
+
+        if (array_key_exists("Http3Supported",$param) and $param["Http3Supported"] !== null) {
+            $this->Http3Supported = $param["Http3Supported"];
         }
     }
 }

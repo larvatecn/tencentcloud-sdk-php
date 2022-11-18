@@ -60,6 +60,36 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setBacktracking(integer $Backtracking) 设置增量采集模式下的回溯数据量，默认-1（全量采集）
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getIsGBK() 获取是否为Gbk编码.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setIsGBK(integer $IsGBK) 设置是否为Gbk编码.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getJsonStandard() 获取是否为标准json.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setJsonStandard(integer $JsonStandard) 设置是否为标准json.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getProtocol() 获取syslog传输协议，取值为tcp或者udp。
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setProtocol(string $Protocol) 设置syslog传输协议，取值为tcp或者udp。
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getAddress() 获取syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAddress(string $Address) 设置syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getParseProtocol() 获取rfc3164：指定系统日志采集使用RFC3164协议解析日志。
+rfc5424：指定系统日志采集使用RFC5424协议解析日志。
+auto：自动匹配rfc3164或者rfc5424其中一种协议
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setParseProtocol(string $ParseProtocol) 设置rfc3164：指定系统日志采集使用RFC3164协议解析日志。
+rfc5424：指定系统日志采集使用RFC5424协议解析日志。
+auto：自动匹配rfc3164或者rfc5424其中一种协议
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class ExtractRuleInfo extends AbstractModel
 {
@@ -124,6 +154,41 @@ class ExtractRuleInfo extends AbstractModel
     public $Backtracking;
 
     /**
+     * @var integer 是否为Gbk编码.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $IsGBK;
+
+    /**
+     * @var integer 是否为标准json.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $JsonStandard;
+
+    /**
+     * @var string syslog传输协议，取值为tcp或者udp。
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Protocol;
+
+    /**
+     * @var string syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Address;
+
+    /**
+     * @var string rfc3164：指定系统日志采集使用RFC3164协议解析日志。
+rfc5424：指定系统日志采集使用RFC5424协议解析日志。
+auto：自动匹配rfc3164或者rfc5424其中一种协议
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ParseProtocol;
+
+    /**
      * @param string $TimeKey 时间字段的key名字，time_key和time_format必须成对出现
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $TimeFormat 时间字段的格式，参考c语言的strftime函数对于时间的格式说明输出参数
@@ -143,6 +208,21 @@ class ExtractRuleInfo extends AbstractModel
      * @param string $UnMatchLogKey 失败日志的key
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $Backtracking 增量采集模式下的回溯数据量，默认-1（全量采集）
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $IsGBK 是否为Gbk编码.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $JsonStandard 是否为标准json.   0: 否, 1: 是
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Protocol syslog传输协议，取值为tcp或者udp。
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Address syslog系统日志采集指定采集器监听的地址和端口 ，形式：[ip]:[port]。举例：127.0.0.1:9000
+该字段适用于：创建采集规则配置、修改采集规则配置
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ParseProtocol rfc3164：指定系统日志采集使用RFC3164协议解析日志。
+rfc5424：指定系统日志采集使用RFC5424协议解析日志。
+auto：自动匹配rfc3164或者rfc5424其中一种协议
+该字段适用于：创建采集规则配置、修改采集规则配置
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -201,6 +281,26 @@ class ExtractRuleInfo extends AbstractModel
 
         if (array_key_exists("Backtracking",$param) and $param["Backtracking"] !== null) {
             $this->Backtracking = $param["Backtracking"];
+        }
+
+        if (array_key_exists("IsGBK",$param) and $param["IsGBK"] !== null) {
+            $this->IsGBK = $param["IsGBK"];
+        }
+
+        if (array_key_exists("JsonStandard",$param) and $param["JsonStandard"] !== null) {
+            $this->JsonStandard = $param["JsonStandard"];
+        }
+
+        if (array_key_exists("Protocol",$param) and $param["Protocol"] !== null) {
+            $this->Protocol = $param["Protocol"];
+        }
+
+        if (array_key_exists("Address",$param) and $param["Address"] !== null) {
+            $this->Address = $param["Address"];
+        }
+
+        if (array_key_exists("ParseProtocol",$param) and $param["ParseProtocol"] !== null) {
+            $this->ParseProtocol = $param["ParseProtocol"];
         }
     }
 }

@@ -28,9 +28,9 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setStatus(string $Status) 设置用户状态，取值 NORMAL （正常）、FREEZE （已冻结）、LOCKED （已锁定）或 NOT_ENABLED （未启用）。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getDisplayName() 获取昵称
+ * @method string getDisplayName() 获取昵称。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setDisplayName(string $DisplayName) 设置昵称
+ * @method void setDisplayName(string $DisplayName) 设置昵称。
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getDescription() 获取用户备注。
 注意：此字段可能返回 null，表示取不到有效值。
@@ -52,13 +52,13 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setPhone(string $Phone) 设置用户手机号。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getOrgNodeId() 获取用户所属组织机构 Id。
+ * @method string getOrgNodeId() 获取用户所属的主组织机构唯一ID。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setOrgNodeId(string $OrgNodeId) 设置用户所属组织机构 Id。
+ * @method void setOrgNodeId(string $OrgNodeId) 设置用户所属的主组织机构唯一ID。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getDataSource() 获取数据来源
+ * @method string getDataSource() 获取数据来源。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setDataSource(string $DataSource) 设置数据来源
+ * @method void setDataSource(string $DataSource) 设置数据来源。
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getExpirationTime() 获取用户过期时间，遵循 ISO 8601 标准。
 注意：此字段可能返回 null，表示取不到有效值。
@@ -67,6 +67,18 @@ use TencentCloud\Common\AbstractModel;
  * @method string getActivationTime() 获取用户激活时间，遵循 ISO 8601 标准。
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setActivationTime(string $ActivationTime) 设置用户激活时间，遵循 ISO 8601 标准。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getPwdNeedReset() 获取当前用户的密码是否需要重置，该字段为false表示不需要重置密码。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPwdNeedReset(boolean $PwdNeedReset) 设置当前用户的密码是否需要重置，该字段为false表示不需要重置密码。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getSecondaryOrgNodeIdList() 获取用户所属的次要组织机构ID列表。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setSecondaryOrgNodeIdList(array $SecondaryOrgNodeIdList) 设置用户所属的次要组织机构ID列表。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getAdminFlag() 获取是否管理员标志，0为否、1为是。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAdminFlag(integer $AdminFlag) 设置是否管理员标志，0为否、1为是。
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -86,7 +98,7 @@ class DescribeUserInfoResponse extends AbstractModel
     public $Status;
 
     /**
-     * @var string 昵称
+     * @var string 昵称。
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $DisplayName;
@@ -122,13 +134,13 @@ class DescribeUserInfoResponse extends AbstractModel
     public $Phone;
 
     /**
-     * @var string 用户所属组织机构 Id。
+     * @var string 用户所属的主组织机构唯一ID。
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $OrgNodeId;
 
     /**
-     * @var string 数据来源
+     * @var string 数据来源。
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $DataSource;
@@ -146,6 +158,24 @@ class DescribeUserInfoResponse extends AbstractModel
     public $ActivationTime;
 
     /**
+     * @var boolean 当前用户的密码是否需要重置，该字段为false表示不需要重置密码。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PwdNeedReset;
+
+    /**
+     * @var array 用户所属的次要组织机构ID列表。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $SecondaryOrgNodeIdList;
+
+    /**
+     * @var integer 是否管理员标志，0为否、1为是。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AdminFlag;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -155,7 +185,7 @@ class DescribeUserInfoResponse extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Status 用户状态，取值 NORMAL （正常）、FREEZE （已冻结）、LOCKED （已锁定）或 NOT_ENABLED （未启用）。
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $DisplayName 昵称
+     * @param string $DisplayName 昵称。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Description 用户备注。
 注意：此字段可能返回 null，表示取不到有效值。
@@ -167,13 +197,19 @@ class DescribeUserInfoResponse extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Phone 用户手机号。
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $OrgNodeId 用户所属组织机构 Id。
+     * @param string $OrgNodeId 用户所属的主组织机构唯一ID。
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $DataSource 数据来源
+     * @param string $DataSource 数据来源。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $ExpirationTime 用户过期时间，遵循 ISO 8601 标准。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $ActivationTime 用户激活时间，遵循 ISO 8601 标准。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $PwdNeedReset 当前用户的密码是否需要重置，该字段为false表示不需要重置密码。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $SecondaryOrgNodeIdList 用户所属的次要组织机构ID列表。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $AdminFlag 是否管理员标志，0为否、1为是。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
@@ -236,6 +272,18 @@ class DescribeUserInfoResponse extends AbstractModel
 
         if (array_key_exists("ActivationTime",$param) and $param["ActivationTime"] !== null) {
             $this->ActivationTime = $param["ActivationTime"];
+        }
+
+        if (array_key_exists("PwdNeedReset",$param) and $param["PwdNeedReset"] !== null) {
+            $this->PwdNeedReset = $param["PwdNeedReset"];
+        }
+
+        if (array_key_exists("SecondaryOrgNodeIdList",$param) and $param["SecondaryOrgNodeIdList"] !== null) {
+            $this->SecondaryOrgNodeIdList = $param["SecondaryOrgNodeIdList"];
+        }
+
+        if (array_key_exists("AdminFlag",$param) and $param["AdminFlag"] !== null) {
+            $this->AdminFlag = $param["AdminFlag"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

@@ -20,24 +20,52 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DescribeBinlogBackupOverview返回参数结构体
  *
- * @method integer getBinlogBackupVolume() 获取总的日志备份容量（单位为字节）。
- * @method void setBinlogBackupVolume(integer $BinlogBackupVolume) 设置总的日志备份容量（单位为字节）。
- * @method integer getBinlogBackupCount() 获取总的日志备份个数。
- * @method void setBinlogBackupCount(integer $BinlogBackupCount) 设置总的日志备份个数。
+ * @method integer getBinlogBackupVolume() 获取总的日志备份容量，包含异地日志备份（单位为字节）。
+ * @method void setBinlogBackupVolume(integer $BinlogBackupVolume) 设置总的日志备份容量，包含异地日志备份（单位为字节）。
+ * @method integer getBinlogBackupCount() 获取总的日志备份个数，包含异地日志备份。
+ * @method void setBinlogBackupCount(integer $BinlogBackupCount) 设置总的日志备份个数，包含异地日志备份。
+ * @method integer getRemoteBinlogVolume() 获取异地日志备份容量（单位为字节）。
+ * @method void setRemoteBinlogVolume(integer $RemoteBinlogVolume) 设置异地日志备份容量（单位为字节）。
+ * @method integer getRemoteBinlogCount() 获取异地日志备份个数。
+ * @method void setRemoteBinlogCount(integer $RemoteBinlogCount) 设置异地日志备份个数。
+ * @method integer getBinlogArchiveVolume() 获取归档日志备份容量（单位为字节）。
+ * @method void setBinlogArchiveVolume(integer $BinlogArchiveVolume) 设置归档日志备份容量（单位为字节）。
+ * @method integer getBinlogArchiveCount() 获取归档日志备份个数。
+ * @method void setBinlogArchiveCount(integer $BinlogArchiveCount) 设置归档日志备份个数。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
 class DescribeBinlogBackupOverviewResponse extends AbstractModel
 {
     /**
-     * @var integer 总的日志备份容量（单位为字节）。
+     * @var integer 总的日志备份容量，包含异地日志备份（单位为字节）。
      */
     public $BinlogBackupVolume;
 
     /**
-     * @var integer 总的日志备份个数。
+     * @var integer 总的日志备份个数，包含异地日志备份。
      */
     public $BinlogBackupCount;
+
+    /**
+     * @var integer 异地日志备份容量（单位为字节）。
+     */
+    public $RemoteBinlogVolume;
+
+    /**
+     * @var integer 异地日志备份个数。
+     */
+    public $RemoteBinlogCount;
+
+    /**
+     * @var integer 归档日志备份容量（单位为字节）。
+     */
+    public $BinlogArchiveVolume;
+
+    /**
+     * @var integer 归档日志备份个数。
+     */
+    public $BinlogArchiveCount;
 
     /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -45,8 +73,12 @@ class DescribeBinlogBackupOverviewResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param integer $BinlogBackupVolume 总的日志备份容量（单位为字节）。
-     * @param integer $BinlogBackupCount 总的日志备份个数。
+     * @param integer $BinlogBackupVolume 总的日志备份容量，包含异地日志备份（单位为字节）。
+     * @param integer $BinlogBackupCount 总的日志备份个数，包含异地日志备份。
+     * @param integer $RemoteBinlogVolume 异地日志备份容量（单位为字节）。
+     * @param integer $RemoteBinlogCount 异地日志备份个数。
+     * @param integer $BinlogArchiveVolume 归档日志备份容量（单位为字节）。
+     * @param integer $BinlogArchiveCount 归档日志备份个数。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -68,6 +100,22 @@ class DescribeBinlogBackupOverviewResponse extends AbstractModel
 
         if (array_key_exists("BinlogBackupCount",$param) and $param["BinlogBackupCount"] !== null) {
             $this->BinlogBackupCount = $param["BinlogBackupCount"];
+        }
+
+        if (array_key_exists("RemoteBinlogVolume",$param) and $param["RemoteBinlogVolume"] !== null) {
+            $this->RemoteBinlogVolume = $param["RemoteBinlogVolume"];
+        }
+
+        if (array_key_exists("RemoteBinlogCount",$param) and $param["RemoteBinlogCount"] !== null) {
+            $this->RemoteBinlogCount = $param["RemoteBinlogCount"];
+        }
+
+        if (array_key_exists("BinlogArchiveVolume",$param) and $param["BinlogArchiveVolume"] !== null) {
+            $this->BinlogArchiveVolume = $param["BinlogArchiveVolume"];
+        }
+
+        if (array_key_exists("BinlogArchiveCount",$param) and $param["BinlogArchiveCount"] !== null) {
+            $this->BinlogArchiveCount = $param["BinlogArchiveCount"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

@@ -21,13 +21,10 @@ use TencentCloud\Common\AbstractModel;
  * https 加速服务端证书配置：
 + 支持使用托管至 SSL 证书管理的证书进行部署
 + 支持上传 PEM 格式的证书进行部署
-注意：上传 PEM 证书时，需要进行 Base 64 编码
  *
- * @method string getCertId() 获取服务器证书 ID
-在 SSL 证书管理进行证书托管时自动生成
+ * @method string getCertId() 获取服务器证书 ID 在 SSL 证书管理进行证书托管时自动生成
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setCertId(string $CertId) 设置服务器证书 ID
-在 SSL 证书管理进行证书托管时自动生成
+ * @method void setCertId(string $CertId) 设置服务器证书 ID 在 SSL 证书管理进行证书托管时自动生成
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getCertName() 获取服务器证书名称
 在 SSL 证书管理进行证书托管时自动生成
@@ -63,12 +60,15 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setMessage(string $Message) 设置证书备注信息
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getFrom() 获取证书来源
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setFrom(string $From) 设置证书来源
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class ServerCert extends AbstractModel
 {
     /**
-     * @var string 服务器证书 ID
-在 SSL 证书管理进行证书托管时自动生成
+     * @var string 服务器证书 ID 在 SSL 证书管理进行证书托管时自动生成
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $CertId;
@@ -115,8 +115,13 @@ class ServerCert extends AbstractModel
     public $Message;
 
     /**
-     * @param string $CertId 服务器证书 ID
-在 SSL 证书管理进行证书托管时自动生成
+     * @var string 证书来源
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $From;
+
+    /**
+     * @param string $CertId 服务器证书 ID 在 SSL 证书管理进行证书托管时自动生成
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $CertName 服务器证书名称
 在 SSL 证书管理进行证书托管时自动生成
@@ -134,6 +139,8 @@ class ServerCert extends AbstractModel
 作为入参配置时无需填充
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Message 证书备注信息
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $From 证书来源
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -175,6 +182,10 @@ class ServerCert extends AbstractModel
 
         if (array_key_exists("Message",$param) and $param["Message"] !== null) {
             $this->Message = $param["Message"];
+        }
+
+        if (array_key_exists("From",$param) and $param["From"] !== null) {
+            $this->From = $param["From"];
         }
     }
 }

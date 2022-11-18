@@ -22,6 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getFileId() 获取媒体文件唯一标识。
  * @method void setFileId(string $FileId) 设置媒体文件唯一标识。
+ * @method integer getSubAppId() 获取<b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+ * @method void setSubAppId(integer $SubAppId) 设置<b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
  * @method string getName() 获取媒体文件名称，最长 64 个字符。
  * @method void setName(string $Name) 设置媒体文件名称，最长 64 个字符。
  * @method string getDescription() 获取媒体文件描述，最长 128 个字符。
@@ -40,8 +42,8 @@ use TencentCloud\Common\AbstractModel;
 同一个请求里，ClearKeyFrameDescs 与 AddKeyFrameDescs 不能同时出现。
  * @method void setClearKeyFrameDescs(integer $ClearKeyFrameDescs) 设置取值 1 表示清空视频打点信息，其他值无意义。
 同一个请求里，ClearKeyFrameDescs 与 AddKeyFrameDescs 不能同时出现。
- * @method array getAddTags() 获取新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 16 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
- * @method void setAddTags(array $AddTags) 设置新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 16 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
+ * @method array getAddTags() 获取新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 32 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
+ * @method void setAddTags(array $AddTags) 设置新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 32 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
  * @method array getDeleteTags() 获取要删除的一组标签。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
  * @method void setDeleteTags(array $DeleteTags) 设置要删除的一组标签。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
  * @method integer getClearTags() 获取取值 1 表示清空媒体文件所有标签，其他值无意义。
@@ -56,8 +58,6 @@ use TencentCloud\Common\AbstractModel;
 同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。
  * @method void setClearSubtitles(integer $ClearSubtitles) 设置取值 1 表示清空媒体文件所有的字幕信息，其他值无意义。
 同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。
- * @method integer getSubAppId() 获取点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
- * @method void setSubAppId(integer $SubAppId) 设置点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
  */
 class ModifyMediaInfoRequest extends AbstractModel
 {
@@ -65,6 +65,11 @@ class ModifyMediaInfoRequest extends AbstractModel
      * @var string 媒体文件唯一标识。
      */
     public $FileId;
+
+    /**
+     * @var integer <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+     */
+    public $SubAppId;
 
     /**
      * @var string 媒体文件名称，最长 64 个字符。
@@ -108,7 +113,7 @@ class ModifyMediaInfoRequest extends AbstractModel
     public $ClearKeyFrameDescs;
 
     /**
-     * @var array 新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 16 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
+     * @var array 新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 32 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
      */
     public $AddTags;
 
@@ -140,12 +145,8 @@ class ModifyMediaInfoRequest extends AbstractModel
     public $ClearSubtitles;
 
     /**
-     * @var integer 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-     */
-    public $SubAppId;
-
-    /**
      * @param string $FileId 媒体文件唯一标识。
+     * @param integer $SubAppId <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
      * @param string $Name 媒体文件名称，最长 64 个字符。
      * @param string $Description 媒体文件描述，最长 128 个字符。
      * @param integer $ClassId 媒体文件分类 ID。
@@ -155,7 +156,7 @@ class ModifyMediaInfoRequest extends AbstractModel
      * @param array $DeleteKeyFrameDescs 要删除的一组视频打点信息的时间偏移，单位：秒。同一个请求里，AddKeyFrameDescs 的时间偏移参数必须与 DeleteKeyFrameDescs 都不同。
      * @param integer $ClearKeyFrameDescs 取值 1 表示清空视频打点信息，其他值无意义。
 同一个请求里，ClearKeyFrameDescs 与 AddKeyFrameDescs 不能同时出现。
-     * @param array $AddTags 新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 16 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
+     * @param array $AddTags 新增的一组标签，单个媒体文件最多 16 个标签，单个标签最多 32 个字符。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
      * @param array $DeleteTags 要删除的一组标签。同一个请求里，AddTags 参数必须与 DeleteTags 都不同。
      * @param integer $ClearTags 取值 1 表示清空媒体文件所有标签，其他值无意义。
 同一个请求里，ClearTags 与 AddTags 不能同时出现。
@@ -163,7 +164,6 @@ class ModifyMediaInfoRequest extends AbstractModel
      * @param array $DeleteSubtitleIds 待删除字幕的唯一标识。同一个请求中，AddSubtitles 中指定的字幕 Id 必须与 DeleteSubtitleIds 都不相同。
      * @param integer $ClearSubtitles 取值 1 表示清空媒体文件所有的字幕信息，其他值无意义。
 同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。
-     * @param integer $SubAppId 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
      */
     function __construct()
     {
@@ -180,6 +180,10 @@ class ModifyMediaInfoRequest extends AbstractModel
         }
         if (array_key_exists("FileId",$param) and $param["FileId"] !== null) {
             $this->FileId = $param["FileId"];
+        }
+
+        if (array_key_exists("SubAppId",$param) and $param["SubAppId"] !== null) {
+            $this->SubAppId = $param["SubAppId"];
         }
 
         if (array_key_exists("Name",$param) and $param["Name"] !== null) {
@@ -246,10 +250,6 @@ class ModifyMediaInfoRequest extends AbstractModel
 
         if (array_key_exists("ClearSubtitles",$param) and $param["ClearSubtitles"] !== null) {
             $this->ClearSubtitles = $param["ClearSubtitles"];
-        }
-
-        if (array_key_exists("SubAppId",$param) and $param["SubAppId"] !== null) {
-            $this->SubAppId = $param["SubAppId"];
         }
     }
 }

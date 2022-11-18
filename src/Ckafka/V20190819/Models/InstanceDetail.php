@@ -44,8 +44,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setSubnetId(string $SubnetId) 设置子网id
  * @method integer getRenewFlag() 获取实例是否续费，int  枚举值：1表示自动续费，2表示明确不自动续费
  * @method void setRenewFlag(integer $RenewFlag) 设置实例是否续费，int  枚举值：1表示自动续费，2表示明确不自动续费
- * @method integer getHealthy() 获取实例状态 int：0表示健康，1表示告警，2 表示实例状态异常
- * @method void setHealthy(integer $Healthy) 设置实例状态 int：0表示健康，1表示告警，2 表示实例状态异常
+ * @method integer getHealthy() 获取实例状态 int：1表示健康，2表示告警，3 表示实例状态异常
+ * @method void setHealthy(integer $Healthy) 设置实例状态 int：1表示健康，2表示告警，3 表示实例状态异常
  * @method string getHealthyMessage() 获取实例状态信息
  * @method void setHealthyMessage(string $HealthyMessage) 设置实例状态信息
  * @method integer getCreateTime() 获取实例创建时间时间
@@ -89,6 +89,26 @@ use TencentCloud\Common\AbstractModel;
  * @method string getRebalanceTime() 获取计划升级配置时间
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setRebalanceTime(string $RebalanceTime) 设置计划升级配置时间
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getPartitionNumber() 获取实例当前partition数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPartitionNumber(integer $PartitionNumber) 设置实例当前partition数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getPublicNetworkChargeType() 获取公网带宽类型
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPublicNetworkChargeType(string $PublicNetworkChargeType) 设置公网带宽类型
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getPublicNetwork() 获取公网带宽值
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPublicNetwork(integer $PublicNetwork) 设置公网带宽值
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getClusterType() 获取实例类型
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setClusterType(string $ClusterType) 设置实例类型
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getFeatures() 获取实例功能列表
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setFeatures(array $Features) 设置实例功能列表
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class InstanceDetail extends AbstractModel
@@ -154,7 +174,7 @@ class InstanceDetail extends AbstractModel
     public $RenewFlag;
 
     /**
-     * @var integer 实例状态 int：0表示健康，1表示告警，2 表示实例状态异常
+     * @var integer 实例状态 int：1表示健康，2表示告警，3 表示实例状态异常
      */
     public $Healthy;
 
@@ -237,6 +257,36 @@ class InstanceDetail extends AbstractModel
     public $RebalanceTime;
 
     /**
+     * @var integer 实例当前partition数量
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PartitionNumber;
+
+    /**
+     * @var string 公网带宽类型
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PublicNetworkChargeType;
+
+    /**
+     * @var integer 公网带宽值
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PublicNetwork;
+
+    /**
+     * @var string 实例类型
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ClusterType;
+
+    /**
+     * @var array 实例功能列表
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Features;
+
+    /**
      * @param string $InstanceId 实例id
      * @param string $InstanceName 实例名称
      * @param string $Vip 访问实例的vip 信息
@@ -249,7 +299,7 @@ class InstanceDetail extends AbstractModel
      * @param string $VpcId vpcId，如果为空，说明是基础网络
      * @param string $SubnetId 子网id
      * @param integer $RenewFlag 实例是否续费，int  枚举值：1表示自动续费，2表示明确不自动续费
-     * @param integer $Healthy 实例状态 int：0表示健康，1表示告警，2 表示实例状态异常
+     * @param integer $Healthy 实例状态 int：1表示健康，2表示告警，3 表示实例状态异常
      * @param string $HealthyMessage 实例状态信息
      * @param integer $CreateTime 实例创建时间时间
      * @param integer $ExpireTime 实例过期时间
@@ -271,6 +321,16 @@ class InstanceDetail extends AbstractModel
      * @param integer $MaxPartitionNumber 当前规格最大Partition数
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RebalanceTime 计划升级配置时间
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $PartitionNumber 实例当前partition数量
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $PublicNetworkChargeType 公网带宽类型
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $PublicNetwork 公网带宽值
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ClusterType 实例类型
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $Features 实例功能列表
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -402,6 +462,26 @@ class InstanceDetail extends AbstractModel
 
         if (array_key_exists("RebalanceTime",$param) and $param["RebalanceTime"] !== null) {
             $this->RebalanceTime = $param["RebalanceTime"];
+        }
+
+        if (array_key_exists("PartitionNumber",$param) and $param["PartitionNumber"] !== null) {
+            $this->PartitionNumber = $param["PartitionNumber"];
+        }
+
+        if (array_key_exists("PublicNetworkChargeType",$param) and $param["PublicNetworkChargeType"] !== null) {
+            $this->PublicNetworkChargeType = $param["PublicNetworkChargeType"];
+        }
+
+        if (array_key_exists("PublicNetwork",$param) and $param["PublicNetwork"] !== null) {
+            $this->PublicNetwork = $param["PublicNetwork"];
+        }
+
+        if (array_key_exists("ClusterType",$param) and $param["ClusterType"] !== null) {
+            $this->ClusterType = $param["ClusterType"];
+        }
+
+        if (array_key_exists("Features",$param) and $param["Features"] !== null) {
+            $this->Features = $param["Features"];
         }
     }
 }

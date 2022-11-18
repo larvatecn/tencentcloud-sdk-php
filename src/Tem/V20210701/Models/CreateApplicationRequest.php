@@ -52,8 +52,12 @@ use TencentCloud\Common\AbstractModel;
 - IMAGE
 - JAR
 - WAR
- * @method integer getEnableTracing() 获取是否启用调用链功能
- * @method void setEnableTracing(integer $EnableTracing) 设置是否启用调用链功能
+ * @method integer getEnableTracing() 获取是否开启 Java 应用的 APM 自动上报功能，1 表示启用；0 表示关闭
+ * @method void setEnableTracing(integer $EnableTracing) 设置是否开启 Java 应用的 APM 自动上报功能，1 表示启用；0 表示关闭
+ * @method UseDefaultRepoParameters getUseDefaultImageServiceParameters() 获取使用默认镜像服务额外参数
+ * @method void setUseDefaultImageServiceParameters(UseDefaultRepoParameters $UseDefaultImageServiceParameters) 设置使用默认镜像服务额外参数
+ * @method array getTags() 获取标签
+ * @method void setTags(array $Tags) 设置标签
  */
 class CreateApplicationRequest extends AbstractModel
 {
@@ -118,9 +122,19 @@ class CreateApplicationRequest extends AbstractModel
     public $DeployMode;
 
     /**
-     * @var integer 是否启用调用链功能
+     * @var integer 是否开启 Java 应用的 APM 自动上报功能，1 表示启用；0 表示关闭
      */
     public $EnableTracing;
+
+    /**
+     * @var UseDefaultRepoParameters 使用默认镜像服务额外参数
+     */
+    public $UseDefaultImageServiceParameters;
+
+    /**
+     * @var array 标签
+     */
+    public $Tags;
 
     /**
      * @param string $ApplicationName 应用名
@@ -139,7 +153,9 @@ class CreateApplicationRequest extends AbstractModel
 - IMAGE
 - JAR
 - WAR
-     * @param integer $EnableTracing 是否启用调用链功能
+     * @param integer $EnableTracing 是否开启 Java 应用的 APM 自动上报功能，1 表示启用；0 表示关闭
+     * @param UseDefaultRepoParameters $UseDefaultImageServiceParameters 使用默认镜像服务额外参数
+     * @param array $Tags 标签
      */
     function __construct()
     {
@@ -200,6 +216,20 @@ class CreateApplicationRequest extends AbstractModel
 
         if (array_key_exists("EnableTracing",$param) and $param["EnableTracing"] !== null) {
             $this->EnableTracing = $param["EnableTracing"];
+        }
+
+        if (array_key_exists("UseDefaultImageServiceParameters",$param) and $param["UseDefaultImageServiceParameters"] !== null) {
+            $this->UseDefaultImageServiceParameters = new UseDefaultRepoParameters();
+            $this->UseDefaultImageServiceParameters->deserialize($param["UseDefaultImageServiceParameters"]);
+        }
+
+        if (array_key_exists("Tags",$param) and $param["Tags"] !== null) {
+            $this->Tags = [];
+            foreach ($param["Tags"] as $key => $value){
+                $obj = new Tag();
+                $obj->deserialize($value);
+                array_push($this->Tags, $obj);
+            }
         }
     }
 }

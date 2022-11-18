@@ -22,10 +22,16 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method integer getSdkAppId() 获取客户的SdkAppId
  * @method void setSdkAppId(integer $SdkAppId) 设置客户的SdkAppId
- * @method integer getRoomId() 获取需要推流白板的房间号，取值范围: (1, 4294967295)
- * @method void setRoomId(integer $RoomId) 设置需要推流白板的房间号，取值范围: (1, 4294967295)
- * @method string getPushUserId() 获取用于白板推流服务进房进行推流的用户ID，最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
- * @method void setPushUserId(string $PushUserId) 设置用于白板推流服务进房进行推流的用户ID，最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
+ * @method integer getRoomId() 获取需要推流的白板房间号，取值范围: (1, 4294967295)。
+
+在没有指定TRTCRoomId和TRTCRoomIdStr的情况下，默认会以RoomId作为白板流进行推流的TRTC房间号。
+ * @method void setRoomId(integer $RoomId) 设置需要推流的白板房间号，取值范围: (1, 4294967295)。
+
+在没有指定TRTCRoomId和TRTCRoomIdStr的情况下，默认会以RoomId作为白板流进行推流的TRTC房间号。
+ * @method string getPushUserId() 获取用于白板推流服务进入白板房间的用户ID。在没有进行额外指定的情况下，这个用户ID同时会用于IM登录、IM加群、TRTC进房推流等操作。
+用户ID最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
+ * @method void setPushUserId(string $PushUserId) 设置用于白板推流服务进入白板房间的用户ID。在没有进行额外指定的情况下，这个用户ID同时会用于IM登录、IM加群、TRTC进房推流等操作。
+用户ID最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
  * @method string getPushUserSig() 获取与PushUserId对应的签名
  * @method void setPushUserSig(string $PushUserSig) 设置与PushUserId对应的签名
  * @method Whiteboard getWhiteboard() 获取白板参数，例如白板宽高、背景颜色等
@@ -124,6 +130,46 @@ SdkAppID = 12345678，RoomID = 12345，PushUserID = push_user_1
 那么：StreamID = 12345678_12345_push_user_1_main
  * @method string getExtraData() 获取内部参数，不需要关注此参数
  * @method void setExtraData(string $ExtraData) 设置内部参数，不需要关注此参数
+ * @method integer getTRTCRoomId() 获取TRTC数字类型房间号，取值范围: (1, 4294967295)。
+
+在同时指定了RoomId与TRTCRoomId的情况下，优先使用TRTCRoomId作为白板流进行推流的TRTC房间号。
+
+当指定了TRTCRoomIdStr的情况下，此字段将被忽略。
+ * @method void setTRTCRoomId(integer $TRTCRoomId) 设置TRTC数字类型房间号，取值范围: (1, 4294967295)。
+
+在同时指定了RoomId与TRTCRoomId的情况下，优先使用TRTCRoomId作为白板流进行推流的TRTC房间号。
+
+当指定了TRTCRoomIdStr的情况下，此字段将被忽略。
+ * @method string getTRTCRoomIdStr() 获取TRTC字符串类型房间号。
+
+在指定了TRTCRoomIdStr的情况下，会优先使用TRTCRoomIdStr作为白板流进行推流的TRTC房间号。
+ * @method void setTRTCRoomIdStr(string $TRTCRoomIdStr) 设置TRTC字符串类型房间号。
+
+在指定了TRTCRoomIdStr的情况下，会优先使用TRTCRoomIdStr作为白板流进行推流的TRTC房间号。
+ * @method AuthParam getIMAuthParam() 获取内测参数，需开通白名单进行体验。
+
+IM鉴权信息参数，用于IM鉴权。
+当白板信令所使用的IM应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应IM应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板信令的传输通道，否则使用公共参数中的SdkAppId作为白板信令的传输通道。
+ * @method void setIMAuthParam(AuthParam $IMAuthParam) 设置内测参数，需开通白名单进行体验。
+
+IM鉴权信息参数，用于IM鉴权。
+当白板信令所使用的IM应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应IM应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板信令的传输通道，否则使用公共参数中的SdkAppId作为白板信令的传输通道。
+ * @method AuthParam getTRTCAuthParam() 获取内测参数，需开通白名单进行体验。
+
+TRTC鉴权信息参数，用于TRTC进房推流鉴权。
+当需要推流到的TRTC房间所对应的TRTC应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应的TRTC应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板推流的目标TRTC应用，否则使用公共参数中的SdkAppId作为白板推流的目标TRTC应用。
+ * @method void setTRTCAuthParam(AuthParam $TRTCAuthParam) 设置内测参数，需开通白名单进行体验。
+
+TRTC鉴权信息参数，用于TRTC进房推流鉴权。
+当需要推流到的TRTC房间所对应的TRTC应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应的TRTC应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板推流的目标TRTC应用，否则使用公共参数中的SdkAppId作为白板推流的目标TRTC应用。
  */
 class StartWhiteboardPushRequest extends AbstractModel
 {
@@ -133,12 +179,15 @@ class StartWhiteboardPushRequest extends AbstractModel
     public $SdkAppId;
 
     /**
-     * @var integer 需要推流白板的房间号，取值范围: (1, 4294967295)
+     * @var integer 需要推流的白板房间号，取值范围: (1, 4294967295)。
+
+在没有指定TRTCRoomId和TRTCRoomIdStr的情况下，默认会以RoomId作为白板流进行推流的TRTC房间号。
      */
     public $RoomId;
 
     /**
-     * @var string 用于白板推流服务进房进行推流的用户ID，最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
+     * @var string 用于白板推流服务进入白板房间的用户ID。在没有进行额外指定的情况下，这个用户ID同时会用于IM登录、IM加群、TRTC进房推流等操作。
+用户ID最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
      */
     public $PushUserId;
 
@@ -244,9 +293,48 @@ SdkAppID = 12345678，RoomID = 12345，PushUserID = push_user_1
     public $ExtraData;
 
     /**
+     * @var integer TRTC数字类型房间号，取值范围: (1, 4294967295)。
+
+在同时指定了RoomId与TRTCRoomId的情况下，优先使用TRTCRoomId作为白板流进行推流的TRTC房间号。
+
+当指定了TRTCRoomIdStr的情况下，此字段将被忽略。
+     */
+    public $TRTCRoomId;
+
+    /**
+     * @var string TRTC字符串类型房间号。
+
+在指定了TRTCRoomIdStr的情况下，会优先使用TRTCRoomIdStr作为白板流进行推流的TRTC房间号。
+     */
+    public $TRTCRoomIdStr;
+
+    /**
+     * @var AuthParam 内测参数，需开通白名单进行体验。
+
+IM鉴权信息参数，用于IM鉴权。
+当白板信令所使用的IM应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应IM应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板信令的传输通道，否则使用公共参数中的SdkAppId作为白板信令的传输通道。
+     */
+    public $IMAuthParam;
+
+    /**
+     * @var AuthParam 内测参数，需开通白名单进行体验。
+
+TRTC鉴权信息参数，用于TRTC进房推流鉴权。
+当需要推流到的TRTC房间所对应的TRTC应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应的TRTC应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板推流的目标TRTC应用，否则使用公共参数中的SdkAppId作为白板推流的目标TRTC应用。
+     */
+    public $TRTCAuthParam;
+
+    /**
      * @param integer $SdkAppId 客户的SdkAppId
-     * @param integer $RoomId 需要推流白板的房间号，取值范围: (1, 4294967295)
-     * @param string $PushUserId 用于白板推流服务进房进行推流的用户ID，最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
+     * @param integer $RoomId 需要推流的白板房间号，取值范围: (1, 4294967295)。
+
+在没有指定TRTCRoomId和TRTCRoomIdStr的情况下，默认会以RoomId作为白板流进行推流的TRTC房间号。
+     * @param string $PushUserId 用于白板推流服务进入白板房间的用户ID。在没有进行额外指定的情况下，这个用户ID同时会用于IM登录、IM加群、TRTC进房推流等操作。
+用户ID最大长度不能大于60个字节，该ID必须是一个单独的未在SDK中使用的ID，白板推流服务使用这个用户ID进入房间进行白板音视频推流，若该ID和SDK中使用的ID重复，会导致SDK和白板推流服务互踢，影响正常推流。
      * @param string $PushUserSig 与PushUserId对应的签名
      * @param Whiteboard $Whiteboard 白板参数，例如白板宽高、背景颜色等
      * @param integer $AutoStopTimeout 自动停止推流超时时间，单位秒，取值范围[300, 43200], 默认值为1800秒。
@@ -296,6 +384,26 @@ urlencode(SdkAppID_RoomID_PushUserID_main)
 SdkAppID = 12345678，RoomID = 12345，PushUserID = push_user_1
 那么：StreamID = 12345678_12345_push_user_1_main
      * @param string $ExtraData 内部参数，不需要关注此参数
+     * @param integer $TRTCRoomId TRTC数字类型房间号，取值范围: (1, 4294967295)。
+
+在同时指定了RoomId与TRTCRoomId的情况下，优先使用TRTCRoomId作为白板流进行推流的TRTC房间号。
+
+当指定了TRTCRoomIdStr的情况下，此字段将被忽略。
+     * @param string $TRTCRoomIdStr TRTC字符串类型房间号。
+
+在指定了TRTCRoomIdStr的情况下，会优先使用TRTCRoomIdStr作为白板流进行推流的TRTC房间号。
+     * @param AuthParam $IMAuthParam 内测参数，需开通白名单进行体验。
+
+IM鉴权信息参数，用于IM鉴权。
+当白板信令所使用的IM应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应IM应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板信令的传输通道，否则使用公共参数中的SdkAppId作为白板信令的传输通道。
+     * @param AuthParam $TRTCAuthParam 内测参数，需开通白名单进行体验。
+
+TRTC鉴权信息参数，用于TRTC进房推流鉴权。
+当需要推流到的TRTC房间所对应的TRTC应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应的TRTC应用鉴权信息。
+
+如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板推流的目标TRTC应用，否则使用公共参数中的SdkAppId作为白板推流的目标TRTC应用。
      */
     function __construct()
     {
@@ -374,6 +482,24 @@ SdkAppID = 12345678，RoomID = 12345，PushUserID = push_user_1
 
         if (array_key_exists("ExtraData",$param) and $param["ExtraData"] !== null) {
             $this->ExtraData = $param["ExtraData"];
+        }
+
+        if (array_key_exists("TRTCRoomId",$param) and $param["TRTCRoomId"] !== null) {
+            $this->TRTCRoomId = $param["TRTCRoomId"];
+        }
+
+        if (array_key_exists("TRTCRoomIdStr",$param) and $param["TRTCRoomIdStr"] !== null) {
+            $this->TRTCRoomIdStr = $param["TRTCRoomIdStr"];
+        }
+
+        if (array_key_exists("IMAuthParam",$param) and $param["IMAuthParam"] !== null) {
+            $this->IMAuthParam = new AuthParam();
+            $this->IMAuthParam->deserialize($param["IMAuthParam"]);
+        }
+
+        if (array_key_exists("TRTCAuthParam",$param) and $param["TRTCAuthParam"] !== null) {
+            $this->TRTCAuthParam = new AuthParam();
+            $this->TRTCAuthParam->deserialize($param["TRTCAuthParam"]);
         }
     }
 }

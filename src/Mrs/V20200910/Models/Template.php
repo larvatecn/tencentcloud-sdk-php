@@ -72,6 +72,26 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setElectrocardiogram(Electrocardiogram $Electrocardiogram) 设置心电图报告
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method Endoscopy getEndoscopy() 获取内窥镜报告
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setEndoscopy(Endoscopy $Endoscopy) 设置内窥镜报告
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method Prescription getPrescription() 获取处方单
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPrescription(Prescription $Prescription) 设置处方单
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method VaccineCertificate getVaccineCertificate() 获取免疫接种证明
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setVaccineCertificate(VaccineCertificate $VaccineCertificate) 设置免疫接种证明
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getOcrText() 获取OCR文本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setOcrText(string $OcrText) 设置OCR文本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getOcrResult() 获取OCR拼接后文本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setOcrResult(string $OcrResult) 设置OCR拼接后文本
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class Template extends AbstractModel
 {
@@ -154,6 +174,36 @@ class Template extends AbstractModel
     public $Electrocardiogram;
 
     /**
+     * @var Endoscopy 内窥镜报告
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Endoscopy;
+
+    /**
+     * @var Prescription 处方单
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Prescription;
+
+    /**
+     * @var VaccineCertificate 免疫接种证明
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $VaccineCertificate;
+
+    /**
+     * @var string OCR文本
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $OcrText;
+
+    /**
+     * @var string OCR拼接后文本
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $OcrResult;
+
+    /**
      * @param PatientInfo $PatientInfo 患者信息
 注意：此字段可能返回 null，表示取不到有效值。
      * @param ReportInfo $ReportInfo 报告信息
@@ -179,6 +229,16 @@ class Template extends AbstractModel
      * @param Surgery $Surgery 手术记录
 注意：此字段可能返回 null，表示取不到有效值。
      * @param Electrocardiogram $Electrocardiogram 心电图报告
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param Endoscopy $Endoscopy 内窥镜报告
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param Prescription $Prescription 处方单
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param VaccineCertificate $VaccineCertificate 免疫接种证明
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $OcrText OCR文本
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $OcrResult OCR拼接后文本
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -256,6 +316,29 @@ class Template extends AbstractModel
         if (array_key_exists("Electrocardiogram",$param) and $param["Electrocardiogram"] !== null) {
             $this->Electrocardiogram = new Electrocardiogram();
             $this->Electrocardiogram->deserialize($param["Electrocardiogram"]);
+        }
+
+        if (array_key_exists("Endoscopy",$param) and $param["Endoscopy"] !== null) {
+            $this->Endoscopy = new Endoscopy();
+            $this->Endoscopy->deserialize($param["Endoscopy"]);
+        }
+
+        if (array_key_exists("Prescription",$param) and $param["Prescription"] !== null) {
+            $this->Prescription = new Prescription();
+            $this->Prescription->deserialize($param["Prescription"]);
+        }
+
+        if (array_key_exists("VaccineCertificate",$param) and $param["VaccineCertificate"] !== null) {
+            $this->VaccineCertificate = new VaccineCertificate();
+            $this->VaccineCertificate->deserialize($param["VaccineCertificate"]);
+        }
+
+        if (array_key_exists("OcrText",$param) and $param["OcrText"] !== null) {
+            $this->OcrText = $param["OcrText"];
+        }
+
+        if (array_key_exists("OcrResult",$param) and $param["OcrResult"] !== null) {
+            $this->OcrResult = $param["OcrResult"];
         }
     }
 }

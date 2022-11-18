@@ -32,7 +32,13 @@ use TencentCloud\Common\AbstractModel;
 <li>public-ip-address</li>按照【实例主网卡的公网 IP】进行过滤。
 类型：String
 必选：否
-每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 InstanceIds 和 Filters。
+<li>zone</li>按照【可用区】进行过滤。
+类型：String
+必选：否
+<li>instance-state</li>按照【实例状态】进行过滤。
+类型：String
+必选：否
+每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 InstanceIds 和 Filters。
  * @method void setFilters(array $Filters) 设置过滤器列表。
 <li>instance-name</li>按照【实例名称】进行过滤。
 类型：String
@@ -43,7 +49,13 @@ use TencentCloud\Common\AbstractModel;
 <li>public-ip-address</li>按照【实例主网卡的公网 IP】进行过滤。
 类型：String
 必选：否
-每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 InstanceIds 和 Filters。
+<li>zone</li>按照【可用区】进行过滤。
+类型：String
+必选：否
+<li>instance-state</li>按照【实例状态】进行过滤。
+类型：String
+必选：否
+每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 InstanceIds 和 Filters。
  * @method integer getOffset() 获取偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
  * @method void setOffset(integer $Offset) 设置偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
  * @method integer getLimit() 获取返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
@@ -67,7 +79,13 @@ class DescribeInstancesRequest extends AbstractModel
 <li>public-ip-address</li>按照【实例主网卡的公网 IP】进行过滤。
 类型：String
 必选：否
-每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 InstanceIds 和 Filters。
+<li>zone</li>按照【可用区】进行过滤。
+类型：String
+必选：否
+<li>instance-state</li>按照【实例状态】进行过滤。
+类型：String
+必选：否
+每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 InstanceIds 和 Filters。
      */
     public $Filters;
 
@@ -93,7 +111,13 @@ class DescribeInstancesRequest extends AbstractModel
 <li>public-ip-address</li>按照【实例主网卡的公网 IP】进行过滤。
 类型：String
 必选：否
-每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 InstanceIds 和 Filters。
+<li>zone</li>按照【可用区】进行过滤。
+类型：String
+必选：否
+<li>instance-state</li>按照【实例状态】进行过滤。
+类型：String
+必选：否
+每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 InstanceIds 和 Filters。
      * @param integer $Offset 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
      * @param integer $Limit 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
      */

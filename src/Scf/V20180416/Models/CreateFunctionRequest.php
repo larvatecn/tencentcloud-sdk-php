@@ -42,6 +42,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setNamespace(string $Namespace) 设置函数所属命名空间
  * @method string getRole() 获取函数绑定的角色
  * @method void setRole(string $Role) 设置函数绑定的角色
+ * @method string getInstallDependency() 获取[在线依赖安装](https://cloud.tencent.com/document/product/583/37920)，TRUE 表示安装，默认值为 FALSE。仅支持 Node.js 函数。
+ * @method void setInstallDependency(string $InstallDependency) 设置[在线依赖安装](https://cloud.tencent.com/document/product/583/37920)，TRUE 表示安装，默认值为 FALSE。仅支持 Node.js 函数。
  * @method string getClsLogsetId() 获取函数日志投递到的CLS LogsetID
  * @method void setClsLogsetId(string $ClsLogsetId) 设置函数日志投递到的CLS LogsetID
  * @method string getClsTopicId() 获取函数日志投递到的CLS TopicID
@@ -66,6 +68,12 @@ use TencentCloud\Common\AbstractModel;
  * @method void setAsyncRunEnable(string $AsyncRunEnable) 设置是否开启异步属性，TRUE 为开启，FALSE为关闭
  * @method string getTraceEnable() 获取是否开启事件追踪，TRUE 为开启，FALSE为关闭
  * @method void setTraceEnable(string $TraceEnable) 设置是否开启事件追踪，TRUE 为开启，FALSE为关闭
+ * @method string getProtocolType() 获取HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS
+ * @method void setProtocolType(string $ProtocolType) 设置HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS
+ * @method ProtocolParams getProtocolParams() 获取HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
+ * @method void setProtocolParams(ProtocolParams $ProtocolParams) 设置HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
+ * @method InstanceConcurrencyConfig getInstanceConcurrencyConfig() 获取单实例多并发配置。只支持Web函数。
+ * @method void setInstanceConcurrencyConfig(InstanceConcurrencyConfig $InstanceConcurrencyConfig) 设置单实例多并发配置。只支持Web函数。
  */
 class CreateFunctionRequest extends AbstractModel
 {
@@ -123,6 +131,11 @@ class CreateFunctionRequest extends AbstractModel
      * @var string 函数绑定的角色
      */
     public $Role;
+
+    /**
+     * @var string [在线依赖安装](https://cloud.tencent.com/document/product/583/37920)，TRUE 表示安装，默认值为 FALSE。仅支持 Node.js 函数。
+     */
+    public $InstallDependency;
 
     /**
      * @var string 函数日志投递到的CLS LogsetID
@@ -185,6 +198,21 @@ class CreateFunctionRequest extends AbstractModel
     public $TraceEnable;
 
     /**
+     * @var string HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS
+     */
+    public $ProtocolType;
+
+    /**
+     * @var ProtocolParams HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
+     */
+    public $ProtocolParams;
+
+    /**
+     * @var InstanceConcurrencyConfig 单实例多并发配置。只支持Web函数。
+     */
+    public $InstanceConcurrencyConfig;
+
+    /**
      * @param string $FunctionName 创建的函数名称，函数名称支持26个英文字母大小写、数字、连接符和下划线，第一个字符只能以字母开头，最后一个字符不能为连接符或者下划线，名称长度2-60
      * @param Code $Code 函数代码. 注意：不能同时指定Cos、ZipFile或 DemoId。
      * @param string $Handler 函数处理方法名称，名称格式支持 "文件名称.方法名称" 形式（java 名称格式 包名.类名::方法名），文件名称和函数名称之间以"."隔开，文件名称和函数名称要求以字母开始和结尾，中间允许插入字母、数字、下划线和连接符，文件名称和函数名字的长度要求是 2-60 个字符
@@ -196,6 +224,7 @@ class CreateFunctionRequest extends AbstractModel
      * @param VpcConfig $VpcConfig 函数的私有网络配置
      * @param string $Namespace 函数所属命名空间
      * @param string $Role 函数绑定的角色
+     * @param string $InstallDependency [在线依赖安装](https://cloud.tencent.com/document/product/583/37920)，TRUE 表示安装，默认值为 FALSE。仅支持 Node.js 函数。
      * @param string $ClsLogsetId 函数日志投递到的CLS LogsetID
      * @param string $ClsTopicId 函数日志投递到的CLS TopicID
      * @param string $Type 函数类型，默认值为Event，创建触发器函数请填写Event，创建HTTP函数级服务请填写HTTP
@@ -208,6 +237,9 @@ class CreateFunctionRequest extends AbstractModel
      * @param array $Tags 函数 Tag 参数，以键值对数组形式传入
      * @param string $AsyncRunEnable 是否开启异步属性，TRUE 为开启，FALSE为关闭
      * @param string $TraceEnable 是否开启事件追踪，TRUE 为开启，FALSE为关闭
+     * @param string $ProtocolType HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS
+     * @param ProtocolParams $ProtocolParams HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
+     * @param InstanceConcurrencyConfig $InstanceConcurrencyConfig 单实例多并发配置。只支持Web函数。
      */
     function __construct()
     {
@@ -269,6 +301,10 @@ class CreateFunctionRequest extends AbstractModel
             $this->Role = $param["Role"];
         }
 
+        if (array_key_exists("InstallDependency",$param) and $param["InstallDependency"] !== null) {
+            $this->InstallDependency = $param["InstallDependency"];
+        }
+
         if (array_key_exists("ClsLogsetId",$param) and $param["ClsLogsetId"] !== null) {
             $this->ClsLogsetId = $param["ClsLogsetId"];
         }
@@ -328,6 +364,20 @@ class CreateFunctionRequest extends AbstractModel
 
         if (array_key_exists("TraceEnable",$param) and $param["TraceEnable"] !== null) {
             $this->TraceEnable = $param["TraceEnable"];
+        }
+
+        if (array_key_exists("ProtocolType",$param) and $param["ProtocolType"] !== null) {
+            $this->ProtocolType = $param["ProtocolType"];
+        }
+
+        if (array_key_exists("ProtocolParams",$param) and $param["ProtocolParams"] !== null) {
+            $this->ProtocolParams = new ProtocolParams();
+            $this->ProtocolParams->deserialize($param["ProtocolParams"]);
+        }
+
+        if (array_key_exists("InstanceConcurrencyConfig",$param) and $param["InstanceConcurrencyConfig"] !== null) {
+            $this->InstanceConcurrencyConfig = new InstanceConcurrencyConfig();
+            $this->InstanceConcurrencyConfig->deserialize($param["InstanceConcurrencyConfig"]);
         }
     }
 }

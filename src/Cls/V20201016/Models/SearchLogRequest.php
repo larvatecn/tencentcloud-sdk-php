@@ -20,74 +20,150 @@ use TencentCloud\Common\AbstractModel;
 /**
  * SearchLog请求参数结构体
  *
- * @method string getTopicId() 获取要查询的日志主题ID
- * @method void setTopicId(string $TopicId) 设置要查询的日志主题ID
- * @method integer getFrom() 获取要查询的日志的起始时间，Unix时间戳，单位ms
- * @method void setFrom(integer $From) 设置要查询的日志的起始时间，Unix时间戳，单位ms
- * @method integer getTo() 获取要查询的日志的结束时间，Unix时间戳，单位ms
- * @method void setTo(integer $To) 设置要查询的日志的结束时间，Unix时间戳，单位ms
- * @method string getQuery() 获取查询语句，语句长度最大为4096
- * @method void setQuery(string $Query) 设置查询语句，语句长度最大为4096
- * @method integer getLimit() 获取单次查询返回的原始日志条数，最大值为100。查询语句(Query)包含SQL时，针对SQL的结果条数需在Query中指定，参考https://cloud.tencent.com/document/product/614/58977
- * @method void setLimit(integer $Limit) 设置单次查询返回的原始日志条数，最大值为100。查询语句(Query)包含SQL时，针对SQL的结果条数需在Query中指定，参考https://cloud.tencent.com/document/product/614/58977
- * @method string getContext() 获取加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
- * @method void setContext(string $Context) 设置加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
- * @method string getSort() 获取日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
- * @method void setSort(string $Sort) 设置日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
- * @method boolean getUseNewAnalysis() 获取为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
- * @method void setUseNewAnalysis(boolean $UseNewAnalysis) 设置为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
+ * @method string getTopicId() 获取要检索分析的日志主题ID
+ * @method void setTopicId(string $TopicId) 设置要检索分析的日志主题ID
+ * @method integer getFrom() 获取要检索分析的日志的起始时间，Unix时间戳（毫秒）
+ * @method void setFrom(integer $From) 设置要检索分析的日志的起始时间，Unix时间戳（毫秒）
+ * @method integer getTo() 获取要检索分析的日志的结束时间，Unix时间戳（毫秒）
+ * @method void setTo(integer $To) 设置要检索分析的日志的结束时间，Unix时间戳（毫秒）
+ * @method string getQuery() 获取检索分析语句，最大长度为12KB
+语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
+ * @method void setQuery(string $Query) 设置检索分析语句，最大长度为12KB
+语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
+ * @method integer getLimit() 获取表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+ * @method void setLimit(integer $Limit) 设置表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+ * @method string getContext() 获取透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+注意：
+* 透传该参数时，请勿修改除该参数外的其它参数
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+ * @method void setContext(string $Context) 设置透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+注意：
+* 透传该参数时，请勿修改除该参数外的其它参数
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+ * @method string getSort() 获取原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+ * @method void setSort(string $Sort) 设置原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+ * @method boolean getUseNewAnalysis() 获取为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
+为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
+两种返回方式在编码格式上有少量区别，建议使用true
+ * @method void setUseNewAnalysis(boolean $UseNewAnalysis) 设置为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
+为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
+两种返回方式在编码格式上有少量区别，建议使用true
+ * @method float getSamplingRate() 获取执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
+0：自动采样;
+0～1：按指定采样率采样，例如0.02;
+1：不采样，即精确分析
+默认值为1
+ * @method void setSamplingRate(float $SamplingRate) 设置执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
+0：自动采样;
+0～1：按指定采样率采样，例如0.02;
+1：不采样，即精确分析
+默认值为1
  */
 class SearchLogRequest extends AbstractModel
 {
     /**
-     * @var string 要查询的日志主题ID
+     * @var string 要检索分析的日志主题ID
      */
     public $TopicId;
 
     /**
-     * @var integer 要查询的日志的起始时间，Unix时间戳，单位ms
+     * @var integer 要检索分析的日志的起始时间，Unix时间戳（毫秒）
      */
     public $From;
 
     /**
-     * @var integer 要查询的日志的结束时间，Unix时间戳，单位ms
+     * @var integer 要检索分析的日志的结束时间，Unix时间戳（毫秒）
      */
     public $To;
 
     /**
-     * @var string 查询语句，语句长度最大为4096
+     * @var string 检索分析语句，最大长度为12KB
+语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
      */
     public $Query;
 
     /**
-     * @var integer 单次查询返回的原始日志条数，最大值为100。查询语句(Query)包含SQL时，针对SQL的结果条数需在Query中指定，参考https://cloud.tencent.com/document/product/614/58977
+     * @var integer 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
      */
     public $Limit;
 
     /**
-     * @var string 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
+     * @var string 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+注意：
+* 透传该参数时，请勿修改除该参数外的其它参数
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
      */
     public $Context;
 
     /**
-     * @var string 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+     * @var string 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
      */
     public $Sort;
 
     /**
-     * @var boolean 为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
+     * @var boolean 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
+为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
+两种返回方式在编码格式上有少量区别，建议使用true
      */
     public $UseNewAnalysis;
 
     /**
-     * @param string $TopicId 要查询的日志主题ID
-     * @param integer $From 要查询的日志的起始时间，Unix时间戳，单位ms
-     * @param integer $To 要查询的日志的结束时间，Unix时间戳，单位ms
-     * @param string $Query 查询语句，语句长度最大为4096
-     * @param integer $Limit 单次查询返回的原始日志条数，最大值为100。查询语句(Query)包含SQL时，针对SQL的结果条数需在Query中指定，参考https://cloud.tencent.com/document/product/614/58977
-     * @param string $Context 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。过期时间1小时
-     * @param string $Sort 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
-     * @param boolean $UseNewAnalysis 为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
+     * @var float 执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
+0：自动采样;
+0～1：按指定采样率采样，例如0.02;
+1：不采样，即精确分析
+默认值为1
+     */
+    public $SamplingRate;
+
+    /**
+     * @param string $TopicId 要检索分析的日志主题ID
+     * @param integer $From 要检索分析的日志的起始时间，Unix时间戳（毫秒）
+     * @param integer $To 要检索分析的日志的结束时间，Unix时间戳（毫秒）
+     * @param string $Query 检索分析语句，最大长度为12KB
+语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
+     * @param integer $Limit 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+     * @param string $Context 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+注意：
+* 透传该参数时，请勿修改除该参数外的其它参数
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+     * @param string $Sort 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+注意：
+* 仅当检索分析语句(Query)不包含SQL时有效
+* SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+     * @param boolean $UseNewAnalysis 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
+为false时代表使用老的检索结果返回方式, 输出AnalysisResults和ColNames有效
+两种返回方式在编码格式上有少量区别，建议使用true
+     * @param float $SamplingRate 执行统计分析（Query中包含SQL）时，是否对原始日志先进行采样，再进行统计分析。
+0：自动采样;
+0～1：按指定采样率采样，例如0.02;
+1：不采样，即精确分析
+默认值为1
      */
     function __construct()
     {
@@ -132,6 +208,10 @@ class SearchLogRequest extends AbstractModel
 
         if (array_key_exists("UseNewAnalysis",$param) and $param["UseNewAnalysis"] !== null) {
             $this->UseNewAnalysis = $param["UseNewAnalysis"];
+        }
+
+        if (array_key_exists("SamplingRate",$param) and $param["SamplingRate"] !== null) {
+            $this->SamplingRate = $param["SamplingRate"];
         }
     }
 }

@@ -18,20 +18,20 @@ namespace TencentCloud\Vod\V20180717\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * 智能内容审核任务类型
+ * 音视频审核任务类型
  *
- * @method integer getDefinition() 获取视频内容审核模板 ID。
- * @method void setDefinition(integer $Definition) 设置视频内容审核模板 ID。
+ * @method integer getDefinition() 获取音视频审核模板 ID。
+ * @method void setDefinition(integer $Definition) 设置音视频审核模板 ID。
  */
 class AiContentReviewTaskInput extends AbstractModel
 {
     /**
-     * @var integer 视频内容审核模板 ID。
+     * @var integer 音视频审核模板 ID。
      */
     public $Definition;
 
     /**
-     * @param integer $Definition 视频内容审核模板 ID。
+     * @param integer $Definition 音视频审核模板 ID。
      */
     function __construct()
     {

@@ -38,9 +38,17 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setWorkGroupSet(array $WorkGroupSet) 设置关联的工作组集合
 注意：此字段可能返回 null，表示取不到有效值。
- * @method boolean getIsOwner() 获取是否是管理员账号
+ * @method boolean getIsOwner() 获取是否是主账号
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setIsOwner(boolean $IsOwner) 设置是否是管理员账号
+ * @method void setIsOwner(boolean $IsOwner) 设置是否是主账号
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getUserType() 获取用户类型。ADMIN：管理员 COMMON：普通用户。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setUserType(string $UserType) 设置用户类型。ADMIN：管理员 COMMON：普通用户。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getUserAlias() 获取用户别名
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setUserAlias(string $UserAlias) 设置用户别名
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class UserInfo extends AbstractModel
@@ -79,10 +87,22 @@ class UserInfo extends AbstractModel
     public $WorkGroupSet;
 
     /**
-     * @var boolean 是否是管理员账号
+     * @var boolean 是否是主账号
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $IsOwner;
+
+    /**
+     * @var string 用户类型。ADMIN：管理员 COMMON：普通用户。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $UserType;
+
+    /**
+     * @var string 用户别名
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $UserAlias;
 
     /**
      * @param string $UserId 用户Id，和子用户uin相同
@@ -94,7 +114,11 @@ class UserInfo extends AbstractModel
      * @param string $CreateTime 创建时间，格式如2021-07-28 16:19:32
      * @param array $WorkGroupSet 关联的工作组集合
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param boolean $IsOwner 是否是管理员账号
+     * @param boolean $IsOwner 是否是主账号
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $UserType 用户类型。ADMIN：管理员 COMMON：普通用户。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $UserAlias 用户别名
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -146,6 +170,14 @@ class UserInfo extends AbstractModel
 
         if (array_key_exists("IsOwner",$param) and $param["IsOwner"] !== null) {
             $this->IsOwner = $param["IsOwner"];
+        }
+
+        if (array_key_exists("UserType",$param) and $param["UserType"] !== null) {
+            $this->UserType = $param["UserType"];
+        }
+
+        if (array_key_exists("UserAlias",$param) and $param["UserAlias"] !== null) {
+            $this->UserAlias = $param["UserAlias"];
         }
     }
 }

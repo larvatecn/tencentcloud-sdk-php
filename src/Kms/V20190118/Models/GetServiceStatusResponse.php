@@ -28,9 +28,9 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method integer getUserLevel() 获取0-普通版，1-旗舰版
  * @method void setUserLevel(integer $UserLevel) 设置0-普通版，1-旗舰版
- * @method integer getProExpireTime() 获取旗舰版到期时间
+ * @method integer getProExpireTime() 获取旗舰版到期时间（Epoch Unix Timestamp）。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setProExpireTime(integer $ProExpireTime) 设置旗舰版到期时间
+ * @method void setProExpireTime(integer $ProExpireTime) 设置旗舰版到期时间（Epoch Unix Timestamp）。
 注意：此字段可能返回 null，表示取不到有效值。
  * @method integer getProRenewFlag() 获取旗舰版是否自动续费：0-不自动续费，1-自动续费
 注意：此字段可能返回 null，表示取不到有效值。
@@ -39,6 +39,14 @@ use TencentCloud\Common\AbstractModel;
  * @method string getProResourceId() 获取旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setProResourceId(string $ProResourceId) 设置旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getExclusiveVSMEnabled() 获取是否开通 KMS 托管版
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setExclusiveVSMEnabled(boolean $ExclusiveVSMEnabled) 设置是否开通 KMS 托管版
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getExclusiveHSMEnabled() 获取是否开通 KMS 独享版
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setExclusiveHSMEnabled(boolean $ExclusiveHSMEnabled) 设置是否开通 KMS 独享版
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -62,7 +70,7 @@ class GetServiceStatusResponse extends AbstractModel
     public $UserLevel;
 
     /**
-     * @var integer 旗舰版到期时间
+     * @var integer 旗舰版到期时间（Epoch Unix Timestamp）。
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $ProExpireTime;
@@ -80,6 +88,18 @@ class GetServiceStatusResponse extends AbstractModel
     public $ProResourceId;
 
     /**
+     * @var boolean 是否开通 KMS 托管版
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ExclusiveVSMEnabled;
+
+    /**
+     * @var boolean 是否开通 KMS 独享版
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ExclusiveHSMEnabled;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -89,11 +109,15 @@ class GetServiceStatusResponse extends AbstractModel
      * @param integer $InvalidType 服务不可用类型： 0-未购买，1-正常， 2-欠费停服， 3-资源释放
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $UserLevel 0-普通版，1-旗舰版
-     * @param integer $ProExpireTime 旗舰版到期时间
+     * @param integer $ProExpireTime 旗舰版到期时间（Epoch Unix Timestamp）。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $ProRenewFlag 旗舰版是否自动续费：0-不自动续费，1-自动续费
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $ProResourceId 旗舰版购买记录的唯一性标识。如果为开通旗舰版，则返回值为空
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $ExclusiveVSMEnabled 是否开通 KMS 托管版
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $ExclusiveHSMEnabled 是否开通 KMS 独享版
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
@@ -132,6 +156,14 @@ class GetServiceStatusResponse extends AbstractModel
 
         if (array_key_exists("ProResourceId",$param) and $param["ProResourceId"] !== null) {
             $this->ProResourceId = $param["ProResourceId"];
+        }
+
+        if (array_key_exists("ExclusiveVSMEnabled",$param) and $param["ExclusiveVSMEnabled"] !== null) {
+            $this->ExclusiveVSMEnabled = $param["ExclusiveVSMEnabled"];
+        }
+
+        if (array_key_exists("ExclusiveHSMEnabled",$param) and $param["ExclusiveHSMEnabled"] !== null) {
+            $this->ExclusiveHSMEnabled = $param["ExclusiveHSMEnabled"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

@@ -22,12 +22,12 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getDeviceId() 获取设备唯一标识
  * @method void setDeviceId(string $DeviceId) 设置设备唯一标识
- * @method integer getOffset() 获取偏移量，默认0
- * @method void setOffset(integer $Offset) 设置偏移量，默认0
  * @method integer getLimit() 获取限制量，默认200
  * @method void setLimit(integer $Limit) 设置限制量，默认200
- * @method string getChannelId() 获取通道唯一标识
- * @method void setChannelId(string $ChannelId) 设置通道唯一标识
+ * @method integer getOffset() 获取偏移量，默认0
+ * @method void setOffset(integer $Offset) 设置偏移量，默认0
+ * @method string getChannelId() 获取通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
+ * @method void setChannelId(string $ChannelId) 设置通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
  * @method integer getType() 获取1: 云端录制 2: 本地录制
  * @method void setType(integer $Type) 设置1: 云端录制 2: 本地录制
  */
@@ -39,17 +39,17 @@ class GetRecordDatesByDevRequest extends AbstractModel
     public $DeviceId;
 
     /**
-     * @var integer 偏移量，默认0
-     */
-    public $Offset;
-
-    /**
      * @var integer 限制量，默认200
      */
     public $Limit;
 
     /**
-     * @var string 通道唯一标识
+     * @var integer 偏移量，默认0
+     */
+    public $Offset;
+
+    /**
+     * @var string 通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
      */
     public $ChannelId;
 
@@ -60,9 +60,9 @@ class GetRecordDatesByDevRequest extends AbstractModel
 
     /**
      * @param string $DeviceId 设备唯一标识
-     * @param integer $Offset 偏移量，默认0
      * @param integer $Limit 限制量，默认200
-     * @param string $ChannelId 通道唯一标识
+     * @param integer $Offset 偏移量，默认0
+     * @param string $ChannelId 通道唯一标识，对于NVR设备，多通道IPC设备，设备编码与通道编码不一致的IPC设备，此字段为必填
      * @param integer $Type 1: 云端录制 2: 本地录制
      */
     function __construct()
@@ -82,12 +82,12 @@ class GetRecordDatesByDevRequest extends AbstractModel
             $this->DeviceId = $param["DeviceId"];
         }
 
-        if (array_key_exists("Offset",$param) and $param["Offset"] !== null) {
-            $this->Offset = $param["Offset"];
-        }
-
         if (array_key_exists("Limit",$param) and $param["Limit"] !== null) {
             $this->Limit = $param["Limit"];
+        }
+
+        if (array_key_exists("Offset",$param) and $param["Offset"] !== null) {
+            $this->Offset = $param["Offset"];
         }
 
         if (array_key_exists("ChannelId",$param) and $param["ChannelId"] !== null) {

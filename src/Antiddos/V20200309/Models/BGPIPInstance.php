@@ -92,6 +92,30 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setDomain(string $Domain) 设置建议客户接入的域名，客户可使用域名接入。
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getDamDDoSStatus() 获取是否开启安全加速，是为1，否为0。
+ * @method void setDamDDoSStatus(integer $DamDDoSStatus) 设置是否开启安全加速，是为1，否为0。
+ * @method integer getV6Flag() 获取是否Ipv6版本的IP, 是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setV6Flag(integer $V6Flag) 设置是否Ipv6版本的IP, 是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getBGPIPChannelFlag() 获取是否渠道版高防IP，是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setBGPIPChannelFlag(integer $BGPIPChannelFlag) 设置是否渠道版高防IP，是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getTagInfoList() 获取资源关联标签
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setTagInfoList(array $TagInfoList) 设置资源关联标签
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method AnycastOutPackRelation getAnycastOutPackRelation() 获取资产实例所属的全力防护套餐包详情，
+注意：当资产实例不是全力防护套餐包的实例时，此字段为null
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAnycastOutPackRelation(AnycastOutPackRelation $AnycastOutPackRelation) 设置资产实例所属的全力防护套餐包详情，
+注意：当资产实例不是全力防护套餐包的实例时，此字段为null
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getInstanceVersion() 获取资源实例版本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setInstanceVersion(integer $InstanceVersion) 设置资源实例版本
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class BGPIPInstance extends AbstractModel
 {
@@ -200,6 +224,42 @@ class BGPIPInstance extends AbstractModel
     public $Domain;
 
     /**
+     * @var integer 是否开启安全加速，是为1，否为0。
+     */
+    public $DamDDoSStatus;
+
+    /**
+     * @var integer 是否Ipv6版本的IP, 是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $V6Flag;
+
+    /**
+     * @var integer 是否渠道版高防IP，是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $BGPIPChannelFlag;
+
+    /**
+     * @var array 资源关联标签
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $TagInfoList;
+
+    /**
+     * @var AnycastOutPackRelation 资产实例所属的全力防护套餐包详情，
+注意：当资产实例不是全力防护套餐包的实例时，此字段为null
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AnycastOutPackRelation;
+
+    /**
+     * @var integer 资源实例版本
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $InstanceVersion;
+
+    /**
      * @param InstanceRelation $InstanceDetail 资产实例的详细信息
      * @param BGPIPInstanceSpecification $SpecificationLimit 资产实例的规格信息
      * @param BGPIPInstanceUsages $Usage 资产实例的使用统计信息
@@ -235,6 +295,18 @@ class BGPIPInstance extends AbstractModel
 注意：当资产实例不是高防弹性公网IP实例时，此字段为null
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Domain 建议客户接入的域名，客户可使用域名接入。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $DamDDoSStatus 是否开启安全加速，是为1，否为0。
+     * @param integer $V6Flag 是否Ipv6版本的IP, 是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $BGPIPChannelFlag 是否渠道版高防IP，是为1，否为0
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $TagInfoList 资源关联标签
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param AnycastOutPackRelation $AnycastOutPackRelation 资产实例所属的全力防护套餐包详情，
+注意：当资产实例不是全力防护套餐包的实例时，此字段为null
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $InstanceVersion 资源实例版本
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -324,6 +396,36 @@ class BGPIPInstance extends AbstractModel
 
         if (array_key_exists("Domain",$param) and $param["Domain"] !== null) {
             $this->Domain = $param["Domain"];
+        }
+
+        if (array_key_exists("DamDDoSStatus",$param) and $param["DamDDoSStatus"] !== null) {
+            $this->DamDDoSStatus = $param["DamDDoSStatus"];
+        }
+
+        if (array_key_exists("V6Flag",$param) and $param["V6Flag"] !== null) {
+            $this->V6Flag = $param["V6Flag"];
+        }
+
+        if (array_key_exists("BGPIPChannelFlag",$param) and $param["BGPIPChannelFlag"] !== null) {
+            $this->BGPIPChannelFlag = $param["BGPIPChannelFlag"];
+        }
+
+        if (array_key_exists("TagInfoList",$param) and $param["TagInfoList"] !== null) {
+            $this->TagInfoList = [];
+            foreach ($param["TagInfoList"] as $key => $value){
+                $obj = new TagInfo();
+                $obj->deserialize($value);
+                array_push($this->TagInfoList, $obj);
+            }
+        }
+
+        if (array_key_exists("AnycastOutPackRelation",$param) and $param["AnycastOutPackRelation"] !== null) {
+            $this->AnycastOutPackRelation = new AnycastOutPackRelation();
+            $this->AnycastOutPackRelation->deserialize($param["AnycastOutPackRelation"]);
+        }
+
+        if (array_key_exists("InstanceVersion",$param) and $param["InstanceVersion"] !== null) {
+            $this->InstanceVersion = $param["InstanceVersion"];
         }
     }
 }

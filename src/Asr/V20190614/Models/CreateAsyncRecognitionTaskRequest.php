@@ -30,8 +30,8 @@ use TencentCloud\Common\AbstractModel;
 • 16k_zh_video：16k 音视频领域；
 • 16k_en：16k 英语；
 • 16k_ca：16k 粤语；
- * @method string getUrl() 获取语音流地址，支持rtmp、hls、rtsp等流媒体协议，以及各类基于http协议的直播流
- * @method void setUrl(string $Url) 设置语音流地址，支持rtmp、hls、rtsp等流媒体协议，以及各类基于http协议的直播流
+ * @method string getUrl() 获取语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
+ * @method void setUrl(string $Url) 设置语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
  * @method string getCallbackUrl() 获取支持HTTP和HTTPS协议，用于接收识别结果，您需要自行搭建公网可调用的服务。回调格式&内容详见：[语音流异步识别回调说明](https://cloud.tencent.com/document/product/1093/52633)
  * @method void setCallbackUrl(string $CallbackUrl) 设置支持HTTP和HTTPS协议，用于接收识别结果，您需要自行搭建公网可调用的服务。回调格式&内容详见：[语音流异步识别回调说明](https://cloud.tencent.com/document/product/1093/52633)
  * @method string getSignToken() 获取用于生成回调通知中的签名
@@ -48,6 +48,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setWordInfo(integer $WordInfo) 设置是否显示词级别时间戳。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。默认为0
  * @method string getHotwordId() 获取热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
  * @method void setHotwordId(string $HotwordId) 设置热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
+ * @method boolean getAudioData() 获取回调数据中，是否需要对应音频数据。
+ * @method void setAudioData(boolean $AudioData) 设置回调数据中，是否需要对应音频数据。
  */
 class CreateAsyncRecognitionTaskRequest extends AbstractModel
 {
@@ -61,7 +63,7 @@ class CreateAsyncRecognitionTaskRequest extends AbstractModel
     public $EngineType;
 
     /**
-     * @var string 语音流地址，支持rtmp、hls、rtsp等流媒体协议，以及各类基于http协议的直播流
+     * @var string 语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
      */
     public $Url;
 
@@ -106,12 +108,17 @@ class CreateAsyncRecognitionTaskRequest extends AbstractModel
     public $HotwordId;
 
     /**
+     * @var boolean 回调数据中，是否需要对应音频数据。
+     */
+    public $AudioData;
+
+    /**
      * @param string $EngineType 引擎模型类型。
 • 16k_zh：16k 中文普通话通用；
 • 16k_zh_video：16k 音视频领域；
 • 16k_en：16k 英语；
 • 16k_ca：16k 粤语；
-     * @param string $Url 语音流地址，支持rtmp、hls、rtsp等流媒体协议，以及各类基于http协议的直播流
+     * @param string $Url 语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
      * @param string $CallbackUrl 支持HTTP和HTTPS协议，用于接收识别结果，您需要自行搭建公网可调用的服务。回调格式&内容详见：[语音流异步识别回调说明](https://cloud.tencent.com/document/product/1093/52633)
      * @param string $SignToken 用于生成回调通知中的签名
      * @param integer $FilterDirty 是否过滤脏词（目前支持中文普通话引擎）。0：不过滤脏词；1：过滤脏词；2：将脏词替换为 * 。默认值为 0
@@ -120,6 +127,7 @@ class CreateAsyncRecognitionTaskRequest extends AbstractModel
      * @param integer $ConvertNumMode 是否进行阿拉伯数字智能转换。0：不转换，直接输出中文数字，1：根据场景智能转换为阿拉伯数字。默认值为1
      * @param integer $WordInfo 是否显示词级别时间戳。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。默认为0
      * @param string $HotwordId 热词id。用于调用对应的热词表，如果在调用语音识别服务时，不进行单独的热词id设置，自动生效默认热词；如果进行了单独的热词id设置，那么将生效单独设置的热词id。
+     * @param boolean $AudioData 回调数据中，是否需要对应音频数据。
      */
     function __construct()
     {
@@ -172,6 +180,10 @@ class CreateAsyncRecognitionTaskRequest extends AbstractModel
 
         if (array_key_exists("HotwordId",$param) and $param["HotwordId"] !== null) {
             $this->HotwordId = $param["HotwordId"];
+        }
+
+        if (array_key_exists("AudioData",$param) and $param["AudioData"] !== null) {
+            $this->AudioData = $param["AudioData"];
         }
     }
 }

@@ -22,10 +22,24 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getKeyWord() 获取搜索关键词
  * @method void setKeyWord(string $KeyWord) 设置搜索关键词
- * @method integer getOffset() 获取分页游标
- * @method void setOffset(integer $Offset) 设置分页游标
- * @method integer getLimit() 获取分页页长
- * @method void setLimit(integer $Limit) 设置分页页长
+ * @method integer getOffset() 获取分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+取值范围：Offset + Limit 不超过5000。
+ * @method void setOffset(integer $Offset) 设置分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+取值范围：Offset + Limit 不超过5000。
+ * @method integer getLimit() 获取分页返回的起始偏移量，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+ * @method void setLimit(integer $Limit) 设置分页返回的起始偏移量，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+ * @method SortBy getSort() 获取排序方式。默认按照匹配度排序
+<li> Sort.Field 可选 CreateTime</li>
+<li> Sort.Order 可选 Desc </li>
+<li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+ * @method void setSort(SortBy $Sort) 设置排序方式。默认按照匹配度排序
+<li> Sort.Field 可选 CreateTime</li>
+<li> Sort.Order 可选 Desc </li>
+<li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+ * @method array getTagIds() 获取标签 ID 集合，匹配集合指定所有 ID 。
+<li>数组长度限制：10。</li>
+ * @method void setTagIds(array $TagIds) 设置标签 ID 集合，匹配集合指定所有 ID 。
+<li>数组长度限制：10。</li>
  */
 class SearchKTVMusicsRequest extends AbstractModel
 {
@@ -35,19 +49,41 @@ class SearchKTVMusicsRequest extends AbstractModel
     public $KeyWord;
 
     /**
-     * @var integer 分页游标
+     * @var integer 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+取值范围：Offset + Limit 不超过5000。
      */
     public $Offset;
 
     /**
-     * @var integer 分页页长
+     * @var integer 分页返回的起始偏移量，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
      */
     public $Limit;
 
     /**
+     * @var SortBy 排序方式。默认按照匹配度排序
+<li> Sort.Field 可选 CreateTime</li>
+<li> Sort.Order 可选 Desc </li>
+<li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+     */
+    public $Sort;
+
+    /**
+     * @var array 标签 ID 集合，匹配集合指定所有 ID 。
+<li>数组长度限制：10。</li>
+     */
+    public $TagIds;
+
+    /**
      * @param string $KeyWord 搜索关键词
-     * @param integer $Offset 分页游标
-     * @param integer $Limit 分页页长
+     * @param integer $Offset 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+取值范围：Offset + Limit 不超过5000。
+     * @param integer $Limit 分页返回的起始偏移量，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
+     * @param SortBy $Sort 排序方式。默认按照匹配度排序
+<li> Sort.Field 可选 CreateTime</li>
+<li> Sort.Order 可选 Desc </li>
+<li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+     * @param array $TagIds 标签 ID 集合，匹配集合指定所有 ID 。
+<li>数组长度限制：10。</li>
      */
     function __construct()
     {
@@ -72,6 +108,15 @@ class SearchKTVMusicsRequest extends AbstractModel
 
         if (array_key_exists("Limit",$param) and $param["Limit"] !== null) {
             $this->Limit = $param["Limit"];
+        }
+
+        if (array_key_exists("Sort",$param) and $param["Sort"] !== null) {
+            $this->Sort = new SortBy();
+            $this->Sort->deserialize($param["Sort"]);
+        }
+
+        if (array_key_exists("TagIds",$param) and $param["TagIds"] !== null) {
+            $this->TagIds = $param["TagIds"];
         }
     }
 }

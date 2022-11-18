@@ -40,6 +40,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setClearDnsServer(string $ClearDnsServer) 设置是否清空自定义dns 服务器设置。为1 表示 是。其他表示 否。
  * @method boolean getNeedDeleteCbs() 获取将来删除集群时是否要删除cbs。默认为 FALSE
  * @method void setNeedDeleteCbs(boolean $NeedDeleteCbs) 设置将来删除集群时是否要删除cbs。默认为 FALSE
+ * @method boolean getProxyLB() 获取标记是否是新的内外网。默认为false
+ * @method void setProxyLB(boolean $ProxyLB) 设置标记是否是新的内外网。默认为false
+ * @method string getExtraParam() 获取扩展参数。须是map[string]string 的json 格式。
+ * @method void setExtraParam(string $ExtraParam) 设置扩展参数。须是map[string]string 的json 格式。
  */
 class UpdateEKSClusterRequest extends AbstractModel
 {
@@ -94,6 +98,16 @@ class UpdateEKSClusterRequest extends AbstractModel
     public $NeedDeleteCbs;
 
     /**
+     * @var boolean 标记是否是新的内外网。默认为false
+     */
+    public $ProxyLB;
+
+    /**
+     * @var string 扩展参数。须是map[string]string 的json 格式。
+     */
+    public $ExtraParam;
+
+    /**
      * @param string $ClusterId 弹性集群Id
      * @param string $ClusterName 弹性集群名称
      * @param string $ClusterDesc 弹性集群描述信息
@@ -104,6 +118,8 @@ class UpdateEKSClusterRequest extends AbstractModel
      * @param array $DnsServers 集群自定义的dns 服务器信息
      * @param string $ClearDnsServer 是否清空自定义dns 服务器设置。为1 表示 是。其他表示 否。
      * @param boolean $NeedDeleteCbs 将来删除集群时是否要删除cbs。默认为 FALSE
+     * @param boolean $ProxyLB 标记是否是新的内外网。默认为false
+     * @param string $ExtraParam 扩展参数。须是map[string]string 的json 格式。
      */
     function __construct()
     {
@@ -163,6 +179,14 @@ class UpdateEKSClusterRequest extends AbstractModel
 
         if (array_key_exists("NeedDeleteCbs",$param) and $param["NeedDeleteCbs"] !== null) {
             $this->NeedDeleteCbs = $param["NeedDeleteCbs"];
+        }
+
+        if (array_key_exists("ProxyLB",$param) and $param["ProxyLB"] !== null) {
+            $this->ProxyLB = $param["ProxyLB"];
+        }
+
+        if (array_key_exists("ExtraParam",$param) and $param["ExtraParam"] !== null) {
+            $this->ExtraParam = $param["ExtraParam"];
         }
     }
 }

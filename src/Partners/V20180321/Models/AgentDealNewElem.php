@@ -20,10 +20,10 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 描述代理商代付的订单信息
  *
- * @method string getDealId() 获取订单自增 ID
- * @method void setDealId(string $DealId) 设置订单自增 ID
- * @method string getDealName() 获取订单号
- * @method void setDealName(string $DealName) 设置订单号
+ * @method string getDealId() 获取订单自增 ID【请勿依赖该字段作为唯一标识】
+ * @method void setDealId(string $DealId) 设置订单自增 ID【请勿依赖该字段作为唯一标识】
+ * @method string getDealName() 获取订单号【订单唯一键】
+ * @method void setDealName(string $DealName) 设置订单号【订单唯一键】
  * @method string getGoodsCategoryId() 获取商品类型 ID
  * @method void setGoodsCategoryId(string $GoodsCategoryId) 设置商品类型 ID
  * @method string getOwnerUin() 获取订单所有者
@@ -76,9 +76,9 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setClientRemark(string $ClientRemark) 设置客户备注
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getActionType() 获取订单操作类型，purchase（新购），renew（续费），modify（配置变更）
+ * @method string getActionType() 获取订单操作类型，"purchase":"新购","upgrade":"升配","upConvertExpire":"升配","downgrade":"降配","downConvertExpire":"降配","renew":"续费","refund":"退货","modifyNetworkMode":"调整带宽模式","modifyNetworkSize":"调整带宽大小","preMoveOut":"资源迁出","preMoveIn":"资源迁入","preToPost":"包年包月转按量","modify":"变配","postMoveOut":"资源迁出","postMoveIn":"资源迁入","recoverRefundForward":"调账补偿","recoverPayReserve":"调账补偿","recoverPayForward":"调账扣费","recoverRefundReserve":"调账扣费"
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setActionType(string $ActionType) 设置订单操作类型，purchase（新购），renew（续费），modify（配置变更）
+ * @method void setActionType(string $ActionType) 设置订单操作类型，"purchase":"新购","upgrade":"升配","upConvertExpire":"升配","downgrade":"降配","downConvertExpire":"降配","renew":"续费","refund":"退货","modifyNetworkMode":"调整带宽模式","modifyNetworkSize":"调整带宽大小","preMoveOut":"资源迁出","preMoveIn":"资源迁入","preToPost":"包年包月转按量","modify":"变配","postMoveOut":"资源迁出","postMoveIn":"资源迁入","recoverRefundForward":"调账补偿","recoverPayReserve":"调账补偿","recoverPayForward":"调账扣费","recoverRefundReserve":"调账扣费"
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getVoucherDecline() 获取代金券抵扣金额，单位分
 注意：此字段可能返回 null，表示取不到有效值。
@@ -88,9 +88,9 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setBigDealId(string $BigDealId) 设置大订单号
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getClientType() 获取客户类型（new：新拓；old：存量；assign：指派）
+ * @method string getClientType() 获取客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setClientType(string $ClientType) 设置客户类型（new：新拓；old：存量；assign：指派）
+ * @method void setClientType(string $ClientType) 设置客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getProjectType() 获取项目类型（self：自拓；repeat：直销；platform：官网合作）
 注意：此字段可能返回 null，表示取不到有效值。
@@ -128,12 +128,12 @@ use TencentCloud\Common\AbstractModel;
 class AgentDealNewElem extends AbstractModel
 {
     /**
-     * @var string 订单自增 ID
+     * @var string 订单自增 ID【请勿依赖该字段作为唯一标识】
      */
     public $DealId;
 
     /**
-     * @var string 订单号
+     * @var string 订单号【订单唯一键】
      */
     public $DealName;
 
@@ -220,7 +220,7 @@ class AgentDealNewElem extends AbstractModel
     public $ClientRemark;
 
     /**
-     * @var string 订单操作类型，purchase（新购），renew（续费），modify（配置变更）
+     * @var string 订单操作类型，"purchase":"新购","upgrade":"升配","upConvertExpire":"升配","downgrade":"降配","downConvertExpire":"降配","renew":"续费","refund":"退货","modifyNetworkMode":"调整带宽模式","modifyNetworkSize":"调整带宽大小","preMoveOut":"资源迁出","preMoveIn":"资源迁入","preToPost":"包年包月转按量","modify":"变配","postMoveOut":"资源迁出","postMoveIn":"资源迁入","recoverRefundForward":"调账补偿","recoverPayReserve":"调账补偿","recoverPayForward":"调账扣费","recoverRefundReserve":"调账扣费"
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $ActionType;
@@ -238,7 +238,7 @@ class AgentDealNewElem extends AbstractModel
     public $BigDealId;
 
     /**
-     * @var string 客户类型（new：新拓；old：存量；assign：指派）
+     * @var string 客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $ClientType;
@@ -292,8 +292,8 @@ class AgentDealNewElem extends AbstractModel
     public $UpdateTime;
 
     /**
-     * @param string $DealId 订单自增 ID
-     * @param string $DealName 订单号
+     * @param string $DealId 订单自增 ID【请勿依赖该字段作为唯一标识】
+     * @param string $DealName 订单号【订单唯一键】
      * @param string $GoodsCategoryId 商品类型 ID
      * @param string $OwnerUin 订单所有者
      * @param string $AppId 订单所有者对应 appId
@@ -320,13 +320,13 @@ class AgentDealNewElem extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $ClientRemark 客户备注
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $ActionType 订单操作类型，purchase（新购），renew（续费），modify（配置变更）
+     * @param string $ActionType 订单操作类型，"purchase":"新购","upgrade":"升配","upConvertExpire":"升配","downgrade":"降配","downConvertExpire":"降配","renew":"续费","refund":"退货","modifyNetworkMode":"调整带宽模式","modifyNetworkSize":"调整带宽大小","preMoveOut":"资源迁出","preMoveIn":"资源迁入","preToPost":"包年包月转按量","modify":"变配","postMoveOut":"资源迁出","postMoveIn":"资源迁入","recoverRefundForward":"调账补偿","recoverPayReserve":"调账补偿","recoverPayForward":"调账扣费","recoverRefundReserve":"调账扣费"
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $VoucherDecline 代金券抵扣金额，单位分
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $BigDealId 大订单号
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $ClientType 客户类型（new：新拓；old：存量；assign：指派）
+     * @param string $ClientType 客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $ProjectType 项目类型（self：自拓；repeat：直销；platform：官网合作）
 注意：此字段可能返回 null，表示取不到有效值。

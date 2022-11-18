@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method integer getOffset() 获取偏移量
  * @method void setOffset(integer $Offset) 设置偏移量
- * @method integer getLimit() 获取限制数目
- * @method void setLimit(integer $Limit) 设置限制数目
+ * @method integer getLimit() 获取限制数目 最大100
+ * @method void setLimit(integer $Limit) 设置限制数目 最大100
  * @method string getCreatTimeRangeStart() 获取下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
  * @method void setCreatTimeRangeStart(string $CreatTimeRangeStart) 设置下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
  * @method string getCreatTimeRangeEnd() 获取下单时间范围终止点
@@ -34,8 +34,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setStatus(integer $Status) 设置订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
  * @method array getOwnerUins() 获取下单人账号ID列表
  * @method void setOwnerUins(array $OwnerUins) 设置下单人账号ID列表
- * @method array getDealNames() 获取订单号列表
- * @method void setDealNames(array $DealNames) 设置订单号列表
+ * @method array getDealNames() 获取子订单号列表
+ * @method void setDealNames(array $DealNames) 设置子订单号列表
+ * @method array getBigDealIds() 获取大订单号列表
+ * @method void setBigDealIds(array $BigDealIds) 设置大订单号列表
  */
 class DescribeAgentPayDealsV2Request extends AbstractModel
 {
@@ -45,7 +47,7 @@ class DescribeAgentPayDealsV2Request extends AbstractModel
     public $Offset;
 
     /**
-     * @var integer 限制数目
+     * @var integer 限制数目 最大100
      */
     public $Limit;
 
@@ -75,19 +77,25 @@ class DescribeAgentPayDealsV2Request extends AbstractModel
     public $OwnerUins;
 
     /**
-     * @var array 订单号列表
+     * @var array 子订单号列表
      */
     public $DealNames;
 
     /**
+     * @var array 大订单号列表
+     */
+    public $BigDealIds;
+
+    /**
      * @param integer $Offset 偏移量
-     * @param integer $Limit 限制数目
+     * @param integer $Limit 限制数目 最大100
      * @param string $CreatTimeRangeStart 下单时间范围起始点(不传时会默认查15天内订单，传值时需要传15天内的起始时间)
      * @param string $CreatTimeRangeEnd 下单时间范围终止点
      * @param integer $Order 0:下单时间降序；其他：下单时间升序
      * @param integer $Status 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
      * @param array $OwnerUins 下单人账号ID列表
-     * @param array $DealNames 订单号列表
+     * @param array $DealNames 子订单号列表
+     * @param array $BigDealIds 大订单号列表
      */
     function __construct()
     {
@@ -132,6 +140,10 @@ class DescribeAgentPayDealsV2Request extends AbstractModel
 
         if (array_key_exists("DealNames",$param) and $param["DealNames"] !== null) {
             $this->DealNames = $param["DealNames"];
+        }
+
+        if (array_key_exists("BigDealIds",$param) and $param["BigDealIds"] !== null) {
+            $this->BigDealIds = $param["BigDealIds"];
         }
     }
 }

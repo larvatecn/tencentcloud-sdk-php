@@ -20,12 +20,12 @@ use TencentCloud\Common\AbstractModel;
 /**
  * UnifiedTlinxOrder返回参数结构体
  *
- * @method string getErrCode() 获取业务系统返回码
- * @method void setErrCode(string $ErrCode) 设置业务系统返回码
  * @method string getErrMessage() 获取业务系统返回消息
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setErrMessage(string $ErrMessage) 设置业务系统返回消息
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getErrCode() 获取业务系统返回码，0表示成功，其他表示失败。
+ * @method void setErrCode(string $ErrCode) 设置业务系统返回码，0表示成功，其他表示失败。
  * @method PayOrderResult getResult() 获取统一下单响应对象
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setResult(PayOrderResult $Result) 设置统一下单响应对象
@@ -36,15 +36,15 @@ use TencentCloud\Common\AbstractModel;
 class UnifiedTlinxOrderResponse extends AbstractModel
 {
     /**
-     * @var string 业务系统返回码
-     */
-    public $ErrCode;
-
-    /**
      * @var string 业务系统返回消息
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $ErrMessage;
+
+    /**
+     * @var string 业务系统返回码，0表示成功，其他表示失败。
+     */
+    public $ErrCode;
 
     /**
      * @var PayOrderResult 统一下单响应对象
@@ -58,9 +58,9 @@ class UnifiedTlinxOrderResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param string $ErrCode 业务系统返回码
      * @param string $ErrMessage 业务系统返回消息
 注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ErrCode 业务系统返回码，0表示成功，其他表示失败。
      * @param PayOrderResult $Result 统一下单响应对象
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -78,12 +78,12 @@ class UnifiedTlinxOrderResponse extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("ErrCode",$param) and $param["ErrCode"] !== null) {
-            $this->ErrCode = $param["ErrCode"];
-        }
-
         if (array_key_exists("ErrMessage",$param) and $param["ErrMessage"] !== null) {
             $this->ErrMessage = $param["ErrMessage"];
+        }
+
+        if (array_key_exists("ErrCode",$param) and $param["ErrCode"] !== null) {
+            $this->ErrCode = $param["ErrCode"];
         }
 
         if (array_key_exists("Result",$param) and $param["Result"] !== null) {

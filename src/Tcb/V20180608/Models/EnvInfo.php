@@ -94,6 +94,18 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setCustomLogServices(array $CustomLogServices) 设置自定义日志服务
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getEnvType() 获取环境类型：baas, run, hoting, weda
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setEnvType(string $EnvType) 设置环境类型：baas, run, hoting, weda
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getIsDauPackage() 获取是否是dau新套餐
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setIsDauPackage(boolean $IsDauPackage) 设置是否是dau新套餐
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getPackageType() 获取套餐类型:空\baas\tcbr
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPackageType(string $PackageType) 设置套餐类型:空\baas\tcbr
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class EnvInfo extends AbstractModel
 {
@@ -215,6 +227,24 @@ class EnvInfo extends AbstractModel
     public $CustomLogServices;
 
     /**
+     * @var string 环境类型：baas, run, hoting, weda
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $EnvType;
+
+    /**
+     * @var boolean 是否是dau新套餐
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $IsDauPackage;
+
+    /**
+     * @var string 套餐类型:空\baas\tcbr
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PackageType;
+
+    /**
      * @param string $EnvId 账户下该环境唯一标识
      * @param string $Source 环境来源。包含以下取值：
 <li>miniapp：微信小程序</li>
@@ -251,6 +281,12 @@ class EnvInfo extends AbstractModel
      * @param array $Tags 环境标签列表
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $CustomLogServices 自定义日志服务
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $EnvType 环境类型：baas, run, hoting, weda
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $IsDauPackage 是否是dau新套餐
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $PackageType 套餐类型:空\baas\tcbr
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -379,6 +415,18 @@ class EnvInfo extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->CustomLogServices, $obj);
             }
+        }
+
+        if (array_key_exists("EnvType",$param) and $param["EnvType"] !== null) {
+            $this->EnvType = $param["EnvType"];
+        }
+
+        if (array_key_exists("IsDauPackage",$param) and $param["IsDauPackage"] !== null) {
+            $this->IsDauPackage = $param["IsDauPackage"];
+        }
+
+        if (array_key_exists("PackageType",$param) and $param["PackageType"] !== null) {
+            $this->PackageType = $param["PackageType"];
         }
     }
 }

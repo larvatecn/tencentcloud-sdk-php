@@ -42,8 +42,8 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setTagSpecification(array $TagSpecification) 设置标签描述列表。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getClusterStatus() 获取集群状态 (Running 运行中  Creating 创建中 Abnormal 异常  )
- * @method void setClusterStatus(string $ClusterStatus) 设置集群状态 (Running 运行中  Creating 创建中 Abnormal 异常  )
+ * @method string getClusterStatus() 获取集群状态 (Running 运行中  Creating 创建中 Idling 闲置中  Abnormal 异常  )
+ * @method void setClusterStatus(string $ClusterStatus) 设置集群状态 (Running 运行中  Creating 创建中 Idling 闲置中  Abnormal 异常  )
  * @method string getProperty() 获取集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setProperty(string $Property) 设置集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))
@@ -73,6 +73,22 @@ use TencentCloud\Common\AbstractModel;
  * @method boolean getEnableExternalNode() 获取集群是否开启第三方节点支持
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setEnableExternalNode(boolean $EnableExternalNode) 设置集群是否开启第三方节点支持
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getClusterLevel() 获取集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setClusterLevel(string $ClusterLevel) 设置集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getAutoUpgradeClusterLevel() 获取自动变配集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAutoUpgradeClusterLevel(boolean $AutoUpgradeClusterLevel) 设置自动变配集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getQGPUShareEnable() 获取是否开启QGPU共享
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setQGPUShareEnable(boolean $QGPUShareEnable) 设置是否开启QGPU共享
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getRuntimeVersion() 获取运行时版本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRuntimeVersion(string $RuntimeVersion) 设置运行时版本
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class Cluster extends AbstractModel
@@ -129,7 +145,7 @@ class Cluster extends AbstractModel
     public $TagSpecification;
 
     /**
-     * @var string 集群状态 (Running 运行中  Creating 创建中 Abnormal 异常  )
+     * @var string 集群状态 (Running 运行中  Creating 创建中 Idling 闲置中  Abnormal 异常  )
      */
     public $ClusterStatus;
 
@@ -181,6 +197,30 @@ class Cluster extends AbstractModel
     public $EnableExternalNode;
 
     /**
+     * @var string 集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ClusterLevel;
+
+    /**
+     * @var boolean 自动变配集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AutoUpgradeClusterLevel;
+
+    /**
+     * @var boolean 是否开启QGPU共享
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $QGPUShareEnable;
+
+    /**
+     * @var string 运行时版本
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RuntimeVersion;
+
+    /**
      * @param string $ClusterId 集群ID
      * @param string $ClusterName 集群名称
      * @param string $ClusterDescription 集群描述
@@ -192,7 +232,7 @@ class Cluster extends AbstractModel
      * @param integer $ProjectId 集群所属的项目ID
      * @param array $TagSpecification 标签描述列表。
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $ClusterStatus 集群状态 (Running 运行中  Creating 创建中 Abnormal 异常  )
+     * @param string $ClusterStatus 集群状态 (Running 运行中  Creating 创建中 Idling 闲置中  Abnormal 异常  )
      * @param string $Property 集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $ClusterMaterNodeNum 集群当前master数量
@@ -207,6 +247,14 @@ class Cluster extends AbstractModel
      * @param boolean $DeletionProtection 删除保护开关
 注意：此字段可能返回 null，表示取不到有效值。
      * @param boolean $EnableExternalNode 集群是否开启第三方节点支持
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ClusterLevel 集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $AutoUpgradeClusterLevel 自动变配集群等级，针对托管集群生效
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $QGPUShareEnable 是否开启QGPU共享
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $RuntimeVersion 运行时版本
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -302,6 +350,22 @@ class Cluster extends AbstractModel
 
         if (array_key_exists("EnableExternalNode",$param) and $param["EnableExternalNode"] !== null) {
             $this->EnableExternalNode = $param["EnableExternalNode"];
+        }
+
+        if (array_key_exists("ClusterLevel",$param) and $param["ClusterLevel"] !== null) {
+            $this->ClusterLevel = $param["ClusterLevel"];
+        }
+
+        if (array_key_exists("AutoUpgradeClusterLevel",$param) and $param["AutoUpgradeClusterLevel"] !== null) {
+            $this->AutoUpgradeClusterLevel = $param["AutoUpgradeClusterLevel"];
+        }
+
+        if (array_key_exists("QGPUShareEnable",$param) and $param["QGPUShareEnable"] !== null) {
+            $this->QGPUShareEnable = $param["QGPUShareEnable"];
+        }
+
+        if (array_key_exists("RuntimeVersion",$param) and $param["RuntimeVersion"] !== null) {
+            $this->RuntimeVersion = $param["RuntimeVersion"];
         }
     }
 }

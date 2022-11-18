@@ -42,14 +42,18 @@ online：已启动
 offline：已关闭
  * @method integer getProjectId() 获取项目 ID，可前往腾讯云项目管理页面查看
  * @method void setProjectId(integer $ProjectId) 设置项目 ID，可前往腾讯云项目管理页面查看
- * @method string getServiceType() 获取域名业务类型
-web：静态加速
-download：下载加速
-media：流媒体点播加速
- * @method void setServiceType(string $ServiceType) 设置域名业务类型
-web：静态加速
-download：下载加速
-media：流媒体点播加速
+ * @method string getServiceType() 获取加速域名业务类型
+web：网页小文件
+download：下载大文件
+media：音视频点播
+hybrid:  动静加速
+dynamic:  动态加速
+ * @method void setServiceType(string $ServiceType) 设置加速域名业务类型
+web：网页小文件
+download：下载大文件
+media：音视频点播
+hybrid:  动静加速
+dynamic:  动态加速
  * @method string getCreateTime() 获取域名创建时间
  * @method void setCreateTime(string $CreateTime) 设置域名创建时间
  * @method string getUpdateTime() 获取域名更新时间
@@ -84,9 +88,9 @@ media：流媒体点播加速
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setFollowRedirect(FollowRedirect $FollowRedirect) 设置301/302 回源自动跟随配置
 注意：此字段可能返回 null，表示取不到有效值。
- * @method ErrorPage getErrorPage() 获取自定义错误页面配置（功能灰度中，敬请期待）
+ * @method ErrorPage getErrorPage() 获取自定义错误页面配置
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setErrorPage(ErrorPage $ErrorPage) 设置自定义错误页面配置（功能灰度中，敬请期待）
+ * @method void setErrorPage(ErrorPage $ErrorPage) 设置自定义错误页面配置
 注意：此字段可能返回 null，表示取不到有效值。
  * @method RequestHeader getRequestHeader() 获取自定义请求头部配置
 注意：此字段可能返回 null，表示取不到有效值。
@@ -254,17 +258,17 @@ off：不支持
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setIpv6Access(Ipv6Access $Ipv6Access) 设置Ipv6访问配置
 注意：此字段可能返回 null，表示取不到有效值。
- * @method array getAdvanceSet() 获取高级配置集合。
+ * @method array getAdvanceSet() 获取高级配置集合
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setAdvanceSet(array $AdvanceSet) 设置高级配置集合。
+ * @method void setAdvanceSet(array $AdvanceSet) 设置高级配置集合
 注意：此字段可能返回 null，表示取不到有效值。
- * @method OfflineCache getOfflineCache() 获取离线缓存
+ * @method OfflineCache getOfflineCache() 获取离线缓存（功能灰度中，尚未全量，请等待后续全量发布）
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setOfflineCache(OfflineCache $OfflineCache) 设置离线缓存
+ * @method void setOfflineCache(OfflineCache $OfflineCache) 设置离线缓存（功能灰度中，尚未全量，请等待后续全量发布）
 注意：此字段可能返回 null，表示取不到有效值。
- * @method OriginCombine getOriginCombine() 获取合并回源
+ * @method OriginCombine getOriginCombine() 获取合并回源（白名单功能）
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setOriginCombine(OriginCombine $OriginCombine) 设置合并回源
+ * @method void setOriginCombine(OriginCombine $OriginCombine) 设置合并回源（白名单功能）
 注意：此字段可能返回 null，表示取不到有效值。
  * @method PostSize getPostMaxSize() 获取POST上传配置项
 注意：此字段可能返回 null，表示取不到有效值。
@@ -281,6 +285,30 @@ off：不支持
  * @method WebSocket getWebSocket() 获取WebSocket配置
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setWebSocket(WebSocket $WebSocket) 设置WebSocket配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method RemoteAuthentication getRemoteAuthentication() 获取远程鉴权配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRemoteAuthentication(RemoteAuthentication $RemoteAuthentication) 设置远程鉴权配置
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method ShareCname getShareCname() 获取共享CNAME配置（白名单功能）
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setShareCname(ShareCname $ShareCname) 设置共享CNAME配置（白名单功能）
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method RuleEngine getRuleEngine() 获取规则引擎
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRuleEngine(RuleEngine $RuleEngine) 设置规则引擎
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getParentHost() 获取主域名
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setParentHost(string $ParentHost) 设置主域名
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method HwPrivateAccess getHwPrivateAccess() 获取华为云对象存储回源鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setHwPrivateAccess(HwPrivateAccess $HwPrivateAccess) 设置华为云对象存储回源鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method QnPrivateAccess getQnPrivateAccess() 获取七牛云对象存储回源鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setQnPrivateAccess(QnPrivateAccess $QnPrivateAccess) 设置七牛云对象存储回源鉴权
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class DetailDomain extends AbstractModel
@@ -321,10 +349,12 @@ offline：已关闭
     public $ProjectId;
 
     /**
-     * @var string 域名业务类型
-web：静态加速
-download：下载加速
-media：流媒体点播加速
+     * @var string 加速域名业务类型
+web：网页小文件
+download：下载大文件
+media：音视频点播
+hybrid:  动静加速
+dynamic:  动态加速
      */
     public $ServiceType;
 
@@ -386,7 +416,7 @@ media：流媒体点播加速
     public $FollowRedirect;
 
     /**
-     * @var ErrorPage 自定义错误页面配置（功能灰度中，敬请期待）
+     * @var ErrorPage 自定义错误页面配置
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $ErrorPage;
@@ -607,19 +637,19 @@ off：不支持
     public $Ipv6Access;
 
     /**
-     * @var array 高级配置集合。
+     * @var array 高级配置集合
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $AdvanceSet;
 
     /**
-     * @var OfflineCache 离线缓存
+     * @var OfflineCache 离线缓存（功能灰度中，尚未全量，请等待后续全量发布）
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $OfflineCache;
 
     /**
-     * @var OriginCombine 合并回源
+     * @var OriginCombine 合并回源（白名单功能）
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $OriginCombine;
@@ -649,6 +679,42 @@ off：不支持
     public $WebSocket;
 
     /**
+     * @var RemoteAuthentication 远程鉴权配置
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RemoteAuthentication;
+
+    /**
+     * @var ShareCname 共享CNAME配置（白名单功能）
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ShareCname;
+
+    /**
+     * @var RuleEngine 规则引擎
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RuleEngine;
+
+    /**
+     * @var string 主域名
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ParentHost;
+
+    /**
+     * @var HwPrivateAccess 华为云对象存储回源鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $HwPrivateAccess;
+
+    /**
+     * @var QnPrivateAccess 七牛云对象存储回源鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $QnPrivateAccess;
+
+    /**
      * @param string $ResourceId 域名 ID
      * @param integer $AppId 腾讯云账号ID
      * @param string $Domain 加速域名
@@ -660,10 +726,12 @@ processing：部署中
 online：已启动
 offline：已关闭
      * @param integer $ProjectId 项目 ID，可前往腾讯云项目管理页面查看
-     * @param string $ServiceType 域名业务类型
-web：静态加速
-download：下载加速
-media：流媒体点播加速
+     * @param string $ServiceType 加速域名业务类型
+web：网页小文件
+download：下载大文件
+media：音视频点播
+hybrid:  动静加速
+dynamic:  动态加速
      * @param string $CreateTime 域名创建时间
      * @param string $UpdateTime 域名更新时间
      * @param Origin $Origin 源站配置
@@ -681,7 +749,7 @@ media：流媒体点播加速
 注意：此字段可能返回 null，表示取不到有效值。
      * @param FollowRedirect $FollowRedirect 301/302 回源自动跟随配置
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param ErrorPage $ErrorPage 自定义错误页面配置（功能灰度中，敬请期待）
+     * @param ErrorPage $ErrorPage 自定义错误页面配置
 注意：此字段可能返回 null，表示取不到有效值。
      * @param RequestHeader $RequestHeader 自定义请求头部配置
 注意：此字段可能返回 null，表示取不到有效值。
@@ -766,11 +834,11 @@ off：不支持
 注意：此字段可能返回 null，表示取不到有效值。
      * @param Ipv6Access $Ipv6Access Ipv6访问配置
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param array $AdvanceSet 高级配置集合。
+     * @param array $AdvanceSet 高级配置集合
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param OfflineCache $OfflineCache 离线缓存
+     * @param OfflineCache $OfflineCache 离线缓存（功能灰度中，尚未全量，请等待后续全量发布）
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param OriginCombine $OriginCombine 合并回源
+     * @param OriginCombine $OriginCombine 合并回源（白名单功能）
 注意：此字段可能返回 null，表示取不到有效值。
      * @param PostSize $PostMaxSize POST上传配置项
 注意：此字段可能返回 null，表示取不到有效值。
@@ -779,6 +847,18 @@ off：不支持
      * @param OssPrivateAccess $OssPrivateAccess 回源OSS私有鉴权
 注意：此字段可能返回 null，表示取不到有效值。
      * @param WebSocket $WebSocket WebSocket配置
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param RemoteAuthentication $RemoteAuthentication 远程鉴权配置
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param ShareCname $ShareCname 共享CNAME配置（白名单功能）
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param RuleEngine $RuleEngine 规则引擎
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ParentHost 主域名
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param HwPrivateAccess $HwPrivateAccess 华为云对象存储回源鉴权
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param QnPrivateAccess $QnPrivateAccess 七牛云对象存储回源鉴权
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -1076,6 +1156,35 @@ off：不支持
         if (array_key_exists("WebSocket",$param) and $param["WebSocket"] !== null) {
             $this->WebSocket = new WebSocket();
             $this->WebSocket->deserialize($param["WebSocket"]);
+        }
+
+        if (array_key_exists("RemoteAuthentication",$param) and $param["RemoteAuthentication"] !== null) {
+            $this->RemoteAuthentication = new RemoteAuthentication();
+            $this->RemoteAuthentication->deserialize($param["RemoteAuthentication"]);
+        }
+
+        if (array_key_exists("ShareCname",$param) and $param["ShareCname"] !== null) {
+            $this->ShareCname = new ShareCname();
+            $this->ShareCname->deserialize($param["ShareCname"]);
+        }
+
+        if (array_key_exists("RuleEngine",$param) and $param["RuleEngine"] !== null) {
+            $this->RuleEngine = new RuleEngine();
+            $this->RuleEngine->deserialize($param["RuleEngine"]);
+        }
+
+        if (array_key_exists("ParentHost",$param) and $param["ParentHost"] !== null) {
+            $this->ParentHost = $param["ParentHost"];
+        }
+
+        if (array_key_exists("HwPrivateAccess",$param) and $param["HwPrivateAccess"] !== null) {
+            $this->HwPrivateAccess = new HwPrivateAccess();
+            $this->HwPrivateAccess->deserialize($param["HwPrivateAccess"]);
+        }
+
+        if (array_key_exists("QnPrivateAccess",$param) and $param["QnPrivateAccess"] !== null) {
+            $this->QnPrivateAccess = new QnPrivateAccess();
+            $this->QnPrivateAccess->deserialize($param["QnPrivateAccess"]);
         }
     }
 }

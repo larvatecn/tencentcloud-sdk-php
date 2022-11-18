@@ -20,10 +20,10 @@ use TencentCloud\Common\AbstractModel;
 /**
  * RefundTlinxOrder请求参数结构体
  *
- * @method string getOpenId() 获取收单系统分配的开放ID
- * @method void setOpenId(string $OpenId) 设置收单系统分配的开放ID
- * @method string getOpenKey() 获取收单系统分配的密钥
- * @method void setOpenKey(string $OpenKey) 设置收单系统分配的密钥
+ * @method string getOpenId() 获取使用门店OpenId
+ * @method void setOpenId(string $OpenId) 设置使用门店OpenId
+ * @method string getOpenKey() 获取使用门店OpenKey
+ * @method void setOpenKey(string $OpenKey) 设置使用门店OpenKey
  * @method string getDeveloperNo() 获取原始订单的开发者交易流水号
  * @method void setDeveloperNo(string $DeveloperNo) 设置原始订单的开发者交易流水号
  * @method string getRefundOutNo() 获取新退款订单的开发者流水号，同一门店内唯一
@@ -32,8 +32,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setRefundOrderName(string $RefundOrderName) 设置退款订单名称，可以为空
  * @method string getRefundAmount() 获取退款金额（以分为单位，没有小数点）
  * @method void setRefundAmount(string $RefundAmount) 设置退款金额（以分为单位，没有小数点）
- * @method string getShopPassword() 获取主管密码，对密码进行sha1加密，默认为123456
- * @method void setShopPassword(string $ShopPassword) 设置主管密码，对密码进行sha1加密，默认为123456
+ * @method string getShopPassword() 获取主管密码，对密码进行SHA-1加密，默认为123456
+ * @method void setShopPassword(string $ShopPassword) 设置主管密码，对密码进行SHA-1加密，默认为123456
  * @method string getRemark() 获取退款备注
  * @method void setRemark(string $Remark) 设置退款备注
  * @method string getProfile() 获取沙箱环境填sandbox，正式环境不填
@@ -42,12 +42,12 @@ use TencentCloud\Common\AbstractModel;
 class RefundTlinxOrderRequest extends AbstractModel
 {
     /**
-     * @var string 收单系统分配的开放ID
+     * @var string 使用门店OpenId
      */
     public $OpenId;
 
     /**
-     * @var string 收单系统分配的密钥
+     * @var string 使用门店OpenKey
      */
     public $OpenKey;
 
@@ -72,7 +72,7 @@ class RefundTlinxOrderRequest extends AbstractModel
     public $RefundAmount;
 
     /**
-     * @var string 主管密码，对密码进行sha1加密，默认为123456
+     * @var string 主管密码，对密码进行SHA-1加密，默认为123456
      */
     public $ShopPassword;
 
@@ -87,13 +87,13 @@ class RefundTlinxOrderRequest extends AbstractModel
     public $Profile;
 
     /**
-     * @param string $OpenId 收单系统分配的开放ID
-     * @param string $OpenKey 收单系统分配的密钥
+     * @param string $OpenId 使用门店OpenId
+     * @param string $OpenKey 使用门店OpenKey
      * @param string $DeveloperNo 原始订单的开发者交易流水号
      * @param string $RefundOutNo 新退款订单的开发者流水号，同一门店内唯一
      * @param string $RefundOrderName 退款订单名称，可以为空
      * @param string $RefundAmount 退款金额（以分为单位，没有小数点）
-     * @param string $ShopPassword 主管密码，对密码进行sha1加密，默认为123456
+     * @param string $ShopPassword 主管密码，对密码进行SHA-1加密，默认为123456
      * @param string $Remark 退款备注
      * @param string $Profile 沙箱环境填sandbox，正式环境不填
      */

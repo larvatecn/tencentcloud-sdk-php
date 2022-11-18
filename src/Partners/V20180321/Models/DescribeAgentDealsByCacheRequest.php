@@ -22,20 +22,22 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method integer getOffset() 获取偏移量
  * @method void setOffset(integer $Offset) 设置偏移量
- * @method integer getLimit() 获取限制数目
- * @method void setLimit(integer $Limit) 设置限制数目
- * @method string getCreatTimeRangeStart() 获取下单时间范围起始点
- * @method void setCreatTimeRangeStart(string $CreatTimeRangeStart) 设置下单时间范围起始点
- * @method string getCreatTimeRangeEnd() 获取下单时间范围终止点
- * @method void setCreatTimeRangeEnd(string $CreatTimeRangeEnd) 设置下单时间范围终止点
+ * @method integer getLimit() 获取限制数目 最大200
+ * @method void setLimit(integer $Limit) 设置限制数目 最大200
+ * @method string getCreatTimeRangeStart() 获取下单时间范围起始点【请保持时间范围最大90天】
+ * @method void setCreatTimeRangeStart(string $CreatTimeRangeStart) 设置下单时间范围起始点【请保持时间范围最大90天】
+ * @method string getCreatTimeRangeEnd() 获取下单时间范围终止点【请保持时间范围最大90天】
+ * @method void setCreatTimeRangeEnd(string $CreatTimeRangeEnd) 设置下单时间范围终止点【请保持时间范围最大90天】
  * @method integer getOrder() 获取0:下单时间降序；其他：下单时间升序
  * @method void setOrder(integer $Order) 设置0:下单时间降序；其他：下单时间升序
  * @method integer getStatus() 获取订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
  * @method void setStatus(integer $Status) 设置订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
  * @method array getOwnerUins() 获取下单人账号ID列表
  * @method void setOwnerUins(array $OwnerUins) 设置下单人账号ID列表
- * @method array getDealNames() 获取订单号列表
- * @method void setDealNames(array $DealNames) 设置订单号列表
+ * @method array getDealNames() 获取子订单号列表
+ * @method void setDealNames(array $DealNames) 设置子订单号列表
+ * @method array getBigDealIds() 获取大订单号列表
+ * @method void setBigDealIds(array $BigDealIds) 设置大订单号列表
  * @method integer getPayerMode() 获取支付方式，0：自付；1：代付
  * @method void setPayerMode(integer $PayerMode) 设置支付方式，0：自付；1：代付
  */
@@ -47,17 +49,17 @@ class DescribeAgentDealsByCacheRequest extends AbstractModel
     public $Offset;
 
     /**
-     * @var integer 限制数目
+     * @var integer 限制数目 最大200
      */
     public $Limit;
 
     /**
-     * @var string 下单时间范围起始点
+     * @var string 下单时间范围起始点【请保持时间范围最大90天】
      */
     public $CreatTimeRangeStart;
 
     /**
-     * @var string 下单时间范围终止点
+     * @var string 下单时间范围终止点【请保持时间范围最大90天】
      */
     public $CreatTimeRangeEnd;
 
@@ -77,9 +79,14 @@ class DescribeAgentDealsByCacheRequest extends AbstractModel
     public $OwnerUins;
 
     /**
-     * @var array 订单号列表
+     * @var array 子订单号列表
      */
     public $DealNames;
+
+    /**
+     * @var array 大订单号列表
+     */
+    public $BigDealIds;
 
     /**
      * @var integer 支付方式，0：自付；1：代付
@@ -88,13 +95,14 @@ class DescribeAgentDealsByCacheRequest extends AbstractModel
 
     /**
      * @param integer $Offset 偏移量
-     * @param integer $Limit 限制数目
-     * @param string $CreatTimeRangeStart 下单时间范围起始点
-     * @param string $CreatTimeRangeEnd 下单时间范围终止点
+     * @param integer $Limit 限制数目 最大200
+     * @param string $CreatTimeRangeStart 下单时间范围起始点【请保持时间范围最大90天】
+     * @param string $CreatTimeRangeEnd 下单时间范围终止点【请保持时间范围最大90天】
      * @param integer $Order 0:下单时间降序；其他：下单时间升序
      * @param integer $Status 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
      * @param array $OwnerUins 下单人账号ID列表
-     * @param array $DealNames 订单号列表
+     * @param array $DealNames 子订单号列表
+     * @param array $BigDealIds 大订单号列表
      * @param integer $PayerMode 支付方式，0：自付；1：代付
      */
     function __construct()
@@ -140,6 +148,10 @@ class DescribeAgentDealsByCacheRequest extends AbstractModel
 
         if (array_key_exists("DealNames",$param) and $param["DealNames"] !== null) {
             $this->DealNames = $param["DealNames"];
+        }
+
+        if (array_key_exists("BigDealIds",$param) and $param["BigDealIds"] !== null) {
+            $this->BigDealIds = $param["BigDealIds"];
         }
 
         if (array_key_exists("PayerMode",$param) and $param["PayerMode"] !== null) {

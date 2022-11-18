@@ -22,8 +22,8 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method integer getOffset() 获取分页偏移量，从0开始。
  * @method void setOffset(integer $Offset) 设置分页偏移量，从0开始。
- * @method integer getLimit() 获取每页数量，默认20。
- * @method void setLimit(integer $Limit) 设置每页数量，默认20。
+ * @method integer getLimit() 获取每页数量，默认20。最大1000
+ * @method void setLimit(integer $Limit) 设置每页数量，默认20。最大1000
  * @method string getSearchKey() 获取搜索关键词，可搜索证书 ID、备注名称、域名。例如： a8xHcaIs。
  * @method void setSearchKey(string $SearchKey) 设置搜索关键词，可搜索证书 ID、备注名称、域名。例如： a8xHcaIs。
  * @method string getCertificateType() 获取证书类型：CA = 客户端证书，SVR = 服务器证书。
@@ -32,14 +32,20 @@ use TencentCloud\Common\AbstractModel;
  * @method void setProjectId(integer $ProjectId) 设置项目 ID。
  * @method string getExpirationSort() 获取按到期时间排序：DESC = 降序， ASC = 升序。
  * @method void setExpirationSort(string $ExpirationSort) 设置按到期时间排序：DESC = 降序， ASC = 升序。
- * @method array getCertificateStatus() 获取证书状态。
- * @method void setCertificateStatus(array $CertificateStatus) 设置证书状态。
+ * @method array getCertificateStatus() 获取证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
+ * @method void setCertificateStatus(array $CertificateStatus) 设置证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
  * @method integer getDeployable() 获取是否可部署，可选值：1 = 可部署，0 =  不可部署。
  * @method void setDeployable(integer $Deployable) 设置是否可部署，可选值：1 = 可部署，0 =  不可部署。
  * @method integer getUpload() 获取是否筛选上传托管的 1筛选，0不筛选
  * @method void setUpload(integer $Upload) 设置是否筛选上传托管的 1筛选，0不筛选
  * @method integer getRenew() 获取是否筛选可续期证书 1筛选 0不筛选
  * @method void setRenew(integer $Renew) 设置是否筛选可续期证书 1筛选 0不筛选
+ * @method string getFilterSource() 获取筛选来源， upload：上传证书， buy：腾讯云证书， 不传默认全部
+ * @method void setFilterSource(string $FilterSource) 设置筛选来源， upload：上传证书， buy：腾讯云证书， 不传默认全部
+ * @method integer getIsSM() 获取是否筛选国密证书。1:筛选  0:不筛选
+ * @method void setIsSM(integer $IsSM) 设置是否筛选国密证书。1:筛选  0:不筛选
+ * @method integer getFilterExpiring() 获取筛选证书是否即将过期，传1是筛选，0不筛选
+ * @method void setFilterExpiring(integer $FilterExpiring) 设置筛选证书是否即将过期，传1是筛选，0不筛选
  */
 class DescribeCertificatesRequest extends AbstractModel
 {
@@ -49,7 +55,7 @@ class DescribeCertificatesRequest extends AbstractModel
     public $Offset;
 
     /**
-     * @var integer 每页数量，默认20。
+     * @var integer 每页数量，默认20。最大1000
      */
     public $Limit;
 
@@ -74,7 +80,7 @@ class DescribeCertificatesRequest extends AbstractModel
     public $ExpirationSort;
 
     /**
-     * @var array 证书状态。
+     * @var array 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
      */
     public $CertificateStatus;
 
@@ -94,16 +100,34 @@ class DescribeCertificatesRequest extends AbstractModel
     public $Renew;
 
     /**
+     * @var string 筛选来源， upload：上传证书， buy：腾讯云证书， 不传默认全部
+     */
+    public $FilterSource;
+
+    /**
+     * @var integer 是否筛选国密证书。1:筛选  0:不筛选
+     */
+    public $IsSM;
+
+    /**
+     * @var integer 筛选证书是否即将过期，传1是筛选，0不筛选
+     */
+    public $FilterExpiring;
+
+    /**
      * @param integer $Offset 分页偏移量，从0开始。
-     * @param integer $Limit 每页数量，默认20。
+     * @param integer $Limit 每页数量，默认20。最大1000
      * @param string $SearchKey 搜索关键词，可搜索证书 ID、备注名称、域名。例如： a8xHcaIs。
      * @param string $CertificateType 证书类型：CA = 客户端证书，SVR = 服务器证书。
      * @param integer $ProjectId 项目 ID。
      * @param string $ExpirationSort 按到期时间排序：DESC = 降序， ASC = 升序。
-     * @param array $CertificateStatus 证书状态。
+     * @param array $CertificateStatus 证书状态：0 = 审核中，1 = 已通过，2 = 审核失败，3 = 已过期，4 = 已添加DNS记录，5 = 企业证书，待提交，6 = 订单取消中，7 = 已取消，8 = 已提交资料， 待上传确认函，9 = 证书吊销中，10 = 已吊销，11 = 重颁发中，12 = 待上传吊销确认函，13 = 免费证书待提交资料。
      * @param integer $Deployable 是否可部署，可选值：1 = 可部署，0 =  不可部署。
      * @param integer $Upload 是否筛选上传托管的 1筛选，0不筛选
      * @param integer $Renew 是否筛选可续期证书 1筛选 0不筛选
+     * @param string $FilterSource 筛选来源， upload：上传证书， buy：腾讯云证书， 不传默认全部
+     * @param integer $IsSM 是否筛选国密证书。1:筛选  0:不筛选
+     * @param integer $FilterExpiring 筛选证书是否即将过期，传1是筛选，0不筛选
      */
     function __construct()
     {
@@ -156,6 +180,18 @@ class DescribeCertificatesRequest extends AbstractModel
 
         if (array_key_exists("Renew",$param) and $param["Renew"] !== null) {
             $this->Renew = $param["Renew"];
+        }
+
+        if (array_key_exists("FilterSource",$param) and $param["FilterSource"] !== null) {
+            $this->FilterSource = $param["FilterSource"];
+        }
+
+        if (array_key_exists("IsSM",$param) and $param["IsSM"] !== null) {
+            $this->IsSM = $param["IsSM"];
+        }
+
+        if (array_key_exists("FilterExpiring",$param) and $param["FilterExpiring"] !== null) {
+            $this->FilterExpiring = $param["FilterExpiring"];
         }
     }
 }

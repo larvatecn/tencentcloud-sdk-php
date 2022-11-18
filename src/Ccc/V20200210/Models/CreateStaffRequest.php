@@ -20,15 +20,17 @@ use TencentCloud\Common\AbstractModel;
 /**
  * CreateStaff请求参数结构体
  *
- * @method integer getSdkAppId() 获取应用ID
- * @method void setSdkAppId(integer $SdkAppId) 设置应用ID
+ * @method integer getSdkAppId() 获取应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+ * @method void setSdkAppId(integer $SdkAppId) 设置应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
  * @method array getStaffs() 获取客服信息，个数不超过 10
  * @method void setStaffs(array $Staffs) 设置客服信息，个数不超过 10
+ * @method boolean getSendPassword() 获取是否发送密码邮件，默认true
+ * @method void setSendPassword(boolean $SendPassword) 设置是否发送密码邮件，默认true
  */
 class CreateStaffRequest extends AbstractModel
 {
     /**
-     * @var integer 应用ID
+     * @var integer 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
      */
     public $SdkAppId;
 
@@ -38,8 +40,14 @@ class CreateStaffRequest extends AbstractModel
     public $Staffs;
 
     /**
-     * @param integer $SdkAppId 应用ID
+     * @var boolean 是否发送密码邮件，默认true
+     */
+    public $SendPassword;
+
+    /**
+     * @param integer $SdkAppId 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
      * @param array $Staffs 客服信息，个数不超过 10
+     * @param boolean $SendPassword 是否发送密码邮件，默认true
      */
     function __construct()
     {
@@ -65,6 +73,10 @@ class CreateStaffRequest extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->Staffs, $obj);
             }
+        }
+
+        if (array_key_exists("SendPassword",$param) and $param["SendPassword"] !== null) {
+            $this->SendPassword = $param["SendPassword"];
         }
     }
 }

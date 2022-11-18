@@ -20,18 +20,30 @@ use TencentCloud\Common\AbstractModel;
 /**
  * UpgradeVersionToMultiAvailabilityZones请求参数结构体
  *
- * @method string getInstanceId() 获取实例ID
- * @method void setInstanceId(string $InstanceId) 设置实例ID
+ * @method string getInstanceId() 获取实例ID。
+ * @method void setInstanceId(string $InstanceId) 设置实例ID。
+ * @method boolean getUpgradeProxyAndRedisServer() 获取升级多可用区之后是否支持就近访问功能。
+<ul><li>true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。</li><li>false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。</li></ul>
+ * @method void setUpgradeProxyAndRedisServer(boolean $UpgradeProxyAndRedisServer) 设置升级多可用区之后是否支持就近访问功能。
+<ul><li>true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。</li><li>false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。</li></ul>
  */
 class UpgradeVersionToMultiAvailabilityZonesRequest extends AbstractModel
 {
     /**
-     * @var string 实例ID
+     * @var string 实例ID。
      */
     public $InstanceId;
 
     /**
-     * @param string $InstanceId 实例ID
+     * @var boolean 升级多可用区之后是否支持就近访问功能。
+<ul><li>true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。</li><li>false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。</li></ul>
+     */
+    public $UpgradeProxyAndRedisServer;
+
+    /**
+     * @param string $InstanceId 实例ID。
+     * @param boolean $UpgradeProxyAndRedisServer 升级多可用区之后是否支持就近访问功能。
+<ul><li>true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。</li><li>false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。</li></ul>
      */
     function __construct()
     {
@@ -48,6 +60,10 @@ class UpgradeVersionToMultiAvailabilityZonesRequest extends AbstractModel
         }
         if (array_key_exists("InstanceId",$param) and $param["InstanceId"] !== null) {
             $this->InstanceId = $param["InstanceId"];
+        }
+
+        if (array_key_exists("UpgradeProxyAndRedisServer",$param) and $param["UpgradeProxyAndRedisServer"] !== null) {
+            $this->UpgradeProxyAndRedisServer = $param["UpgradeProxyAndRedisServer"];
         }
     }
 }

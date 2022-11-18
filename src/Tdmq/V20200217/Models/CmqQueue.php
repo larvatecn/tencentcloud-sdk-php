@@ -122,6 +122,22 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setNamespaceName(string $NamespaceName) 设置命名空间名称
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getStatus() 获取集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setStatus(integer $Status) 设置集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getMaxUnackedMsgNum() 获取最大未确认消息数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setMaxUnackedMsgNum(integer $MaxUnackedMsgNum) 设置最大未确认消息数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getMaxMsgBacklogSize() 获取最大消息堆积大小（字节）
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setMaxMsgBacklogSize(integer $MaxMsgBacklogSize) 设置最大消息堆积大小（字节）
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getRetentionSizeInMB() 获取队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRetentionSizeInMB(integer $RetentionSizeInMB) 设置队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class CmqQueue extends AbstractModel
 {
@@ -285,6 +301,30 @@ class CmqQueue extends AbstractModel
     public $NamespaceName;
 
     /**
+     * @var integer 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Status;
+
+    /**
+     * @var integer 最大未确认消息数量
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $MaxUnackedMsgNum;
+
+    /**
+     * @var integer 最大消息堆积大小（字节）
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $MaxMsgBacklogSize;
+
+    /**
+     * @var integer 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RetentionSizeInMB;
+
+    /**
      * @param string $QueueId 消息队列ID。
      * @param string $QueueName 消息队列名字。
      * @param integer $Qps 每秒钟生产消息条数的限制，消费消息的大小是该值的1.1倍。
@@ -335,6 +375,14 @@ class CmqQueue extends AbstractModel
      * @param string $TenantId 租户id
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $NamespaceName 命名空间名称
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $Status 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $MaxUnackedMsgNum 最大未确认消息数量
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $MaxMsgBacklogSize 最大消息堆积大小（字节）
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $RetentionSizeInMB 队列可回溯存储空间，取值范围1024MB - 10240MB，0表示不开启
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -468,6 +516,22 @@ class CmqQueue extends AbstractModel
 
         if (array_key_exists("NamespaceName",$param) and $param["NamespaceName"] !== null) {
             $this->NamespaceName = $param["NamespaceName"];
+        }
+
+        if (array_key_exists("Status",$param) and $param["Status"] !== null) {
+            $this->Status = $param["Status"];
+        }
+
+        if (array_key_exists("MaxUnackedMsgNum",$param) and $param["MaxUnackedMsgNum"] !== null) {
+            $this->MaxUnackedMsgNum = $param["MaxUnackedMsgNum"];
+        }
+
+        if (array_key_exists("MaxMsgBacklogSize",$param) and $param["MaxMsgBacklogSize"] !== null) {
+            $this->MaxMsgBacklogSize = $param["MaxMsgBacklogSize"];
+        }
+
+        if (array_key_exists("RetentionSizeInMB",$param) and $param["RetentionSizeInMB"] !== null) {
+            $this->RetentionSizeInMB = $param["RetentionSizeInMB"];
         }
     }
 }

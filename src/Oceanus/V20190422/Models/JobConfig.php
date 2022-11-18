@@ -78,6 +78,26 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setTaskManagerSpec(float $TaskManagerSpec) 设置TaskManager规格
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getClsLogsetId() 获取CLS日志集ID
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setClsLogsetId(string $ClsLogsetId) 设置CLS日志集ID
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getClsTopicId() 获取CLS日志主题ID
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setClsTopicId(string $ClsTopicId) 设置CLS日志主题ID
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getPythonVersion() 获取pyflink作业运行的python版本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPythonVersion(string $PythonVersion) 设置pyflink作业运行的python版本
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getAutoRecover() 获取Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAutoRecover(integer $AutoRecover) 设置Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getLogLevel() 获取日志级别
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setLogLevel(string $LogLevel) 设置日志级别
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class JobConfig extends AbstractModel
 {
@@ -175,6 +195,36 @@ class JobConfig extends AbstractModel
     public $TaskManagerSpec;
 
     /**
+     * @var string CLS日志集ID
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ClsLogsetId;
+
+    /**
+     * @var string CLS日志主题ID
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ClsTopicId;
+
+    /**
+     * @var string pyflink作业运行的python版本
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PythonVersion;
+
+    /**
+     * @var integer Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AutoRecover;
+
+    /**
+     * @var string 日志级别
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $LogLevel;
+
+    /**
      * @param string $JobId 作业Id
      * @param string $EntrypointClass 主类
 注意：此字段可能返回 null，表示取不到有效值。
@@ -203,6 +253,16 @@ class JobConfig extends AbstractModel
      * @param float $JobManagerSpec JobManager规格
 注意：此字段可能返回 null，表示取不到有效值。
      * @param float $TaskManagerSpec TaskManager规格
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ClsLogsetId CLS日志集ID
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ClsTopicId CLS日志主题ID
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $PythonVersion pyflink作业运行的python版本
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $AutoRecover Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $LogLevel 日志级别
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -290,6 +350,26 @@ class JobConfig extends AbstractModel
 
         if (array_key_exists("TaskManagerSpec",$param) and $param["TaskManagerSpec"] !== null) {
             $this->TaskManagerSpec = $param["TaskManagerSpec"];
+        }
+
+        if (array_key_exists("ClsLogsetId",$param) and $param["ClsLogsetId"] !== null) {
+            $this->ClsLogsetId = $param["ClsLogsetId"];
+        }
+
+        if (array_key_exists("ClsTopicId",$param) and $param["ClsTopicId"] !== null) {
+            $this->ClsTopicId = $param["ClsTopicId"];
+        }
+
+        if (array_key_exists("PythonVersion",$param) and $param["PythonVersion"] !== null) {
+            $this->PythonVersion = $param["PythonVersion"];
+        }
+
+        if (array_key_exists("AutoRecover",$param) and $param["AutoRecover"] !== null) {
+            $this->AutoRecover = $param["AutoRecover"];
+        }
+
+        if (array_key_exists("LogLevel",$param) and $param["LogLevel"] !== null) {
+            $this->LogLevel = $param["LogLevel"];
         }
     }
 }

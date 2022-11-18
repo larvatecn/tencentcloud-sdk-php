@@ -142,6 +142,30 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setTagInstances(array $TagInstances) 设置标签
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getFilterDimensionsParam() 获取策略关联的过滤维度信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setFilterDimensionsParam(string $FilterDimensionsParam) 设置策略关联的过滤维度信息
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getIsOneClick() 获取是否为一键告警策略
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setIsOneClick(integer $IsOneClick) 设置是否为一键告警策略
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getOneClickStatus() 获取一键告警策略是否开启
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setOneClickStatus(integer $OneClickStatus) 设置一键告警策略是否开启
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getAdvancedMetricNumber() 获取高级指标数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setAdvancedMetricNumber(integer $AdvancedMetricNumber) 设置高级指标数量
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getIsBindAll() 获取策略是否是全部对象策略
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setIsBindAll(integer $IsBindAll) 设置策略是否是全部对象策略
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getTags() 获取策略标签
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setTags(array $Tags) 设置策略标签
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class AlarmPolicy extends AbstractModel
 {
@@ -323,6 +347,42 @@ class AlarmPolicy extends AbstractModel
     public $TagInstances;
 
     /**
+     * @var string 策略关联的过滤维度信息
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $FilterDimensionsParam;
+
+    /**
+     * @var integer 是否为一键告警策略
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $IsOneClick;
+
+    /**
+     * @var integer 一键告警策略是否开启
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $OneClickStatus;
+
+    /**
+     * @var integer 高级指标数量
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $AdvancedMetricNumber;
+
+    /**
+     * @var integer 策略是否是全部对象策略
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $IsBindAll;
+
+    /**
+     * @var array 策略标签
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Tags;
+
+    /**
      * @param string $PolicyId 告警策略 ID
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $PolicyName 告警策略名称
@@ -383,6 +443,18 @@ class AlarmPolicy extends AbstractModel
      * @param string $OriginId 用于实例、实例组绑定和解绑接口（BindingPolicyObject、UnBindingAllPolicyObject、UnBindingPolicyObject）的策略 ID
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $TagInstances 标签
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $FilterDimensionsParam 策略关联的过滤维度信息
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $IsOneClick 是否为一键告警策略
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $OneClickStatus 一键告警策略是否开启
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $AdvancedMetricNumber 高级指标数量
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $IsBindAll 策略是否是全部对象策略
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $Tags 策略标签
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -529,6 +601,35 @@ class AlarmPolicy extends AbstractModel
                 $obj = new TagInstance();
                 $obj->deserialize($value);
                 array_push($this->TagInstances, $obj);
+            }
+        }
+
+        if (array_key_exists("FilterDimensionsParam",$param) and $param["FilterDimensionsParam"] !== null) {
+            $this->FilterDimensionsParam = $param["FilterDimensionsParam"];
+        }
+
+        if (array_key_exists("IsOneClick",$param) and $param["IsOneClick"] !== null) {
+            $this->IsOneClick = $param["IsOneClick"];
+        }
+
+        if (array_key_exists("OneClickStatus",$param) and $param["OneClickStatus"] !== null) {
+            $this->OneClickStatus = $param["OneClickStatus"];
+        }
+
+        if (array_key_exists("AdvancedMetricNumber",$param) and $param["AdvancedMetricNumber"] !== null) {
+            $this->AdvancedMetricNumber = $param["AdvancedMetricNumber"];
+        }
+
+        if (array_key_exists("IsBindAll",$param) and $param["IsBindAll"] !== null) {
+            $this->IsBindAll = $param["IsBindAll"];
+        }
+
+        if (array_key_exists("Tags",$param) and $param["Tags"] !== null) {
+            $this->Tags = [];
+            foreach ($param["Tags"] as $key => $value){
+                $obj = new Tag();
+                $obj->deserialize($value);
+                array_push($this->Tags, $obj);
             }
         }
     }

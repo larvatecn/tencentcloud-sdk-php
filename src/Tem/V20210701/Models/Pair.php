@@ -20,15 +20,27 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 键值对
  *
- * @method string getKey() 获取建
- * @method void setKey(string $Key) 设置建
+ * @method string getKey() 获取键
+ * @method void setKey(string $Key) 设置键
  * @method string getValue() 获取值
  * @method void setValue(string $Value) 设置值
+ * @method string getType() 获取类型，default 为自定义，reserved 为系统变量，referenced 为引用配置项
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setType(string $Type) 设置类型，default 为自定义，reserved 为系统变量，referenced 为引用配置项
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getConfig() 获取配置名称
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setConfig(string $Config) 设置配置名称
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getSecret() 获取加密配置名称
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setSecret(string $Secret) 设置加密配置名称
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class Pair extends AbstractModel
 {
     /**
-     * @var string 建
+     * @var string 键
      */
     public $Key;
 
@@ -38,8 +50,32 @@ class Pair extends AbstractModel
     public $Value;
 
     /**
-     * @param string $Key 建
+     * @var string 类型，default 为自定义，reserved 为系统变量，referenced 为引用配置项
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Type;
+
+    /**
+     * @var string 配置名称
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Config;
+
+    /**
+     * @var string 加密配置名称
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Secret;
+
+    /**
+     * @param string $Key 键
      * @param string $Value 值
+     * @param string $Type 类型，default 为自定义，reserved 为系统变量，referenced 为引用配置项
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Config 配置名称
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Secret 加密配置名称
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -60,6 +96,18 @@ class Pair extends AbstractModel
 
         if (array_key_exists("Value",$param) and $param["Value"] !== null) {
             $this->Value = $param["Value"];
+        }
+
+        if (array_key_exists("Type",$param) and $param["Type"] !== null) {
+            $this->Type = $param["Type"];
+        }
+
+        if (array_key_exists("Config",$param) and $param["Config"] !== null) {
+            $this->Config = $param["Config"];
+        }
+
+        if (array_key_exists("Secret",$param) and $param["Secret"] !== null) {
+            $this->Secret = $param["Secret"];
         }
     }
 }

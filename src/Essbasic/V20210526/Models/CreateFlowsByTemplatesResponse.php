@@ -28,6 +28,12 @@ use TencentCloud\Common\AbstractModel;
 成功为“”,创建失败则对应失败消息
  * @method void setErrorMessages(array $ErrorMessages) 设置创建消息，对应多个合同ID，
 成功为“”,创建失败则对应失败消息
+ * @method array getPreviewUrls() 获取预览模式下返回的预览文件url数组
+ * @method void setPreviewUrls(array $PreviewUrls) 设置预览模式下返回的预览文件url数组
+ * @method array getTaskInfos() 获取复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
+如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
+ * @method void setTaskInfos(array $TaskInfos) 设置复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
+如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
@@ -50,6 +56,17 @@ class CreateFlowsByTemplatesResponse extends AbstractModel
     public $ErrorMessages;
 
     /**
+     * @var array 预览模式下返回的预览文件url数组
+     */
+    public $PreviewUrls;
+
+    /**
+     * @var array 复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
+如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
+     */
+    public $TaskInfos;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -59,6 +76,9 @@ class CreateFlowsByTemplatesResponse extends AbstractModel
      * @param array $CustomerData 渠道的业务信息，限制1024字符
      * @param array $ErrorMessages 创建消息，对应多个合同ID，
 成功为“”,创建失败则对应失败消息
+     * @param array $PreviewUrls 预览模式下返回的预览文件url数组
+     * @param array $TaskInfos 复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
+如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -84,6 +104,19 @@ class CreateFlowsByTemplatesResponse extends AbstractModel
 
         if (array_key_exists("ErrorMessages",$param) and $param["ErrorMessages"] !== null) {
             $this->ErrorMessages = $param["ErrorMessages"];
+        }
+
+        if (array_key_exists("PreviewUrls",$param) and $param["PreviewUrls"] !== null) {
+            $this->PreviewUrls = $param["PreviewUrls"];
+        }
+
+        if (array_key_exists("TaskInfos",$param) and $param["TaskInfos"] !== null) {
+            $this->TaskInfos = [];
+            foreach ($param["TaskInfos"] as $key => $value){
+                $obj = new TaskInfo();
+                $obj->deserialize($value);
+                array_push($this->TaskInfos, $obj);
+            }
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

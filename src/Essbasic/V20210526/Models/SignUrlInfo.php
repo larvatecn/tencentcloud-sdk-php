@@ -20,13 +20,13 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 签署链接内容
  *
- * @method string getSignUrl() 获取签署链接
+ * @method string getSignUrl() 获取签署链接，过期时间为30天
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setSignUrl(string $SignUrl) 设置签署链接
+ * @method void setSignUrl(string $SignUrl) 设置签署链接，过期时间为30天
 注意：此字段可能返回 null，表示取不到有效值。
- * @method integer getDeadline() 获取链接失效时间
+ * @method integer getDeadline() 获取合同过期时间
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setDeadline(integer $Deadline) 设置链接失效时间
+ * @method void setDeadline(integer $Deadline) 设置合同过期时间
 注意：此字段可能返回 null，表示取不到有效值。
  * @method integer getSignOrder() 获取当流程为顺序签署此参数有效时，数字越小优先级越高，暂不支持并行签署 可选
 注意：此字段可能返回 null，表示取不到有效值。
@@ -72,17 +72,21 @@ PERSON 自然人
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setOpenId(string $OpenId) 设置企业经办人 用户在渠道的编号
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getFlowGroupId() 获取合同组签署链接对应的合同组id
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setFlowGroupId(string $FlowGroupId) 设置合同组签署链接对应的合同组id
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class SignUrlInfo extends AbstractModel
 {
     /**
-     * @var string 签署链接
+     * @var string 签署链接，过期时间为30天
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $SignUrl;
 
     /**
-     * @var integer 链接失效时间
+     * @var integer 合同过期时间
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $Deadline;
@@ -150,9 +154,15 @@ PERSON 自然人
     public $OpenId;
 
     /**
-     * @param string $SignUrl 签署链接
+     * @var string 合同组签署链接对应的合同组id
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param integer $Deadline 链接失效时间
+     */
+    public $FlowGroupId;
+
+    /**
+     * @param string $SignUrl 签署链接，过期时间为30天
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $Deadline 合同过期时间
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $SignOrder 当流程为顺序签署此参数有效时，数字越小优先级越高，暂不支持并行签署 可选
 注意：此字段可能返回 null，表示取不到有效值。
@@ -175,6 +185,8 @@ PERSON 自然人
      * @param string $FlowId 签署链接对应流程Id
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $OpenId 企业经办人 用户在渠道的编号
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $FlowGroupId 合同组签署链接对应的合同组id
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -236,6 +248,10 @@ PERSON 自然人
 
         if (array_key_exists("OpenId",$param) and $param["OpenId"] !== null) {
             $this->OpenId = $param["OpenId"];
+        }
+
+        if (array_key_exists("FlowGroupId",$param) and $param["FlowGroupId"] !== null) {
+            $this->FlowGroupId = $param["FlowGroupId"];
         }
     }
 }

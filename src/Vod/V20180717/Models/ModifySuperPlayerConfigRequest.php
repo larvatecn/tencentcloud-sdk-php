@@ -22,6 +22,16 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getName() 获取播放器配置名称。
  * @method void setName(string $Name) 设置播放器配置名称。
+ * @method integer getSubAppId() 获取<b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+ * @method void setSubAppId(integer $SubAppId) 设置<b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+ * @method string getAudioVideoType() 获取播放的音视频类型，可选值：
+<li>AdaptiveDynamicStream：自适应码流输出；</li>
+<li>Transcode：转码输出；</li>
+<li>Original：原始音视频。</li>
+ * @method void setAudioVideoType(string $AudioVideoType) 设置播放的音视频类型，可选值：
+<li>AdaptiveDynamicStream：自适应码流输出；</li>
+<li>Transcode：转码输出；</li>
+<li>Original：原始音视频。</li>
  * @method string getDrmSwitch() 获取播放 DRM 保护的自适应码流开关：
 <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
 <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
@@ -32,6 +42,8 @@ use TencentCloud\Common\AbstractModel;
  * @method void setAdaptiveDynamicStreamingDefinition(integer $AdaptiveDynamicStreamingDefinition) 设置允许输出的未加密的自适应码流模板 ID。
  * @method DrmStreamingsInfoForUpdate getDrmStreamingsInfo() 获取允许输出的 DRM 自适应码流模板内容。
  * @method void setDrmStreamingsInfo(DrmStreamingsInfoForUpdate $DrmStreamingsInfo) 设置允许输出的 DRM 自适应码流模板内容。
+ * @method integer getTranscodeDefinition() 获取允许输出的转码模板 ID。
+ * @method void setTranscodeDefinition(integer $TranscodeDefinition) 设置允许输出的转码模板 ID。
  * @method integer getImageSpriteDefinition() 获取允许输出的雪碧图模板 ID。
  * @method void setImageSpriteDefinition(integer $ImageSpriteDefinition) 设置允许输出的雪碧图模板 ID。
  * @method array getResolutionNames() 获取播放器对不于不同分辨率的子流展示名字。
@@ -48,8 +60,6 @@ use TencentCloud\Common\AbstractModel;
 <li>HTTPS。</li>
  * @method string getComment() 获取模板描述信息，长度限制：256 个字符。
  * @method void setComment(string $Comment) 设置模板描述信息，长度限制：256 个字符。
- * @method integer getSubAppId() 获取点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
- * @method void setSubAppId(integer $SubAppId) 设置点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
  */
 class ModifySuperPlayerConfigRequest extends AbstractModel
 {
@@ -57,6 +67,19 @@ class ModifySuperPlayerConfigRequest extends AbstractModel
      * @var string 播放器配置名称。
      */
     public $Name;
+
+    /**
+     * @var integer <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+     */
+    public $SubAppId;
+
+    /**
+     * @var string 播放的音视频类型，可选值：
+<li>AdaptiveDynamicStream：自适应码流输出；</li>
+<li>Transcode：转码输出；</li>
+<li>Original：原始音视频。</li>
+     */
+    public $AudioVideoType;
 
     /**
      * @var string 播放 DRM 保护的自适应码流开关：
@@ -74,6 +97,11 @@ class ModifySuperPlayerConfigRequest extends AbstractModel
      * @var DrmStreamingsInfoForUpdate 允许输出的 DRM 自适应码流模板内容。
      */
     public $DrmStreamingsInfo;
+
+    /**
+     * @var integer 允许输出的转码模板 ID。
+     */
+    public $TranscodeDefinition;
 
     /**
      * @var integer 允许输出的雪碧图模板 ID。
@@ -104,17 +132,18 @@ class ModifySuperPlayerConfigRequest extends AbstractModel
     public $Comment;
 
     /**
-     * @var integer 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-     */
-    public $SubAppId;
-
-    /**
      * @param string $Name 播放器配置名称。
+     * @param integer $SubAppId <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+     * @param string $AudioVideoType 播放的音视频类型，可选值：
+<li>AdaptiveDynamicStream：自适应码流输出；</li>
+<li>Transcode：转码输出；</li>
+<li>Original：原始音视频。</li>
      * @param string $DrmSwitch 播放 DRM 保护的自适应码流开关：
 <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
 <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
      * @param integer $AdaptiveDynamicStreamingDefinition 允许输出的未加密的自适应码流模板 ID。
      * @param DrmStreamingsInfoForUpdate $DrmStreamingsInfo 允许输出的 DRM 自适应码流模板内容。
+     * @param integer $TranscodeDefinition 允许输出的转码模板 ID。
      * @param integer $ImageSpriteDefinition 允许输出的雪碧图模板 ID。
      * @param array $ResolutionNames 播放器对不于不同分辨率的子流展示名字。
      * @param string $Domain 播放时使用的域名。填 Default 表示使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的域名。
@@ -123,7 +152,6 @@ class ModifySuperPlayerConfigRequest extends AbstractModel
 <li>HTTP；</li>
 <li>HTTPS。</li>
      * @param string $Comment 模板描述信息，长度限制：256 个字符。
-     * @param integer $SubAppId 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
      */
     function __construct()
     {
@@ -142,6 +170,14 @@ class ModifySuperPlayerConfigRequest extends AbstractModel
             $this->Name = $param["Name"];
         }
 
+        if (array_key_exists("SubAppId",$param) and $param["SubAppId"] !== null) {
+            $this->SubAppId = $param["SubAppId"];
+        }
+
+        if (array_key_exists("AudioVideoType",$param) and $param["AudioVideoType"] !== null) {
+            $this->AudioVideoType = $param["AudioVideoType"];
+        }
+
         if (array_key_exists("DrmSwitch",$param) and $param["DrmSwitch"] !== null) {
             $this->DrmSwitch = $param["DrmSwitch"];
         }
@@ -153,6 +189,10 @@ class ModifySuperPlayerConfigRequest extends AbstractModel
         if (array_key_exists("DrmStreamingsInfo",$param) and $param["DrmStreamingsInfo"] !== null) {
             $this->DrmStreamingsInfo = new DrmStreamingsInfoForUpdate();
             $this->DrmStreamingsInfo->deserialize($param["DrmStreamingsInfo"]);
+        }
+
+        if (array_key_exists("TranscodeDefinition",$param) and $param["TranscodeDefinition"] !== null) {
+            $this->TranscodeDefinition = $param["TranscodeDefinition"];
         }
 
         if (array_key_exists("ImageSpriteDefinition",$param) and $param["ImageSpriteDefinition"] !== null) {
@@ -178,10 +218,6 @@ class ModifySuperPlayerConfigRequest extends AbstractModel
 
         if (array_key_exists("Comment",$param) and $param["Comment"] !== null) {
             $this->Comment = $param["Comment"];
-        }
-
-        if (array_key_exists("SubAppId",$param) and $param["SubAppId"] !== null) {
-            $this->SubAppId = $param["SubAppId"];
         }
     }
 }

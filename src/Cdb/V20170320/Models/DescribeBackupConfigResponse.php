@@ -32,6 +32,24 @@ use TencentCloud\Common\AbstractModel;
  * @method void setBinlogExpireDays(integer $BinlogExpireDays) 设置Binlog 文件保留时间，单位为天。
  * @method CommonTimeWindow getBackupTimeWindow() 获取实例自动备份的时间窗。
  * @method void setBackupTimeWindow(CommonTimeWindow $BackupTimeWindow) 设置实例自动备份的时间窗。
+ * @method string getEnableBackupPeriodSave() 获取定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off
+ * @method void setEnableBackupPeriodSave(string $EnableBackupPeriodSave) 设置定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off
+ * @method integer getBackupPeriodSaveDays() 获取定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+ * @method void setBackupPeriodSaveDays(integer $BackupPeriodSaveDays) 设置定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+ * @method string getBackupPeriodSaveInterval() 获取定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+ * @method void setBackupPeriodSaveInterval(string $BackupPeriodSaveInterval) 设置定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+ * @method integer getBackupPeriodSaveCount() 获取定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+ * @method void setBackupPeriodSaveCount(integer $BackupPeriodSaveCount) 设置定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+ * @method string getStartBackupPeriodSaveDate() 获取定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+ * @method void setStartBackupPeriodSaveDate(string $StartBackupPeriodSaveDate) 设置定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+ * @method string getEnableBackupArchive() 获取是否开启数据备份归档策略，off-关闭，on-打开，默认为off
+ * @method void setEnableBackupArchive(string $EnableBackupArchive) 设置是否开启数据备份归档策略，off-关闭，on-打开，默认为off
+ * @method integer getBackupArchiveDays() 获取数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数
+ * @method void setBackupArchiveDays(integer $BackupArchiveDays) 设置数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数
+ * @method string getEnableBinlogArchive() 获取是否开启日志备份归档策略，off-关闭，on-打开，默认为off
+ * @method void setEnableBinlogArchive(string $EnableBinlogArchive) 设置是否开启日志备份归档策略，off-关闭，on-打开，默认为off
+ * @method integer getBinlogArchiveDays() 获取日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
+ * @method void setBinlogArchiveDays(integer $BinlogArchiveDays) 设置日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
@@ -68,6 +86,51 @@ class DescribeBackupConfigResponse extends AbstractModel
     public $BackupTimeWindow;
 
     /**
+     * @var string 定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off
+     */
+    public $EnableBackupPeriodSave;
+
+    /**
+     * @var integer 定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+     */
+    public $BackupPeriodSaveDays;
+
+    /**
+     * @var string 定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+     */
+    public $BackupPeriodSaveInterval;
+
+    /**
+     * @var integer 定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+     */
+    public $BackupPeriodSaveCount;
+
+    /**
+     * @var string 定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+     */
+    public $StartBackupPeriodSaveDate;
+
+    /**
+     * @var string 是否开启数据备份归档策略，off-关闭，on-打开，默认为off
+     */
+    public $EnableBackupArchive;
+
+    /**
+     * @var integer 数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数
+     */
+    public $BackupArchiveDays;
+
+    /**
+     * @var string 是否开启日志备份归档策略，off-关闭，on-打开，默认为off
+     */
+    public $EnableBinlogArchive;
+
+    /**
+     * @var integer 日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
+     */
+    public $BinlogArchiveDays;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -79,6 +142,15 @@ class DescribeBackupConfigResponse extends AbstractModel
      * @param string $BackupMethod 备份方式，可能的值为：physical - 物理备份，logical - 逻辑备份。
      * @param integer $BinlogExpireDays Binlog 文件保留时间，单位为天。
      * @param CommonTimeWindow $BackupTimeWindow 实例自动备份的时间窗。
+     * @param string $EnableBackupPeriodSave 定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off
+     * @param integer $BackupPeriodSaveDays 定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+     * @param string $BackupPeriodSaveInterval 定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+     * @param integer $BackupPeriodSaveCount 定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+     * @param string $StartBackupPeriodSaveDate 定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+     * @param string $EnableBackupArchive 是否开启数据备份归档策略，off-关闭，on-打开，默认为off
+     * @param integer $BackupArchiveDays 数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数
+     * @param string $EnableBinlogArchive 是否开启日志备份归档策略，off-关闭，on-打开，默认为off
+     * @param integer $BinlogArchiveDays 日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -117,6 +189,42 @@ class DescribeBackupConfigResponse extends AbstractModel
         if (array_key_exists("BackupTimeWindow",$param) and $param["BackupTimeWindow"] !== null) {
             $this->BackupTimeWindow = new CommonTimeWindow();
             $this->BackupTimeWindow->deserialize($param["BackupTimeWindow"]);
+        }
+
+        if (array_key_exists("EnableBackupPeriodSave",$param) and $param["EnableBackupPeriodSave"] !== null) {
+            $this->EnableBackupPeriodSave = $param["EnableBackupPeriodSave"];
+        }
+
+        if (array_key_exists("BackupPeriodSaveDays",$param) and $param["BackupPeriodSaveDays"] !== null) {
+            $this->BackupPeriodSaveDays = $param["BackupPeriodSaveDays"];
+        }
+
+        if (array_key_exists("BackupPeriodSaveInterval",$param) and $param["BackupPeriodSaveInterval"] !== null) {
+            $this->BackupPeriodSaveInterval = $param["BackupPeriodSaveInterval"];
+        }
+
+        if (array_key_exists("BackupPeriodSaveCount",$param) and $param["BackupPeriodSaveCount"] !== null) {
+            $this->BackupPeriodSaveCount = $param["BackupPeriodSaveCount"];
+        }
+
+        if (array_key_exists("StartBackupPeriodSaveDate",$param) and $param["StartBackupPeriodSaveDate"] !== null) {
+            $this->StartBackupPeriodSaveDate = $param["StartBackupPeriodSaveDate"];
+        }
+
+        if (array_key_exists("EnableBackupArchive",$param) and $param["EnableBackupArchive"] !== null) {
+            $this->EnableBackupArchive = $param["EnableBackupArchive"];
+        }
+
+        if (array_key_exists("BackupArchiveDays",$param) and $param["BackupArchiveDays"] !== null) {
+            $this->BackupArchiveDays = $param["BackupArchiveDays"];
+        }
+
+        if (array_key_exists("EnableBinlogArchive",$param) and $param["EnableBinlogArchive"] !== null) {
+            $this->EnableBinlogArchive = $param["EnableBinlogArchive"];
+        }
+
+        if (array_key_exists("BinlogArchiveDays",$param) and $param["BinlogArchiveDays"] !== null) {
+            $this->BinlogArchiveDays = $param["BinlogArchiveDays"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

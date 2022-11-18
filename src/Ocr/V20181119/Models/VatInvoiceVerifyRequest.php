@@ -22,21 +22,35 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getInvoiceCode() 获取发票代码， 一张发票一天只能查询5次。
  * @method void setInvoiceCode(string $InvoiceCode) 设置发票代码， 一张发票一天只能查询5次。
- * @method string getInvoiceNo() 获取发票号码（8位）。
- * @method void setInvoiceNo(string $InvoiceNo) 设置发票号码（8位）。
- * @method string getInvoiceDate() 获取开票日期（不支持当天发票查询，只支持一年以内），如：2019-12-20。
- * @method void setInvoiceDate(string $InvoiceDate) 设置开票日期（不支持当天发票查询，只支持一年以内），如：2019-12-20。
- * @method string getAdditional() 获取金额/发票校验码后6位（根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值）
+ * @method string getInvoiceNo() 获取发票号码（8位）
+ * @method void setInvoiceNo(string $InvoiceNo) 设置发票号码（8位）
+ * @method string getInvoiceDate() 获取开票日期（不支持当天发票查询，支持五年以内开具的发票），格式：“YYYY-MM-DD”，如：2019-12-20。
+ * @method void setInvoiceDate(string $InvoiceDate) 设置开票日期（不支持当天发票查询，支持五年以内开具的发票），格式：“YYYY-MM-DD”，如：2019-12-20。
+ * @method string getAdditional() 获取根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值
+
 增值税专用发票：开具金额（不含税）
+
 增值税普通发票、增值税电子普通发票（含通行费发票）、增值税普通发票（卷票）：校验码后6位
+
+区块链发票：不含税金额/校验码，例如：“285.01/856ab”
+
 机动车销售统一发票：不含税价
+
 货物运输业增值税专用发票：合计金额
+
 二手车销售统一发票：车价合计
- * @method void setAdditional(string $Additional) 设置金额/发票校验码后6位（根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值）
+ * @method void setAdditional(string $Additional) 设置根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值
+
 增值税专用发票：开具金额（不含税）
+
 增值税普通发票、增值税电子普通发票（含通行费发票）、增值税普通发票（卷票）：校验码后6位
+
+区块链发票：不含税金额/校验码，例如：“285.01/856ab”
+
 机动车销售统一发票：不含税价
+
 货物运输业增值税专用发票：合计金额
+
 二手车销售统一发票：车价合计
  */
 class VatInvoiceVerifyRequest extends AbstractModel
@@ -47,34 +61,48 @@ class VatInvoiceVerifyRequest extends AbstractModel
     public $InvoiceCode;
 
     /**
-     * @var string 发票号码（8位）。
+     * @var string 发票号码（8位）
      */
     public $InvoiceNo;
 
     /**
-     * @var string 开票日期（不支持当天发票查询，只支持一年以内），如：2019-12-20。
+     * @var string 开票日期（不支持当天发票查询，支持五年以内开具的发票），格式：“YYYY-MM-DD”，如：2019-12-20。
      */
     public $InvoiceDate;
 
     /**
-     * @var string 金额/发票校验码后6位（根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值）
+     * @var string 根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值
+
 增值税专用发票：开具金额（不含税）
+
 增值税普通发票、增值税电子普通发票（含通行费发票）、增值税普通发票（卷票）：校验码后6位
+
+区块链发票：不含税金额/校验码，例如：“285.01/856ab”
+
 机动车销售统一发票：不含税价
+
 货物运输业增值税专用发票：合计金额
+
 二手车销售统一发票：车价合计
      */
     public $Additional;
 
     /**
      * @param string $InvoiceCode 发票代码， 一张发票一天只能查询5次。
-     * @param string $InvoiceNo 发票号码（8位）。
-     * @param string $InvoiceDate 开票日期（不支持当天发票查询，只支持一年以内），如：2019-12-20。
-     * @param string $Additional 金额/发票校验码后6位（根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值）
+     * @param string $InvoiceNo 发票号码（8位）
+     * @param string $InvoiceDate 开票日期（不支持当天发票查询，支持五年以内开具的发票），格式：“YYYY-MM-DD”，如：2019-12-20。
+     * @param string $Additional 根据票种传递对应值，如果报参数错误，请仔细检查每个票种对应的值
+
 增值税专用发票：开具金额（不含税）
+
 增值税普通发票、增值税电子普通发票（含通行费发票）、增值税普通发票（卷票）：校验码后6位
+
+区块链发票：不含税金额/校验码，例如：“285.01/856ab”
+
 机动车销售统一发票：不含税价
+
 货物运输业增值税专用发票：合计金额
+
 二手车销售统一发票：车价合计
      */
     function __construct()

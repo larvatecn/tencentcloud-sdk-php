@@ -32,8 +32,6 @@ use TencentCloud\Common\AbstractModel;
  * @method void setTimeSpan(integer $TimeSpan) 设置购买实例的时长。结合TimeUnit一起使用。
 <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
 <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
- * @method NewResourceSpec getResourceSpec() 获取询价的节点规格。
- * @method void setResourceSpec(NewResourceSpec $ResourceSpec) 设置询价的节点规格。
  * @method string getCurrency() 获取货币种类。取值范围：
 <li>CNY：表示人民币。</li>
  * @method void setCurrency(string $Currency) 设置货币种类。取值范围：
@@ -60,6 +58,8 @@ use TencentCloud\Common\AbstractModel;
 <li>ProductId为2的时候，必选组件包括：hadoop-2.7.3、knox-1.2.0、zookeeper-3.4.9</li>
 <li>ProductId为4的时候，必选组件包括：hadoop-2.8.4、knox-1.2.0、zookeeper-3.4.9</li>
 <li>ProductId为7的时候，必选组件包括：hadoop-3.1.2、knox-1.2.0、zookeeper-3.4.9</li>
+ * @method NewResourceSpec getResourceSpec() 获取询价的节点规格。
+ * @method void setResourceSpec(NewResourceSpec $ResourceSpec) 设置询价的节点规格。
  * @method Placement getPlacement() 获取实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
  * @method void setPlacement(Placement $Placement) 设置实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
  * @method VPCSettings getVPCSettings() 获取私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
@@ -86,6 +86,22 @@ use TencentCloud\Common\AbstractModel;
 <li>2：表示EMR-V2.0.1。</li>
 <li>4：表示EMR-V2.1.0。</li>
 <li>7：表示EMR-V3.0.0。</li>
+ * @method string getSceneName() 获取场景化取值：
+Hadoop-Kudu
+Hadoop-Zookeeper
+Hadoop-Presto
+Hadoop-Hbase
+ * @method void setSceneName(string $SceneName) 设置场景化取值：
+Hadoop-Kudu
+Hadoop-Zookeeper
+Hadoop-Presto
+Hadoop-Hbase
+ * @method array getExternalService() 获取共用组件信息
+ * @method void setExternalService(array $ExternalService) 设置共用组件信息
+ * @method integer getVersionID() 获取当前默认值为0，跨AZ特性支持后为1
+ * @method void setVersionID(integer $VersionID) 设置当前默认值为0，跨AZ特性支持后为1
+ * @method array getMultiZoneSettings() 获取可用区的规格信息
+ * @method void setMultiZoneSettings(array $MultiZoneSettings) 设置可用区的规格信息
  */
 class InquiryPriceCreateInstanceRequest extends AbstractModel
 {
@@ -102,11 +118,6 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
 <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
      */
     public $TimeSpan;
-
-    /**
-     * @var NewResourceSpec 询价的节点规格。
-     */
-    public $ResourceSpec;
 
     /**
      * @var string 货币种类。取值范围：
@@ -136,6 +147,11 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
 <li>ProductId为7的时候，必选组件包括：hadoop-3.1.2、knox-1.2.0、zookeeper-3.4.9</li>
      */
     public $Software;
+
+    /**
+     * @var NewResourceSpec 询价的节点规格。
+     */
+    public $ResourceSpec;
 
     /**
      * @var Placement 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
@@ -175,13 +191,36 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
     public $ProductId;
 
     /**
+     * @var string 场景化取值：
+Hadoop-Kudu
+Hadoop-Zookeeper
+Hadoop-Presto
+Hadoop-Hbase
+     */
+    public $SceneName;
+
+    /**
+     * @var array 共用组件信息
+     */
+    public $ExternalService;
+
+    /**
+     * @var integer 当前默认值为0，跨AZ特性支持后为1
+     */
+    public $VersionID;
+
+    /**
+     * @var array 可用区的规格信息
+     */
+    public $MultiZoneSettings;
+
+    /**
      * @param string $TimeUnit 购买实例的时间单位。取值范围：
 <li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li>
 <li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
      * @param integer $TimeSpan 购买实例的时长。结合TimeUnit一起使用。
 <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
 <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
-     * @param NewResourceSpec $ResourceSpec 询价的节点规格。
      * @param string $Currency 货币种类。取值范围：
 <li>CNY：表示人民币。</li>
      * @param integer $PayMode 实例计费模式。取值范围：
@@ -195,6 +234,7 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
 <li>ProductId为2的时候，必选组件包括：hadoop-2.7.3、knox-1.2.0、zookeeper-3.4.9</li>
 <li>ProductId为4的时候，必选组件包括：hadoop-2.8.4、knox-1.2.0、zookeeper-3.4.9</li>
 <li>ProductId为7的时候，必选组件包括：hadoop-3.1.2、knox-1.2.0、zookeeper-3.4.9</li>
+     * @param NewResourceSpec $ResourceSpec 询价的节点规格。
      * @param Placement $Placement 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
      * @param VPCSettings $VPCSettings 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
      * @param string $MetaType hive共享元数据库类型。取值范围：
@@ -208,6 +248,14 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
 <li>2：表示EMR-V2.0.1。</li>
 <li>4：表示EMR-V2.1.0。</li>
 <li>7：表示EMR-V3.0.0。</li>
+     * @param string $SceneName 场景化取值：
+Hadoop-Kudu
+Hadoop-Zookeeper
+Hadoop-Presto
+Hadoop-Hbase
+     * @param array $ExternalService 共用组件信息
+     * @param integer $VersionID 当前默认值为0，跨AZ特性支持后为1
+     * @param array $MultiZoneSettings 可用区的规格信息
      */
     function __construct()
     {
@@ -230,11 +278,6 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
             $this->TimeSpan = $param["TimeSpan"];
         }
 
-        if (array_key_exists("ResourceSpec",$param) and $param["ResourceSpec"] !== null) {
-            $this->ResourceSpec = new NewResourceSpec();
-            $this->ResourceSpec->deserialize($param["ResourceSpec"]);
-        }
-
         if (array_key_exists("Currency",$param) and $param["Currency"] !== null) {
             $this->Currency = $param["Currency"];
         }
@@ -249,6 +292,11 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
 
         if (array_key_exists("Software",$param) and $param["Software"] !== null) {
             $this->Software = $param["Software"];
+        }
+
+        if (array_key_exists("ResourceSpec",$param) and $param["ResourceSpec"] !== null) {
+            $this->ResourceSpec = new NewResourceSpec();
+            $this->ResourceSpec->deserialize($param["ResourceSpec"]);
         }
 
         if (array_key_exists("Placement",$param) and $param["Placement"] !== null) {
@@ -276,6 +324,32 @@ class InquiryPriceCreateInstanceRequest extends AbstractModel
 
         if (array_key_exists("ProductId",$param) and $param["ProductId"] !== null) {
             $this->ProductId = $param["ProductId"];
+        }
+
+        if (array_key_exists("SceneName",$param) and $param["SceneName"] !== null) {
+            $this->SceneName = $param["SceneName"];
+        }
+
+        if (array_key_exists("ExternalService",$param) and $param["ExternalService"] !== null) {
+            $this->ExternalService = [];
+            foreach ($param["ExternalService"] as $key => $value){
+                $obj = new ExternalService();
+                $obj->deserialize($value);
+                array_push($this->ExternalService, $obj);
+            }
+        }
+
+        if (array_key_exists("VersionID",$param) and $param["VersionID"] !== null) {
+            $this->VersionID = $param["VersionID"];
+        }
+
+        if (array_key_exists("MultiZoneSettings",$param) and $param["MultiZoneSettings"] !== null) {
+            $this->MultiZoneSettings = [];
+            foreach ($param["MultiZoneSettings"] as $key => $value){
+                $obj = new MultiZoneSetting();
+                $obj->deserialize($value);
+                array_push($this->MultiZoneSettings, $obj);
+            }
         }
     }
 }

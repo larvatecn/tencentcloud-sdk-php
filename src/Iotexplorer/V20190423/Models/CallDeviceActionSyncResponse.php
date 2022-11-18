@@ -26,8 +26,8 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setOutputParams(string $OutputParams) 设置输出参数
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getStatus() 获取返回状态
- * @method void setStatus(string $Status) 设置返回状态
+ * @method string getStatus() 获取返回状态，当设备不在线等部分情况，会通过该 Status 返回。
+ * @method void setStatus(string $Status) 设置返回状态，当设备不在线等部分情况，会通过该 Status 返回。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
@@ -45,7 +45,7 @@ class CallDeviceActionSyncResponse extends AbstractModel
     public $OutputParams;
 
     /**
-     * @var string 返回状态
+     * @var string 返回状态，当设备不在线等部分情况，会通过该 Status 返回。
      */
     public $Status;
 
@@ -58,7 +58,7 @@ class CallDeviceActionSyncResponse extends AbstractModel
      * @param string $ClientToken 调用Id
      * @param string $OutputParams 输出参数
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $Status 返回状态
+     * @param string $Status 返回状态，当设备不在线等部分情况，会通过该 Status 返回。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()

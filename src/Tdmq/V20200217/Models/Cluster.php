@@ -36,16 +36,16 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setHealthyInfo(string $HealthyInfo) 设置集群健康信息
 注意：此字段可能返回 null，表示取不到有效值。
- * @method integer getStatus() 获取集群状态，0:创建中，1:正常，2:删除中，3:已删除，5:创建失败，6: 删除失败
- * @method void setStatus(integer $Status) 设置集群状态，0:创建中，1:正常，2:删除中，3:已删除，5:创建失败，6: 删除失败
+ * @method integer getStatus() 获取集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+ * @method void setStatus(integer $Status) 设置集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
  * @method integer getMaxNamespaceNum() 获取最大命名空间数量
  * @method void setMaxNamespaceNum(integer $MaxNamespaceNum) 设置最大命名空间数量
  * @method integer getMaxTopicNum() 获取最大Topic数量
  * @method void setMaxTopicNum(integer $MaxTopicNum) 设置最大Topic数量
  * @method integer getMaxQps() 获取最大QPS
  * @method void setMaxQps(integer $MaxQps) 设置最大QPS
- * @method integer getMessageRetentionTime() 获取最大消息保留时间，分钟为单位
- * @method void setMessageRetentionTime(integer $MessageRetentionTime) 设置最大消息保留时间，分钟为单位
+ * @method integer getMessageRetentionTime() 获取最大消息保留时间，秒为单位
+ * @method void setMessageRetentionTime(integer $MessageRetentionTime) 设置最大消息保留时间，秒为单位
  * @method integer getMaxStorageCapacity() 获取最大存储容量
  * @method void setMaxStorageCapacity(integer $MaxStorageCapacity) 设置最大存储容量
  * @method string getVersion() 获取集群版本
@@ -100,6 +100,14 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setTags(array $Tags) 设置标签
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getPayMode() 获取计费模式：
+0: 按量计费
+1: 包年包月
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setPayMode(integer $PayMode) 设置计费模式：
+0: 按量计费
+1: 包年包月
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class Cluster extends AbstractModel
 {
@@ -140,7 +148,7 @@ class Cluster extends AbstractModel
     public $HealthyInfo;
 
     /**
-     * @var integer 集群状态，0:创建中，1:正常，2:删除中，3:已删除，5:创建失败，6: 删除失败
+     * @var integer 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
      */
     public $Status;
 
@@ -160,7 +168,7 @@ class Cluster extends AbstractModel
     public $MaxQps;
 
     /**
-     * @var integer 最大消息保留时间，分钟为单位
+     * @var integer 最大消息保留时间，秒为单位
      */
     public $MessageRetentionTime;
 
@@ -248,6 +256,14 @@ class Cluster extends AbstractModel
     public $Tags;
 
     /**
+     * @var integer 计费模式：
+0: 按量计费
+1: 包年包月
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $PayMode;
+
+    /**
      * @param string $ClusterId 集群Id。
      * @param string $ClusterName 集群名称。
      * @param string $Remark 说明信息。
@@ -256,11 +272,11 @@ class Cluster extends AbstractModel
      * @param integer $Healthy 集群是否健康，1表示健康，0表示异常
      * @param string $HealthyInfo 集群健康信息
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param integer $Status 集群状态，0:创建中，1:正常，2:删除中，3:已删除，5:创建失败，6: 删除失败
+     * @param integer $Status 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
      * @param integer $MaxNamespaceNum 最大命名空间数量
      * @param integer $MaxTopicNum 最大Topic数量
      * @param integer $MaxQps 最大QPS
-     * @param integer $MessageRetentionTime 最大消息保留时间，分钟为单位
+     * @param integer $MessageRetentionTime 最大消息保留时间，秒为单位
      * @param integer $MaxStorageCapacity 最大存储容量
      * @param string $Version 集群版本
 注意：此字段可能返回 null，表示取不到有效值。
@@ -287,6 +303,10 @@ class Cluster extends AbstractModel
      * @param boolean $PublicAccessEnabled 是否开启公网访问，不填时默认开启
 注意：此字段可能返回 null，表示取不到有效值。
      * @param array $Tags 标签
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $PayMode 计费模式：
+0: 按量计费
+1: 包年包月
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -409,6 +429,10 @@ class Cluster extends AbstractModel
                 $obj->deserialize($value);
                 array_push($this->Tags, $obj);
             }
+        }
+
+        if (array_key_exists("PayMode",$param) and $param["PayMode"] !== null) {
+            $this->PayMode = $param["PayMode"];
         }
     }
 }

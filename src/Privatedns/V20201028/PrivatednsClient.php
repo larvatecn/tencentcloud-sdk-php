@@ -23,10 +23,13 @@ use TencentCloud\Common\Credential;
 use TencentCloud\Privatedns\V20201028\Models as Models;
 
 /**
+ * @method Models\CreatePrivateDNSAccountResponse CreatePrivateDNSAccount(Models\CreatePrivateDNSAccountRequest $req) 创建私有域解析账号
  * @method Models\CreatePrivateZoneResponse CreatePrivateZone(Models\CreatePrivateZoneRequest $req) 创建私有域
  * @method Models\CreatePrivateZoneRecordResponse CreatePrivateZoneRecord(Models\CreatePrivateZoneRecordRequest $req) 添加私有域解析记录
+ * @method Models\DeletePrivateDNSAccountResponse DeletePrivateDNSAccount(Models\DeletePrivateDNSAccountRequest $req) 删除私有域解析账号
  * @method Models\DeletePrivateZoneResponse DeletePrivateZone(Models\DeletePrivateZoneRequest $req) 删除私有域并停止解析
  * @method Models\DeletePrivateZoneRecordResponse DeletePrivateZoneRecord(Models\DeletePrivateZoneRecordRequest $req) 删除私有域解析记录
+ * @method Models\DescribeAccountVpcListResponse DescribeAccountVpcList(Models\DescribeAccountVpcListRequest $req) 获取私有域解析账号的VPC列表
  * @method Models\DescribeAuditLogResponse DescribeAuditLog(Models\DescribeAuditLogRequest $req) 获取操作日志列表
  * @method Models\DescribeDashboardResponse DescribeDashboard(Models\DescribeDashboardRequest $req) 获取私有域解析概览
  * @method Models\DescribePrivateDNSAccountListResponse DescribePrivateDNSAccountList(Models\DescribePrivateDNSAccountListRequest $req) 获取私有域解析账号列表
@@ -34,10 +37,12 @@ use TencentCloud\Privatedns\V20201028\Models as Models;
  * @method Models\DescribePrivateZoneListResponse DescribePrivateZoneList(Models\DescribePrivateZoneListRequest $req) 获取私有域列表
  * @method Models\DescribePrivateZoneRecordListResponse DescribePrivateZoneRecordList(Models\DescribePrivateZoneRecordListRequest $req) 获取私有域记录列表
  * @method Models\DescribePrivateZoneServiceResponse DescribePrivateZoneService(Models\DescribePrivateZoneServiceRequest $req) 查询私有域解析开通状态
+ * @method Models\DescribeQuotaUsageResponse DescribeQuotaUsage(Models\DescribeQuotaUsageRequest $req) 查询额度使用情况
  * @method Models\DescribeRequestDataResponse DescribeRequestData(Models\DescribeRequestDataRequest $req) 获取私有域解析请求量
  * @method Models\ModifyPrivateZoneResponse ModifyPrivateZone(Models\ModifyPrivateZoneRequest $req) 修改私有域信息
  * @method Models\ModifyPrivateZoneRecordResponse ModifyPrivateZoneRecord(Models\ModifyPrivateZoneRecordRequest $req) 修改私有域解析记录
  * @method Models\ModifyPrivateZoneVpcResponse ModifyPrivateZoneVpc(Models\ModifyPrivateZoneVpcRequest $req) 修改私有域关联的VPC
+ * @method Models\ModifyRecordsStatusResponse ModifyRecordsStatus(Models\ModifyRecordsStatusRequest $req) 修改解析记录状态
  * @method Models\SubscribePrivateZoneServiceResponse SubscribePrivateZoneService(Models\SubscribePrivateZoneServiceRequest $req) 开通私有域解析
  */
 

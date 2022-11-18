@@ -19,8 +19,17 @@ use TencentCloud\Common\AbstractModel;
 
 /**
  * 此结构体 (Component) 用于描述控件属性。
+
+在通过文件发起合同时，对应的component有三种定位方式
+1. 绝对定位方式
+2. 表单域(FIELD)定位方式
+3. 关键字(KEYWORD)定位方式
+可以参考官网说明
+https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.8D.E5.AE.9A.E4.BD.8D.E6.96.B9.E5.BC.8F.E8.AF.B4.E6.98.8E
  *
  * @method string getComponentId() 获取控件编号
+
+CreateFlowByTemplates发起合同时优先以ComponentId（不为空）填充；否则以ComponentName填充
 
 注：
 当GenerateMode=3时，通过"^"来决定是否使用关键字整词匹配能力。
@@ -32,6 +41,8 @@ use TencentCloud\Common\AbstractModel;
 查询时返回完整结构
  * @method void setComponentId(string $ComponentId) 设置控件编号
 
+CreateFlowByTemplates发起合同时优先以ComponentId（不为空）填充；否则以ComponentName填充
+
 注：
 当GenerateMode=3时，通过"^"来决定是否使用关键字整词匹配能力。
 例：
@@ -42,30 +53,50 @@ use TencentCloud\Common\AbstractModel;
 查询时返回完整结构
  * @method string getComponentType() 获取如果是Component控件类型，则可选的字段为：
 TEXT - 普通文本控件；
-DATE - 普通日期控件；跟TEXT相比会有校验逻辑
+MULTI_LINE_TEXT - 多行文本控件；
+CHECK_BOX - 勾选框控件；
+FILL_IMAGE - 图片控件；
+DYNAMIC_TABLE - 动态表格控件；
+ATTACHMENT - 附件控件；
+SELECTOR - 选择器控件；
+DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
+DISTRICT - 省市区行政区划控件；
+
 如果是SignComponent控件类型，则可选的字段为
 SIGN_SEAL - 签署印章控件；
 SIGN_DATE - 签署日期控件；
 SIGN_SIGNATURE - 用户签名控件；
-SIGN_PERSONAL_SEAL - 个人签署印章控件；
+SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
+SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
 
 表单域的控件不能作为印章和签名控件
  * @method void setComponentType(string $ComponentType) 设置如果是Component控件类型，则可选的字段为：
 TEXT - 普通文本控件；
-DATE - 普通日期控件；跟TEXT相比会有校验逻辑
+MULTI_LINE_TEXT - 多行文本控件；
+CHECK_BOX - 勾选框控件；
+FILL_IMAGE - 图片控件；
+DYNAMIC_TABLE - 动态表格控件；
+ATTACHMENT - 附件控件；
+SELECTOR - 选择器控件；
+DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
+DISTRICT - 省市区行政区划控件；
+
 如果是SignComponent控件类型，则可选的字段为
 SIGN_SEAL - 签署印章控件；
 SIGN_DATE - 签署日期控件；
 SIGN_SIGNATURE - 用户签名控件；
-SIGN_PERSONAL_SEAL - 个人签署印章控件；
+SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
+SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
 
 表单域的控件不能作为印章和签名控件
- * @method string getComponentName() 获取控件简称
- * @method void setComponentName(string $ComponentName) 设置控件简称
+ * @method string getComponentName() 获取控件简称，不能超过30个字符
+ * @method void setComponentName(string $ComponentName) 设置控件简称，不能超过30个字符
  * @method boolean getComponentRequired() 获取定义控件是否为必填项，默认为false
  * @method void setComponentRequired(boolean $ComponentRequired) 设置定义控件是否为必填项，默认为false
- * @method integer getFileIndex() 获取控件所属文件的序号 (文档中文件的排列序号)
- * @method void setFileIndex(integer $FileIndex) 设置控件所属文件的序号 (文档中文件的排列序号)
+ * @method string getComponentRecipientId() 获取控件关联的签署方id
+ * @method void setComponentRecipientId(string $ComponentRecipientId) 设置控件关联的签署方id
+ * @method integer getFileIndex() 获取控件所属文件的序号 (文档中文件的排列序号，从0开始)
+ * @method void setFileIndex(integer $FileIndex) 设置控件所属文件的序号 (文档中文件的排列序号，从0开始)
  * @method string getGenerateMode() 获取控件生成的方式：
 NORMAL - 普通控件
 FIELD - 表单域
@@ -82,24 +113,76 @@ KEYWORD - 关键字
 表单域和关键字转换控件不用填
  * @method void setComponentHeight(float $ComponentHeight) 设置参数控件高度，默认100，单位px
 表单域和关键字转换控件不用填
- * @method integer getComponentPage() 获取参数控件所在页码
- * @method void setComponentPage(integer $ComponentPage) 设置参数控件所在页码
+ * @method integer getComponentPage() 获取参数控件所在页码，从1开始
+ * @method void setComponentPage(integer $ComponentPage) 设置参数控件所在页码，从1开始
  * @method float getComponentPosX() 获取参数控件X位置，单位px
  * @method void setComponentPosX(float $ComponentPosX) 设置参数控件X位置，单位px
  * @method float getComponentPosY() 获取参数控件Y位置，单位px
  * @method void setComponentPosY(float $ComponentPosY) 设置参数控件Y位置，单位px
  * @method string getComponentExtra() 获取参数控件样式，json格式表述
+
 不同类型的控件会有部分非通用参数
-TEXT控件可以指定字体
+
+TEXT/MULTI_LINE_TEXT控件可以指定
+1 Font：目前只支持黑体、宋体
+2 FontSize： 范围12-72
+3 FontAlign： Left/Right/Center，左对齐/居中/右对齐
 例如：{"FontSize":12}
+
+ComponentType为FILL_IMAGE时，支持以下参数：
+NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
+FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+
+ComponentType为SIGN_SIGNATURE类型可以控制签署方式
+{“ComponentTypeLimit”: [“xxx”]}
+xxx可以为：
+HANDWRITE – 手写签名
+BORDERLESS_ESIGN – 自动生成无边框腾讯体
+OCR_ESIGN -- AI智能识别手写签名
+ESIGN -- 个人印章类型
+如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
  * @method void setComponentExtra(string $ComponentExtra) 设置参数控件样式，json格式表述
+
 不同类型的控件会有部分非通用参数
-TEXT控件可以指定字体
+
+TEXT/MULTI_LINE_TEXT控件可以指定
+1 Font：目前只支持黑体、宋体
+2 FontSize： 范围12-72
+3 FontAlign： Left/Right/Center，左对齐/居中/右对齐
 例如：{"FontSize":12}
- * @method string getComponentValue() 获取印章 ID，传参 DEFAULT_COMPANY_SEAL 表示使用默认印章。
-控件填入内容，印章控件里面，如果是手写签名内容为PNG图片格式的base64编码
- * @method void setComponentValue(string $ComponentValue) 设置印章 ID，传参 DEFAULT_COMPANY_SEAL 表示使用默认印章。
-控件填入内容，印章控件里面，如果是手写签名内容为PNG图片格式的base64编码
+
+ComponentType为FILL_IMAGE时，支持以下参数：
+NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
+FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+
+ComponentType为SIGN_SIGNATURE类型可以控制签署方式
+{“ComponentTypeLimit”: [“xxx”]}
+xxx可以为：
+HANDWRITE – 手写签名
+BORDERLESS_ESIGN – 自动生成无边框腾讯体
+OCR_ESIGN -- AI智能识别手写签名
+ESIGN -- 个人印章类型
+如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
+ * @method string getComponentValue() 获取控件填充vaule，ComponentType和传入值类型对应关系：
+TEXT - 文本内容
+MULTI_LINE_TEXT - 文本内容
+CHECK_BOX - true/false
+FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+SELECTOR - 选项值
+DATE - 默认是格式化为xxxx年xx月xx日
+DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
+SIGN_SEAL - 印章ID
+SIGN_PAGING_SEAL - 可以指定印章ID
+ * @method void setComponentValue(string $ComponentValue) 设置控件填充vaule，ComponentType和传入值类型对应关系：
+TEXT - 文本内容
+MULTI_LINE_TEXT - 文本内容
+CHECK_BOX - true/false
+FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+SELECTOR - 选项值
+DATE - 默认是格式化为xxxx年xx月xx日
+DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
+SIGN_SEAL - 印章ID
+SIGN_PAGING_SEAL - 可以指定印章ID
  * @method integer getComponentDateFontSize() 获取日期签署控件的字号，默认为 12
 
 签署区日期控件会转换成图片格式并带存证，需要通过字体决定图片大小
@@ -108,13 +191,25 @@ TEXT控件可以指定字体
 签署区日期控件会转换成图片格式并带存证，需要通过字体决定图片大小
  * @method string getDocumentId() 获取控件所属文档的Id, 模块相关接口为空值
  * @method void setDocumentId(string $DocumentId) 设置控件所属文档的Id, 模块相关接口为空值
- * @method string getComponentDescription() 获取控件描述
- * @method void setComponentDescription(string $ComponentDescription) 设置控件描述
+ * @method string getComponentDescription() 获取控件描述，不能超过30个字符
+ * @method void setComponentDescription(string $ComponentDescription) 设置控件描述，不能超过30个字符
+ * @method float getOffsetX() 获取指定关键字时横坐标偏移量，单位pt
+ * @method void setOffsetX(float $OffsetX) 设置指定关键字时横坐标偏移量，单位pt
+ * @method float getOffsetY() 获取指定关键字时纵坐标偏移量，单位pt
+ * @method void setOffsetY(float $OffsetY) 设置指定关键字时纵坐标偏移量，单位pt
+ * @method integer getKeywordPage() 获取指定关键字页码
+ * @method void setKeywordPage(integer $KeywordPage) 设置指定关键字页码
+ * @method string getRelativeLocation() 获取关键字位置模式
+ * @method void setRelativeLocation(string $RelativeLocation) 设置关键字位置模式
+ * @method array getKeywordIndexes() 获取关键字索引
+ * @method void setKeywordIndexes(array $KeywordIndexes) 设置关键字索引
  */
 class Component extends AbstractModel
 {
     /**
      * @var string 控件编号
+
+CreateFlowByTemplates发起合同时优先以ComponentId（不为空）填充；否则以ComponentName填充
 
 注：
 当GenerateMode=3时，通过"^"来决定是否使用关键字整词匹配能力。
@@ -130,19 +225,28 @@ class Component extends AbstractModel
     /**
      * @var string 如果是Component控件类型，则可选的字段为：
 TEXT - 普通文本控件；
-DATE - 普通日期控件；跟TEXT相比会有校验逻辑
+MULTI_LINE_TEXT - 多行文本控件；
+CHECK_BOX - 勾选框控件；
+FILL_IMAGE - 图片控件；
+DYNAMIC_TABLE - 动态表格控件；
+ATTACHMENT - 附件控件；
+SELECTOR - 选择器控件；
+DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
+DISTRICT - 省市区行政区划控件；
+
 如果是SignComponent控件类型，则可选的字段为
 SIGN_SEAL - 签署印章控件；
 SIGN_DATE - 签署日期控件；
 SIGN_SIGNATURE - 用户签名控件；
-SIGN_PERSONAL_SEAL - 个人签署印章控件；
+SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
+SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
 
 表单域的控件不能作为印章和签名控件
      */
     public $ComponentType;
 
     /**
-     * @var string 控件简称
+     * @var string 控件简称，不能超过30个字符
      */
     public $ComponentName;
 
@@ -152,7 +256,12 @@ SIGN_PERSONAL_SEAL - 个人签署印章控件；
     public $ComponentRequired;
 
     /**
-     * @var integer 控件所属文件的序号 (文档中文件的排列序号)
+     * @var string 控件关联的签署方id
+     */
+    public $ComponentRecipientId;
+
+    /**
+     * @var integer 控件所属文件的序号 (文档中文件的排列序号，从0开始)
      */
     public $FileIndex;
 
@@ -177,7 +286,7 @@ KEYWORD - 关键字
     public $ComponentHeight;
 
     /**
-     * @var integer 参数控件所在页码
+     * @var integer 参数控件所在页码，从1开始
      */
     public $ComponentPage;
 
@@ -193,15 +302,41 @@ KEYWORD - 关键字
 
     /**
      * @var string 参数控件样式，json格式表述
+
 不同类型的控件会有部分非通用参数
-TEXT控件可以指定字体
+
+TEXT/MULTI_LINE_TEXT控件可以指定
+1 Font：目前只支持黑体、宋体
+2 FontSize： 范围12-72
+3 FontAlign： Left/Right/Center，左对齐/居中/右对齐
 例如：{"FontSize":12}
+
+ComponentType为FILL_IMAGE时，支持以下参数：
+NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
+FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+
+ComponentType为SIGN_SIGNATURE类型可以控制签署方式
+{“ComponentTypeLimit”: [“xxx”]}
+xxx可以为：
+HANDWRITE – 手写签名
+BORDERLESS_ESIGN – 自动生成无边框腾讯体
+OCR_ESIGN -- AI智能识别手写签名
+ESIGN -- 个人印章类型
+如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
      */
     public $ComponentExtra;
 
     /**
-     * @var string 印章 ID，传参 DEFAULT_COMPANY_SEAL 表示使用默认印章。
-控件填入内容，印章控件里面，如果是手写签名内容为PNG图片格式的base64编码
+     * @var string 控件填充vaule，ComponentType和传入值类型对应关系：
+TEXT - 文本内容
+MULTI_LINE_TEXT - 文本内容
+CHECK_BOX - true/false
+FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+SELECTOR - 选项值
+DATE - 默认是格式化为xxxx年xx月xx日
+DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
+SIGN_SEAL - 印章ID
+SIGN_PAGING_SEAL - 可以指定印章ID
      */
     public $ComponentValue;
 
@@ -218,12 +353,39 @@ TEXT控件可以指定字体
     public $DocumentId;
 
     /**
-     * @var string 控件描述
+     * @var string 控件描述，不能超过30个字符
      */
     public $ComponentDescription;
 
     /**
+     * @var float 指定关键字时横坐标偏移量，单位pt
+     */
+    public $OffsetX;
+
+    /**
+     * @var float 指定关键字时纵坐标偏移量，单位pt
+     */
+    public $OffsetY;
+
+    /**
+     * @var integer 指定关键字页码
+     */
+    public $KeywordPage;
+
+    /**
+     * @var string 关键字位置模式
+     */
+    public $RelativeLocation;
+
+    /**
+     * @var array 关键字索引
+     */
+    public $KeywordIndexes;
+
+    /**
      * @param string $ComponentId 控件编号
+
+CreateFlowByTemplates发起合同时优先以ComponentId（不为空）填充；否则以ComponentName填充
 
 注：
 当GenerateMode=3时，通过"^"来决定是否使用关键字整词匹配能力。
@@ -235,17 +397,27 @@ TEXT控件可以指定字体
 查询时返回完整结构
      * @param string $ComponentType 如果是Component控件类型，则可选的字段为：
 TEXT - 普通文本控件；
-DATE - 普通日期控件；跟TEXT相比会有校验逻辑
+MULTI_LINE_TEXT - 多行文本控件；
+CHECK_BOX - 勾选框控件；
+FILL_IMAGE - 图片控件；
+DYNAMIC_TABLE - 动态表格控件；
+ATTACHMENT - 附件控件；
+SELECTOR - 选择器控件；
+DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
+DISTRICT - 省市区行政区划控件；
+
 如果是SignComponent控件类型，则可选的字段为
 SIGN_SEAL - 签署印章控件；
 SIGN_DATE - 签署日期控件；
 SIGN_SIGNATURE - 用户签名控件；
-SIGN_PERSONAL_SEAL - 个人签署印章控件；
+SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
+SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
 
 表单域的控件不能作为印章和签名控件
-     * @param string $ComponentName 控件简称
+     * @param string $ComponentName 控件简称，不能超过30个字符
      * @param boolean $ComponentRequired 定义控件是否为必填项，默认为false
-     * @param integer $FileIndex 控件所属文件的序号 (文档中文件的排列序号)
+     * @param string $ComponentRecipientId 控件关联的签署方id
+     * @param integer $FileIndex 控件所属文件的序号 (文档中文件的排列序号，从0开始)
      * @param string $GenerateMode 控件生成的方式：
 NORMAL - 普通控件
 FIELD - 表单域
@@ -254,20 +426,51 @@ KEYWORD - 关键字
 表单域和关键字转换控件不用填
      * @param float $ComponentHeight 参数控件高度，默认100，单位px
 表单域和关键字转换控件不用填
-     * @param integer $ComponentPage 参数控件所在页码
+     * @param integer $ComponentPage 参数控件所在页码，从1开始
      * @param float $ComponentPosX 参数控件X位置，单位px
      * @param float $ComponentPosY 参数控件Y位置，单位px
      * @param string $ComponentExtra 参数控件样式，json格式表述
+
 不同类型的控件会有部分非通用参数
-TEXT控件可以指定字体
+
+TEXT/MULTI_LINE_TEXT控件可以指定
+1 Font：目前只支持黑体、宋体
+2 FontSize： 范围12-72
+3 FontAlign： Left/Right/Center，左对齐/居中/右对齐
 例如：{"FontSize":12}
-     * @param string $ComponentValue 印章 ID，传参 DEFAULT_COMPANY_SEAL 表示使用默认印章。
-控件填入内容，印章控件里面，如果是手写签名内容为PNG图片格式的base64编码
+
+ComponentType为FILL_IMAGE时，支持以下参数：
+NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
+FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+
+ComponentType为SIGN_SIGNATURE类型可以控制签署方式
+{“ComponentTypeLimit”: [“xxx”]}
+xxx可以为：
+HANDWRITE – 手写签名
+BORDERLESS_ESIGN – 自动生成无边框腾讯体
+OCR_ESIGN -- AI智能识别手写签名
+ESIGN -- 个人印章类型
+如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
+     * @param string $ComponentValue 控件填充vaule，ComponentType和传入值类型对应关系：
+TEXT - 文本内容
+MULTI_LINE_TEXT - 文本内容
+CHECK_BOX - true/false
+FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
+SELECTOR - 选项值
+DATE - 默认是格式化为xxxx年xx月xx日
+DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
+SIGN_SEAL - 印章ID
+SIGN_PAGING_SEAL - 可以指定印章ID
      * @param integer $ComponentDateFontSize 日期签署控件的字号，默认为 12
 
 签署区日期控件会转换成图片格式并带存证，需要通过字体决定图片大小
      * @param string $DocumentId 控件所属文档的Id, 模块相关接口为空值
-     * @param string $ComponentDescription 控件描述
+     * @param string $ComponentDescription 控件描述，不能超过30个字符
+     * @param float $OffsetX 指定关键字时横坐标偏移量，单位pt
+     * @param float $OffsetY 指定关键字时纵坐标偏移量，单位pt
+     * @param integer $KeywordPage 指定关键字页码
+     * @param string $RelativeLocation 关键字位置模式
+     * @param array $KeywordIndexes 关键字索引
      */
     function __construct()
     {
@@ -296,6 +499,10 @@ TEXT控件可以指定字体
 
         if (array_key_exists("ComponentRequired",$param) and $param["ComponentRequired"] !== null) {
             $this->ComponentRequired = $param["ComponentRequired"];
+        }
+
+        if (array_key_exists("ComponentRecipientId",$param) and $param["ComponentRecipientId"] !== null) {
+            $this->ComponentRecipientId = $param["ComponentRecipientId"];
         }
 
         if (array_key_exists("FileIndex",$param) and $param["FileIndex"] !== null) {
@@ -344,6 +551,26 @@ TEXT控件可以指定字体
 
         if (array_key_exists("ComponentDescription",$param) and $param["ComponentDescription"] !== null) {
             $this->ComponentDescription = $param["ComponentDescription"];
+        }
+
+        if (array_key_exists("OffsetX",$param) and $param["OffsetX"] !== null) {
+            $this->OffsetX = $param["OffsetX"];
+        }
+
+        if (array_key_exists("OffsetY",$param) and $param["OffsetY"] !== null) {
+            $this->OffsetY = $param["OffsetY"];
+        }
+
+        if (array_key_exists("KeywordPage",$param) and $param["KeywordPage"] !== null) {
+            $this->KeywordPage = $param["KeywordPage"];
+        }
+
+        if (array_key_exists("RelativeLocation",$param) and $param["RelativeLocation"] !== null) {
+            $this->RelativeLocation = $param["RelativeLocation"];
+        }
+
+        if (array_key_exists("KeywordIndexes",$param) and $param["KeywordIndexes"] !== null) {
+            $this->KeywordIndexes = $param["KeywordIndexes"];
         }
     }
 }

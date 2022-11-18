@@ -22,12 +22,12 @@ use TencentCloud\Common\AbstractModel;
  *
  * @method string getZoneId() 获取私有域ID: zone-xxxxxx
  * @method void setZoneId(string $ZoneId) 设置私有域ID: zone-xxxxxx
- * @method array getFilters() 获取过滤参数
- * @method void setFilters(array $Filters) 设置过滤参数
+ * @method array getFilters() 获取过滤参数（支持使用Value、RecordType过滤）
+ * @method void setFilters(array $Filters) 设置过滤参数（支持使用Value、RecordType过滤）
  * @method integer getOffset() 获取分页偏移量，从0开始
  * @method void setOffset(integer $Offset) 设置分页偏移量，从0开始
- * @method integer getLimit() 获取分页限制数目， 最大100，默认20
- * @method void setLimit(integer $Limit) 设置分页限制数目， 最大100，默认20
+ * @method integer getLimit() 获取分页限制数目， 最大200，默认20
+ * @method void setLimit(integer $Limit) 设置分页限制数目， 最大200，默认20
  */
 class DescribePrivateZoneRecordListRequest extends AbstractModel
 {
@@ -37,7 +37,7 @@ class DescribePrivateZoneRecordListRequest extends AbstractModel
     public $ZoneId;
 
     /**
-     * @var array 过滤参数
+     * @var array 过滤参数（支持使用Value、RecordType过滤）
      */
     public $Filters;
 
@@ -47,15 +47,15 @@ class DescribePrivateZoneRecordListRequest extends AbstractModel
     public $Offset;
 
     /**
-     * @var integer 分页限制数目， 最大100，默认20
+     * @var integer 分页限制数目， 最大200，默认20
      */
     public $Limit;
 
     /**
      * @param string $ZoneId 私有域ID: zone-xxxxxx
-     * @param array $Filters 过滤参数
+     * @param array $Filters 过滤参数（支持使用Value、RecordType过滤）
      * @param integer $Offset 分页偏移量，从0开始
-     * @param integer $Limit 分页限制数目， 最大100，默认20
+     * @param integer $Limit 分页限制数目， 最大200，默认20
      */
     function __construct()
     {

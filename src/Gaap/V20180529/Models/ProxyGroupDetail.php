@@ -31,11 +31,13 @@ use TencentCloud\Common\AbstractModel;
 1表示创建中；
 4表示销毁中；
 11表示迁移中；
+12表示部分部署中。
  * @method void setStatus(integer $Status) 设置通道组状态：
 0表示正常运行；
 1表示创建中；
 4表示销毁中；
 11表示迁移中；
+12表示部分部署中。
  * @method string getOwnerUin() 获取归属Uin
  * @method void setOwnerUin(string $OwnerUin) 设置归属Uin
  * @method string getCreateUin() 获取创建Uin
@@ -74,9 +76,43 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setIPAddressVersion(string $IPAddressVersion) 设置IP版本，可取值：IPv4、IPv6，默认值IPv4
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getPackageType() 获取通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组。
+ * @method string getPackageType() 获取通道组套餐类型：Thunder表示标准通道组，Accelerator表示银牌加速通道组，CrossBorder表示跨境通道组。
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setPackageType(string $PackageType) 设置通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组。
+ * @method void setPackageType(string $PackageType) 设置通道组套餐类型：Thunder表示标准通道组，Accelerator表示银牌加速通道组，CrossBorder表示跨境通道组。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getHttp3Supported() 获取支持Http3特性的标识，其中：
+0表示关闭；
+1表示启用。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setHttp3Supported(integer $Http3Supported) 设置支持Http3特性的标识，其中：
+0表示关闭；
+1表示启用。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getFeatureBitmap() 获取特性位图，每个bit位代表一种特性，其中：
+0，表示不支持该特性；
+1，表示支持该特性。
+特性位图含义如下（从右往左）：
+第1个bit，支持4层加速；
+第2个bit，支持7层加速；
+第3个bit，支持Http3接入；
+第4个bit，支持IPv6；
+第5个bit，支持精品BGP接入；
+第6个bit，支持三网接入；
+第7个bit，支持接入段Qos加速。
+注意：此字段可能返回 null，表示取不到有效值。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setFeatureBitmap(integer $FeatureBitmap) 设置特性位图，每个bit位代表一种特性，其中：
+0，表示不支持该特性；
+1，表示支持该特性。
+特性位图含义如下（从右往左）：
+第1个bit，支持4层加速；
+第2个bit，支持7层加速；
+第3个bit，支持Http3接入；
+第4个bit，支持IPv6；
+第5个bit，支持精品BGP接入；
+第6个bit，支持三网接入；
+第7个bit，支持接入段Qos加速。
+注意：此字段可能返回 null，表示取不到有效值。
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class ProxyGroupDetail extends AbstractModel
@@ -102,6 +138,7 @@ class ProxyGroupDetail extends AbstractModel
 1表示创建中；
 4表示销毁中；
 11表示迁移中；
+12表示部分部署中。
      */
     public $Status;
 
@@ -177,10 +214,35 @@ class ProxyGroupDetail extends AbstractModel
     public $IPAddressVersion;
 
     /**
-     * @var string 通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组。
+     * @var string 通道组套餐类型：Thunder表示标准通道组，Accelerator表示银牌加速通道组，CrossBorder表示跨境通道组。
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $PackageType;
+
+    /**
+     * @var integer 支持Http3特性的标识，其中：
+0表示关闭；
+1表示启用。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Http3Supported;
+
+    /**
+     * @var integer 特性位图，每个bit位代表一种特性，其中：
+0，表示不支持该特性；
+1，表示支持该特性。
+特性位图含义如下（从右往左）：
+第1个bit，支持4层加速；
+第2个bit，支持7层加速；
+第3个bit，支持Http3接入；
+第4个bit，支持IPv6；
+第5个bit，支持精品BGP接入；
+第6个bit，支持三网接入；
+第7个bit，支持接入段Qos加速。
+注意：此字段可能返回 null，表示取不到有效值。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $FeatureBitmap;
 
     /**
      * @param integer $CreateTime 创建时间
@@ -191,6 +253,7 @@ class ProxyGroupDetail extends AbstractModel
 1表示创建中；
 4表示销毁中；
 11表示迁移中；
+12表示部分部署中。
      * @param string $OwnerUin 归属Uin
      * @param string $CreateUin 创建Uin
      * @param string $GroupName 通道名称
@@ -210,7 +273,24 @@ class ProxyGroupDetail extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $IPAddressVersion IP版本，可取值：IPv4、IPv6，默认值IPv4
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $PackageType 通道组套餐类型：Thunder表示标准通道组，Accelerator表示游戏加速器通道组。
+     * @param string $PackageType 通道组套餐类型：Thunder表示标准通道组，Accelerator表示银牌加速通道组，CrossBorder表示跨境通道组。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $Http3Supported 支持Http3特性的标识，其中：
+0表示关闭；
+1表示启用。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $FeatureBitmap 特性位图，每个bit位代表一种特性，其中：
+0，表示不支持该特性；
+1，表示支持该特性。
+特性位图含义如下（从右往左）：
+第1个bit，支持4层加速；
+第2个bit，支持7层加速；
+第3个bit，支持Http3接入；
+第4个bit，支持IPv6；
+第5个bit，支持精品BGP接入；
+第6个bit，支持三网接入；
+第7个bit，支持接入段Qos加速。
+注意：此字段可能返回 null，表示取不到有效值。
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -302,6 +382,14 @@ class ProxyGroupDetail extends AbstractModel
 
         if (array_key_exists("PackageType",$param) and $param["PackageType"] !== null) {
             $this->PackageType = $param["PackageType"];
+        }
+
+        if (array_key_exists("Http3Supported",$param) and $param["Http3Supported"] !== null) {
+            $this->Http3Supported = $param["Http3Supported"];
+        }
+
+        if (array_key_exists("FeatureBitmap",$param) and $param["FeatureBitmap"] !== null) {
+            $this->FeatureBitmap = $param["FeatureBitmap"];
         }
     }
 }

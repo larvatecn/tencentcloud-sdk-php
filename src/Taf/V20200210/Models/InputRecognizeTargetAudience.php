@@ -20,12 +20,12 @@ use TencentCloud\Common\AbstractModel;
 /**
  * 流量反欺诈-验准入参
  *
+ * @method array getModelIdList() 获取模型ID列表
+ * @method void setModelIdList(array $ModelIdList) 设置模型ID列表
  * @method string getUid() 获取设备ID，AccountType指定的类型
  * @method void setUid(string $Uid) 设置设备ID，AccountType指定的类型
  * @method integer getAccountType() 获取设备号类型，1.imei 2.imeiMd5（小写后转MD5转小写）3.idfa， 4.idfaMd5（大写后转MD5转小写），5.手机号,256.其它
  * @method void setAccountType(integer $AccountType) 设置设备号类型，1.imei 2.imeiMd5（小写后转MD5转小写）3.idfa， 4.idfaMd5（大写后转MD5转小写），5.手机号,256.其它
- * @method array getModelIdList() 获取模型ID列表
- * @method void setModelIdList(array $ModelIdList) 设置模型ID列表
  * @method string getIp() 获取用户IP
  * @method void setIp(string $Ip) 设置用户IP
  * @method string getOs() 获取操作系统类型(unknown，android，ios，windows)
@@ -90,15 +90,24 @@ use TencentCloud\Common\AbstractModel;
  * @method void setReqMd5(string $ReqMd5) 设置请求ID的md5值
  * @method integer getAdType() 获取ad_type
  * @method void setAdType(integer $AdType) 设置ad_type
- * @method string getAppName() 获取app name
- * @method void setAppName(string $AppName) 设置app name
- * @method string getAppVer() 获取appVer
- * @method void setAppVer(string $AppVer) 设置appVer
+ * @method string getAppName() 获取app名称
+ * @method void setAppName(string $AppName) 设置app名称
+ * @method string getAppVer() 获取app版本描述
+ * @method void setAppVer(string $AppVer) 设置app版本描述
  * @method integer getReqType() 获取竞价模式1：rtb 2:pd
  * @method void setReqType(integer $ReqType) 设置竞价模式1：rtb 2:pd
+ * @method integer getIsAuthorized() 获取用户是否授权,1为授权，0为未授权
+ * @method void setIsAuthorized(integer $IsAuthorized) 设置用户是否授权,1为授权，0为未授权
+ * @method array getDeviceList() 获取设备信息
+ * @method void setDeviceList(array $DeviceList) 设置设备信息
  */
 class InputRecognizeTargetAudience extends AbstractModel
 {
+    /**
+     * @var array 模型ID列表
+     */
+    public $ModelIdList;
+
     /**
      * @var string 设备ID，AccountType指定的类型
      */
@@ -108,11 +117,6 @@ class InputRecognizeTargetAudience extends AbstractModel
      * @var integer 设备号类型，1.imei 2.imeiMd5（小写后转MD5转小写）3.idfa， 4.idfaMd5（大写后转MD5转小写），5.手机号,256.其它
      */
     public $AccountType;
-
-    /**
-     * @var array 模型ID列表
-     */
-    public $ModelIdList;
 
     /**
      * @var string 用户IP
@@ -275,12 +279,12 @@ class InputRecognizeTargetAudience extends AbstractModel
     public $AdType;
 
     /**
-     * @var string app name
+     * @var string app名称
      */
     public $AppName;
 
     /**
-     * @var string appVer
+     * @var string app版本描述
      */
     public $AppVer;
 
@@ -290,9 +294,19 @@ class InputRecognizeTargetAudience extends AbstractModel
     public $ReqType;
 
     /**
+     * @var integer 用户是否授权,1为授权，0为未授权
+     */
+    public $IsAuthorized;
+
+    /**
+     * @var array 设备信息
+     */
+    public $DeviceList;
+
+    /**
+     * @param array $ModelIdList 模型ID列表
      * @param string $Uid 设备ID，AccountType指定的类型
      * @param integer $AccountType 设备号类型，1.imei 2.imeiMd5（小写后转MD5转小写）3.idfa， 4.idfaMd5（大写后转MD5转小写），5.手机号,256.其它
-     * @param array $ModelIdList 模型ID列表
      * @param string $Ip 用户IP
      * @param string $Os 操作系统类型(unknown，android，ios，windows)
      * @param string $Osv 操作系统版本
@@ -325,9 +339,11 @@ class InputRecognizeTargetAudience extends AbstractModel
      * @param string $ReqId 请求ID
      * @param string $ReqMd5 请求ID的md5值
      * @param integer $AdType ad_type
-     * @param string $AppName app name
-     * @param string $AppVer appVer
+     * @param string $AppName app名称
+     * @param string $AppVer app版本描述
      * @param integer $ReqType 竞价模式1：rtb 2:pd
+     * @param integer $IsAuthorized 用户是否授权,1为授权，0为未授权
+     * @param array $DeviceList 设备信息
      */
     function __construct()
     {
@@ -342,16 +358,16 @@ class InputRecognizeTargetAudience extends AbstractModel
         if ($param === null) {
             return;
         }
+        if (array_key_exists("ModelIdList",$param) and $param["ModelIdList"] !== null) {
+            $this->ModelIdList = $param["ModelIdList"];
+        }
+
         if (array_key_exists("Uid",$param) and $param["Uid"] !== null) {
             $this->Uid = $param["Uid"];
         }
 
         if (array_key_exists("AccountType",$param) and $param["AccountType"] !== null) {
             $this->AccountType = $param["AccountType"];
-        }
-
-        if (array_key_exists("ModelIdList",$param) and $param["ModelIdList"] !== null) {
-            $this->ModelIdList = $param["ModelIdList"];
         }
 
         if (array_key_exists("Ip",$param) and $param["Ip"] !== null) {
@@ -492,6 +508,19 @@ class InputRecognizeTargetAudience extends AbstractModel
 
         if (array_key_exists("ReqType",$param) and $param["ReqType"] !== null) {
             $this->ReqType = $param["ReqType"];
+        }
+
+        if (array_key_exists("IsAuthorized",$param) and $param["IsAuthorized"] !== null) {
+            $this->IsAuthorized = $param["IsAuthorized"];
+        }
+
+        if (array_key_exists("DeviceList",$param) and $param["DeviceList"] !== null) {
+            $this->DeviceList = [];
+            foreach ($param["DeviceList"] as $key => $value){
+                $obj = new Device();
+                $obj->deserialize($value);
+                array_push($this->DeviceList, $obj);
+            }
         }
     }
 }

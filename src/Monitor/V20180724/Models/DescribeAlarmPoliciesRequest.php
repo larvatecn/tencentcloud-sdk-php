@@ -39,11 +39,15 @@ use TencentCloud\Common\AbstractModel;
 具体也可以参考下方的示例 2。
 
 不同云产品参数示例详见 [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
+
+注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时
  * @method void setDimensions(string $Dimensions) 设置告警对象列表，JSON 字符串。外层数组，对应多个实例，内层为对象的维度。例如“云服务器-基础监控”可写为：
 `[ {"Dimensions": {"unInstanceId": "ins-qr8d555g"}}, {"Dimensions": {"unInstanceId": "ins-qr8d555h"}} ]`
 具体也可以参考下方的示例 2。
 
 不同云产品参数示例详见 [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
+
+注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时
  * @method array getReceiverUids() 获取根据接收人搜索，可以使用“访问管理”的 [拉取子用户 ListUsers](https://cloud.tencent.com/document/product/598/34587) 接口获取用户列表 或 [查询子用户 GetUser](https://cloud.tencent.com/document/product/598/34590) 接口查询子用户详情，此处填入返回结果中的 `Uid` 字段
  * @method void setReceiverUids(array $ReceiverUids) 设置根据接收人搜索，可以使用“访问管理”的 [拉取子用户 ListUsers](https://cloud.tencent.com/document/product/598/34587) 接口获取用户列表 或 [查询子用户 GetUser](https://cloud.tencent.com/document/product/598/34590) 接口查询子用户详情，此处填入返回结果中的 `Uid` 字段
  * @method array getReceiverGroups() 获取根据接收组搜索，可以使用“访问管理”的 [查询用户组列表 ListGroups](https://cloud.tencent.com/document/product/598/34589) 接口获取用户组列表 或 [列出用户关联的用户组 ListGroupsForUser](https://cloud.tencent.com/document/product/598/34588) 查询某个子用户所在的用户组列表 ，此处填入返回结果中的 `GroupId ` 字段
@@ -70,6 +74,18 @@ use TencentCloud\Common\AbstractModel;
  * @method void setNotBindingNoticeRule(integer $NotBindingNoticeRule) 设置传 1 查询未配置通知规则的告警策略；不传或传其他数值，查询所有策略。
  * @method integer getInstanceGroupId() 获取实例分组id
  * @method void setInstanceGroupId(integer $InstanceGroupId) 设置实例分组id
+ * @method integer getNeedCorrespondence() 获取是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0
+ * @method void setNeedCorrespondence(integer $NeedCorrespondence) 设置是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0
+ * @method array getTriggerTasks() 获取按照触发任务（例如弹性伸缩）过滤策略。最多10个
+ * @method void setTriggerTasks(array $TriggerTasks) 设置按照触发任务（例如弹性伸缩）过滤策略。最多10个
+ * @method array getOneClickPolicyType() 获取根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
+ * @method void setOneClickPolicyType(array $OneClickPolicyType) 设置根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
+ * @method integer getNotBindAll() 获取根据全部对象过滤，1代表需要过滤掉全部对象，0则无需过滤
+ * @method void setNotBindAll(integer $NotBindAll) 设置根据全部对象过滤，1代表需要过滤掉全部对象，0则无需过滤
+ * @method integer getNotInstanceGroup() 获取根据实例对象过滤，1代表需要过滤掉有实例对象，0则无需过滤
+ * @method void setNotInstanceGroup(integer $NotInstanceGroup) 设置根据实例对象过滤，1代表需要过滤掉有实例对象，0则无需过滤
+ * @method array getTags() 获取策略根据标签过滤
+ * @method void setTags(array $Tags) 设置策略根据标签过滤
  */
 class DescribeAlarmPoliciesRequest extends AbstractModel
 {
@@ -110,6 +126,8 @@ class DescribeAlarmPoliciesRequest extends AbstractModel
 具体也可以参考下方的示例 2。
 
 不同云产品参数示例详见 [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
+
+注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时
      */
     public $Dimensions;
 
@@ -171,6 +189,36 @@ class DescribeAlarmPoliciesRequest extends AbstractModel
     public $InstanceGroupId;
 
     /**
+     * @var integer 是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0
+     */
+    public $NeedCorrespondence;
+
+    /**
+     * @var array 按照触发任务（例如弹性伸缩）过滤策略。最多10个
+     */
+    public $TriggerTasks;
+
+    /**
+     * @var array 根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
+     */
+    public $OneClickPolicyType;
+
+    /**
+     * @var integer 根据全部对象过滤，1代表需要过滤掉全部对象，0则无需过滤
+     */
+    public $NotBindAll;
+
+    /**
+     * @var integer 根据实例对象过滤，1代表需要过滤掉有实例对象，0则无需过滤
+     */
+    public $NotInstanceGroup;
+
+    /**
+     * @var array 策略根据标签过滤
+     */
+    public $Tags;
+
+    /**
      * @param string $Module 固定值，为"monitor"
      * @param integer $PageNumber 页数，从 1 开始计数，默认 1
      * @param integer $PageSize 每页的数量，取值1~100，默认20
@@ -183,6 +231,8 @@ class DescribeAlarmPoliciesRequest extends AbstractModel
 具体也可以参考下方的示例 2。
 
 不同云产品参数示例详见 [维度信息Dimensions列表](https://cloud.tencent.com/document/product/248/50397)
+
+注意：如果NeedCorrespondence传入1，即需要返回策略与实例对应关系，请传入不多于20个告警对象维度，否则容易请求超时
      * @param array $ReceiverUids 根据接收人搜索，可以使用“访问管理”的 [拉取子用户 ListUsers](https://cloud.tencent.com/document/product/598/34587) 接口获取用户列表 或 [查询子用户 GetUser](https://cloud.tencent.com/document/product/598/34590) 接口查询子用户详情，此处填入返回结果中的 `Uid` 字段
      * @param array $ReceiverGroups 根据接收组搜索，可以使用“访问管理”的 [查询用户组列表 ListGroups](https://cloud.tencent.com/document/product/598/34589) 接口获取用户组列表 或 [列出用户关联的用户组 ListGroupsForUser](https://cloud.tencent.com/document/product/598/34588) 查询某个子用户所在的用户组列表 ，此处填入返回结果中的 `GroupId ` 字段
      * @param array $PolicyType 根据默认策略筛选 不传展示全部策略 DEFAULT=展示默认策略 NOT_DEFAULT=展示非默认策略
@@ -196,6 +246,12 @@ class DescribeAlarmPoliciesRequest extends AbstractModel
      * @param array $Enable 告警启停筛选，[1]：启用   [0]：停止，全部[0, 1]
      * @param integer $NotBindingNoticeRule 传 1 查询未配置通知规则的告警策略；不传或传其他数值，查询所有策略。
      * @param integer $InstanceGroupId 实例分组id
+     * @param integer $NeedCorrespondence 是否需要策略与入参过滤维度参数的对应关系，1：是  0：否，默认为0
+     * @param array $TriggerTasks 按照触发任务（例如弹性伸缩）过滤策略。最多10个
+     * @param array $OneClickPolicyType 根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
+     * @param integer $NotBindAll 根据全部对象过滤，1代表需要过滤掉全部对象，0则无需过滤
+     * @param integer $NotInstanceGroup 根据实例对象过滤，1代表需要过滤掉有实例对象，0则无需过滤
+     * @param array $Tags 策略根据标签过滤
      */
     function __construct()
     {
@@ -280,6 +336,40 @@ class DescribeAlarmPoliciesRequest extends AbstractModel
 
         if (array_key_exists("InstanceGroupId",$param) and $param["InstanceGroupId"] !== null) {
             $this->InstanceGroupId = $param["InstanceGroupId"];
+        }
+
+        if (array_key_exists("NeedCorrespondence",$param) and $param["NeedCorrespondence"] !== null) {
+            $this->NeedCorrespondence = $param["NeedCorrespondence"];
+        }
+
+        if (array_key_exists("TriggerTasks",$param) and $param["TriggerTasks"] !== null) {
+            $this->TriggerTasks = [];
+            foreach ($param["TriggerTasks"] as $key => $value){
+                $obj = new AlarmPolicyTriggerTask();
+                $obj->deserialize($value);
+                array_push($this->TriggerTasks, $obj);
+            }
+        }
+
+        if (array_key_exists("OneClickPolicyType",$param) and $param["OneClickPolicyType"] !== null) {
+            $this->OneClickPolicyType = $param["OneClickPolicyType"];
+        }
+
+        if (array_key_exists("NotBindAll",$param) and $param["NotBindAll"] !== null) {
+            $this->NotBindAll = $param["NotBindAll"];
+        }
+
+        if (array_key_exists("NotInstanceGroup",$param) and $param["NotInstanceGroup"] !== null) {
+            $this->NotInstanceGroup = $param["NotInstanceGroup"];
+        }
+
+        if (array_key_exists("Tags",$param) and $param["Tags"] !== null) {
+            $this->Tags = [];
+            foreach ($param["Tags"] as $key => $value){
+                $obj = new Tag();
+                $obj->deserialize($value);
+                array_push($this->Tags, $obj);
+            }
         }
     }
 }

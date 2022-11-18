@@ -32,15 +32,15 @@ use TencentCloud\Common\AbstractModel;
  * @method void setDateOfExpiration(string $DateOfExpiration) 设置有效期
  * @method string getIssuingCountry() 获取发行国
  * @method void setIssuingCountry(string $IssuingCountry) 设置发行国
- * @method string getNationality() 获取国籍
- * @method void setNationality(string $Nationality) 设置国籍
+ * @method string getNationality() 获取国家地区代码
+ * @method void setNationality(string $Nationality) 设置国家地区代码
  * @method array getWarn() 获取告警码
 -9103	证照翻拍告警
--9102	证照复印件告警
+-9102	证照复印件告警（包括黑白复印件、彩色复印件）
 -9106       证件遮挡告警
  * @method void setWarn(array $Warn) 设置告警码
 -9103	证照翻拍告警
--9102	证照复印件告警
+-9102	证照复印件告警（包括黑白复印件、彩色复印件）
 -9106       证件遮挡告警
  * @method string getImage() 获取证件图片
  * @method void setImage(string $Image) 设置证件图片
@@ -62,6 +62,10 @@ use TencentCloud\Common\AbstractModel;
         Confidence:0.9996
     }
 }
+ * @method string getCodeSet() 获取最下方第一行 MRZ Code 序列
+ * @method void setCodeSet(string $CodeSet) 设置最下方第一行 MRZ Code 序列
+ * @method string getCodeCrc() 获取最下方第二行 MRZ Code 序列
+ * @method void setCodeCrc(string $CodeCrc) 设置最下方第二行 MRZ Code 序列
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
@@ -98,14 +102,14 @@ class MLIDPassportOCRResponse extends AbstractModel
     public $IssuingCountry;
 
     /**
-     * @var string 国籍
+     * @var string 国家地区代码
      */
     public $Nationality;
 
     /**
      * @var array 告警码
 -9103	证照翻拍告警
--9102	证照复印件告警
+-9102	证照复印件告警（包括黑白复印件、彩色复印件）
 -9106       证件遮挡告警
      */
     public $Warn;
@@ -129,6 +133,16 @@ class MLIDPassportOCRResponse extends AbstractModel
     public $AdvancedInfo;
 
     /**
+     * @var string 最下方第一行 MRZ Code 序列
+     */
+    public $CodeSet;
+
+    /**
+     * @var string 最下方第二行 MRZ Code 序列
+     */
+    public $CodeCrc;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -140,10 +154,10 @@ class MLIDPassportOCRResponse extends AbstractModel
      * @param string $Sex 性别（F女，M男）
      * @param string $DateOfExpiration 有效期
      * @param string $IssuingCountry 发行国
-     * @param string $Nationality 国籍
+     * @param string $Nationality 国家地区代码
      * @param array $Warn 告警码
 -9103	证照翻拍告警
--9102	证照复印件告警
+-9102	证照复印件告警（包括黑白复印件、彩色复印件）
 -9106       证件遮挡告警
      * @param string $Image 证件图片
      * @param string $AdvancedInfo 扩展字段:
@@ -155,6 +169,8 @@ class MLIDPassportOCRResponse extends AbstractModel
         Confidence:0.9996
     }
 }
+     * @param string $CodeSet 最下方第一行 MRZ Code 序列
+     * @param string $CodeCrc 最下方第二行 MRZ Code 序列
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -208,6 +224,14 @@ class MLIDPassportOCRResponse extends AbstractModel
 
         if (array_key_exists("AdvancedInfo",$param) and $param["AdvancedInfo"] !== null) {
             $this->AdvancedInfo = $param["AdvancedInfo"];
+        }
+
+        if (array_key_exists("CodeSet",$param) and $param["CodeSet"] !== null) {
+            $this->CodeSet = $param["CodeSet"];
+        }
+
+        if (array_key_exists("CodeCrc",$param) and $param["CodeCrc"] !== null) {
+            $this->CodeCrc = $param["CodeCrc"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

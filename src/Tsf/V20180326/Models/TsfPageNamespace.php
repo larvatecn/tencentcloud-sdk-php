@@ -69,7 +69,7 @@ class TsfPageNamespace extends AbstractModel
         if (array_key_exists("Content",$param) and $param["Content"] !== null) {
             $this->Content = [];
             foreach ($param["Content"] as $key => $value){
-                $obj = new Namespace();
+                $obj = new NamespaceInfo();
                 $obj->deserialize($value);
                 array_push($this->Content, $obj);
             }

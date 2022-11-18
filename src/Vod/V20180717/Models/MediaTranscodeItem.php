@@ -30,18 +30,26 @@ use TencentCloud\Common\AbstractModel;
  * @method void setHeight(integer $Height) 设置视频流高度的最大值，单位：px。
  * @method integer getWidth() 获取视频流宽度的最大值，单位：px。
  * @method void setWidth(integer $Width) 设置视频流宽度的最大值，单位：px。
- * @method integer getSize() 获取媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
- * @method void setSize(integer $Size) 设置媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
+ * @method integer getSize() 获取媒体文件总大小，单位：字节。
+<li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
+ * @method void setSize(integer $Size) 设置媒体文件总大小，单位：字节。
+<li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
  * @method float getDuration() 获取视频时长，单位：秒。
  * @method void setDuration(float $Duration) 设置视频时长，单位：秒。
- * @method string getContainer() 获取容器类型，例如 m4a，mp4 等。
- * @method void setContainer(string $Container) 设置容器类型，例如 m4a，mp4 等。
  * @method string getMd5() 获取视频的 md5 值。
  * @method void setMd5(string $Md5) 设置视频的 md5 值。
- * @method array getAudioStreamSet() 获取音频流信息。
- * @method void setAudioStreamSet(array $AudioStreamSet) 设置音频流信息。
+ * @method string getContainer() 获取容器类型，例如 m4a，mp4 等。
+ * @method void setContainer(string $Container) 设置容器类型，例如 m4a，mp4 等。
  * @method array getVideoStreamSet() 获取视频流信息。
  * @method void setVideoStreamSet(array $VideoStreamSet) 设置视频流信息。
+ * @method array getAudioStreamSet() 获取音频流信息。
+ * @method void setAudioStreamSet(array $AudioStreamSet) 设置音频流信息。
+ * @method string getDigitalWatermarkType() 获取数字水印类型。可选值：
+<li>Trace 表示经过溯源水印处理；</li>
+<li>None 表示没有经过数字水印处理。</li>
+ * @method void setDigitalWatermarkType(string $DigitalWatermarkType) 设置数字水印类型。可选值：
+<li>Trace 表示经过溯源水印处理；</li>
+<li>None 表示没有经过数字水印处理。</li>
  */
 class MediaTranscodeItem extends AbstractModel
 {
@@ -71,7 +79,8 @@ class MediaTranscodeItem extends AbstractModel
     public $Width;
 
     /**
-     * @var integer 媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
+     * @var integer 媒体文件总大小，单位：字节。
+<li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
      */
     public $Size;
 
@@ -81,19 +90,14 @@ class MediaTranscodeItem extends AbstractModel
     public $Duration;
 
     /**
-     * @var string 容器类型，例如 m4a，mp4 等。
-     */
-    public $Container;
-
-    /**
      * @var string 视频的 md5 值。
      */
     public $Md5;
 
     /**
-     * @var array 音频流信息。
+     * @var string 容器类型，例如 m4a，mp4 等。
      */
-    public $AudioStreamSet;
+    public $Container;
 
     /**
      * @var array 视频流信息。
@@ -101,17 +105,33 @@ class MediaTranscodeItem extends AbstractModel
     public $VideoStreamSet;
 
     /**
+     * @var array 音频流信息。
+     */
+    public $AudioStreamSet;
+
+    /**
+     * @var string 数字水印类型。可选值：
+<li>Trace 表示经过溯源水印处理；</li>
+<li>None 表示没有经过数字水印处理。</li>
+     */
+    public $DigitalWatermarkType;
+
+    /**
      * @param string $Url 转码后的视频文件地址。
      * @param integer $Definition 转码规格 ID，参见[转码参数模板](https://cloud.tencent.com/document/product/266/33476)。
      * @param integer $Bitrate 视频流码率平均值与音频流码率平均值之和， 单位：bps。
      * @param integer $Height 视频流高度的最大值，单位：px。
      * @param integer $Width 视频流宽度的最大值，单位：px。
-     * @param integer $Size 媒体文件总大小（视频为 HLS 时，大小是 m3u8 和 ts 文件大小的总和），单位：字节。
+     * @param integer $Size 媒体文件总大小，单位：字节。
+<li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
      * @param float $Duration 视频时长，单位：秒。
-     * @param string $Container 容器类型，例如 m4a，mp4 等。
      * @param string $Md5 视频的 md5 值。
-     * @param array $AudioStreamSet 音频流信息。
+     * @param string $Container 容器类型，例如 m4a，mp4 等。
      * @param array $VideoStreamSet 视频流信息。
+     * @param array $AudioStreamSet 音频流信息。
+     * @param string $DigitalWatermarkType 数字水印类型。可选值：
+<li>Trace 表示经过溯源水印处理；</li>
+<li>None 表示没有经过数字水印处理。</li>
      */
     function __construct()
     {
@@ -154,12 +174,21 @@ class MediaTranscodeItem extends AbstractModel
             $this->Duration = $param["Duration"];
         }
 
+        if (array_key_exists("Md5",$param) and $param["Md5"] !== null) {
+            $this->Md5 = $param["Md5"];
+        }
+
         if (array_key_exists("Container",$param) and $param["Container"] !== null) {
             $this->Container = $param["Container"];
         }
 
-        if (array_key_exists("Md5",$param) and $param["Md5"] !== null) {
-            $this->Md5 = $param["Md5"];
+        if (array_key_exists("VideoStreamSet",$param) and $param["VideoStreamSet"] !== null) {
+            $this->VideoStreamSet = [];
+            foreach ($param["VideoStreamSet"] as $key => $value){
+                $obj = new MediaVideoStreamItem();
+                $obj->deserialize($value);
+                array_push($this->VideoStreamSet, $obj);
+            }
         }
 
         if (array_key_exists("AudioStreamSet",$param) and $param["AudioStreamSet"] !== null) {
@@ -171,13 +200,8 @@ class MediaTranscodeItem extends AbstractModel
             }
         }
 
-        if (array_key_exists("VideoStreamSet",$param) and $param["VideoStreamSet"] !== null) {
-            $this->VideoStreamSet = [];
-            foreach ($param["VideoStreamSet"] as $key => $value){
-                $obj = new MediaVideoStreamItem();
-                $obj->deserialize($value);
-                array_push($this->VideoStreamSet, $obj);
-            }
+        if (array_key_exists("DigitalWatermarkType",$param) and $param["DigitalWatermarkType"] !== null) {
+            $this->DigitalWatermarkType = $param["DigitalWatermarkType"];
         }
     }
 }

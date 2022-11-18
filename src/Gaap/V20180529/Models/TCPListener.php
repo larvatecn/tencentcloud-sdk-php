@@ -46,14 +46,8 @@ use TencentCloud\Common\AbstractModel;
 2表示销毁中；
 3表示源站调整中；
 4表示配置变更中。
- * @method string getScheduler() 获取监听器源站访问策略，其中：
-rr表示轮询；
-wrr表示加权轮询；
-lc表示最小连接数。
- * @method void setScheduler(string $Scheduler) 设置监听器源站访问策略，其中：
-rr表示轮询；
-wrr表示加权轮询；
-lc表示最小连接数。
+ * @method string getScheduler() 获取监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
+ * @method void setScheduler(string $Scheduler) 设置监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
  * @method integer getConnectTimeout() 获取源站健康检查响应超时时间，单位：秒
  * @method void setConnectTimeout(integer $ConnectTimeout) 设置源站健康检查响应超时时间，单位：秒
  * @method integer getDelayLoop() 获取源站健康检查时间间隔，单位：秒
@@ -95,6 +89,14 @@ lc表示最小连接数。
  * @method integer getSessionPersist() 获取是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setSessionPersist(integer $SessionPersist) 设置是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getProxyId() 获取监听器的通道ID，如果监听器属于通道组，则为null
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setProxyId(string $ProxyId) 设置监听器的通道ID，如果监听器属于通道组，则为null
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getGroupId() 获取监听器的通道组ID，如果监听器属于通道，则为null
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setGroupId(string $GroupId) 设置监听器的通道组ID，如果监听器属于通道，则为null
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class TCPListener extends AbstractModel
@@ -141,10 +143,7 @@ class TCPListener extends AbstractModel
     public $ListenerStatus;
 
     /**
-     * @var string 监听器源站访问策略，其中：
-rr表示轮询；
-wrr表示加权轮询；
-lc表示最小连接数。
+     * @var string 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
      */
     public $Scheduler;
 
@@ -214,6 +213,18 @@ lc表示最小连接数。
     public $SessionPersist;
 
     /**
+     * @var string 监听器的通道ID，如果监听器属于通道组，则为null
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ProxyId;
+
+    /**
+     * @var string 监听器的通道组ID，如果监听器属于通道，则为null
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $GroupId;
+
+    /**
      * @param string $ListenerId 监听器ID
      * @param string $ListenerName 监听器名称
      * @param integer $Port 监听器端口
@@ -227,10 +238,7 @@ lc表示最小连接数。
 2表示销毁中；
 3表示源站调整中；
 4表示配置变更中。
-     * @param string $Scheduler 监听器源站访问策略，其中：
-rr表示轮询；
-wrr表示加权轮询；
-lc表示最小连接数。
+     * @param string $Scheduler 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。
      * @param integer $ConnectTimeout 源站健康检查响应超时时间，单位：秒
      * @param integer $DelayLoop 源站健康检查时间间隔，单位：秒
      * @param integer $HealthCheck 监听器是否开启健康检查，其中：
@@ -251,6 +259,10 @@ lc表示最小连接数。
      * @param integer $FailoverSwitch 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $SessionPersist 是否开启会话保持选项：0关闭， 非0开启，非0值为会话保持时间
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $ProxyId 监听器的通道ID，如果监听器属于通道组，则为null
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $GroupId 监听器的通道组ID，如果监听器属于通道，则为null
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -345,6 +357,14 @@ lc表示最小连接数。
 
         if (array_key_exists("SessionPersist",$param) and $param["SessionPersist"] !== null) {
             $this->SessionPersist = $param["SessionPersist"];
+        }
+
+        if (array_key_exists("ProxyId",$param) and $param["ProxyId"] !== null) {
+            $this->ProxyId = $param["ProxyId"];
+        }
+
+        if (array_key_exists("GroupId",$param) and $param["GroupId"] !== null) {
+            $this->GroupId = $param["GroupId"];
         }
     }
 }

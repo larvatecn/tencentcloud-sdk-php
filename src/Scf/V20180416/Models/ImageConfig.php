@@ -28,17 +28,21 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setRegistryId(string $RegistryId) 设置用于企业版TCR获取镜像拉取临时凭证，ImageType为"enterprise"时必填
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getEntryPoint() 获取应用的ENTRYPOINT
+ * @method string getEntryPoint() 获取参数已废弃
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setEntryPoint(string $EntryPoint) 设置应用的ENTRYPOINT
+ * @method void setEntryPoint(string $EntryPoint) 设置参数已废弃
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getCommand() 获取entrypoint执行命令
+ * @method string getCommand() 获取容器的启动命令。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 Entrypoint。传入规范，填写可运行的指令，例如 python
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setCommand(string $Command) 设置entrypoint执行命令
+ * @method void setCommand(string $Command) 设置容器的启动命令。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 Entrypoint。传入规范，填写可运行的指令，例如 python
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getArgs() 获取命令参数
+ * @method string getArgs() 获取容器的启动参数。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 CMD。传入规范，以“空格”作为参数的分割标识，例如 -u app.py
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setArgs(string $Args) 设置命令参数
+ * @method void setArgs(string $Args) 设置容器的启动参数。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 CMD。传入规范，以“空格”作为参数的分割标识，例如 -u app.py
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method boolean getContainerImageAccelerate() 获取镜像加速开关，默认False
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setContainerImageAccelerate(boolean $ContainerImageAccelerate) 设置镜像加速开关，默认False
 注意：此字段可能返回 null，表示取不到有效值。
  */
 class ImageConfig extends AbstractModel
@@ -60,33 +64,41 @@ class ImageConfig extends AbstractModel
     public $RegistryId;
 
     /**
-     * @var string 应用的ENTRYPOINT
+     * @var string 参数已废弃
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $EntryPoint;
 
     /**
-     * @var string entrypoint执行命令
+     * @var string 容器的启动命令。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 Entrypoint。传入规范，填写可运行的指令，例如 python
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $Command;
 
     /**
-     * @var string 命令参数
+     * @var string 容器的启动参数。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 CMD。传入规范，以“空格”作为参数的分割标识，例如 -u app.py
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $Args;
+
+    /**
+     * @var boolean 镜像加速开关，默认False
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $ContainerImageAccelerate;
 
     /**
      * @param string $ImageType 镜像仓库类型，个人版或者企业版：personal/enterprise
      * @param string $ImageUri {domain}/{namespace}/{imageName}:{tag}@{digest}
      * @param string $RegistryId 用于企业版TCR获取镜像拉取临时凭证，ImageType为"enterprise"时必填
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $EntryPoint 应用的ENTRYPOINT
+     * @param string $EntryPoint 参数已废弃
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $Command entrypoint执行命令
+     * @param string $Command 容器的启动命令。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 Entrypoint。传入规范，填写可运行的指令，例如 python
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $Args 命令参数
+     * @param string $Args 容器的启动参数。该参数为可选参数，如果不填写，则默认使用 Dockerfile 中的 CMD。传入规范，以“空格”作为参数的分割标识，例如 -u app.py
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param boolean $ContainerImageAccelerate 镜像加速开关，默认False
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -124,6 +136,10 @@ class ImageConfig extends AbstractModel
 
         if (array_key_exists("Args",$param) and $param["Args"] !== null) {
             $this->Args = $param["Args"];
+        }
+
+        if (array_key_exists("ContainerImageAccelerate",$param) and $param["ContainerImageAccelerate"] !== null) {
+            $this->ContainerImageAccelerate = $param["ContainerImageAccelerate"];
         }
     }
 }

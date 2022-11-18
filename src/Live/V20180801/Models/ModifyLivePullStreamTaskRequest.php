@@ -104,6 +104,52 @@ ResetTaskConfig：任务更新回调。
 1. 单位：秒，配合FileIndex使用。
  * @method string getComment() 获取任务备注。
  * @method void setComment(string $Comment) 设置任务备注。
+ * @method string getBackupSourceType() 获取备源的类型：
+PullLivePushLive -直播，
+PullVodPushLive -点播。
+注意：
+1. 仅当主源类型为直播源时，备源才会生效。
+2. 将该参数置为空，则可将任务去除备源信息。
+3. 主直播源拉流中断时，自动使用备源进行拉流。
+4. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
+ * @method void setBackupSourceType(string $BackupSourceType) 设置备源的类型：
+PullLivePushLive -直播，
+PullVodPushLive -点播。
+注意：
+1. 仅当主源类型为直播源时，备源才会生效。
+2. 将该参数置为空，则可将任务去除备源信息。
+3. 主直播源拉流中断时，自动使用备源进行拉流。
+4. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
+ * @method string getBackupSourceUrl() 获取备源 URL。
+只允许填一个备源 URL
+ * @method void setBackupSourceUrl(string $BackupSourceUrl) 设置备源 URL。
+只允许填一个备源 URL
+ * @method array getWatermarkList() 获取水印信息列表。
+注意：
+1. 最多支持4个不同位置的水印。
+2. 水印图片 URL 请使用合法外网可访问地址。
+3. 支持的水印图片格式：png，jpg等。
+4. 轮播任务修改水印后，轮播到下一个文件时新水印生效。
+5. 直播源任务修改水印后，水印立即生效。
+6. 清除水印时，需携带该水印列表参数，内容为空数组。
+7. 暂不支持动图水印。
+ * @method void setWatermarkList(array $WatermarkList) 设置水印信息列表。
+注意：
+1. 最多支持4个不同位置的水印。
+2. 水印图片 URL 请使用合法外网可访问地址。
+3. 支持的水印图片格式：png，jpg等。
+4. 轮播任务修改水印后，轮播到下一个文件时新水印生效。
+5. 直播源任务修改水印后，水印立即生效。
+6. 清除水印时，需携带该水印列表参数，内容为空数组。
+7. 暂不支持动图水印。
+ * @method integer getVodLocalMode() 获取点播源是否启用本地推流模式，默认0，不启用。
+0 - 不启用。
+1 - 启用。
+注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
+ * @method void setVodLocalMode(integer $VodLocalMode) 设置点播源是否启用本地推流模式，默认0，不启用。
+0 - 不启用。
+1 - 启用。
+注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
  */
 class ModifyLivePullStreamTaskRequest extends AbstractModel
 {
@@ -202,6 +248,45 @@ ResetTaskConfig：任务更新回调。
     public $Comment;
 
     /**
+     * @var string 备源的类型：
+PullLivePushLive -直播，
+PullVodPushLive -点播。
+注意：
+1. 仅当主源类型为直播源时，备源才会生效。
+2. 将该参数置为空，则可将任务去除备源信息。
+3. 主直播源拉流中断时，自动使用备源进行拉流。
+4. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
+     */
+    public $BackupSourceType;
+
+    /**
+     * @var string 备源 URL。
+只允许填一个备源 URL
+     */
+    public $BackupSourceUrl;
+
+    /**
+     * @var array 水印信息列表。
+注意：
+1. 最多支持4个不同位置的水印。
+2. 水印图片 URL 请使用合法外网可访问地址。
+3. 支持的水印图片格式：png，jpg等。
+4. 轮播任务修改水印后，轮播到下一个文件时新水印生效。
+5. 直播源任务修改水印后，水印立即生效。
+6. 清除水印时，需携带该水印列表参数，内容为空数组。
+7. 暂不支持动图水印。
+     */
+    public $WatermarkList;
+
+    /**
+     * @var integer 点播源是否启用本地推流模式，默认0，不启用。
+0 - 不启用。
+1 - 启用。
+注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
+     */
+    public $VodLocalMode;
+
+    /**
      * @param string $TaskId 任务Id。
      * @param string $Operator 操作人姓名。
      * @param array $SourceUrls 拉流源url列表。
@@ -244,6 +329,29 @@ ResetTaskConfig：任务更新回调。
 注意：
 1. 单位：秒，配合FileIndex使用。
      * @param string $Comment 任务备注。
+     * @param string $BackupSourceType 备源的类型：
+PullLivePushLive -直播，
+PullVodPushLive -点播。
+注意：
+1. 仅当主源类型为直播源时，备源才会生效。
+2. 将该参数置为空，则可将任务去除备源信息。
+3. 主直播源拉流中断时，自动使用备源进行拉流。
+4. 如果备源为点播文件时，则每次轮播完点播文件就检查主源是否恢复，如果主源恢复则自动切回到主源，否则继续拉备源。
+     * @param string $BackupSourceUrl 备源 URL。
+只允许填一个备源 URL
+     * @param array $WatermarkList 水印信息列表。
+注意：
+1. 最多支持4个不同位置的水印。
+2. 水印图片 URL 请使用合法外网可访问地址。
+3. 支持的水印图片格式：png，jpg等。
+4. 轮播任务修改水印后，轮播到下一个文件时新水印生效。
+5. 直播源任务修改水印后，水印立即生效。
+6. 清除水印时，需携带该水印列表参数，内容为空数组。
+7. 暂不支持动图水印。
+     * @param integer $VodLocalMode 点播源是否启用本地推流模式，默认0，不启用。
+0 - 不启用。
+1 - 启用。
+注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
      */
     function __construct()
     {
@@ -308,6 +416,27 @@ ResetTaskConfig：任务更新回调。
 
         if (array_key_exists("Comment",$param) and $param["Comment"] !== null) {
             $this->Comment = $param["Comment"];
+        }
+
+        if (array_key_exists("BackupSourceType",$param) and $param["BackupSourceType"] !== null) {
+            $this->BackupSourceType = $param["BackupSourceType"];
+        }
+
+        if (array_key_exists("BackupSourceUrl",$param) and $param["BackupSourceUrl"] !== null) {
+            $this->BackupSourceUrl = $param["BackupSourceUrl"];
+        }
+
+        if (array_key_exists("WatermarkList",$param) and $param["WatermarkList"] !== null) {
+            $this->WatermarkList = [];
+            foreach ($param["WatermarkList"] as $key => $value){
+                $obj = new PullPushWatermarkInfo();
+                $obj->deserialize($value);
+                array_push($this->WatermarkList, $obj);
+            }
+        }
+
+        if (array_key_exists("VodLocalMode",$param) and $param["VodLocalMode"] !== null) {
+            $this->VodLocalMode = $param["VodLocalMode"];
         }
     }
 }

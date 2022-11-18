@@ -32,9 +32,9 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setVulLevel(integer $VulLevel) 设置危害等级：1-低危；2-中危；3-高危；4-严重
 注意：此字段可能返回 null，表示取不到有效值。
- * @method integer getVulType() 获取漏洞分类 1: web应用漏洞 2:系统组件漏洞
+ * @method integer getVulType() 获取漏洞分类 1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setVulType(integer $VulType) 设置漏洞分类 1: web应用漏洞 2:系统组件漏洞
+ * @method void setVulType(integer $VulType) 设置漏洞分类 1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getDescription() 获取漏洞描述信息
 注意：此字段可能返回 null，表示取不到有效值。
@@ -52,9 +52,9 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setReference(string $Reference) 设置参考链接
 注意：此字段可能返回 null，表示取不到有效值。
- * @method string getCVSS() 获取CVSS信息，wiki:http://tapd.oa.com/Teneyes/markdown_wikis/view/#1010131751011792303
+ * @method string getCVSS() 获取CVSS信息
 注意：此字段可能返回 null，表示取不到有效值。
- * @method void setCVSS(string $CVSS) 设置CVSS信息，wiki:http://tapd.oa.com/Teneyes/markdown_wikis/view/#1010131751011792303
+ * @method void setCVSS(string $CVSS) 设置CVSS信息
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getPublicDate() 获取发布时间
 注意：此字段可能返回 null，表示取不到有效值。
@@ -71,6 +71,22 @@ use TencentCloud\Common\AbstractModel;
  * @method float getCvssScoreFloat() 获取cvss 分数 浮点型
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setCvssScoreFloat(float $CvssScoreFloat) 设置cvss 分数 浮点型
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method string getLabels() 获取漏洞标签 多个逗号分割
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setLabels(string $Labels) 设置漏洞标签 多个逗号分割
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getDefenseAttackCount() 获取已防御的攻击次数
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setDefenseAttackCount(integer $DefenseAttackCount) 设置已防御的攻击次数
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getSuccessFixCount() 获取全网修复成功次数, 不支持自动修复的漏洞默认返回0
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setSuccessFixCount(integer $SuccessFixCount) 设置全网修复成功次数, 不支持自动修复的漏洞默认返回0
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getFixSwitch() 获取修复是否支持：0-windows/linux均不支持修复 ;1-windows/linux 均支持修复 ;2-仅linux支持修复;3-仅windows支持修复
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setFixSwitch(integer $FixSwitch) 设置修复是否支持：0-windows/linux均不支持修复 ;1-windows/linux 均支持修复 ;2-仅linux支持修复;3-仅windows支持修复
 注意：此字段可能返回 null，表示取不到有效值。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -96,7 +112,7 @@ class DescribeVulInfoCvssResponse extends AbstractModel
     public $VulLevel;
 
     /**
-     * @var integer 漏洞分类 1: web应用漏洞 2:系统组件漏洞
+     * @var integer 漏洞分类 1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $VulType;
@@ -126,7 +142,7 @@ class DescribeVulInfoCvssResponse extends AbstractModel
     public $Reference;
 
     /**
-     * @var string CVSS信息，wiki:http://tapd.oa.com/Teneyes/markdown_wikis/view/#1010131751011792303
+     * @var string CVSS信息
 注意：此字段可能返回 null，表示取不到有效值。
      */
     public $CVSS;
@@ -156,6 +172,30 @@ class DescribeVulInfoCvssResponse extends AbstractModel
     public $CvssScoreFloat;
 
     /**
+     * @var string 漏洞标签 多个逗号分割
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Labels;
+
+    /**
+     * @var integer 已防御的攻击次数
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $DefenseAttackCount;
+
+    /**
+     * @var integer 全网修复成功次数, 不支持自动修复的漏洞默认返回0
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $SuccessFixCount;
+
+    /**
+     * @var integer 修复是否支持：0-windows/linux均不支持修复 ;1-windows/linux 均支持修复 ;2-仅linux支持修复;3-仅windows支持修复
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $FixSwitch;
+
+    /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     public $RequestId;
@@ -167,7 +207,7 @@ class DescribeVulInfoCvssResponse extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param integer $VulLevel 危害等级：1-低危；2-中危；3-高危；4-严重
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param integer $VulType 漏洞分类 1: web应用漏洞 2:系统组件漏洞
+     * @param integer $VulType 漏洞分类 1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Description 漏洞描述信息
 注意：此字段可能返回 null，表示取不到有效值。
@@ -177,7 +217,7 @@ class DescribeVulInfoCvssResponse extends AbstractModel
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Reference 参考链接
 注意：此字段可能返回 null，表示取不到有效值。
-     * @param string $CVSS CVSS信息，wiki:http://tapd.oa.com/Teneyes/markdown_wikis/view/#1010131751011792303
+     * @param string $CVSS CVSS信息
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $PublicDate 发布时间
 注意：此字段可能返回 null，表示取不到有效值。
@@ -186,6 +226,14 @@ class DescribeVulInfoCvssResponse extends AbstractModel
      * @param string $CveInfo cvss详情
 注意：此字段可能返回 null，表示取不到有效值。
      * @param float $CvssScoreFloat cvss 分数 浮点型
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param string $Labels 漏洞标签 多个逗号分割
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $DefenseAttackCount 已防御的攻击次数
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $SuccessFixCount 全网修复成功次数, 不支持自动修复的漏洞默认返回0
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $FixSwitch 修复是否支持：0-windows/linux均不支持修复 ;1-windows/linux 均支持修复 ;2-仅linux支持修复;3-仅windows支持修复
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
@@ -252,6 +300,22 @@ class DescribeVulInfoCvssResponse extends AbstractModel
 
         if (array_key_exists("CvssScoreFloat",$param) and $param["CvssScoreFloat"] !== null) {
             $this->CvssScoreFloat = $param["CvssScoreFloat"];
+        }
+
+        if (array_key_exists("Labels",$param) and $param["Labels"] !== null) {
+            $this->Labels = $param["Labels"];
+        }
+
+        if (array_key_exists("DefenseAttackCount",$param) and $param["DefenseAttackCount"] !== null) {
+            $this->DefenseAttackCount = $param["DefenseAttackCount"];
+        }
+
+        if (array_key_exists("SuccessFixCount",$param) and $param["SuccessFixCount"] !== null) {
+            $this->SuccessFixCount = $param["SuccessFixCount"];
+        }
+
+        if (array_key_exists("FixSwitch",$param) and $param["FixSwitch"] !== null) {
+            $this->FixSwitch = $param["FixSwitch"];
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

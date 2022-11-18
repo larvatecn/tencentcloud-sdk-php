@@ -24,8 +24,12 @@ use TencentCloud\Common\AbstractModel;
  * @method void setTopicId(string $TopicId) 设置日志主题ID
  * @method boolean getStatus() 获取默认不生效
  * @method void setStatus(boolean $Status) 设置默认不生效
- * @method RuleInfo getRule() 获取索引规则，Rule和Effective两个必须有一个参数存在
- * @method void setRule(RuleInfo $Rule) 设置索引规则，Rule和Effective两个必须有一个参数存在
+ * @method RuleInfo getRule() 获取索引规则
+ * @method void setRule(RuleInfo $Rule) 设置索引规则
+ * @method boolean getIncludeInternalFields() 获取全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+ * @method void setIncludeInternalFields(boolean $IncludeInternalFields) 设置全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+ * @method integer getMetadataFlag() 获取元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
+ * @method void setMetadataFlag(integer $MetadataFlag) 设置元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
  */
 class ModifyIndexRequest extends AbstractModel
 {
@@ -40,14 +44,26 @@ class ModifyIndexRequest extends AbstractModel
     public $Status;
 
     /**
-     * @var RuleInfo 索引规则，Rule和Effective两个必须有一个参数存在
+     * @var RuleInfo 索引规则
      */
     public $Rule;
 
     /**
+     * @var boolean 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+     */
+    public $IncludeInternalFields;
+
+    /**
+     * @var integer 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
+     */
+    public $MetadataFlag;
+
+    /**
      * @param string $TopicId 日志主题ID
      * @param boolean $Status 默认不生效
-     * @param RuleInfo $Rule 索引规则，Rule和Effective两个必须有一个参数存在
+     * @param RuleInfo $Rule 索引规则
+     * @param boolean $IncludeInternalFields 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+     * @param integer $MetadataFlag 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
      */
     function __construct()
     {
@@ -73,6 +89,14 @@ class ModifyIndexRequest extends AbstractModel
         if (array_key_exists("Rule",$param) and $param["Rule"] !== null) {
             $this->Rule = new RuleInfo();
             $this->Rule->deserialize($param["Rule"]);
+        }
+
+        if (array_key_exists("IncludeInternalFields",$param) and $param["IncludeInternalFields"] !== null) {
+            $this->IncludeInternalFields = $param["IncludeInternalFields"];
+        }
+
+        if (array_key_exists("MetadataFlag",$param) and $param["MetadataFlag"] !== null) {
+            $this->MetadataFlag = $param["MetadataFlag"];
         }
     }
 }

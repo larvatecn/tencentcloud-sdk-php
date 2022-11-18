@@ -20,8 +20,8 @@ use TencentCloud\Common\AbstractModel;
 /**
  * DescribeLoadBalancers请求参数结构体
  *
- * @method array getLoadBalancerIds() 获取负载均衡实例ID。
- * @method void setLoadBalancerIds(array $LoadBalancerIds) 设置负载均衡实例ID。
+ * @method array getLoadBalancerIds() 获取负载均衡实例ID。实例ID数量上限为20个。
+ * @method void setLoadBalancerIds(array $LoadBalancerIds) 设置负载均衡实例ID。实例ID数量上限为20个。
  * @method string getLoadBalancerType() 获取负载均衡实例的网络类型：
 OPEN：公网属性， INTERNAL：内网属性。
  * @method void setLoadBalancerType(string $LoadBalancerType) 设置负载均衡实例的网络类型：
@@ -34,10 +34,10 @@ OPEN：公网属性， INTERNAL：内网属性。
  * @method void setDomain(string $Domain) 设置腾讯云为负载均衡实例分配的域名，本参数仅对传统型公网负载均衡才有意义。
  * @method array getLoadBalancerVips() 获取负载均衡实例的 VIP 地址，支持多个。
  * @method void setLoadBalancerVips(array $LoadBalancerVips) 设置负载均衡实例的 VIP 地址，支持多个。
- * @method array getBackendPublicIps() 获取负载均衡绑定的后端服务的外网 IP。
- * @method void setBackendPublicIps(array $BackendPublicIps) 设置负载均衡绑定的后端服务的外网 IP。
- * @method array getBackendPrivateIps() 获取负载均衡绑定的后端服务的内网 IP。
- * @method void setBackendPrivateIps(array $BackendPrivateIps) 设置负载均衡绑定的后端服务的内网 IP。
+ * @method array getBackendPublicIps() 获取负载均衡绑定的后端服务的外网 IP，只支持查询云服务器的公网 IP。
+ * @method void setBackendPublicIps(array $BackendPublicIps) 设置负载均衡绑定的后端服务的外网 IP，只支持查询云服务器的公网 IP。
+ * @method array getBackendPrivateIps() 获取负载均衡绑定的后端服务的内网 IP，只支持查询云服务器的内网 IP。
+ * @method void setBackendPrivateIps(array $BackendPrivateIps) 设置负载均衡绑定的后端服务的内网 IP，只支持查询云服务器的内网 IP。
  * @method integer getOffset() 获取数据偏移量，默认为0。
  * @method void setOffset(integer $Offset) 设置数据偏移量，默认为0。
  * @method integer getLimit() 获取返回负载均衡实例的数量，默认为20，最大值为100。
@@ -60,7 +60,8 @@ OPEN：公网属性， INTERNAL：内网属性。
  * @method void setSecurityGroup(string $SecurityGroup) 设置安全组ID，如 sg-m1cc****。
  * @method string getMasterZone() 获取主可用区ID，如 ："100001" （对应的是广州一区）。
  * @method void setMasterZone(string $MasterZone) 设置主可用区ID，如 ："100001" （对应的是广州一区）。
- * @method array getFilters() 获取每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。详细的过滤条件如下：
+ * @method array getFilters() 获取每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。<br/>`Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
+<li> charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的实例计费模式过滤，包括"PREPAID","POSTPAID_BY_HOUR"。</li>
 <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
 <li> master-zone-id - String - 是否必填：否 - （过滤条件）按照 CLB 的主可用区ID过滤，如 ："100001" （对应的是广州一区）。</li>
 <li> tag-key - String - 是否必填：否 - （过滤条件）按照 CLB 标签的键过滤。</li>
@@ -68,7 +69,9 @@ OPEN：公网属性， INTERNAL：内网属性。
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> vip-isp - String - 是否必填：否 - （过滤条件）按照 CLB VIP的运营商类型过滤，如："BGP","INTERNAL","CMCC","CTCC","CUCC"等。</li>
- * @method void setFilters(array $Filters) 设置每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。详细的过滤条件如下：
+<li> sla-type - String - 是否必填：否 - （过滤条件）按照 CLB 的性能容量型规格过滤，包括"clb.c2.medium","clb.c3.small","clb.c3.medium","clb.c4.small","clb.c4.medium","clb.c4.large","clb.c4.xlarge"。</li>
+ * @method void setFilters(array $Filters) 设置每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。<br/>`Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
+<li> charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的实例计费模式过滤，包括"PREPAID","POSTPAID_BY_HOUR"。</li>
 <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
 <li> master-zone-id - String - 是否必填：否 - （过滤条件）按照 CLB 的主可用区ID过滤，如 ："100001" （对应的是广州一区）。</li>
 <li> tag-key - String - 是否必填：否 - （过滤条件）按照 CLB 标签的键过滤。</li>
@@ -76,11 +79,12 @@ OPEN：公网属性， INTERNAL：内网属性。
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> vip-isp - String - 是否必填：否 - （过滤条件）按照 CLB VIP的运营商类型过滤，如："BGP","INTERNAL","CMCC","CTCC","CUCC"等。</li>
+<li> sla-type - String - 是否必填：否 - （过滤条件）按照 CLB 的性能容量型规格过滤，包括"clb.c2.medium","clb.c3.small","clb.c3.medium","clb.c4.small","clb.c4.medium","clb.c4.large","clb.c4.xlarge"。</li>
  */
 class DescribeLoadBalancersRequest extends AbstractModel
 {
     /**
-     * @var array 负载均衡实例ID。
+     * @var array 负载均衡实例ID。实例ID数量上限为20个。
      */
     public $LoadBalancerIds;
 
@@ -111,12 +115,12 @@ OPEN：公网属性， INTERNAL：内网属性。
     public $LoadBalancerVips;
 
     /**
-     * @var array 负载均衡绑定的后端服务的外网 IP。
+     * @var array 负载均衡绑定的后端服务的外网 IP，只支持查询云服务器的公网 IP。
      */
     public $BackendPublicIps;
 
     /**
-     * @var array 负载均衡绑定的后端服务的内网 IP。
+     * @var array 负载均衡绑定的后端服务的内网 IP，只支持查询云服务器的内网 IP。
      */
     public $BackendPrivateIps;
 
@@ -172,7 +176,8 @@ OPEN：公网属性， INTERNAL：内网属性。
     public $MasterZone;
 
     /**
-     * @var array 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。详细的过滤条件如下：
+     * @var array 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。<br/>`Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
+<li> charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的实例计费模式过滤，包括"PREPAID","POSTPAID_BY_HOUR"。</li>
 <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
 <li> master-zone-id - String - 是否必填：否 - （过滤条件）按照 CLB 的主可用区ID过滤，如 ："100001" （对应的是广州一区）。</li>
 <li> tag-key - String - 是否必填：否 - （过滤条件）按照 CLB 标签的键过滤。</li>
@@ -180,19 +185,20 @@ OPEN：公网属性， INTERNAL：内网属性。
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> vip-isp - String - 是否必填：否 - （过滤条件）按照 CLB VIP的运营商类型过滤，如："BGP","INTERNAL","CMCC","CTCC","CUCC"等。</li>
+<li> sla-type - String - 是否必填：否 - （过滤条件）按照 CLB 的性能容量型规格过滤，包括"clb.c2.medium","clb.c3.small","clb.c3.medium","clb.c4.small","clb.c4.medium","clb.c4.large","clb.c4.xlarge"。</li>
      */
     public $Filters;
 
     /**
-     * @param array $LoadBalancerIds 负载均衡实例ID。
+     * @param array $LoadBalancerIds 负载均衡实例ID。实例ID数量上限为20个。
      * @param string $LoadBalancerType 负载均衡实例的网络类型：
 OPEN：公网属性， INTERNAL：内网属性。
      * @param integer $Forward 负载均衡实例的类型。1：通用的负载均衡实例，0：传统型负载均衡实例。如果不传此参数，则查询所有类型的负载均衡实例。
      * @param string $LoadBalancerName 负载均衡实例的名称。
      * @param string $Domain 腾讯云为负载均衡实例分配的域名，本参数仅对传统型公网负载均衡才有意义。
      * @param array $LoadBalancerVips 负载均衡实例的 VIP 地址，支持多个。
-     * @param array $BackendPublicIps 负载均衡绑定的后端服务的外网 IP。
-     * @param array $BackendPrivateIps 负载均衡绑定的后端服务的内网 IP。
+     * @param array $BackendPublicIps 负载均衡绑定的后端服务的外网 IP，只支持查询云服务器的公网 IP。
+     * @param array $BackendPrivateIps 负载均衡绑定的后端服务的内网 IP，只支持查询云服务器的内网 IP。
      * @param integer $Offset 数据偏移量，默认为0。
      * @param integer $Limit 返回负载均衡实例的数量，默认为20，最大值为100。
      * @param string $OrderBy 排序参数，支持以下字段：LoadBalancerName，CreateTime，Domain，LoadBalancerType。
@@ -204,7 +210,8 @@ OPEN：公网属性， INTERNAL：内网属性。
 基础网络可传入'0'。
      * @param string $SecurityGroup 安全组ID，如 sg-m1cc****。
      * @param string $MasterZone 主可用区ID，如 ："100001" （对应的是广州一区）。
-     * @param array $Filters 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。详细的过滤条件如下：
+     * @param array $Filters 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。<br/>`Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
+<li> charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的实例计费模式过滤，包括"PREPAID","POSTPAID_BY_HOUR"。</li>
 <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
 <li> master-zone-id - String - 是否必填：否 - （过滤条件）按照 CLB 的主可用区ID过滤，如 ："100001" （对应的是广州一区）。</li>
 <li> tag-key - String - 是否必填：否 - （过滤条件）按照 CLB 标签的键过滤。</li>
@@ -212,6 +219,7 @@ OPEN：公网属性， INTERNAL：内网属性。
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> function-name - String - 是否必填：否 - （过滤条件）按照 CLB 后端绑定的SCF云函数的函数名称过滤。</li>
 <li> vip-isp - String - 是否必填：否 - （过滤条件）按照 CLB VIP的运营商类型过滤，如："BGP","INTERNAL","CMCC","CTCC","CUCC"等。</li>
+<li> sla-type - String - 是否必填：否 - （过滤条件）按照 CLB 的性能容量型规格过滤，包括"clb.c2.medium","clb.c3.small","clb.c3.medium","clb.c4.small","clb.c4.medium","clb.c4.large","clb.c4.xlarge"。</li>
      */
     function __construct()
     {

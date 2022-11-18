@@ -44,6 +44,20 @@ use TencentCloud\Common\AbstractModel;
  * @method void setJobManagerSpec(float $JobManagerSpec) 设置JobManager规格
  * @method float getTaskManagerSpec() 获取TaskManager规格
  * @method void setTaskManagerSpec(float $TaskManagerSpec) 设置TaskManager规格
+ * @method string getClsLogsetId() 获取CLS日志集ID
+ * @method void setClsLogsetId(string $ClsLogsetId) 设置CLS日志集ID
+ * @method string getClsTopicId() 获取CLS日志主题ID
+ * @method void setClsTopicId(string $ClsTopicId) 设置CLS日志主题ID
+ * @method integer getLogCollectType() 获取日志采集类型 2：CLS；3：COS
+ * @method void setLogCollectType(integer $LogCollectType) 设置日志采集类型 2：CLS；3：COS
+ * @method string getPythonVersion() 获取pyflink作业运行时使用的python版本
+ * @method void setPythonVersion(string $PythonVersion) 设置pyflink作业运行时使用的python版本
+ * @method string getWorkSpaceId() 获取工作空间 SerialId
+ * @method void setWorkSpaceId(string $WorkSpaceId) 设置工作空间 SerialId
+ * @method string getLogLevel() 获取日志级别
+ * @method void setLogLevel(string $LogLevel) 设置日志级别
+ * @method integer getAutoRecover() 获取Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+ * @method void setAutoRecover(integer $AutoRecover) 设置Oceanus 平台恢复作业开关 1:开启 -1: 关闭
  */
 class CreateJobConfigRequest extends AbstractModel
 {
@@ -108,6 +122,41 @@ class CreateJobConfigRequest extends AbstractModel
     public $TaskManagerSpec;
 
     /**
+     * @var string CLS日志集ID
+     */
+    public $ClsLogsetId;
+
+    /**
+     * @var string CLS日志主题ID
+     */
+    public $ClsTopicId;
+
+    /**
+     * @var integer 日志采集类型 2：CLS；3：COS
+     */
+    public $LogCollectType;
+
+    /**
+     * @var string pyflink作业运行时使用的python版本
+     */
+    public $PythonVersion;
+
+    /**
+     * @var string 工作空间 SerialId
+     */
+    public $WorkSpaceId;
+
+    /**
+     * @var string 日志级别
+     */
+    public $LogLevel;
+
+    /**
+     * @var integer Oceanus 平台恢复作业开关 1:开启 -1: 关闭
+     */
+    public $AutoRecover;
+
+    /**
      * @param string $JobId 作业Id
      * @param string $EntrypointClass 主类
      * @param string $ProgramArgs 主类入参
@@ -120,6 +169,13 @@ class CreateJobConfigRequest extends AbstractModel
      * @param boolean $LogCollect 是否采集作业日志
      * @param float $JobManagerSpec JobManager规格
      * @param float $TaskManagerSpec TaskManager规格
+     * @param string $ClsLogsetId CLS日志集ID
+     * @param string $ClsTopicId CLS日志主题ID
+     * @param integer $LogCollectType 日志采集类型 2：CLS；3：COS
+     * @param string $PythonVersion pyflink作业运行时使用的python版本
+     * @param string $WorkSpaceId 工作空间 SerialId
+     * @param string $LogLevel 日志级别
+     * @param integer $AutoRecover Oceanus 平台恢复作业开关 1:开启 -1: 关闭
      */
     function __construct()
     {
@@ -190,6 +246,34 @@ class CreateJobConfigRequest extends AbstractModel
 
         if (array_key_exists("TaskManagerSpec",$param) and $param["TaskManagerSpec"] !== null) {
             $this->TaskManagerSpec = $param["TaskManagerSpec"];
+        }
+
+        if (array_key_exists("ClsLogsetId",$param) and $param["ClsLogsetId"] !== null) {
+            $this->ClsLogsetId = $param["ClsLogsetId"];
+        }
+
+        if (array_key_exists("ClsTopicId",$param) and $param["ClsTopicId"] !== null) {
+            $this->ClsTopicId = $param["ClsTopicId"];
+        }
+
+        if (array_key_exists("LogCollectType",$param) and $param["LogCollectType"] !== null) {
+            $this->LogCollectType = $param["LogCollectType"];
+        }
+
+        if (array_key_exists("PythonVersion",$param) and $param["PythonVersion"] !== null) {
+            $this->PythonVersion = $param["PythonVersion"];
+        }
+
+        if (array_key_exists("WorkSpaceId",$param) and $param["WorkSpaceId"] !== null) {
+            $this->WorkSpaceId = $param["WorkSpaceId"];
+        }
+
+        if (array_key_exists("LogLevel",$param) and $param["LogLevel"] !== null) {
+            $this->LogLevel = $param["LogLevel"];
+        }
+
+        if (array_key_exists("AutoRecover",$param) and $param["AutoRecover"] !== null) {
+            $this->AutoRecover = $param["AutoRecover"];
         }
     }
 }

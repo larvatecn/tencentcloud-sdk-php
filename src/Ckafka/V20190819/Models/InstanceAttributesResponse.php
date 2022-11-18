@@ -108,6 +108,18 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setDeleteRouteTimestamp(string $DeleteRouteTimestamp) 设置时间
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getRemainingPartitions() 获取剩余创建分区数
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRemainingPartitions(integer $RemainingPartitions) 设置剩余创建分区数
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getRemainingTopics() 获取剩余创建主题数
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setRemainingTopics(integer $RemainingTopics) 设置剩余创建主题数
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method DynamicDiskConfig getDynamicDiskConfig() 获取动态硬盘扩容策略
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setDynamicDiskConfig(DynamicDiskConfig $DynamicDiskConfig) 设置动态硬盘扩容策略
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class InstanceAttributesResponse extends AbstractModel
 {
@@ -284,6 +296,24 @@ class InstanceAttributesResponse extends AbstractModel
     public $DeleteRouteTimestamp;
 
     /**
+     * @var integer 剩余创建分区数
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RemainingPartitions;
+
+    /**
+     * @var integer 剩余创建主题数
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $RemainingTopics;
+
+    /**
+     * @var DynamicDiskConfig 动态硬盘扩容策略
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $DynamicDiskConfig;
+
+    /**
      * @param string $InstanceId 实例ID
      * @param string $InstanceName 实例名称
      * @param array $VipList 接入点 VIP 列表信息
@@ -327,6 +357,12 @@ class InstanceAttributesResponse extends AbstractModel
      * @param integer $PublicNetwork 公网带宽
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $DeleteRouteTimestamp 时间
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $RemainingPartitions 剩余创建分区数
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $RemainingTopics 剩余创建主题数
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param DynamicDiskConfig $DynamicDiskConfig 动态硬盘扩容策略
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -480,6 +516,19 @@ class InstanceAttributesResponse extends AbstractModel
 
         if (array_key_exists("DeleteRouteTimestamp",$param) and $param["DeleteRouteTimestamp"] !== null) {
             $this->DeleteRouteTimestamp = $param["DeleteRouteTimestamp"];
+        }
+
+        if (array_key_exists("RemainingPartitions",$param) and $param["RemainingPartitions"] !== null) {
+            $this->RemainingPartitions = $param["RemainingPartitions"];
+        }
+
+        if (array_key_exists("RemainingTopics",$param) and $param["RemainingTopics"] !== null) {
+            $this->RemainingTopics = $param["RemainingTopics"];
+        }
+
+        if (array_key_exists("DynamicDiskConfig",$param) and $param["DynamicDiskConfig"] !== null) {
+            $this->DynamicDiskConfig = new DynamicDiskConfig();
+            $this->DynamicDiskConfig->deserialize($param["DynamicDiskConfig"]);
         }
     }
 }

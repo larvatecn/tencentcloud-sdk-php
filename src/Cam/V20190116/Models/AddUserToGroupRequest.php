@@ -20,18 +20,18 @@ use TencentCloud\Common\AbstractModel;
 /**
  * AddUserToGroup请求参数结构体
  *
- * @method array getInfo() 获取添加的子用户 UID 和用户组 ID 关联关系
- * @method void setInfo(array $Info) 设置添加的子用户 UID 和用户组 ID 关联关系
+ * @method array getInfo() 获取添加的子用户 UIN/UID 和用户组 ID 关联关系
+ * @method void setInfo(array $Info) 设置添加的子用户 UIN/UID 和用户组 ID 关联关系
  */
 class AddUserToGroupRequest extends AbstractModel
 {
     /**
-     * @var array 添加的子用户 UID 和用户组 ID 关联关系
+     * @var array 添加的子用户 UIN/UID 和用户组 ID 关联关系
      */
     public $Info;
 
     /**
-     * @param array $Info 添加的子用户 UID 和用户组 ID 关联关系
+     * @param array $Info 添加的子用户 UIN/UID 和用户组 ID 关联关系
      */
     function __construct()
     {

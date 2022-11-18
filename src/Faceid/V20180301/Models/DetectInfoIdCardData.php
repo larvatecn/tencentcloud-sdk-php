@@ -40,6 +40,46 @@ use TencentCloud\Common\AbstractModel;
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setAvatar(string $Avatar) 设置身份证正面人像图base64编码。
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getWarnInfos() 获取身份证人像面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setWarnInfos(array $WarnInfos) 设置身份证人像面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method array getBackWarnInfos() 获取身份证国徽面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setBackWarnInfos(array $BackWarnInfos) 设置身份证国徽面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class DetectInfoIdCardData extends AbstractModel
 {
@@ -74,6 +114,34 @@ class DetectInfoIdCardData extends AbstractModel
     public $Avatar;
 
     /**
+     * @var array 身份证人像面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $WarnInfos;
+
+    /**
+     * @var array 身份证国徽面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $BackWarnInfos;
+
+    /**
      * @param string $OcrFront OCR正面照片的base64编码。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $OcrBack OCR反面照片的base64编码
@@ -83,6 +151,26 @@ class DetectInfoIdCardData extends AbstractModel
      * @param string $ProcessedBackImage 旋转裁边后的背面照片base64编码。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $Avatar 身份证正面人像图base64编码。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $WarnInfos 身份证人像面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param array $BackWarnInfos 身份证国徽面告警码，开启身份证告警功能后才会返回，返回数组中可能出现的告警码如下：
+-9100 身份证有效日期不合法告警，
+-9101 身份证边框不完整告警，
+-9102 身份证复印件告警，
+-9103 身份证翻拍告警，
+-9105 身份证框内遮挡告警，
+-9104 临时身份证告警，
+-9106 身份证 PS 告警，
+-9107 身份证反光告警。
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -116,6 +204,14 @@ class DetectInfoIdCardData extends AbstractModel
 
         if (array_key_exists("Avatar",$param) and $param["Avatar"] !== null) {
             $this->Avatar = $param["Avatar"];
+        }
+
+        if (array_key_exists("WarnInfos",$param) and $param["WarnInfos"] !== null) {
+            $this->WarnInfos = $param["WarnInfos"];
+        }
+
+        if (array_key_exists("BackWarnInfos",$param) and $param["BackWarnInfos"] !== null) {
+            $this->BackWarnInfos = $param["BackWarnInfos"];
         }
     }
 }

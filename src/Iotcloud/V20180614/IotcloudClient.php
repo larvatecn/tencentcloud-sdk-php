@@ -37,6 +37,7 @@ use TencentCloud\Iotcloud\V20180614\Models as Models;
  * @method Models\CreateTopicPolicyResponse CreateTopicPolicy(Models\CreateTopicPolicyRequest $req) 本接口（CreateTopicPolicy）用于创建一个Topic 
  * @method Models\CreateTopicRuleResponse CreateTopicRule(Models\CreateTopicRuleRequest $req) 本接口（CreateTopicRule）用于创建一个规则 
  * @method Models\DeleteDeviceResponse DeleteDevice(Models\DeleteDeviceRequest $req) 本接口（DeleteDevice）用于删除物联网通信设备。 
+ * @method Models\DeleteDeviceResourceResponse DeleteDeviceResource(Models\DeleteDeviceResourceRequest $req) 本接口（DeleteDeviceResource）用于删除设备资源
  * @method Models\DeleteLoraDeviceResponse DeleteLoraDevice(Models\DeleteLoraDeviceRequest $req) 删除lora类型的设备
  * @method Models\DeleteProductResponse DeleteProduct(Models\DeleteProductRequest $req) 本接口（DeleteProduct）用于删除一个物联网通信产品
  * @method Models\DeleteTopicRuleResponse DeleteTopicRule(Models\DeleteTopicRuleRequest $req) 本接口（DeleteTopicRule）用于删除规则
@@ -56,6 +57,7 @@ use TencentCloud\Iotcloud\V20180614\Models as Models;
  * @method Models\DescribeLoraDeviceResponse DescribeLoraDevice(Models\DescribeLoraDeviceRequest $req) 获取lora类型设备的详细信息 
  * @method Models\DescribeMultiDevTaskResponse DescribeMultiDevTask(Models\DescribeMultiDevTaskRequest $req) 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
  * @method Models\DescribeMultiDevicesResponse DescribeMultiDevices(Models\DescribeMultiDevicesRequest $req) 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+ * @method Models\DescribeProductResponse DescribeProduct(Models\DescribeProductRequest $req) 本接口（DescribeProduct）用于查看产品详情
  * @method Models\DescribeProductResourceResponse DescribeProductResource(Models\DescribeProductResourceRequest $req) 本接口（DescribeProductResource）用于查询产品资源详情。 
  * @method Models\DescribeProductResourcesResponse DescribeProductResources(Models\DescribeProductResourcesRequest $req) 本接口（DescribeProductResources）用于查询产品资源列表。 
  * @method Models\DescribeProductTaskResponse DescribeProductTask(Models\DescribeProductTaskRequest $req) 本接口（DescribeProductTask）用于查看产品级别的任务信息
@@ -66,10 +68,14 @@ use TencentCloud\Iotcloud\V20180614\Models as Models;
  * @method Models\DescribeTaskResponse DescribeTask(Models\DescribeTaskRequest $req) 本接口（DescribeTask）用于查询一个已创建任务的详情，任务保留一个月 
  * @method Models\DescribeTasksResponse DescribeTasks(Models\DescribeTasksRequest $req) 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月 
  * @method Models\DisableTopicRuleResponse DisableTopicRule(Models\DisableTopicRuleRequest $req) 本接口（DisableTopicRule）用于禁用规则
+ * @method Models\DownloadDeviceResourceResponse DownloadDeviceResource(Models\DownloadDeviceResourceRequest $req) 本接口（DownloadDeviceResource）用于下载设备资源
  * @method Models\EditFirmwareResponse EditFirmware(Models\EditFirmwareRequest $req) 编辑固件信息
  * @method Models\EnableTopicRuleResponse EnableTopicRule(Models\EnableTopicRuleRequest $req) 本接口（EnableTopicRule）用于启用规则 
  * @method Models\GetCOSURLResponse GetCOSURL(Models\GetCOSURLRequest $req) 本接口（GetCOSURL）用于获取固件存储在COS的URL 
  * @method Models\GetUserResourceInfoResponse GetUserResourceInfo(Models\GetUserResourceInfoRequest $req) 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
+ * @method Models\ListLogResponse ListLog(Models\ListLogRequest $req) 本接口（ListLog）用于查看日志信息 
+ * @method Models\ListLogPayloadResponse ListLogPayload(Models\ListLogPayloadRequest $req) 获取日志内容列表
+ * @method Models\ListSDKLogResponse ListSDKLog(Models\ListSDKLogRequest $req) 获取设备上报的日志
  * @method Models\PublishAsDeviceResponse PublishAsDevice(Models\PublishAsDeviceRequest $req) 模拟lora类型的设备端向服务器端发送消息
  * @method Models\PublishBroadcastMessageResponse PublishBroadcastMessage(Models\PublishBroadcastMessageRequest $req) 发布广播消息
  * @method Models\PublishMessageResponse PublishMessage(Models\PublishMessageRequest $req) 本接口（PublishMessage）用于向某个主题发消息。 
@@ -83,6 +89,7 @@ use TencentCloud\Iotcloud\V20180614\Models as Models;
  * @method Models\UpdateDeviceAvailableStateResponse UpdateDeviceAvailableState(Models\UpdateDeviceAvailableStateRequest $req) 启用或者禁用设备 
  * @method Models\UpdateDeviceShadowResponse UpdateDeviceShadow(Models\UpdateDeviceShadowRequest $req) 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
  * @method Models\UpdateDevicesEnableStateResponse UpdateDevicesEnableState(Models\UpdateDevicesEnableStateRequest $req) 批量启用或者禁用设备 
+ * @method Models\UpdateProductDynamicRegisterResponse UpdateProductDynamicRegister(Models\UpdateProductDynamicRegisterRequest $req) 更新产品动态注册的配置 
  * @method Models\UpdateTopicPolicyResponse UpdateTopicPolicy(Models\UpdateTopicPolicyRequest $req) 本接口（UpdateTopicPolicy）用于更新Topic信息
  * @method Models\UploadFirmwareResponse UploadFirmware(Models\UploadFirmwareRequest $req) 本接口（UploadFirmware）用于上传设备固件信息 
  */

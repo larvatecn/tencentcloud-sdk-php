@@ -80,6 +80,14 @@ FilterType = 2表示用户使用 BindingKey 过滤。
 注意：此字段可能返回 null，表示取不到有效值。
  * @method void setNamespaceName(string $NamespaceName) 设置命名空间名称
 注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getStatus() 获取集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setStatus(integer $Status) 设置集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method integer getBrokerType() 获取0表示pulsar，1表示rocketmq
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setBrokerType(integer $BrokerType) 设置0表示pulsar，1表示rocketmq
+注意：此字段可能返回 null，表示取不到有效值。
  */
 class CmqTopic extends AbstractModel
 {
@@ -170,6 +178,18 @@ FilterType = 2表示用户使用 BindingKey 过滤。
     public $NamespaceName;
 
     /**
+     * @var integer 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Status;
+
+    /**
+     * @var integer 0表示pulsar，1表示rocketmq
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $BrokerType;
+
+    /**
      * @param string $TopicId 主题的 ID。
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $TopicName 主题名称。
@@ -199,6 +219,10 @@ FilterType = 2表示用户使用 BindingKey 过滤。
      * @param string $TenantId 租户id
 注意：此字段可能返回 null，表示取不到有效值。
      * @param string $NamespaceName 命名空间名称
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $Status 集群状态，0:创建中，1:正常，2:销毁中，3:已删除，4: 隔离中，5:创建失败，6: 删除失败
+注意：此字段可能返回 null，表示取不到有效值。
+     * @param integer $BrokerType 0表示pulsar，1表示rocketmq
 注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
@@ -273,6 +297,14 @@ FilterType = 2表示用户使用 BindingKey 过滤。
 
         if (array_key_exists("NamespaceName",$param) and $param["NamespaceName"] !== null) {
             $this->NamespaceName = $param["NamespaceName"];
+        }
+
+        if (array_key_exists("Status",$param) and $param["Status"] !== null) {
+            $this->Status = $param["Status"];
+        }
+
+        if (array_key_exists("BrokerType",$param) and $param["BrokerType"] !== null) {
+            $this->BrokerType = $param["BrokerType"];
         }
     }
 }

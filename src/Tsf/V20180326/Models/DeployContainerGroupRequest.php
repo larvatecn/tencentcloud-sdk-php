@@ -82,6 +82,20 @@ use TencentCloud\Common\AbstractModel;
  * @method void setIncrementalDeployment(boolean $IncrementalDeployment) 设置是否进行增量部署，默认为false，全量更新
  * @method string getRepoType() 获取tcr或者不填
  * @method void setRepoType(string $RepoType) 设置tcr或者不填
+ * @method VolumeInfo getVolumeInfos() 获取数据卷信息-废弃，请用VolumeInfoList参数
+ * @method void setVolumeInfos(VolumeInfo $VolumeInfos) 设置数据卷信息-废弃，请用VolumeInfoList参数
+ * @method VolumeMountInfo getVolumeMountInfos() 获取数据卷挂载点信息-废弃，请用VolumeMountInfoList参数
+ * @method void setVolumeMountInfos(VolumeMountInfo $VolumeMountInfos) 设置数据卷挂载点信息-废弃，请用VolumeMountInfoList参数
+ * @method array getVolumeInfoList() 获取数据卷信息，list
+ * @method void setVolumeInfoList(array $VolumeInfoList) 设置数据卷信息，list
+ * @method array getVolumeMountInfoList() 获取数据卷挂载点信息，list
+ * @method void setVolumeMountInfoList(array $VolumeMountInfoList) 设置数据卷挂载点信息，list
+ * @method boolean getVolumeClean() 获取是否清除数据卷信息，默认false
+ * @method void setVolumeClean(boolean $VolumeClean) 设置是否清除数据卷信息，默认false
+ * @method array getAgentProfileList() 获取javaagent信息: SERVICE_AGENT/OT_AGENT
+ * @method void setAgentProfileList(array $AgentProfileList) 设置javaagent信息: SERVICE_AGENT/OT_AGENT
+ * @method WarmupSetting getWarmupSetting() 获取预热配置信息
+ * @method void setWarmupSetting(WarmupSetting $WarmupSetting) 设置预热配置信息
  */
 class DeployContainerGroupRequest extends AbstractModel
 {
@@ -241,6 +255,41 @@ class DeployContainerGroupRequest extends AbstractModel
     public $RepoType;
 
     /**
+     * @var VolumeInfo 数据卷信息-废弃，请用VolumeInfoList参数
+     */
+    public $VolumeInfos;
+
+    /**
+     * @var VolumeMountInfo 数据卷挂载点信息-废弃，请用VolumeMountInfoList参数
+     */
+    public $VolumeMountInfos;
+
+    /**
+     * @var array 数据卷信息，list
+     */
+    public $VolumeInfoList;
+
+    /**
+     * @var array 数据卷挂载点信息，list
+     */
+    public $VolumeMountInfoList;
+
+    /**
+     * @var boolean 是否清除数据卷信息，默认false
+     */
+    public $VolumeClean;
+
+    /**
+     * @var array javaagent信息: SERVICE_AGENT/OT_AGENT
+     */
+    public $AgentProfileList;
+
+    /**
+     * @var WarmupSetting 预热配置信息
+     */
+    public $WarmupSetting;
+
+    /**
      * @param string $GroupId 部署组ID，分组唯一标识
      * @param string $TagName 镜像版本名称,如v1
      * @param integer $InstanceNum 实例数量
@@ -272,6 +321,13 @@ class DeployContainerGroupRequest extends AbstractModel
      * @param SchedulingStrategy $SchedulingStrategy 节点调度策略。若不指定改参数，则默认不使用节点调度策略。
      * @param boolean $IncrementalDeployment 是否进行增量部署，默认为false，全量更新
      * @param string $RepoType tcr或者不填
+     * @param VolumeInfo $VolumeInfos 数据卷信息-废弃，请用VolumeInfoList参数
+     * @param VolumeMountInfo $VolumeMountInfos 数据卷挂载点信息-废弃，请用VolumeMountInfoList参数
+     * @param array $VolumeInfoList 数据卷信息，list
+     * @param array $VolumeMountInfoList 数据卷挂载点信息，list
+     * @param boolean $VolumeClean 是否清除数据卷信息，默认false
+     * @param array $AgentProfileList javaagent信息: SERVICE_AGENT/OT_AGENT
+     * @param WarmupSetting $WarmupSetting 预热配置信息
      */
     function __construct()
     {
@@ -416,6 +472,52 @@ class DeployContainerGroupRequest extends AbstractModel
 
         if (array_key_exists("RepoType",$param) and $param["RepoType"] !== null) {
             $this->RepoType = $param["RepoType"];
+        }
+
+        if (array_key_exists("VolumeInfos",$param) and $param["VolumeInfos"] !== null) {
+            $this->VolumeInfos = new VolumeInfo();
+            $this->VolumeInfos->deserialize($param["VolumeInfos"]);
+        }
+
+        if (array_key_exists("VolumeMountInfos",$param) and $param["VolumeMountInfos"] !== null) {
+            $this->VolumeMountInfos = new VolumeMountInfo();
+            $this->VolumeMountInfos->deserialize($param["VolumeMountInfos"]);
+        }
+
+        if (array_key_exists("VolumeInfoList",$param) and $param["VolumeInfoList"] !== null) {
+            $this->VolumeInfoList = [];
+            foreach ($param["VolumeInfoList"] as $key => $value){
+                $obj = new VolumeInfo();
+                $obj->deserialize($value);
+                array_push($this->VolumeInfoList, $obj);
+            }
+        }
+
+        if (array_key_exists("VolumeMountInfoList",$param) and $param["VolumeMountInfoList"] !== null) {
+            $this->VolumeMountInfoList = [];
+            foreach ($param["VolumeMountInfoList"] as $key => $value){
+                $obj = new VolumeMountInfo();
+                $obj->deserialize($value);
+                array_push($this->VolumeMountInfoList, $obj);
+            }
+        }
+
+        if (array_key_exists("VolumeClean",$param) and $param["VolumeClean"] !== null) {
+            $this->VolumeClean = $param["VolumeClean"];
+        }
+
+        if (array_key_exists("AgentProfileList",$param) and $param["AgentProfileList"] !== null) {
+            $this->AgentProfileList = [];
+            foreach ($param["AgentProfileList"] as $key => $value){
+                $obj = new AgentProfile();
+                $obj->deserialize($value);
+                array_push($this->AgentProfileList, $obj);
+            }
+        }
+
+        if (array_key_exists("WarmupSetting",$param) and $param["WarmupSetting"] !== null) {
+            $this->WarmupSetting = new WarmupSetting();
+            $this->WarmupSetting->deserialize($param["WarmupSetting"]);
         }
     }
 }

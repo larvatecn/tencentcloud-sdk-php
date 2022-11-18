@@ -112,8 +112,20 @@ use TencentCloud\Common\AbstractModel;
  * @method void setUserType(string $UserType) 设置用户类型。
  * @method boolean getIsBase64Encoded() 获取是否打开Base64编码，只有后端是scf时才会生效。
  * @method void setIsBase64Encoded(boolean $IsBase64Encoded) 设置是否打开Base64编码，只有后端是scf时才会生效。
+ * @method string getEventBusId() 获取事件总线ID。
+ * @method void setEventBusId(string $EventBusId) 设置事件总线ID。
  * @method string getServiceScfFunctionType() 获取scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
  * @method void setServiceScfFunctionType(string $ServiceScfFunctionType) 设置scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
+ * @method string getEIAMAppType() 获取EIAM应用类型。
+ * @method void setEIAMAppType(string $EIAMAppType) 设置EIAM应用类型。
+ * @method string getEIAMAuthType() 获取EIAM应用认证类型，支持仅认证（AuthenticationOnly）、认证和鉴权（Authorization）。
+ * @method void setEIAMAuthType(string $EIAMAuthType) 设置EIAM应用认证类型，支持仅认证（AuthenticationOnly）、认证和鉴权（Authorization）。
+ * @method integer getTokenTimeout() 获取EIAM应用Token 有效时间，单位为秒，默认为7200秒。
+ * @method void setTokenTimeout(integer $TokenTimeout) 设置EIAM应用Token 有效时间，单位为秒，默认为7200秒。
+ * @method string getEIAMAppId() 获取EIAM应用ID。
+ * @method void setEIAMAppId(string $EIAMAppId) 设置EIAM应用ID。
+ * @method string getOwner() 获取资源的Owner
+ * @method void setOwner(string $Owner) 设置资源的Owner
  */
 class CreateApiRequest extends AbstractModel
 {
@@ -348,9 +360,39 @@ class CreateApiRequest extends AbstractModel
     public $IsBase64Encoded;
 
     /**
+     * @var string 事件总线ID。
+     */
+    public $EventBusId;
+
+    /**
      * @var string scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
      */
     public $ServiceScfFunctionType;
+
+    /**
+     * @var string EIAM应用类型。
+     */
+    public $EIAMAppType;
+
+    /**
+     * @var string EIAM应用认证类型，支持仅认证（AuthenticationOnly）、认证和鉴权（Authorization）。
+     */
+    public $EIAMAuthType;
+
+    /**
+     * @var integer EIAM应用Token 有效时间，单位为秒，默认为7200秒。
+     */
+    public $TokenTimeout;
+
+    /**
+     * @var string EIAM应用ID。
+     */
+    public $EIAMAppId;
+
+    /**
+     * @var string 资源的Owner
+     */
+    public $Owner;
 
     /**
      * @param string $ServiceId API 所在的服务唯一 ID。
@@ -399,7 +441,13 @@ class CreateApiRequest extends AbstractModel
      * @param string $TargetNamespaceId tsf serverless 命名空间ID。（内测中）
      * @param string $UserType 用户类型。
      * @param boolean $IsBase64Encoded 是否打开Base64编码，只有后端是scf时才会生效。
+     * @param string $EventBusId 事件总线ID。
      * @param string $ServiceScfFunctionType scf函数类型。当后端类型是SCF时生效。支持事件触发(EVENT)，http直通云函数(HTTP)。
+     * @param string $EIAMAppType EIAM应用类型。
+     * @param string $EIAMAuthType EIAM应用认证类型，支持仅认证（AuthenticationOnly）、认证和鉴权（Authorization）。
+     * @param integer $TokenTimeout EIAM应用Token 有效时间，单位为秒，默认为7200秒。
+     * @param string $EIAMAppId EIAM应用ID。
+     * @param string $Owner 资源的Owner
      */
     function __construct()
     {
@@ -634,8 +682,32 @@ class CreateApiRequest extends AbstractModel
             $this->IsBase64Encoded = $param["IsBase64Encoded"];
         }
 
+        if (array_key_exists("EventBusId",$param) and $param["EventBusId"] !== null) {
+            $this->EventBusId = $param["EventBusId"];
+        }
+
         if (array_key_exists("ServiceScfFunctionType",$param) and $param["ServiceScfFunctionType"] !== null) {
             $this->ServiceScfFunctionType = $param["ServiceScfFunctionType"];
+        }
+
+        if (array_key_exists("EIAMAppType",$param) and $param["EIAMAppType"] !== null) {
+            $this->EIAMAppType = $param["EIAMAppType"];
+        }
+
+        if (array_key_exists("EIAMAuthType",$param) and $param["EIAMAuthType"] !== null) {
+            $this->EIAMAuthType = $param["EIAMAuthType"];
+        }
+
+        if (array_key_exists("TokenTimeout",$param) and $param["TokenTimeout"] !== null) {
+            $this->TokenTimeout = $param["TokenTimeout"];
+        }
+
+        if (array_key_exists("EIAMAppId",$param) and $param["EIAMAppId"] !== null) {
+            $this->EIAMAppId = $param["EIAMAppId"];
+        }
+
+        if (array_key_exists("Owner",$param) and $param["Owner"] !== null) {
+            $this->Owner = $param["Owner"];
         }
     }
 }

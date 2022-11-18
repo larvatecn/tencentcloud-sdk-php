@@ -34,6 +34,20 @@ use TencentCloud\Common\AbstractModel;
  * @method void setFilterName(string $FilterName) 设置名称搜索
  * @method integer getFilterLine() 获取按照线路搜索, 1: BGP; 2: 三网
  * @method void setFilterLine(integer $FilterLine) 设置按照线路搜索, 1: BGP; 2: 三网
+ * @method string getFilterStatus() 获取状态搜索，idle：运行中；attacking：攻击中；blocking：封堵中
+ * @method void setFilterStatus(string $FilterStatus) 设置状态搜索，idle：运行中；attacking：攻击中；blocking：封堵中
+ * @method string getFilterBoundStatus() 获取高防包绑定状态搜索，bounding：绑定中； failed：绑定失败
+ * @method void setFilterBoundStatus(string $FilterBoundStatus) 设置高防包绑定状态搜索，bounding：绑定中； failed：绑定失败
+ * @method array getFilterInstanceIdList() 获取实例id数组
+ * @method void setFilterInstanceIdList(array $FilterInstanceIdList) 设置实例id数组
+ * @method integer getFilterEnterpriseFlag() 获取企业版搜索
+ * @method void setFilterEnterpriseFlag(integer $FilterEnterpriseFlag) 设置企业版搜索
+ * @method integer getFilterLightFlag() 获取轻量版搜索
+ * @method void setFilterLightFlag(integer $FilterLightFlag) 设置轻量版搜索
+ * @method integer getFilterChannelFlag() 获取定制版搜索
+ * @method void setFilterChannelFlag(integer $FilterChannelFlag) 设置定制版搜索
+ * @method TagFilter getFilterTag() 获取标签搜索
+ * @method void setFilterTag(TagFilter $FilterTag) 设置标签搜索
  */
 class DescribeListBGPInstancesRequest extends AbstractModel
 {
@@ -73,6 +87,41 @@ class DescribeListBGPInstancesRequest extends AbstractModel
     public $FilterLine;
 
     /**
+     * @var string 状态搜索，idle：运行中；attacking：攻击中；blocking：封堵中
+     */
+    public $FilterStatus;
+
+    /**
+     * @var string 高防包绑定状态搜索，bounding：绑定中； failed：绑定失败
+     */
+    public $FilterBoundStatus;
+
+    /**
+     * @var array 实例id数组
+     */
+    public $FilterInstanceIdList;
+
+    /**
+     * @var integer 企业版搜索
+     */
+    public $FilterEnterpriseFlag;
+
+    /**
+     * @var integer 轻量版搜索
+     */
+    public $FilterLightFlag;
+
+    /**
+     * @var integer 定制版搜索
+     */
+    public $FilterChannelFlag;
+
+    /**
+     * @var TagFilter 标签搜索
+     */
+    public $FilterTag;
+
+    /**
      * @param integer $Offset 页起始偏移，取值为(页码-1)*一页条数
      * @param integer $Limit 一页条数，当Limit=0时，默认一页条数为20;最大取值为100
      * @param string $FilterIp IP搜索
@@ -80,6 +129,13 @@ class DescribeListBGPInstancesRequest extends AbstractModel
      * @param string $FilterRegion 地域搜索，例如，ap-guangzhou
      * @param string $FilterName 名称搜索
      * @param integer $FilterLine 按照线路搜索, 1: BGP; 2: 三网
+     * @param string $FilterStatus 状态搜索，idle：运行中；attacking：攻击中；blocking：封堵中
+     * @param string $FilterBoundStatus 高防包绑定状态搜索，bounding：绑定中； failed：绑定失败
+     * @param array $FilterInstanceIdList 实例id数组
+     * @param integer $FilterEnterpriseFlag 企业版搜索
+     * @param integer $FilterLightFlag 轻量版搜索
+     * @param integer $FilterChannelFlag 定制版搜索
+     * @param TagFilter $FilterTag 标签搜索
      */
     function __construct()
     {
@@ -120,6 +176,35 @@ class DescribeListBGPInstancesRequest extends AbstractModel
 
         if (array_key_exists("FilterLine",$param) and $param["FilterLine"] !== null) {
             $this->FilterLine = $param["FilterLine"];
+        }
+
+        if (array_key_exists("FilterStatus",$param) and $param["FilterStatus"] !== null) {
+            $this->FilterStatus = $param["FilterStatus"];
+        }
+
+        if (array_key_exists("FilterBoundStatus",$param) and $param["FilterBoundStatus"] !== null) {
+            $this->FilterBoundStatus = $param["FilterBoundStatus"];
+        }
+
+        if (array_key_exists("FilterInstanceIdList",$param) and $param["FilterInstanceIdList"] !== null) {
+            $this->FilterInstanceIdList = $param["FilterInstanceIdList"];
+        }
+
+        if (array_key_exists("FilterEnterpriseFlag",$param) and $param["FilterEnterpriseFlag"] !== null) {
+            $this->FilterEnterpriseFlag = $param["FilterEnterpriseFlag"];
+        }
+
+        if (array_key_exists("FilterLightFlag",$param) and $param["FilterLightFlag"] !== null) {
+            $this->FilterLightFlag = $param["FilterLightFlag"];
+        }
+
+        if (array_key_exists("FilterChannelFlag",$param) and $param["FilterChannelFlag"] !== null) {
+            $this->FilterChannelFlag = $param["FilterChannelFlag"];
+        }
+
+        if (array_key_exists("FilterTag",$param) and $param["FilterTag"] !== null) {
+            $this->FilterTag = new TagFilter();
+            $this->FilterTag->deserialize($param["FilterTag"]);
         }
     }
 }
